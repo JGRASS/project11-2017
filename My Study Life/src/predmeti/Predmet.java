@@ -1,5 +1,7 @@
 package predmeti;
 
+import com.sun.org.apache.xerces.internal.util.URI;
+
 public class Predmet {
 	private String naziv;
 	private int ESBP;
@@ -9,7 +11,26 @@ public class Predmet {
 	private boolean polozen;
 	private int ocena;
 	private String napomena;
+	private URI forum;
+	public URI getForum() {
+		return forum;
+	}
 
+	public void setForum(URI forum) {
+		if(forum==null) throw new RuntimeException("Link za forum mora biti pravilno unet"); 
+		this.forum = forum;
+	}
+
+	public URI getPuskice() {
+		return puskice;
+	}
+
+	public void setPuskice(URI puskice) {
+		if(puskice==null) throw new RuntimeException("Link za puskice mora biti ispravno unet");
+		this.puskice = puskice;
+	}
+
+	private URI puskice;
 	public String getNaziv() {
 		return naziv;
 	}
