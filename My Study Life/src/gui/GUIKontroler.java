@@ -13,10 +13,9 @@ import java.io.ObjectOutputStream;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-
 import aktivnosti.*;
 public class GUIKontroler {
-
+	
 	public static GlavniProzorGUI glavniProzor ; //Ovde pravite staticke promeljive. Njima posle pristupamo pomocu GuiKontroler.xxx iz bilo koje druge klase.
 	public static DodajKolokvijumGUI dodajKolokvijum;
 	public static DodajIspitGUI dodajIspit;
@@ -103,4 +102,15 @@ public class GUIKontroler {
 		}
 	}
 	
+	public String vratiNazivSlike() {
+		int broj = (int) (Math.random() * 10);
+		return broj + ".png";
+	}
+
+	public static void dodajPredmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
+			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
+	}
+	public static void izmeniPredmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
+			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
+	}
 }

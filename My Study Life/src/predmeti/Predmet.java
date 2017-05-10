@@ -1,5 +1,7 @@
 package predmeti;
 
+
+
 public class Predmet {
 	private String naziv;
 	private int ESBP;
@@ -9,6 +11,26 @@ public class Predmet {
 	private boolean polozen;
 	private int ocena;
 	private String napomena;
+	private String forum;
+	private String puskice;
+	public String getForum() {
+		return forum;
+	}
+
+	public void setForum(String forum) {
+		if(forum==null) throw new RuntimeException("Link za forum mora biti pravilno unet"); 
+		this.forum = forum;
+	}
+
+	public String getPuskice() {
+		return puskice;
+	}
+
+	public void setPuskice(String puskice) {
+		if(puskice==null) throw new RuntimeException("Link za puskice mora biti ispravno unet");
+		this.puskice = puskice;
+	}
+
 
 	public String getNaziv() {
 		return naziv;
@@ -83,6 +105,13 @@ public class Predmet {
 	public void setJednosemestralan(boolean jednosemestralan) {
 		this.jednosemestralan = jednosemestralan;
 	}
-	
+	@Override
+	public boolean equals(Object obj) {
+		String naziv = (String)obj;
+		if(this.naziv.equals(naziv)){
+			return true;
+		}
+		return false;
+	}
 }
 
