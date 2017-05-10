@@ -18,4 +18,9 @@ public class GUIKontroler {
 			}
 		});
 	}
+	
+	public String vratiNazivSlike(){
+		int broj = (int)(Math.random()*10);
+		return broj + ".png";
+	}
 }

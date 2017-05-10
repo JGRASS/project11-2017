@@ -6,8 +6,15 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import gui.model.PrikazPredmetaTabelaModel;
+
 import javax.swing.JTabbedPane;
 import java.awt.Font;
+import java.awt.Dimension;
+import javax.swing.JButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
 
 public class GlavniProzorGUI extends JFrame {
 
@@ -17,6 +24,12 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel panelPredmeti;
 	private JPanel panelRasporedNastave;
 	private JPanel panelPolozeniIspiti;
+	private JPanel panel;
+	private JButton btnDodaj;
+	private JButton btnIzmeni;
+	private JButton btnObrisi;
+	private JScrollPane scrollPane;
+	private JTable table;
 	
 	public GlavniProzorGUI() {
 		setTitle("MyStudyLife");
@@ -44,12 +57,16 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel getPanelPlaner() {
 		if (panelPlaner == null) {
 			panelPlaner = new JPanel();
+			panelPlaner.setLayout(new BorderLayout(0, 0));
 		}
 		return panelPlaner;
 	}
 	private JPanel getPanelPredmeti() {
 		if (panelPredmeti == null) {
 			panelPredmeti = new JPanel();
+			panelPredmeti.setLayout(new BorderLayout(0, 0));
+			panelPredmeti.add(getPanel(), BorderLayout.EAST);
+			panelPredmeti.add(getScrollPane(), BorderLayout.CENTER);
 		}
 		return panelPredmeti;
 	}
@@ -64,5 +81,52 @@ public class GlavniProzorGUI extends JFrame {
 			panelPolozeniIspiti = new JPanel();
 		}
 		return panelPolozeniIspiti;
+	}
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setPreferredSize(new Dimension(130, 10));
+			panel.add(getBtnDodaj());
+			panel.add(getBtnIzmeni());
+			panel.add(getBtnObrisi());
+		}
+		return panel;
+	}
+	private JButton getBtnDodaj() {
+		if (btnDodaj == null) {
+			btnDodaj = new JButton("Dodaj predmet");
+			btnDodaj.setPreferredSize(new Dimension(120, 23));
+		}
+		return btnDodaj;
+	}
+	private JButton getBtnIzmeni() {
+		if (btnIzmeni == null) {
+			btnIzmeni = new JButton("Izmeni predmet");
+			btnIzmeni.setPreferredSize(new Dimension(120, 23));
+			btnIzmeni.setEnabled(false);
+		}
+		return btnIzmeni;
+	}
+	private JButton getBtnObrisi() {
+		if (btnObrisi == null) {
+			btnObrisi = new JButton("Obrisi predmet");
+			btnObrisi.setPreferredSize(new Dimension(120, 23));
+			btnObrisi.setEnabled(false);
+		}
+		return btnObrisi;
+	}
+	private JScrollPane getScrollPane() {
+		if (scrollPane == null) {
+			scrollPane = new JScrollPane();
+			scrollPane.setViewportView(getTable());
+		}
+		return scrollPane;
+	}
+	private JTable getTable() {
+		if (table == null) {
+			table = new JTable();
+			table.setModel(new PrikazPredmetaTabelaModel(null));
+		}
+		return table;
 	}
 }
