@@ -80,7 +80,7 @@ public class GlavniProzorGUI extends JFrame {
 	public GlavniProzorGUI() {
 		setTitle("MyStudyLife");
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 850, 550);
+		setBounds(100, 100, 850, 600);
 		setLocationRelativeTo(null);
 		setJMenuBar(getMenuBar_1());
 		contentPane = new JPanel();
