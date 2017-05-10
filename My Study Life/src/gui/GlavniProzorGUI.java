@@ -2,7 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.EventQueue;
+
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,6 +10,8 @@ import javax.swing.border.EmptyBorder;
 
 import gui.model.PrikazPredmetaTabelaModel;
 import gui.predmetFunkcije.DodajPredmetGUI;
+import gui.predmetFunkcije.IzmeniPredmetGUI;
+import gui.predmetFunkcije.PregledPredmeta;
 
 import javax.swing.JTabbedPane;
 import java.awt.Font;
@@ -27,8 +29,13 @@ import java.awt.event.InputEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+
 public class GlavniProzorGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7088262915872956309L;
 	private static final Component GlavniProzorGUI = null;
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
@@ -131,8 +138,13 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton getBtnIzmeni() {
 		if (btnIzmeni == null) {
 			btnIzmeni = new JButton("Izmeni predmet");
-			btnIzmeni.setPreferredSize(new Dimension(120, 23));
 			btnIzmeni.setEnabled(false);
+			btnIzmeni.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					otvoriIzmeniPredmetGUI();
+				}
+			});
+			btnIzmeni.setPreferredSize(new Dimension(120, 23));
 		}
 		return btnIzmeni;
 	}
@@ -154,6 +166,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JTable getTable() {
 		if (table == null) {
 			table = new JTable();
+			
 			table.setModel(new PrikazPredmetaTabelaModel(null));
 		}
 		return table;
@@ -162,6 +175,11 @@ public class GlavniProzorGUI extends JFrame {
 		if (btnPregledPredmeta == null) {
 			btnPregledPredmeta = new JButton("Pregled predmeta");
 			btnPregledPredmeta.setEnabled(false);
+			btnPregledPredmeta.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					otvoriPregledPredmeta();
+				}
+			});
 			btnPregledPredmeta.setPreferredSize(new Dimension(120, 23));
 		}
 		return btnPregledPredmeta;
@@ -247,5 +265,17 @@ public class GlavniProzorGUI extends JFrame {
 		DodajPredmetGUI d = new DodajPredmetGUI();
 		d.setVisible(true);
 		d.setLocationRelativeTo(GlavniProzorGUI);
+	}
+	private void otvoriIzmeniPredmetGUI(){
+		IzmeniPredmetGUI i = new IzmeniPredmetGUI();
+		//i.popuniPolja("das", 5, "dasds", true, 5, true, 8, "dassa", "dsasa", "dassa");
+		i.setVisible(true);
+		i.setLocationRelativeTo(GlavniProzorGUI);
+	}
+	private void otvoriPregledPredmeta(){
+		PregledPredmeta p = new PregledPredmeta();
+		//p.popuniPolja("das", 5, "dasds", true, 5, true, 8, "dassa", "dsasa", "dassa");
+		p.setVisible(true);
+		p.setLocationRelativeTo(GlavniProzorGUI);
 	}
 }

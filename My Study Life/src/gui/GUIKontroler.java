@@ -43,4 +43,7 @@ public class GUIKontroler {
 	public static void dodajPredmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
 			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
 	}
+	public static void izmeniPredmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
+			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
+	}
 }

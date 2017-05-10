@@ -1,6 +1,6 @@
 package predmeti;
 
-import com.sun.org.apache.xerces.internal.util.URI;
+
 
 public class Predmet {
 	private String naziv;
@@ -11,26 +11,27 @@ public class Predmet {
 	private boolean polozen;
 	private int ocena;
 	private String napomena;
-	private URI forum;
-	public URI getForum() {
+	private String forum;
+	private String puskice;
+	public String getForum() {
 		return forum;
 	}
 
-	public void setForum(URI forum) {
+	public void setForum(String forum) {
 		if(forum==null) throw new RuntimeException("Link za forum mora biti pravilno unet"); 
 		this.forum = forum;
 	}
 
-	public URI getPuskice() {
+	public String getPuskice() {
 		return puskice;
 	}
 
-	public void setPuskice(URI puskice) {
+	public void setPuskice(String puskice) {
 		if(puskice==null) throw new RuntimeException("Link za puskice mora biti ispravno unet");
 		this.puskice = puskice;
 	}
 
-	private URI puskice;
+
 	public String getNaziv() {
 		return naziv;
 	}
@@ -104,6 +105,13 @@ public class Predmet {
 	public void setJednosemestralan(boolean jednosemestralan) {
 		this.jednosemestralan = jednosemestralan;
 	}
-	
+	@Override
+	public boolean equals(Object obj) {
+		String naziv = (String)obj;
+		if(this.naziv.equals(naziv)){
+			return true;
+		}
+		return false;
+	}
 }
 

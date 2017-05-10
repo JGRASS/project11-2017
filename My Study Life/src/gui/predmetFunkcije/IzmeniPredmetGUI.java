@@ -2,25 +2,23 @@ package gui.predmetFunkcije;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import gui.GUIKontroler;
-import gui.GlavniProzorGUI;
 
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import javax.swing.JCheckBox;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
-
-public class DodajPredmetGUI extends JFrame {
+public class IzmeniPredmetGUI extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel lblNaziv;
@@ -42,7 +40,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JTextField textFieldForum;
 	private JLabel lblPuskiceLink;
 	private JTextField textFieldPuskice;
-	private JButton btnDodajPredmet;
+	private JButton btnIzmeniPredmet;
 	private JButton btnOdustani;
 
 	/**
@@ -52,9 +50,8 @@ public class DodajPredmetGUI extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DodajPredmetGUI frame = new DodajPredmetGUI();
+					IzmeniPredmetGUI frame = new IzmeniPredmetGUI();
 					frame.setVisible(true);
-					
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -65,9 +62,9 @@ public class DodajPredmetGUI extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DodajPredmetGUI() {
+	public IzmeniPredmetGUI() {
 		setResizable(false);
-		setTitle("Dodaj predmet");
+		setTitle("Izmeni predmet");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 493, 416);
 		contentPane = new JPanel();
@@ -92,7 +89,7 @@ public class DodajPredmetGUI extends JFrame {
 		contentPane.add(getTextFieldForum());
 		contentPane.add(getLblPuskiceLink());
 		contentPane.add(getTextFieldPuskice());
-		contentPane.add(getBtnDodajPredmet());
+		contentPane.add(getBtnIzmeniPredmet());
 		contentPane.add(getBtnOdustani());
 	}
 
@@ -265,10 +262,10 @@ public class DodajPredmetGUI extends JFrame {
 		return textFieldPuskice;
 	}
 
-	private JButton getBtnDodajPredmet() {
-		if (btnDodajPredmet == null) {
-			btnDodajPredmet = new JButton("Dodaj predmet");
-			btnDodajPredmet.addActionListener(new ActionListener() {
+	private JButton getBtnIzmeniPredmet() {
+		if (btnIzmeniPredmet == null) {
+			btnIzmeniPredmet = new JButton("Izmeni predmet");
+			btnIzmeniPredmet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						int ocena;
@@ -277,19 +274,20 @@ public class DodajPredmetGUI extends JFrame {
 						}else{
 							ocena=5;
 						}
-						GUIKontroler.dodajPredmet(textFieldNaziv.getText(), Integer.parseInt(textFieldESBP.getText()),
+						GUIKontroler.izmeniPredmet(textFieldNaziv.getText(), Integer.parseInt(textFieldESBP.getText()),
 								textFieldSkolska.getText(), chckbxJednosemestralan.isSelected(),
 								Integer.parseInt(textFieldSemestar.getText()), chckbxPolozen.isSelected(),
 								ocena, textAreaNapomena.getText(),textFieldForum.getText(),textFieldPuskice.getText());
-						dispose();
 					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(IzmeniPredmetGUI.this, "Doslo je do greske prilikom unosa", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
-			btnDodajPredmet.setBounds(10, 324, 169, 23);
+			
+				
+			btnIzmeniPredmet.setBounds(10, 324, 169, 23);
 		}
-		return btnDodajPredmet;
+		return btnIzmeniPredmet;
 	}
 
 	private JButton getBtnOdustani() {
@@ -303,5 +301,20 @@ public class DodajPredmetGUI extends JFrame {
 			btnOdustani.setBounds(283, 324, 169, 23);
 		}
 		return btnOdustani;
+	}
+	public void popuniPolja(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
+			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
+		textAreaNapomena.setText(napomena);
+		textFieldESBP.setText(ESBP+"");
+		textFieldForum.setText(forum);
+		textFieldNaziv.setText(naziv);
+		if(ocena>5 && polozen){
+			textFieldOcena.setText(ocena+"");
+			chckbxPolozen.setSelected(true);
+		}
+		chckbxJednosemestralan.setSelected(jednosemestralan);
+		textFieldPuskice.setText(puskice);
+		textFieldSemestar.setText(semsetar+"");
+		textFieldSkolska.setText(skolskaGodina);
 	}
 }
