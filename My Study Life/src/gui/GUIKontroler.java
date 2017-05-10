@@ -14,6 +14,8 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import aktivnosti.*;
+import gui.model.PrikazPredmetaTabelaModel;
+import predmeti.Predmet;
 public class GUIKontroler {
 	
 	public static GlavniProzorGUI glavniProzor ; //Ovde pravite staticke promeljive. Njima posle pristupamo pomocu GuiKontroler.xxx iz bilo koje druge klase.
@@ -22,10 +24,12 @@ public class GUIKontroler {
 	public static GregorianCalendar gc;
 	public static String[][] datumi = new String[6][7];
 	public static List<Kolokvijum> kolokvijumi;
+	public static List<Predmet> predmeti = new LinkedList<>();
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
 		ucitajKolokvijume();
+		ucitajPredmete();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -35,6 +39,7 @@ public class GUIKontroler {
 					glavniProzor.addWindowListener(new WindowAdapter() {
 						public void windowClosing(WindowEvent e) {
 							GUIKontroler.serijalizujKolokvijume();
+							serijalizujPredmete();
 							glavniProzor.dispose();
 						};
 					});
@@ -101,16 +106,38 @@ public class GUIKontroler {
 			kolokvijumi = new LinkedList<>();
 		}
 	}
-	
+	public static void ucitajPredmete(){
+		try {
+			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("predmeti.s")));
+			predmeti = (LinkedList<Predmet>) in.readObject();
+			in.close();
+			
+		} catch (ClassNotFoundException | IOException e) {
+			predmeti = new LinkedList<>();
+		}
+		
+	}
+	public static void serijalizujPredmete(){
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.s")));
+			out.writeObject(predmeti);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	public String vratiNazivSlike() {
 		int broj = (int) (Math.random() * 10);
 		return broj + ".png";
 	}
 
-	public static void dodajPredmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
-			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
-	}
 	public static void izmeniPredmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
 			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
+		
+	}
+	public static void azurirajTabeluPredmet(){
+		PrikazPredmetaTabelaModel model = (PrikazPredmetaTabelaModel) GlavniProzorGUI.tablePredmeti.getModel();
+		model.azurirajTabelu(predmeti);
 	}
 }

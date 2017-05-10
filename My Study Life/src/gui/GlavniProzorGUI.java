@@ -65,7 +65,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton btnIzmeni;
 	private JButton btnObrisi;
 	private JScrollPane scrollPane;
-	private JTable tablePredmeti;
+	public static JTable tablePredmeti;
 	private JButton btnPregledPredmeta;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
@@ -363,6 +363,7 @@ public class GlavniProzorGUI extends JFrame {
 		model.azurirajTabelu(GUIKontroler.datumi);
 	}
 	
+	
 	private JButton getBtnDodajKolokvijum() {
 		if (btnDodajKolokvijum == null) {
 			btnDodajKolokvijum = new JButton("Dodaj kolokvijum");
@@ -453,7 +454,17 @@ public class GlavniProzorGUI extends JFrame {
 	private JTable getTablePredmeti() {
 		if (tablePredmeti == null) {
 			tablePredmeti = new JTable();
+			tablePredmeti.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					btnIzmeni.setEnabled(true);
+					btnObrisi.setEnabled(true);
+					btnPregledPredmeta.setEnabled(true);
+				}
+			});
 			tablePredmeti.setModel(new PrikazPredmetaTabelaModel(null));
+			GUIKontroler.azurirajTabeluPredmet();
 		}
 		return tablePredmeti;
 	}

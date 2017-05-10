@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
+import predmeti.Predmet;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -54,7 +55,7 @@ public class DodajPredmetGUI extends JFrame {
 				try {
 					DodajPredmetGUI frame = new DodajPredmetGUI();
 					frame.setVisible(true);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -272,18 +273,27 @@ public class DodajPredmetGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						int ocena;
-						if(chckbxPolozen.isSelected()){
+						if (chckbxPolozen.isSelected()) {
 							ocena = Integer.parseInt(textFieldOcena.getText());
-						}else{
-							ocena=5;
+						} else {
+							ocena = 5;
 						}
-						GUIKontroler.dodajPredmet(textFieldNaziv.getText(), Integer.parseInt(textFieldESBP.getText()),
-								textFieldSkolska.getText(), chckbxJednosemestralan.isSelected(),
-								Integer.parseInt(textFieldSemestar.getText()), chckbxPolozen.isSelected(),
-								ocena, textAreaNapomena.getText(),textFieldForum.getText(),textFieldPuskice.getText());
+						String naziv = textFieldNaziv.getText();
+						int ESBP = Integer.parseInt(textFieldESBP.getText());
+						String skolskaGodina=textFieldSkolska.getText();
+						boolean jednosemestralan = chckbxJednosemestralan.isSelected();
+						int semestar= Integer.parseInt(textFieldSemestar.getText());
+						boolean polozen = chckbxPolozen.isSelected();
+						String napomena = textAreaNapomena.getText();
+						String forum=textFieldForum.getText();
+						String puskice=textFieldPuskice.getText();
+						Predmet p = new Predmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar, polozen, ocena, napomena, forum, puskice);
+						GUIKontroler.predmeti.add(p);
+						GUIKontroler.azurirajTabeluPredmet();
 						dispose();
 					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa",
+								"Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});

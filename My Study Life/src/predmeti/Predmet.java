@@ -1,8 +1,8 @@
 package predmeti;
 
+import java.io.Serializable;
 
-
-public class Predmet {
+public class Predmet implements Serializable {
 	private String naziv;
 	private int ESBP;
 	private String skolskaGodina;
@@ -13,6 +13,19 @@ public class Predmet {
 	private String napomena;
 	private String forum;
 	private String puskice;
+	
+	public Predmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan, int semestar, boolean polozen, int ocena,String napomena, String forum, String puskice) {
+		setESBP(ESBP);
+		setForum(forum);
+		setJednosemestralan(jednosemestralan);
+		setNapomena(napomena);
+		setNaziv(naziv);
+		setOcena(ocena);
+		setPolozen(polozen);
+		setPuskice(puskice);
+		setSemestar(semestar);
+		setSkolskaGodina(skolskaGodina);
+	}
 	public String getForum() {
 		return forum;
 	}

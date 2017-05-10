@@ -69,6 +69,12 @@ public class PrikazPredmetaTabelaModel extends AbstractTableModel {
 		return kolone[column];
 	}
 
-	
+	public void azurirajTabelu(List<Predmet> predmeti){
+		this.predmeti = predmeti;
+		fireTableDataChanged();
+	}
+	public Predmet vratiPredmet(int rowIndex){
+		return predmeti.get(rowIndex);
+	}
 
 }
