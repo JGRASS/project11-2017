@@ -19,22 +19,23 @@ public class GUIKontroler {
 	public static GlavniProzorGUI glavniProzor ; //Ovde pravite staticke promeljive. Njima posle pristupamo pomocu GuiKontroler.xxx iz bilo koje druge klase.
 	public static DodajKolokvijumGUI dodajKolokvijum;
 	public static DodajIspitGUI dodajIspit;
-	public static GregorianCalendar gc;
+	public static GregorianCalendar gc = new GregorianCalendar();
 	public static String[][] datumi = new String[6][7];
-	public static List<Kolokvijum> kolokvijumi;
+	public static List<Aktivnost> aktivnosti;
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
-		ucitajKolokvijume();
+		ucitajAktivnosti();
+		gc = new GregorianCalendar();
+		popuniMatricuDatuma(datumi, gc);
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					gc = new GregorianCalendar();
 					glavniProzor = new GlavniProzorGUI();
 					glavniProzor.setVisible(true);
 					glavniProzor.addWindowListener(new WindowAdapter() {
 						public void windowClosing(WindowEvent e) {
-							GUIKontroler.serijalizujKolokvijume();
+							serijalizujAktivnosti();
 							glavniProzor.dispose();
 						};
 					});
@@ -82,23 +83,31 @@ public class GUIKontroler {
 			}
 		}
 	}
-	public static void serijalizujKolokvijume(){
+	
+	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
+		if(g1.get(GregorianCalendar.DATE)==g2.get(GregorianCalendar.DATE) &&
+				g1.get(GregorianCalendar.MONTH)==g2.get(GregorianCalendar.MONTH) &&
+				g1.get(GregorianCalendar.YEAR)==g2.get(GregorianCalendar.YEAR))
+			return true;
+		return false;
+	}
+	public static void serijalizujAktivnosti(){
 		try {
-			ObjectOutputStream os = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("kolokvijumi.s")));
-			os.writeObject(kolokvijumi);
+			ObjectOutputStream os = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("aktivnosti.s")));
+			os.writeObject(aktivnosti);
 			os.flush();
 			os.close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
-	public static void ucitajKolokvijume(){
+	public static void ucitajAktivnosti(){
 		try {
-			ObjectInputStream is = new ObjectInputStream(new BufferedInputStream(new FileInputStream("kolokvijumi.s")));
-			kolokvijumi = (LinkedList<Kolokvijum>) is.readObject();
+			ObjectInputStream is = new ObjectInputStream(new BufferedInputStream(new FileInputStream("aktivnosti.s")));
+			aktivnosti = (LinkedList<Aktivnost>) is.readObject();
 			is.close();
 		} catch (ClassNotFoundException | IOException e) {
-			kolokvijumi = new LinkedList<>();
+			aktivnosti = new LinkedList<>();
 		}
 	}
 	

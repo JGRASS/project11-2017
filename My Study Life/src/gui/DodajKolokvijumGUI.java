@@ -123,7 +123,7 @@ public class DodajKolokvijumGUI extends JFrame {
 					g.set(GregorianCalendar.MINUTE, Integer.parseInt(minut));	
 					k.setVremePolaganja(g);
 					k.setMesto(textFieldMesto.getText());
-					GUIKontroler.kolokvijumi.add(k);
+					GUIKontroler.aktivnosti.add(k);
 					GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
 					dispose();
 				}

@@ -6,6 +6,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
+
+import aktivnosti.Aktivnost;
 import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.model.PrikazPredmetaTabelaModel;
@@ -14,6 +16,7 @@ import gui.predmetFunkcije.IzmeniPredmetGUI;
 import gui.predmetFunkcije.PregledPredmeta;
 import javax.swing.JTabbedPane;
 import java.awt.Font;
+import java.awt.HeadlessException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
@@ -76,6 +79,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JMenuItem mntmDodajKolokvijum;
 	private JMenuItem mntmAbout;
 	private JMenuItem mntmIzlaz;
+	private JButton btnUkloniAktivnost;
 	
 	public GlavniProzorGUI() {
 		setTitle("MyStudyLife");
@@ -106,6 +110,7 @@ public class GlavniProzorGUI extends JFrame {
 		if (panelPlaner == null) {
 			panelPlaner = new JPanel();
 			panelPlaner.setLayout(null);
+			panelPlaner.setLayout(null);
 			panelPlaner.add(getTable());
 			panelPlaner.add(getLblNed());
 			panelPlaner.add(getLblPon());
@@ -121,7 +126,7 @@ public class GlavniProzorGUI extends JFrame {
 			panelPlaner.add(getBtnSledecaGodina());
 			panelPlaner.add(getBtnDodajKolokvijum());
 			panelPlaner.add(getBtnDodajIspit());
-			panelPlaner.setLayout(new BorderLayout(0, 0));
+			panelPlaner.add(getBtnUkloniAktivnost());
 		}
 		return panelPlaner;
 	}
@@ -149,7 +154,6 @@ public class GlavniProzorGUI extends JFrame {
 
 	private JTable getTable() {
 		if (table == null) {
-			GUIKontroler.popuniMatricuDatuma(GUIKontroler.datumi,GUIKontroler.gc);
 			table = new MojaTabela();
 			table.setModel(new PlanerTabelaModel(GUIKontroler.datumi));
 			table.setBounds(10, 65, 650, 360);
@@ -160,6 +164,7 @@ public class GlavniProzorGUI extends JFrame {
 				public void mouseClicked(MouseEvent e) {
 					btnDodajKolokvijum.setEnabled(true);
 					btnDodajIspit.setEnabled(true);
+					btnUkloniAktivnost.setEnabled(true);
 				}
 			});
 			azurirajLblDatum();
@@ -398,6 +403,44 @@ public class GlavniProzorGUI extends JFrame {
 			btnDodajIspit.setFocusPainted(false);
 		}
 		return btnDodajIspit;
+	}
+	private JButton getBtnUkloniAktivnost() {
+		if (btnUkloniAktivnost == null) {
+			btnUkloniAktivnost = new JButton("Ukloni aktivnost");
+			btnUkloniAktivnost.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					try {
+						int datum = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
+						int mesec = GUIKontroler.gc.get(GregorianCalendar.MONTH);
+						int godina = GUIKontroler.gc.get(GregorianCalendar.YEAR);
+						GregorianCalendar g = new GregorianCalendar(godina,mesec,datum);
+						for(int i=0;i<GUIKontroler.aktivnosti.size();i++){
+							if(GUIKontroler.istiDan(GUIKontroler.aktivnosti.get(i).getVremePolaganja(),g)){
+								int odgovor = JOptionPane.showConfirmDialog(GlavniProzorGUI, "Da li zaista zelite da uklonite odabranu aktivnost?",
+										"Ukloni", JOptionPane.YES_NO_OPTION);
+								if(odgovor==JOptionPane.YES_OPTION){
+									GUIKontroler.aktivnosti.remove(i);
+									azurirajTabelu();
+									break;
+								}
+								break;
+							}
+						}
+					} catch (Exception e) {
+						JOptionPane.showMessageDialog(GlavniProzorGUI, "Morate prvo izabrati datum", "Greska", JOptionPane.OK_OPTION);
+					}
+				}
+			});
+			btnUkloniAktivnost.setEnabled(false);
+			btnUkloniAktivnost.setForeground(Color.BLACK);
+			btnUkloniAktivnost.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnUkloniAktivnost.setFocusPainted(false);
+			btnUkloniAktivnost.setContentAreaFilled(false);
+			btnUkloniAktivnost.setBackground(Color.GRAY);
+			btnUkloniAktivnost.setBounds(665, 152, 150, 35);
+		}
+		return btnUkloniAktivnost;
+
 	}
 	private JPanel getPanel() {
 		if (panel == null) {

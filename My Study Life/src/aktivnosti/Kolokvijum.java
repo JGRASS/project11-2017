@@ -5,30 +5,17 @@ import java.util.GregorianCalendar;
 
 import predmeti.Predmet;
 
-public class Kolokvijum implements Serializable{
-	private Predmet predmet;
-	private GregorianCalendar vremePolaganja;
-	private String mesto;
+public class Kolokvijum extends Aktivnost{
+	private double brojPoena;
 	
-	public Predmet getPredmet() {
-		return predmet;
+	public double getBrojPoena() {
+		return brojPoena;
 	}
-	public void setPredmet(Predmet predmet) {
-		if(predmet!=null)
-			this.predmet = predmet;
+	public void setBrojPoena(double brojPoena) {
+		if(brojPoena<0 || brojPoena>100)
+			throw new RuntimeException("Osvojeni poeni moraju biti pravilno uneti");
+		this.brojPoena = brojPoena;
 	}
-	public GregorianCalendar getVremePolaganja() {
-		return vremePolaganja;
-	}
-	public void setVremePolaganja(GregorianCalendar vremePolaganja) {
-		if(vremePolaganja!=null)
-			this.vremePolaganja = vremePolaganja;
-	}
-	public String getMesto() {
-		return mesto;
-	}
-	public void setMesto(String mesto) {
-		if(mesto!=null && mesto.length()>=2)
-			this.mesto = mesto;
-	}
+	
+	
 }
