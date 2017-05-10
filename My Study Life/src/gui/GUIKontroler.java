@@ -126,6 +126,7 @@ public class GUIKontroler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 	}
 	public String vratiNazivSlike() {
 		int broj = (int) (Math.random() * 10);

@@ -3,6 +3,10 @@ package predmeti;
 import java.io.Serializable;
 
 public class Predmet implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1413778110949335752L;
 	private String naziv;
 	private int ESBP;
 	private String skolskaGodina;

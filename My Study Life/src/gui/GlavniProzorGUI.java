@@ -403,7 +403,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setPreferredSize(new Dimension(130, 10));
+			panel.setPreferredSize(new Dimension(150, 10));
 			panel.add(getBtnDodaj());
 			panel.add(getBtnPregledPredmeta());
 			panel.add(getBtnIzmeni());
@@ -419,7 +419,7 @@ public class GlavniProzorGUI extends JFrame {
 					otvoriDodajPredmetGUI();
 				}
 			});
-			btnDodaj.setPreferredSize(new Dimension(120, 23));
+			btnDodaj.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnDodaj;
 	}
@@ -432,14 +432,23 @@ public class GlavniProzorGUI extends JFrame {
 					otvoriIzmeniPredmetGUI();
 				}
 			});
-			btnIzmeni.setPreferredSize(new Dimension(120, 23));
+			btnIzmeni.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnIzmeni;
 	}
 	private JButton getBtnObrisi() {
 		if (btnObrisi == null) {
 			btnObrisi = new JButton("Obrisi predmet");
-			btnObrisi.setPreferredSize(new Dimension(120, 23));
+			btnObrisi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int red =tablePredmeti.getSelectedRow();
+					if(red!=-1){
+						GUIKontroler.predmeti.remove(red);
+						GUIKontroler.azurirajTabeluPredmet();
+					}
+				}
+			});
+			btnObrisi.setPreferredSize(new Dimension(140, 23));
 			btnObrisi.setEnabled(false);
 		}
 		return btnObrisi;
@@ -477,7 +486,7 @@ public class GlavniProzorGUI extends JFrame {
 					otvoriPregledPredmeta();
 				}
 			});
-			btnPregledPredmeta.setPreferredSize(new Dimension(120, 23));
+			btnPregledPredmeta.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnPregledPredmeta;
 	}
@@ -574,5 +583,7 @@ public class GlavniProzorGUI extends JFrame {
 		//p.popuniPolja("das", 5, "dasds", true, 5, true, 8, "dassa", "dsasa", "dassa");
 		p.setVisible(true);
 		p.setLocationRelativeTo(GlavniProzorGUI);
+		p.popuniPolja();
+		
 	}
 }

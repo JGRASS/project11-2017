@@ -76,5 +76,5 @@ public class PrikazPredmetaTabelaModel extends AbstractTableModel {
 	public Predmet vratiPredmet(int rowIndex){
 		return predmeti.get(rowIndex);
 	}
-
+	
 }
