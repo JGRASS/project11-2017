@@ -39,7 +39,7 @@ public class DodajIspitGUI extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
-		//contentPane.add(getComboBoxPredmeti());
+		contentPane.add(getComboBoxPredmeti());
 		contentPane.add(getLblIzaberiPredmet());
 		contentPane.add(getLblVreme());
 		contentPane.add(getTextFieldVreme());
@@ -48,17 +48,17 @@ public class DodajIspitGUI extends JFrame {
 		contentPane.add(getBtnDodaj());
 		contentPane.add(getBtnOdustani());
 	}
-//	private JComboBox<String> getComboBoxPredmeti() { 
-//		if (comboBoxPredmeti == null) {
-//			comboBoxPredmeti = new JComboBox<String>();
-//			for(int i=0;i<GUIKontroler.predmeti.size();i++){
-//				comboBoxPredmeti.addItem(GUIKontroler.predmeti.get(i).getNaziv());
-//			}
-//			comboBoxPredmeti.setAlignmentX(comboBoxPredmeti.CENTER_ALIGNMENT);
-//			comboBoxPredmeti.setBounds(86, 40, 250, 35);
-//		}
-//		return comboBoxPredmeti;
-//	}
+	private JComboBox<String> getComboBoxPredmeti() { 
+		if (comboBoxPredmeti == null) {
+			comboBoxPredmeti = new JComboBox<String>();
+			for(int i=0;i<GUIKontroler.predmeti.size();i++){
+				comboBoxPredmeti.addItem(GUIKontroler.predmeti.get(i).getNaziv());
+			}
+			comboBoxPredmeti.setAlignmentX(comboBoxPredmeti.CENTER_ALIGNMENT);
+			comboBoxPredmeti.setBounds(86, 40, 250, 35);
+		}
+		return comboBoxPredmeti;
+	}
 	private JLabel getLblIzaberiPredmet() {
 		if (lblIzaberiPredmet == null) {
 			lblIzaberiPredmet = new JLabel("Izaberi predmet:*");
@@ -113,7 +113,7 @@ public class DodajIspitGUI extends JFrame {
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Ispit i = new Ispit();
-					//k.setPredmet(GUIKontroler.predmeti.get(comboBoxPredmeti.getSelectedIndex()));
+					i.setPredmet(GUIKontroler.predmeti.get(comboBoxPredmeti.getSelectedIndex()));
 					GregorianCalendar g = new GregorianCalendar();
 					g.set(GregorianCalendar.YEAR, GUIKontroler.gc.get(GregorianCalendar.YEAR));
 					g.set(GregorianCalendar.MONTH,GUIKontroler.gc.get(GregorianCalendar.MONTH));

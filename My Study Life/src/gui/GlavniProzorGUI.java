@@ -68,7 +68,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton btnIzmeni;
 	private JButton btnObrisi;
 	private JScrollPane scrollPane;
-	private JTable tablePredmeti;
+	public static JTable tablePredmeti;
 	private JButton btnPregledPredmeta;
 	private JMenuBar menuBar;
 	private JMenu mnFile;
@@ -161,7 +161,7 @@ public class GlavniProzorGUI extends JFrame {
 			table.setCellSelectionEnabled(true);
 			table.addMouseListener(new MouseAdapter() {
 				@Override
-				public void mouseClicked(MouseEvent e) {
+				public void mousePressed(MouseEvent e) {
 					btnDodajKolokvijum.setEnabled(true);
 					btnDodajIspit.setEnabled(true);
 					btnUkloniAktivnost.setEnabled(true);
@@ -368,6 +368,7 @@ public class GlavniProzorGUI extends JFrame {
 		model.azurirajTabelu(GUIKontroler.datumi);
 	}
 	
+	
 	private JButton getBtnDodajKolokvijum() {
 		if (btnDodajKolokvijum == null) {
 			btnDodajKolokvijum = new JButton("Dodaj kolokvijum");
@@ -421,11 +422,12 @@ public class GlavniProzorGUI extends JFrame {
 								if(odgovor==JOptionPane.YES_OPTION){
 									GUIKontroler.aktivnosti.remove(i);
 									azurirajTabelu();
-									break;
+									return;
 								}
 								break;
 							}
 						}
+						JOptionPane.showMessageDialog(GlavniProzorGUI, "Morate prvo izabrati aktivnost", "Greska", JOptionPane.OK_OPTION);
 					} catch (Exception e) {
 						JOptionPane.showMessageDialog(GlavniProzorGUI, "Morate prvo izabrati datum", "Greska", JOptionPane.OK_OPTION);
 					}
@@ -445,7 +447,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
-			panel.setPreferredSize(new Dimension(130, 10));
+			panel.setPreferredSize(new Dimension(150, 10));
 			panel.add(getBtnDodaj());
 			panel.add(getBtnPregledPredmeta());
 			panel.add(getBtnIzmeni());
@@ -461,7 +463,7 @@ public class GlavniProzorGUI extends JFrame {
 					otvoriDodajPredmetGUI();
 				}
 			});
-			btnDodaj.setPreferredSize(new Dimension(120, 23));
+			btnDodaj.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnDodaj;
 	}
@@ -474,14 +476,23 @@ public class GlavniProzorGUI extends JFrame {
 					otvoriIzmeniPredmetGUI();
 				}
 			});
-			btnIzmeni.setPreferredSize(new Dimension(120, 23));
+			btnIzmeni.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnIzmeni;
 	}
 	private JButton getBtnObrisi() {
 		if (btnObrisi == null) {
 			btnObrisi = new JButton("Obrisi predmet");
-			btnObrisi.setPreferredSize(new Dimension(120, 23));
+			btnObrisi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					int red =tablePredmeti.getSelectedRow();
+					if(red!=-1){
+						GUIKontroler.predmeti.remove(red);
+						GUIKontroler.azurirajTabeluPredmet();
+					}
+				}
+			});
+			btnObrisi.setPreferredSize(new Dimension(140, 23));
 			btnObrisi.setEnabled(false);
 		}
 		return btnObrisi;
@@ -496,7 +507,17 @@ public class GlavniProzorGUI extends JFrame {
 	private JTable getTablePredmeti() {
 		if (tablePredmeti == null) {
 			tablePredmeti = new JTable();
+			tablePredmeti.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+					btnIzmeni.setEnabled(true);
+					btnObrisi.setEnabled(true);
+					btnPregledPredmeta.setEnabled(true);
+				}
+			});
 			tablePredmeti.setModel(new PrikazPredmetaTabelaModel(null));
+			GUIKontroler.azurirajTabeluPredmet();
 		}
 		return tablePredmeti;
 	}
@@ -509,7 +530,7 @@ public class GlavniProzorGUI extends JFrame {
 					otvoriPregledPredmeta();
 				}
 			});
-			btnPregledPredmeta.setPreferredSize(new Dimension(120, 23));
+			btnPregledPredmeta.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnPregledPredmeta;
 	}
@@ -606,5 +627,7 @@ public class GlavniProzorGUI extends JFrame {
 		//p.popuniPolja("das", 5, "dasds", true, 5, true, 8, "dassa", "dsasa", "dassa");
 		p.setVisible(true);
 		p.setLocationRelativeTo(GlavniProzorGUI);
+		p.popuniPolja();
+		
 	}
 }

@@ -19,6 +19,9 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import gui.GUIKontroler;
+import gui.GlavniProzorGUI;
+import predmeti.Predmet;
 
 public class PregledPredmeta extends JFrame {
 
@@ -243,78 +246,85 @@ public class PregledPredmeta extends JFrame {
 		}
 		return lblNapomena;
 	}
-	public void popuniPolja(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
-			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
-		textAreaNapomena.setText(napomena);
-		textFieldESBP.setText(ESBP+"");
-		textFieldNaziv.setText(naziv);
-		if(ocena>5 && polozen){
-			textFieldOcena.setText(ocena+"");
-			chckbxPolozen.setSelected(true);
+
+	public void popuniPolja() {
+		int red = GlavniProzorGUI.tablePredmeti.getSelectedRow();
+		if (red != -1) {
+			Predmet p = GUIKontroler.predmeti.get(red);
+			textAreaNapomena.setText(p.getNapomena());
+			textFieldESBP.setText(p.getESBP() + "");
+			textFieldNaziv.setText(p.getNaziv());
+			if (p.getOcena() > 5 && p.isPolozen()) {
+				textFieldOcena.setText(p.getOcena() + "");
+				chckbxPolozen.setSelected(true);
+			}
+			try {
+				this.forum = new URI(p.getForum());
+				this.puskice = new URI(p.getPuskice());
+				btnFonforum.setEnabled(true);
+				btnPuskice.setEnabled(true);
+			} catch (URISyntaxException e) {
+				this.forum = null;
+				this.puskice = null;
+			}
+			chckbxJednosemestralan.setSelected(p.getJednosemestralan());
+			textFieldSemestar.setText(p.getSemestar() + "");
+			textFieldSkolska.setText(p.getSkolskaGodina());
 		}
-		try {
-			this.forum = new URI(forum);
-			this.puskice = new URI(puskice);
-		} catch (URISyntaxException e) {
-			this.forum=null;
-			this.puskice=null;
-		}
-		chckbxJednosemestralan.setSelected(jednosemestralan);
-		textFieldSemestar.setText(semsetar+"");
-		textFieldSkolska.setText(skolskaGodina);
 	}
+
 	private JButton getBtnFonforum() {
 		if (btnFonforum == null) {
 			btnFonforum = new JButton("FonForum");
-			if(forum==null){
-				btnFonforum.setEnabled(false);
-			}
+			
 			btnFonforum.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-						open(forum);
-					
+					open(forum);
 				}
 			});
-			btnFonforum.setBounds(173, 148, 89, 23);
+			btnFonforum.setBounds(173, 148, 107, 23);
 		}
 		return btnFonforum;
 	}
+
 	private JButton getBtnPuskice() {
 		if (btnPuskice == null) {
 			btnPuskice = new JButton("Puskice");
-			if(puskice==null){
-				btnPuskice.setEnabled(false);
-			}
+			
 			btnPuskice.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					open(puskice);
 				}
 			});
-			btnPuskice.setBounds(298, 148, 89, 23);
+			btnPuskice.setBounds(298, 148, 107, 23);
 		}
 		return btnPuskice;
 	}
+
 	private JButton getBtnKolokvijum() {
 		if (btnKolokvijum == null) {
 			btnKolokvijum = new JButton("Kolokvijum");
-			btnKolokvijum.setBounds(333, 227, 89, 23);
+			btnKolokvijum.setBounds(333, 227, 107, 23);
 		}
 		return btnKolokvijum;
 	}
+
 	private JButton getBtnIspit() {
 		if (btnIspit == null) {
 			btnIspit = new JButton("Ispit");
-			btnIspit.setBounds(333, 285, 89, 23);
+			btnIspit.setBounds(333, 285, 107, 23);
 		}
 		return btnIspit;
 	}
+
 	private static void open(URI uri) {
-	    if (Desktop.isDesktopSupported()) {
-	      try {
-	        Desktop.getDesktop().browse(uri);
-	      } catch (IOException e) { 
-	    	  /* TODO: error handling */ }
-	    } else {
-	    	/* TODO: error handling */ }
-	  }
+		if (Desktop.isDesktopSupported()) {
+			try {
+				Desktop.getDesktop().browse(uri);
+			} catch (IOException e) {
+				/* TODO: error handling */ }
+		} else {
+			/* TODO: error handling */ }
+	}
+
 }
