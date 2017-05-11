@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+
 import aktivnosti.*;
 import gui.model.PrikazPredmetaTabelaModel;
 import predmeti.Predmet;
@@ -20,6 +21,7 @@ public class GUIKontroler {
 	
 	public static GlavniProzorGUI glavniProzor ; //Ovde pravite staticke promeljive. Njima posle pristupamo pomocu GuiKontroler.xxx iz bilo koje druge klase.
 	public static DodajKolokvijumGUI dodajKolokvijum;
+	public static OpisAktivnostiGUI opisAktivnosti;
 	public static DodajIspitGUI dodajIspit;
 	public static GregorianCalendar gc = new GregorianCalendar();
 	public static String[][] datumi = new String[6][7];
@@ -71,6 +73,13 @@ public class GUIKontroler {
 			}
 		});
 	}
+	
+	public static void otvoriOpisAktivnosti() {
+		opisAktivnosti = new OpisAktivnostiGUI();
+		opisAktivnosti.setVisible(true);
+	
+	}
+	
 	public static void popuniMatricuDatuma(String[][] datumi,GregorianCalendar gc){
 		gc.set(GregorianCalendar.DATE, 1);
 		int prviDanUMesecu = gc.get(GregorianCalendar.DAY_OF_WEEK);
@@ -95,6 +104,31 @@ public class GUIKontroler {
 				g1.get(GregorianCalendar.YEAR)==g2.get(GregorianCalendar.YEAR))
 			return true;
 		return false;
+	}
+	
+	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
+		if(g==null)
+			throw new RuntimeException("Uneto vreme je null");
+		for(int i=0;i<aktivnosti.size();i++){
+			if(istiDan(aktivnosti.get(i).getVremePolaganja(), g))
+				return aktivnosti.get(i);
+		}
+		return null;
+	}
+	
+	public static String vratiVreme(GregorianCalendar g){
+		String vreme = "";
+		vreme+=g.get(GregorianCalendar.HOUR)+":";
+		vreme+=g.get(GregorianCalendar.MINUTE);
+		return vreme;
+	}
+	
+	public static String vratiDatum(GregorianCalendar g){
+		String vreme = "";
+		vreme+=g.get(GregorianCalendar.YEAR)+"/";
+		vreme+=g.get(GregorianCalendar.MONTH)+"/";
+		vreme+=g.get(GregorianCalendar.DATE)+" ";
+		return vreme;
 	}
 	public static void serijalizujAktivnosti(){
 		try {

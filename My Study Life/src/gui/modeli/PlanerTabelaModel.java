@@ -3,6 +3,8 @@ package gui.modeli;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
+import org.omg.PortableServer.ServantRetentionPolicyValue;
+
 public class PlanerTabelaModel extends AbstractTableModel {
 	private String[] dani = {"Ponedeljak","Utorak","Sreda","Cetvratk","Petak","Subota","Nedelja"};
 	private String[][] datumi = new String[6][7];
