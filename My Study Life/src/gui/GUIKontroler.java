@@ -24,7 +24,6 @@ public class GUIKontroler {
 	public static GregorianCalendar gc = new GregorianCalendar();
 	public static String[][] datumi = new String[6][7];
 	public static List<Aktivnost> aktivnosti;
-	public static List<Kolokvijum> kolokvijumi;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
