@@ -17,6 +17,7 @@ import gui.predmetFunkcije.PregledPredmeta;
 import javax.swing.JTabbedPane;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
@@ -25,10 +26,14 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Color;
 
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
@@ -380,6 +385,13 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton getBtnDodajKolokvijum() {
 		if (btnDodajKolokvijum == null) {
 			btnDodajKolokvijum = new JButton("Dodaj kolokvijum");
+			Image img;
+			try {
+				img = ImageIO.read(getClass().getResource("icons/add.png"));
+				btnDodajKolokvijum.setIcon(new ImageIcon(img));
+			} catch (IOException e1) {
+				System.out.println(e1);
+			}
 			btnDodajKolokvijum.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(table.getSelectedColumn()==-1){
