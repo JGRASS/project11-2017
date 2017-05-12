@@ -86,6 +86,10 @@ public class GlavniProzorGUI extends JFrame {
 	private JMenuItem mntmDodajKolokvijum;
 	private JMenuItem mntmAbout;
 	private JMenuItem mntmIzlaz;
+	private JLabel lblKolokvijumBoja;
+	private JLabel lblKolokvijum;
+	private JLabel lblIspitBoja;
+	private JLabel lblIspit;
 	
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -133,6 +137,10 @@ public class GlavniProzorGUI extends JFrame {
 			panelPlaner.add(getBtnSledecaGodina());
 			panelPlaner.add(getBtnDodajKolokvijum());
 			panelPlaner.add(getBtnDodajIspit());
+			panelPlaner.add(getLblKolokvijumBoja());
+			panelPlaner.add(getLblKolokvijum());
+			panelPlaner.add(getLblIspitBoja());
+			panelPlaner.add(getLblIspit());
 		}
 		return panelPlaner;
 	}
@@ -384,14 +392,14 @@ public class GlavniProzorGUI extends JFrame {
 	
 	private JButton getBtnDodajKolokvijum() {
 		if (btnDodajKolokvijum == null) {
-			btnDodajKolokvijum = new JButton("Dodaj kolokvijum");
-			Image img;
-			try {
-				img = ImageIO.read(getClass().getResource("icons/add.png"));
-				btnDodajKolokvijum.setIcon(new ImageIcon(img));
-			} catch (IOException e1) {
-				System.out.println(e1);
-			}
+			btnDodajKolokvijum = new JButton();
+			Image img = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
+			btnDodajKolokvijum.setIcon(new ImageIcon(img));
+			btnDodajKolokvijum.setForeground(Color.WHITE);
+			btnDodajKolokvijum.setBackground(new Color(112, 155, 179));
+			btnDodajKolokvijum.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnDodajKolokvijum.setBounds(684, 459, 60, 35);
+			btnDodajKolokvijum.setFocusPainted(false);
 			btnDodajKolokvijum.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(table.getSelectedColumn()==-1){
@@ -400,17 +408,19 @@ public class GlavniProzorGUI extends JFrame {
 					else
 						GUIKontroler.otvoriDodajKolokvujumGUI();				}
 			});
-			btnDodajKolokvijum.setForeground(Color.WHITE);
-			btnDodajKolokvijum.setBackground(Color.GRAY);
-			btnDodajKolokvijum.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnDodajKolokvijum.setBounds(594, 457, 150, 35);
-			btnDodajKolokvijum.setFocusPainted(false);
 		}
 		return btnDodajKolokvijum;
 	}
 	private JButton getBtnDodajIspit() {
 		if (btnDodajIspit == null) {
-			btnDodajIspit = new JButton("Dodaj ispit");
+			btnDodajIspit = new JButton();
+			Image img = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
+			btnDodajIspit.setIcon(new ImageIcon(img));
+			btnDodajKolokvijum.setForeground(Color.WHITE);
+			btnDodajIspit.setBackground(new Color(0, 155, 179));
+			btnDodajIspit.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnDodajIspit.setBounds(614, 459, 60, 35);
+			btnDodajIspit.setFocusPainted(false);
 			btnDodajIspit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if(table.getSelectedColumn()==-1){
@@ -420,11 +430,6 @@ public class GlavniProzorGUI extends JFrame {
 						GUIKontroler.otvoriDodajIspitGUI();
 				}
 			});
-			btnDodajIspit.setForeground(Color.WHITE);
-			btnDodajIspit.setBackground(Color.GRAY);
-			btnDodajIspit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnDodajIspit.setBounds(64, 457, 150, 35);
-			btnDodajIspit.setFocusPainted(false);
 		}
 		return btnDodajIspit;
 	}
@@ -613,5 +618,37 @@ public class GlavniProzorGUI extends JFrame {
 		p.setLocationRelativeTo(GlavniProzorGUI);
 		p.popuniPolja();
 		
+	}
+	private JLabel getLblKolokvijumBoja() {
+		if (lblKolokvijumBoja == null) {
+			lblKolokvijumBoja = new JLabel("");
+			lblKolokvijumBoja.setBounds(70, 461, 15, 15);
+			lblKolokvijumBoja.setBackground(new Color(112, 155, 179));
+			lblKolokvijumBoja.setOpaque(true);
+		}
+		return lblKolokvijumBoja;
+	}
+	private JLabel getLblKolokvijum() {
+		if (lblKolokvijum == null) {
+			lblKolokvijum = new JLabel("Kolokvijum");
+			lblKolokvijum.setBounds(90, 462, 72, 15);
+		}
+		return lblKolokvijum;
+	}
+	private JLabel getLblIspitBoja() {
+		if (lblIspitBoja == null) {
+			lblIspitBoja = new JLabel("");
+			lblIspitBoja.setOpaque(true);
+			lblIspitBoja.setBackground(new Color(0, 155, 179));
+			lblIspitBoja.setBounds(70, 478, 15, 15);
+		}
+		return lblIspitBoja;
+	}
+	private JLabel getLblIspit() {
+		if (lblIspit == null) {
+			lblIspit = new JLabel("Ispit");
+			lblIspit.setBounds(90, 479, 72, 15);
+		}
+		return lblIspit;
 	}
 }

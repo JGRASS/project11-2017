@@ -66,6 +66,8 @@ public class DodajIspitGUI extends JFrame {
 	private JComboBox<String> getComboBoxPredmeti() { 
 		if (comboBoxPredmeti == null) {
 			comboBoxPredmeti = new JComboBox<String>();
+			comboBoxPredmeti.setForeground(Color.WHITE);
+			comboBoxPredmeti.setBackground(Color.GRAY);
 			for(int i=0;i<GUIKontroler.predmeti.size();i++){
 				comboBoxPredmeti.addItem(GUIKontroler.predmeti.get(i).getNaziv());
 			}
