@@ -90,6 +90,12 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel lblKolokvijum;
 	private JLabel lblIspitBoja;
 	private JLabel lblIspit;
+	private JLabel label_7;
+	private JLabel label_8;
+	private JLabel label_9;
+	private JLabel label_10;
+	private JLabel label_11;
+	private JLabel label_12;
 	
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -156,6 +162,85 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel getPanelRasporedNastave() {
 		if (panelRasporedNastave == null) {
 			panelRasporedNastave = new JPanel();
+			panelRasporedNastave.setLayout(null);
+			
+			JLabel label = new JLabel("NED");
+			label.setHorizontalAlignment(SwingConstants.CENTER);
+			label.setForeground(Color.WHITE);
+			label.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label.setBackground(Color.GRAY);
+			label.setBounds(52, 11, 98, 35);
+			label.setOpaque(true);
+			panelRasporedNastave.add(label);
+			
+			JLabel label_1 = new JLabel("PON");
+			label_1.setOpaque(true);
+			label_1.setHorizontalAlignment(SwingConstants.CENTER);
+			label_1.setForeground(Color.WHITE);
+			label_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_1.setBackground(Color.GRAY);
+			label_1.setBounds(149, 11, 98, 35);
+			panelRasporedNastave.add(label_1);
+			
+			JLabel label_2 = new JLabel("UTO");
+			label_2.setOpaque(true);
+			label_2.setHorizontalAlignment(SwingConstants.CENTER);
+			label_2.setForeground(Color.WHITE);
+			label_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_2.setBackground(Color.GRAY);
+			label_2.setBounds(245, 11, 108, 35);
+			panelRasporedNastave.add(label_2);
+			
+			JLabel label_3 = new JLabel("SRE");
+			label_3.setOpaque(true);
+			label_3.setHorizontalAlignment(SwingConstants.CENTER);
+			label_3.setForeground(Color.WHITE);
+			label_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_3.setBackground(Color.GRAY);
+			label_3.setBounds(349, 11, 93, 35);
+			panelRasporedNastave.add(label_3);
+			
+			JLabel label_4 = new JLabel("CET");
+			label_4.setOpaque(true);
+			label_4.setHorizontalAlignment(SwingConstants.CENTER);
+			label_4.setForeground(Color.WHITE);
+			label_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_4.setBackground(Color.GRAY);
+			label_4.setBounds(432, 11, 108, 35);
+			panelRasporedNastave.add(label_4);
+			
+			JLabel label_5 = new JLabel("PET");
+			label_5.setOpaque(true);
+			label_5.setHorizontalAlignment(SwingConstants.CENTER);
+			label_5.setForeground(Color.WHITE);
+			label_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_5.setBackground(Color.GRAY);
+			label_5.setBounds(538, 11, 98, 35);
+			panelRasporedNastave.add(label_5);
+			
+			JLabel label_6 = new JLabel("SUB");
+			label_6.setOpaque(true);
+			label_6.setHorizontalAlignment(SwingConstants.CENTER);
+			label_6.setForeground(Color.WHITE);
+			label_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_6.setBackground(Color.GRAY);
+			label_6.setBounds(631, 11, 101, 35);
+			panelRasporedNastave.add(label_6);
+			panelRasporedNastave.add(getLabel_7());
+			panelRasporedNastave.add(getLabel_8());
+			panelRasporedNastave.add(getLabel_9());
+			panelRasporedNastave.add(getLabel_10());
+			panelRasporedNastave.add(getLabel_11());
+			panelRasporedNastave.add(getLabel_12());
+			
+			JLabel label_13 = new JLabel("20:00");
+			label_13.setOpaque(true);
+			label_13.setHorizontalAlignment(SwingConstants.CENTER);
+			label_13.setForeground(Color.WHITE);
+			label_13.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_13.setBackground(Color.BLACK);
+			label_13.setBounds(10, 435, 46, 65);
+			panelRasporedNastave.add(label_13);
 		}
 		return panelRasporedNastave;
 	}
@@ -651,5 +736,77 @@ public class GlavniProzorGUI extends JFrame {
 			lblIspit.setBounds(90, 479, 72, 15);
 		}
 		return lblIspit;
+	}
+	private JLabel getLabel_7() {
+		if (label_7 == null) {
+			label_7 = new JLabel("8:00");
+			label_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_7.setHorizontalAlignment(SwingConstants.CENTER);
+			label_7.setForeground(Color.WHITE);
+			label_7.setBackground(Color.BLACK);
+			label_7.setBounds(10, 45, 46, 65);
+			label_7.setOpaque(true);
+		}
+		return label_7;
+	}
+	private JLabel getLabel_8() {
+		if (label_8 == null) {
+			label_8 = new JLabel("10:00");
+			label_8.setOpaque(true);
+			label_8.setHorizontalAlignment(SwingConstants.CENTER);
+			label_8.setForeground(Color.WHITE);
+			label_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_8.setBackground(Color.BLACK);
+			label_8.setBounds(10, 110, 46, 65);
+		}
+		return label_8;
+	}
+	private JLabel getLabel_9() {
+		if (label_9 == null) {
+			label_9 = new JLabel("12:00");
+			label_9.setOpaque(true);
+			label_9.setHorizontalAlignment(SwingConstants.CENTER);
+			label_9.setForeground(Color.WHITE);
+			label_9.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_9.setBackground(Color.BLACK);
+			label_9.setBounds(10, 175, 46, 65);
+		}
+		return label_9;
+	}
+	private JLabel getLabel_10() {
+		if (label_10 == null) {
+			label_10 = new JLabel("14:00");
+			label_10.setOpaque(true);
+			label_10.setHorizontalAlignment(SwingConstants.CENTER);
+			label_10.setForeground(Color.WHITE);
+			label_10.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_10.setBackground(Color.BLACK);
+			label_10.setBounds(10, 240, 46, 65);
+		}
+		return label_10;
+	}
+	private JLabel getLabel_11() {
+		if (label_11 == null) {
+			label_11 = new JLabel("16:00");
+			label_11.setOpaque(true);
+			label_11.setHorizontalAlignment(SwingConstants.CENTER);
+			label_11.setForeground(Color.WHITE);
+			label_11.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_11.setBackground(Color.BLACK);
+			label_11.setBounds(10, 305, 46, 65);
+		}
+		return label_11;
+	}
+	private JLabel getLabel_12() {
+		if (label_12 == null) {
+			label_12 = new JLabel("18:00");
+			label_12.setOpaque(true);
+			label_12.setHorizontalAlignment(SwingConstants.CENTER);
+			label_12.setForeground(Color.WHITE);
+			label_12.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_12.setBackground(Color.BLACK);
+			label_12.setBounds(10, 370, 46, 65);
+		}
+		return label_12;
 	}
 }
