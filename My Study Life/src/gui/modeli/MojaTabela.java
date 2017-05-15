@@ -9,6 +9,7 @@ import javax.swing.table.TableCellRenderer;
 
 import aktivnosti.Ispit;
 import aktivnosti.Kolokvijum;
+import aktivnosti.Planer;
 import gui.GUIKontroler;
 
 public class MojaTabela extends JTable {
@@ -22,24 +23,24 @@ public class MojaTabela extends JTable {
 			GregorianCalendar trenutni = new GregorianCalendar();
         	String value = (String) getModel().getValueAt(row, column);
 			if (value.equals(trenutni.get(GregorianCalendar.DATE)+"") && 
-					(trenutni.get(GregorianCalendar.MONTH)==GUIKontroler.gc.get(GregorianCalendar.MONTH))
-					&& (trenutni.get(GregorianCalendar.YEAR)==GUIKontroler.gc.get(GregorianCalendar.YEAR))) {
+					(trenutni.get(GregorianCalendar.MONTH)==GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH))
+					&& (trenutni.get(GregorianCalendar.YEAR)==GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR))) {
 			    comp.setFont(new Font("Tahoma", Font.BOLD, 15));
 			}
 			else{
 				comp.setBackground(Color.white);
 				comp.setForeground(Color.BLACK);
 			}
-			for(int i=0;i<GUIKontroler.aktivnosti.size();i++){
-				if((GUIKontroler.aktivnosti.get(i).getVremePolaganja().get(GregorianCalendar.DATE)+"").equals(value) &&
-						(GUIKontroler.aktivnosti.get(i).getVremePolaganja().get(GregorianCalendar.MONTH))==
-						(GUIKontroler.gc.get(GregorianCalendar.MONTH)) && (GUIKontroler.aktivnosti.get(i).getVremePolaganja().
-						get(GregorianCalendar.YEAR)==GUIKontroler.gc.get(GregorianCalendar.YEAR))){
-					if(GUIKontroler.aktivnosti.get(i) instanceof Kolokvijum){
+			for(int i=0;i<GUIKontroler.vratiSveAktivnosti().size();i++){
+				if((GUIKontroler.vratiSveAktivnosti().get(i).getVremePolaganja().get(GregorianCalendar.DATE)+"").equals(value) &&
+						(GUIKontroler.vratiSveAktivnosti().get(i).getVremePolaganja().get(GregorianCalendar.MONTH))==
+						(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH)) && (GUIKontroler.vratiSveAktivnosti().get(i).getVremePolaganja().
+						get(GregorianCalendar.YEAR)==GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR))){
+					if(GUIKontroler.vratiSveAktivnosti().get(i) instanceof Kolokvijum){
 						comp.setBackground(new Color(112, 155, 179));
 						comp.setForeground(Color.white);
 					}
-					else if(GUIKontroler.aktivnosti.get(i) instanceof Ispit){
+					else if(GUIKontroler.vratiSveAktivnosti().get(i) instanceof Ispit){
 						comp.setBackground(new Color(0, 155, 179));
 						comp.setForeground(Color.white);
 					}

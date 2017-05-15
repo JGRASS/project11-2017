@@ -6,6 +6,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import aktivnosti.Kolokvijum;
+import aktivnosti.Planer;
 import gui.modeli.FrameDragListener;
 
 import javax.swing.JComboBox;
@@ -131,8 +132,8 @@ public class DodajKolokvijumGUI extends JFrame {
 					Kolokvijum k = new Kolokvijum();
 					k.setPredmet(GUIKontroler.predmeti.get(comboBoxPredmeti.getSelectedIndex()));
 					GregorianCalendar g = new GregorianCalendar();
-					g.set(GregorianCalendar.YEAR, GUIKontroler.gc.get(GregorianCalendar.YEAR));
-					g.set(GregorianCalendar.MONTH,GUIKontroler.gc.get(GregorianCalendar.MONTH));
+					g.set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR));
+					g.set(GregorianCalendar.MONTH,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH));
 					g.set(GregorianCalendar.DATE, Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow(),
 							GlavniProzorGUI.table.getSelectedColumn())));
 					String sat = textFieldVreme.getText().substring(0, textFieldVreme.getText().indexOf(':'));
@@ -141,7 +142,7 @@ public class DodajKolokvijumGUI extends JFrame {
 					g.set(GregorianCalendar.MINUTE, Integer.parseInt(minut));	
 					k.setVremePolaganja(g);
 					k.setMesto(textFieldMesto.getText());
-					GUIKontroler.aktivnosti.add(k);
+					GUIKontroler.vratiSveAktivnosti().add(k);
 					GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
 					dispose();
 				}

@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import aktivnosti.Aktivnost;
+import aktivnosti.Planer;
 import gui.modeli.FrameDragListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -35,8 +36,8 @@ public class OpisAktivnostiGUI extends JFrame {
 	private JLabel lblIspisVremena;
 
 	
-	private Aktivnost aktivnost = GUIKontroler.pronadjiAktivnost(new GregorianCalendar(GUIKontroler.gc.get(GregorianCalendar.YEAR),
-			GUIKontroler.gc.get(GregorianCalendar.MONTH),Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow()
+	private Aktivnost aktivnost = GUIKontroler.pronadjiAktivnost(new GregorianCalendar(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR),
+			GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH),Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow()
 					,GlavniProzorGUI.table.getSelectedColumn()))));
 	private JLabel lblMeseto;
 	private JLabel lblIspisMesta;
@@ -100,7 +101,7 @@ public class OpisAktivnostiGUI extends JFrame {
 			lblOpisAktivnosti.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			lblOpisAktivnosti.setForeground(Color.WHITE);
 			lblOpisAktivnosti.setBounds(5, 0, 405, 25);
-			lblOpisAktivnosti.setText(GUIKontroler.vratiDatum(aktivnost.getVremePolaganja()));
+			lblOpisAktivnosti.setText(GUIKontroler.vratiDatumString(aktivnost.getVremePolaganja()));
 		}
 		return lblOpisAktivnosti;
 	}
@@ -117,15 +118,15 @@ public class OpisAktivnostiGUI extends JFrame {
 					try {
 						int datum = Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow(),
 								GlavniProzorGUI.table.getSelectedColumn()));
-						int mesec = GUIKontroler.gc.get(GregorianCalendar.MONTH);
-						int godina = GUIKontroler.gc.get(GregorianCalendar.YEAR);
+						int mesec = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH);
+						int godina = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR);
 						GregorianCalendar g = new GregorianCalendar(godina,mesec,datum);
-						for(int i=0;i<GUIKontroler.aktivnosti.size();i++){
-							if(GUIKontroler.istiDan(GUIKontroler.aktivnosti.get(i).getVremePolaganja(),g)){
+						for(int i=0;i<GUIKontroler.vratiSveAktivnosti().size();i++){
+							if(GUIKontroler.istiDan(GUIKontroler.vratiSveAktivnosti().get(i).getVremePolaganja(),g)){
 								int odgovor = JOptionPane.showConfirmDialog(OpisAktivnostiGUI.this, "Da li zaista zelite da uklonite odabranu aktivnost?",
 										"Ukloni", JOptionPane.YES_NO_OPTION);
 								if(odgovor==JOptionPane.YES_OPTION){
-									GUIKontroler.aktivnosti.remove(i);
+									GUIKontroler.vratiSveAktivnosti().remove(i);
 									GlavniProzorGUI.azurirajTabelu();
 									dispose();
 									return;
@@ -192,7 +193,7 @@ public class OpisAktivnostiGUI extends JFrame {
 			lblIspisVremena.setHorizontalAlignment(SwingConstants.CENTER);
 			lblIspisVremena.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			lblIspisVremena.setBounds(10, 117, 430, 25);
-			lblIspisVremena.setText(GUIKontroler.vratiVreme(aktivnost.getVremePolaganja()));
+			lblIspisVremena.setText(GUIKontroler.vratiVremeString(aktivnost.getVremePolaganja()));
 		}
 		return lblIspisVremena;
 	}

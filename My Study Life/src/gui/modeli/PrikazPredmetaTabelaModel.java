@@ -1,4 +1,4 @@
-package gui.model;
+package gui.modeli;
 
 import java.util.LinkedList;
 import java.util.List;

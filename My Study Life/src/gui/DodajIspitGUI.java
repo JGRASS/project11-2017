@@ -20,6 +20,7 @@ import javax.swing.border.EmptyBorder;
 
 import aktivnosti.Ispit;
 import aktivnosti.Kolokvijum;
+import aktivnosti.Planer;
 import gui.modeli.FrameDragListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -134,8 +135,8 @@ public class DodajIspitGUI extends JFrame {
 					Ispit i = new Ispit();
 					i.setPredmet(GUIKontroler.predmeti.get(comboBoxPredmeti.getSelectedIndex()));
 					GregorianCalendar g = new GregorianCalendar();
-					g.set(GregorianCalendar.YEAR, GUIKontroler.gc.get(GregorianCalendar.YEAR));
-					g.set(GregorianCalendar.MONTH,GUIKontroler.gc.get(GregorianCalendar.MONTH));
+					g.set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR));
+					g.set(GregorianCalendar.MONTH,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH));
 					g.set(GregorianCalendar.DATE, Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow(),
 							GlavniProzorGUI.table.getSelectedColumn())));
 					String sat = textFieldVreme.getText().substring(0, textFieldVreme.getText().indexOf(':'));
@@ -144,7 +145,7 @@ public class DodajIspitGUI extends JFrame {
 					g.set(GregorianCalendar.MINUTE, Integer.parseInt(minut));	
 					i.setVremePolaganja(g);
 					i.setMesto(textFieldMesto.getText());
-					GUIKontroler.aktivnosti.add(i);
+					GUIKontroler.vratiSveAktivnosti().add(i);
 					GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
 					dispose();
 				}

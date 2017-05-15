@@ -15,33 +15,34 @@ import java.util.LinkedList;
 import java.util.List;
 
 import aktivnosti.*;
-import gui.model.PrikazPredmetaTabelaModel;
+import gui.modeli.PrikazPredmetaTabelaModel;
 import predmeti.Predmet;
 public class GUIKontroler {
 	
-	public static GlavniProzorGUI glavniProzor ; //Ovde pravite staticke promeljive. Njima posle pristupamo pomocu GuiKontroler.xxx iz bilo koje druge klase.
-	public static DodajKolokvijumGUI dodajKolokvijum;
-	public static OpisAktivnostiGUI opisAktivnosti;
-	public static DodajIspitGUI dodajIspit;
-	public static GregorianCalendar gc = new GregorianCalendar();
-	public static String[][] datumi = new String[6][7];
-	public static List<Aktivnost> aktivnosti;
+	private static Planer planer;
+	private static GlavniProzorGUI glavniProzor ; //Ovde pravite staticke promeljive. Njima posle pristupamo pomocu GuiKontroler.xxx iz bilo koje druge klase.
+	private static DodajKolokvijumGUI dodajKolokvijum;
+	private static DodajIspitGUI dodajIspit;
+	private static OpisAktivnostiGUI opisAktivnosti;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
-		ucitajAktivnosti();
-		gc = new GregorianCalendar();
-		popuniMatricuDatuma(datumi, gc);
 		ucitajPredmete();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
+					planer = new Planer();
 					glavniProzor = new GlavniProzorGUI();
 					glavniProzor.setVisible(true);
+					
+					planer.postaviGc(new GregorianCalendar());
+					planer.popuniMatricuDatuma();
+					planer.ucitajAktivnosti();
+					
 					glavniProzor.addWindowListener(new WindowAdapter() {
 						public void windowClosing(WindowEvent e) {
-							serijalizujAktivnosti();
+							planer.serijalizujAktivnosti();
 							serijalizujPredmete();
 							glavniProzor.dispose();
 						};
@@ -55,23 +56,11 @@ public class GUIKontroler {
 	public static void otvoriDodajKolokvujumGUI() {
 		dodajKolokvijum = new DodajKolokvijumGUI();
 		dodajKolokvijum.setVisible(true);
-		dodajKolokvijum.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				dodajKolokvijum.dispose();
-			}
-		});
 	}
 	
 	public static void otvoriDodajIspitGUI() {
 		dodajIspit = new DodajIspitGUI();
 		dodajIspit.setVisible(true);
-		dodajIspit.addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				dodajIspit.dispose();
-			}
-		});
 	}
 	
 	public static void otvoriOpisAktivnosti() {
@@ -80,75 +69,49 @@ public class GUIKontroler {
 	
 	}
 	
-	public static void popuniMatricuDatuma(String[][] datumi,GregorianCalendar gc){
-		gc.set(GregorianCalendar.DATE, 1);
-		int prviDanUMesecu = gc.get(GregorianCalendar.DAY_OF_WEEK);
-		int dan = 1;
-		int brojac = 1;
-		for(int i=0;i<6;i++){
-			for(int j=0;j<7;j++){
-				if(brojac>=prviDanUMesecu && dan<=gc.getActualMaximum(GregorianCalendar.DAY_OF_MONTH)){
-					datumi[i][j] = dan+"";
-					dan++;
-				}
-				else	
-					datumi[i][j] = "";
-				brojac++;
-			}
-		}
-	}
-	
-	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
-		if(g1.get(GregorianCalendar.DATE)==g2.get(GregorianCalendar.DATE) &&
-				g1.get(GregorianCalendar.MONTH)==g2.get(GregorianCalendar.MONTH) &&
-				g1.get(GregorianCalendar.YEAR)==g2.get(GregorianCalendar.YEAR))
-			return true;
-		return false;
-	}
-	
-	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
-		if(g==null)
-			throw new RuntimeException("Uneto vreme je null");
-		for(int i=0;i<aktivnosti.size();i++){
-			if(istiDan(aktivnosti.get(i).getVremePolaganja(), g))
-				return aktivnosti.get(i);
-		}
-		return null;
-	}
-	
-	public static String vratiVreme(GregorianCalendar g){
+	public static String vratiVremeString(GregorianCalendar g){
 		String vreme = "";
 		vreme+=g.get(GregorianCalendar.HOUR)+":";
 		vreme+=g.get(GregorianCalendar.MINUTE);
 		return vreme;
 	}
 	
-	public static String vratiDatum(GregorianCalendar g){
+	public static List<Aktivnost> vratiSveAktivnosti(){
+		return planer.vratiSveAktivnosti();
+	}
+	
+	public static GregorianCalendar vratiTrenutnoVreme(){
+		return planer.vratiGc();
+	}
+	
+	public static String[][] vratiDatume(){
+		return planer.vratiDatume();
+	}
+	
+	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
+		return planer.istiDan(g1, g2);
+	}
+	
+	public static void popuniMatricuDatuma(){
+		planer.popuniMatricuDatuma();
+	}
+	
+	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
+		return planer.pronadjiAktivnost(g);
+	}
+	public static String vratiDatumString(GregorianCalendar g){
 		String vreme = "";
 		vreme+=g.get(GregorianCalendar.YEAR)+"/";
 		vreme+=g.get(GregorianCalendar.MONTH)+"/";
 		vreme+=g.get(GregorianCalendar.DATE)+" ";
 		return vreme;
 	}
-	public static void serijalizujAktivnosti(){
-		try {
-			ObjectOutputStream os = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("aktivnosti.s")));
-			os.writeObject(aktivnosti);
-			os.flush();
-			os.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	
+	public String vratiNazivSlike() {
+		int broj = (int) (Math.random() * 10);
+		return broj + ".png";
 	}
-	public static void ucitajAktivnosti(){
-		try {
-			ObjectInputStream is = new ObjectInputStream(new BufferedInputStream(new FileInputStream("aktivnosti.s")));
-			aktivnosti = (LinkedList<Aktivnost>) is.readObject();
-			is.close();
-		} catch (ClassNotFoundException | IOException e) {
-			aktivnosti = new LinkedList<>();
-		}
-	}
+	
 	public static void ucitajPredmete(){
 		try {
 			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("predmeti.s")));
@@ -170,10 +133,6 @@ public class GUIKontroler {
 			e.printStackTrace();
 		}
 		
-	}
-	public String vratiNazivSlike() {
-		int broj = (int) (Math.random() * 10);
-		return broj + ".png";
 	}
 
 	public static void izmeniPredmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
