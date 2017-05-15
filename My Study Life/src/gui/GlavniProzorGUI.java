@@ -183,6 +183,7 @@ public class GlavniProzorGUI extends JFrame {
 					for(int i=0;i<GUIKontroler.aktivnosti.size();i++){
 						if(GUIKontroler.istiDan(GUIKontroler.aktivnosti.get(i).getVremePolaganja(),g)){
 							GUIKontroler.otvoriOpisAktivnosti();
+							azurirajTabelu();
 							return;
 						}
 					}
