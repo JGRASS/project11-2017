@@ -9,6 +9,15 @@ public abstract class Aktivnost implements Serializable {
 	private Predmet predmet;
 	private GregorianCalendar vremePolaganja;
 	private String mesto;
+	private boolean evidentirana = false;
+
+	public boolean isEvidentirana() {
+		return evidentirana;
+	}
+
+	public void setEvidentirana(boolean evidentirana) {
+		this.evidentirana = evidentirana;
+	}
 
 	public Predmet getPredmet() {
 		return predmet;

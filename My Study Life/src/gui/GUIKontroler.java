@@ -15,6 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import aktivnosti.*;
+import gui.modeli.MojaTabela;
 import gui.modeli.PrikazPredmetaTabelaModel;
 import predmeti.Predmet;
 public class GUIKontroler {
@@ -69,13 +70,6 @@ public class GUIKontroler {
 	
 	}
 	
-	public static String vratiVremeString(GregorianCalendar g){
-		String vreme = "";
-		vreme+=g.get(GregorianCalendar.HOUR)+":";
-		vreme+=g.get(GregorianCalendar.MINUTE);
-		return vreme;
-	}
-	
 	public static List<Aktivnost> vratiSveAktivnosti(){
 		return planer.vratiSveAktivnosti();
 	}
@@ -99,11 +93,19 @@ public class GUIKontroler {
 	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
 		return planer.pronadjiAktivnost(g);
 	}
+	
 	public static String vratiDatumString(GregorianCalendar g){
 		String vreme = "";
 		vreme+=g.get(GregorianCalendar.YEAR)+"/";
 		vreme+=g.get(GregorianCalendar.MONTH)+"/";
 		vreme+=g.get(GregorianCalendar.DATE)+" ";
+		return vreme;
+	}
+	
+	public static String vratiVremeString(GregorianCalendar g){
+		String vreme = "";
+		vreme+=g.get(GregorianCalendar.HOUR)+":";
+		vreme+=g.get(GregorianCalendar.MINUTE);
 		return vreme;
 	}
 	

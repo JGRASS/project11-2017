@@ -10,6 +10,8 @@ import aktivnosti.Aktivnost;
 
 public class SOSerijalizujAktivnosti {
 	public static void izvrsi(List<Aktivnost> aktivnosti){
+		if(aktivnosti==null)
+			throw new RuntimeException("Aktivnost moraju biti razliciti od null");
 		try {
 			ObjectOutputStream os = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("aktivnosti.s")));
 			os.writeObject(aktivnosti);

@@ -1,7 +1,8 @@
 package gui;
 
-
+import aktivnosti.*;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -15,12 +16,14 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
+import javax.swing.JTextField;
 
 public class OpisAktivnostiGUI extends JFrame {
 
@@ -34,17 +37,17 @@ public class OpisAktivnostiGUI extends JFrame {
 	private JLabel lblIspisNaziva;
 	private JLabel lblVreme;
 	private JLabel lblIspisVremena;
-
-	
+	private JLabel lblMeseto;
+	private JLabel lblIspisMesta;
+	private JLabel lblRezultati;
 	private Aktivnost aktivnost = GUIKontroler.pronadjiAktivnost(new GregorianCalendar(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR),
 			GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH),Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow()
 					,GlavniProzorGUI.table.getSelectedColumn()))));
-	private JLabel lblMeseto;
-	private JLabel lblIspisMesta;
-	
+	private JTextField textFieldUnos;
+	private JButton btnUnesi;
 	public OpisAktivnostiGUI() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 400);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
 		getRootPane().setBorder(BorderFactory.createMatteBorder(
@@ -62,6 +65,9 @@ public class OpisAktivnostiGUI extends JFrame {
 		contentPane.add(getLblIspisVremena());
 		contentPane.add(getLblMeseto());
 		contentPane.add(getLblIspisMesta());
+		contentPane.add(getLblRezultati());
+		contentPane.add(getTextFieldUnos());
+		contentPane.add(getBtnUnesi());
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
@@ -101,7 +107,13 @@ public class OpisAktivnostiGUI extends JFrame {
 			lblOpisAktivnosti.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			lblOpisAktivnosti.setForeground(Color.WHITE);
 			lblOpisAktivnosti.setBounds(5, 0, 405, 25);
-			lblOpisAktivnosti.setText(GUIKontroler.vratiDatumString(aktivnost.getVremePolaganja()));
+			String tekst = "";
+			if(aktivnost instanceof Kolokvijum)
+				tekst+="Kolokvijum ";
+			if(aktivnost instanceof Ispit)
+				tekst+="Ispit ";
+			tekst+=GUIKontroler.vratiDatumString(aktivnost.getVremePolaganja());
+			lblOpisAktivnosti.setText(tekst);
 		}
 		return lblOpisAktivnosti;
 	}
@@ -112,7 +124,7 @@ public class OpisAktivnostiGUI extends JFrame {
 			btnUkloniAktivnost.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnUkloniAktivnost.setFocusPainted(false);
 			btnUkloniAktivnost.setBackground(Color.GRAY);
-			btnUkloniAktivnost.setBounds(261, 254, 150, 35);
+			btnUkloniAktivnost.setBounds(30, 340, 150, 35);
 			btnUkloniAktivnost.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					try {
@@ -155,7 +167,7 @@ public class OpisAktivnostiGUI extends JFrame {
 			btnIzlaz.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnIzlaz.setFocusPainted(false);
 			btnIzlaz.setBackground(Color.GRAY);
-			btnIzlaz.setBounds(50, 254, 150, 35);
+			btnIzlaz.setBounds(270, 340, 150, 35);
 		}
 		return btnIzlaz;
 	}
@@ -215,5 +227,77 @@ public class OpisAktivnostiGUI extends JFrame {
 			lblIspisMesta.setText(aktivnost.getMesto());
 		}
 		return lblIspisMesta;
+	}
+	private JLabel getLblRezultati() {
+		if (lblRezultati == null) {
+			lblRezultati = new JLabel("Unesi ocenu/rezultat:");
+//			if(GlavniProzorGUI.selektovanDatum().before(new GregorianCalendar())){
+//				lblRezultati.setText("Rezultati: ");
+//				lblRezultati.setVisible(true);
+//			}
+			lblRezultati.setHorizontalAlignment(SwingConstants.CENTER);
+			lblRezultati.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			lblRezultati.setBounds(10, 214, 430, 25);
+		}
+		return lblRezultati;
+	}
+	private JTextField getTextFieldUnos() {
+		if (textFieldUnos == null) {
+			textFieldUnos = new JTextField();
+			textFieldUnos.setHorizontalAlignment(SwingConstants.CENTER);
+			textFieldUnos.setBounds(145, 250, 160, 35);
+			textFieldUnos.setColumns(10);
+			if(GlavniProzorGUI.selektovanDatum().after(new GregorianCalendar()) || aktivnost.isEvidentirana()){
+				textFieldUnos.setEnabled(false);
+				if(aktivnost.isEvidentirana()){
+					if(aktivnost instanceof Ispit){
+						textFieldUnos.setText((int)((Ispit)aktivnost).vratiOcenu()+"");
+					}
+					else
+						textFieldUnos.setText(((Kolokvijum)aktivnost).vratiBrojPoena()+"");
+				}
+				else{
+					String brDana = String.format("%.2f",((float)(aktivnost.getVremePolaganja().getTimeInMillis() - new GregorianCalendar().getTimeInMillis())/(3600000*24)));
+					textFieldUnos.setText("Jos "+brDana+" dana");
+				}
+			}
+		}
+		return textFieldUnos;
+	}
+	private JButton getBtnUnesi() {
+		if (btnUnesi == null) {
+			btnUnesi = new JButton("Unesi");
+			btnUnesi.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+					try {
+						double rezultat =Float.parseFloat(textFieldUnos.getText());
+						JOptionPane.showMessageDialog(null,"Sigurni ste da ste ispravno uneli rezultat?", "Greska", JOptionPane.YES_NO_CANCEL_OPTION);
+						if(aktivnost instanceof Kolokvijum){
+							((Kolokvijum)aktivnost).postaviBrojPoena(rezultat);
+							aktivnost.setEvidentirana(true);
+						}
+						else{
+							((Ispit)aktivnost).postaviOcenu((int)rezultat);
+							aktivnost.setEvidentirana(true);
+						}
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null,"Pogresno uneti rezultati", "Greska", JOptionPane.OK_OPTION);
+					}catch (Exception e) {
+						JOptionPane.showMessageDialog(null,e.getMessage(), "Greska", JOptionPane.OK_OPTION);
+					}
+					dispose();
+				}
+			});
+			if(GlavniProzorGUI.selektovanDatum().after(new GregorianCalendar()) || aktivnost.isEvidentirana())
+				btnUnesi.setEnabled(false);
+			btnUnesi.setForeground(Color.WHITE);
+			btnUnesi.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnUnesi.setFocusPainted(false);
+			btnUnesi.setBackground(Color.GRAY);
+			btnUnesi.setBounds(150, 294, 150, 35);
+			
+		}
+		return btnUnesi;
 	}
 }

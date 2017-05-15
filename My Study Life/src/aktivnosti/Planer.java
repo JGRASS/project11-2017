@@ -3,7 +3,6 @@ package aktivnosti;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-
 import sistemskeOperacije.SOIstiDan;
 import sistemskeOperacije.SOPopuniMatricuDatuma;
 import sistemskeOperacije.SOPronadjiAktivnost;
@@ -20,7 +19,10 @@ public class Planer {
 	}
 
 	public void postaviDatume(String[][] datumi) {
-		this.datumi = datumi;
+		if(datumi!=null)
+			this.datumi = datumi;
+		else
+			throw new RuntimeException("Matrica datuma mora biti razlicita od null");
 	}
 
 	public GregorianCalendar vratiGc() {
@@ -28,7 +30,10 @@ public class Planer {
 	}
 
 	public void postaviGc(GregorianCalendar gc) {
-		this.gc = gc;
+		if(gc!=null)
+			this.gc = gc;
+		else
+			throw new RuntimeException("Datum mora biti razlicit od null");
 	}
 
 	public  List<Aktivnost> vratiSveAktivnosti() {
@@ -36,15 +41,24 @@ public class Planer {
 	}
 
 	public void postaviAktivnosti(List<Aktivnost> aktivnosti) {
-		this.aktivnosti = aktivnosti;
+		if(aktivnosti!=null)
+			this.aktivnosti = aktivnosti;
+		else
+			throw new RuntimeException("Aktivnosti moraju biti razlicite od null");
 	}
 	
 	public void dodajAktivnost(Aktivnost a){
-		aktivnosti.add(a);
+		if(a!=null)
+			aktivnosti.add(a);
+		else
+			throw new RuntimeException("Aktivnost mora biti razlicita od null");
 	}
 	
 	public void obrisiAktivnost(Aktivnost a){
-		aktivnosti.remove(a);
+		if(a!=null)
+			aktivnosti.remove(a);
+		else
+			throw new RuntimeException("Aktivnost mora biti razlicita od null");
 	}
 	
 	public boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
@@ -55,6 +69,9 @@ public class Planer {
 		return SOPronadjiAktivnost.izvrsi(aktivnosti, g);
 	}
 	
+	public void popuniMatricuDatuma(){
+		SOPopuniMatricuDatuma.izvrsi(gc, datumi);
+	}
 	
 	public  void ucitajAktivnosti(){
 		postaviAktivnosti(SOUcitajAktivnosti.izvrsi());
@@ -62,9 +79,5 @@ public class Planer {
 	
 	public void serijalizujAktivnosti(){
 		SOSerijalizujAktivnosti.izvrsi(aktivnosti);
-	}
-	
-	public void popuniMatricuDatuma(){
-		SOPopuniMatricuDatuma.izvrsi(gc, datumi);
 	}
 }

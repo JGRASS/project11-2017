@@ -4,6 +4,8 @@ import java.util.GregorianCalendar;
 
 public class SOPopuniMatricuDatuma {
 	public static void izvrsi(GregorianCalendar gc,String datumi[][]){
+		if(gc==null || datumi==null)
+			throw new RuntimeException("Datum i matrica moraju biti razliciti od null");
 		gc.set(GregorianCalendar.DATE, 1);
 		int prviDanUMesecu = gc.get(GregorianCalendar.DAY_OF_WEEK);
 		int dan = 1;
@@ -19,5 +21,6 @@ public class SOPopuniMatricuDatuma {
 				brojac++;
 			}
 		}
+		gc.set(GregorianCalendar.DATE,new GregorianCalendar().get(GregorianCalendar.DATE));
 	}
 }

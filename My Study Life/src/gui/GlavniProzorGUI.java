@@ -473,7 +473,13 @@ public class GlavniProzorGUI extends JFrame {
 		PlanerTabelaModel model = (PlanerTabelaModel)table.getModel();
 		model.azurirajTabelu(GUIKontroler.vratiDatume());
 	}
-	
+	public static GregorianCalendar selektovanDatum(){
+		GregorianCalendar g = new GregorianCalendar();
+		int datum = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
+		g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR)
+				, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH),datum);
+		return g;
+	}
 	
 	private JButton getBtnDodajKolokvijum() {
 		if (btnDodajKolokvijum == null) {
