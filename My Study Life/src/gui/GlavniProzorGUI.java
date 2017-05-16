@@ -37,7 +37,7 @@ import javax.swing.border.LineBorder;
 
 public class GlavniProzorGUI extends JFrame {
 	private static final long serialVersionUID = 7088262915872956309L;
-	private static final Component GlavniProzorGUI = null;
+	public static final Component GlavniProzorGUI = null;
 	private JPanel contentPane;
 	private JTabbedPane tabbedPane;
 	private JPanel panelPlaner;
@@ -87,8 +87,7 @@ public class GlavniProzorGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		setLocationRelativeTo(null);
-		setUndecorated(true); //Uklanjanje default oblika prozora
-		//setJMenuBar(getMenuBar_1()); //Privremeno iskljuceno zbog estetike
+		setUndecorated(true);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -543,7 +542,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnDodaj.setFocusPainted(false);
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					otvoriDodajPredmetGUI();
+					GUIKontroler.otvoriDodajPredmetGUI();
 				}
 			});
 		}
@@ -564,7 +563,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnIzmeni.setEnabled(false);
 			btnIzmeni.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					otvoriIzmeniPredmetGUI();
+					GUIKontroler.otvoriIzmeniPredmetGUI();
 				}
 			});
 			btnIzmeni.setPreferredSize(new Dimension(140, 23));
@@ -642,7 +641,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnPregledPredmeta.setEnabled(false);
 			btnPregledPredmeta.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					otvoriPregledPredmeta();
+					GUIKontroler.otvoriPregledPredmeta();
 				}
 			});
 			btnPregledPredmeta.setPreferredSize(new Dimension(140, 23));
@@ -650,26 +649,8 @@ public class GlavniProzorGUI extends JFrame {
 		return btnPregledPredmeta;
 	}
 	
-	private void otvoriDodajPredmetGUI(){
-		DodajPredmetGUI d = new DodajPredmetGUI();
-		d.setVisible(true);
-		d.setLocationRelativeTo(GlavniProzorGUI);
-	}
-	private void otvoriIzmeniPredmetGUI(){
-		IzmeniPredmetGUI i = new IzmeniPredmetGUI();
-		//i.popuniPolja("das", 5, "dasds", true, 5, true, 8, "dassa", "dsasa", "dassa");
-		i.setVisible(true);
-		i.setLocationRelativeTo(GlavniProzorGUI);
-		i.popuniPolja();
-	}
-	private void otvoriPregledPredmeta(){
-		PregledPredmeta p = new PregledPredmeta();
-		//p.popuniPolja("das", 5, "dasds", true, 5, true, 8, "dassa", "dsasa", "dassa");
-		p.setVisible(true);
-		p.setLocationRelativeTo(GlavniProzorGUI);
-		p.popuniPolja();
-		
-	}
+	
+	
 	private JLabel getLblKolokvijumBoja() {
 		if (lblKolokvijumBoja == null) {
 			lblKolokvijumBoja = new JLabel("");

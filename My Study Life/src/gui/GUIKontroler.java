@@ -19,7 +19,21 @@ import aktivnosti.*;
 import gui.modeli.MojaTabela;
 import gui.modeli.PrikazPolozenihTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
+import gui.predmetFunkcije.DodajPredmetGUI;
+import gui.predmetFunkcije.IzmeniPredmetGUI;
+import gui.predmetFunkcije.PregledPredmeta;
 import predmeti.Predmet;
+import sistemskeOperacije.SOAzurirajListuPolozenih;
+import sistemskeOperacije.SOAzurirajTabeluPolozenih;
+import sistemskeOperacije.SOAzurirajTabeluPredmeta;
+import sistemskeOperacije.SOOtvoriDodajPredmet;
+import sistemskeOperacije.SOOtvoriIzmeniPredmet;
+import sistemskeOperacije.SOOtvoriPregledPredmeta;
+import sistemskeOperacije.SOSerijalizujPolozene;
+import sistemskeOperacije.SOSerijalizujPredmete;
+import sistemskeOperacije.SOUcitajPolozene;
+import sistemskeOperacije.SOUcitajPredmete;
+import sistemskeOperacije.SOVratiNazivSlike;
 public class GUIKontroler {
 	
 	private static Planer planer;
@@ -108,75 +122,42 @@ public class GUIKontroler {
 	}
 	
 	public static String vratiNazivSlike() {
-		Random r = new Random();
-		int broj = r.nextInt(5)+1;
-		return "/"+broj+".jpg";
+		return SOVratiNazivSlike.izvrsi();
 	}
 	
 	public static void ucitajPredmete(){
-		try {
-			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("predmeti.s")));
-			predmeti = (LinkedList<Predmet>) in.readObject();
-			in.close();
-			
-		} catch (ClassNotFoundException | IOException e) {
-			predmeti = new LinkedList<>();
-		}
-		
+		SOUcitajPredmete.izvrsi();
 	}
 	public static void serijalizujPredmete(){
-		try {
-			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("polozeni.s")));
-			out.writeObject(predmeti);
-			out.flush();
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		SOSerijalizujPredmete.izvrsi();
 		
 	}
 	public static void ucitajPolozene(){
-		try {
-			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("polozeni.s")));
-			polozeni = (LinkedList<Predmet>) in.readObject();
-			in.close();
-			
-		} catch (ClassNotFoundException | IOException e) {
-			polozeni = new LinkedList<>();
-		}
+		SOUcitajPolozene.izvrsi();
 	}
 	public static void serijalizujPolozene(){
-		try {
-			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.s")));
-			out.writeObject(polozeni);
-			out.flush();
-			out.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		SOSerijalizujPolozene.izvrsi();
 	}
 
 	public static void azurirajTabeluPredmet(){
-		PrikazPredmetaTabelaModel model = (PrikazPredmetaTabelaModel) GlavniProzorGUI.tablePredmeti.getModel();
-		model.azurirajTabelu(predmeti);
+		SOAzurirajTabeluPredmeta.izvrsi();
 		
 	}
 	
 	public static void azurirajTabeluPolozeni(){
-		PrikazPolozenihTabelaModel model = (PrikazPolozenihTabelaModel) GlavniProzorGUI.tablePolozeni.getModel();
-		azurirajListuPolozeni();
-		model.azurirajTabeluPolozeni(polozeni);
+		SOAzurirajTabeluPolozenih.izvrsi();
 	}
 	public static void azurirajListuPolozeni(){
-		for (int i = 0; i < predmeti.size(); i++) {
-			if(predmeti.get(i).isPolozen() && !polozeni.contains(predmeti.get(i))){
-				polozeni.add(predmeti.get(i));
-			}
-		}
-		for (int i = 0; i < polozeni.size(); i++) {
-			if(!predmeti.contains(polozeni.get(i))){
-				polozeni.remove(i);
-			}
-		}
+		SOAzurirajListuPolozenih.izvrsi();
+	}
+	public static void otvoriDodajPredmetGUI(){
+		SOOtvoriDodajPredmet.izvrsi();
+	}
+	public static void otvoriIzmeniPredmetGUI(){
+		SOOtvoriIzmeniPredmet.izvrsi();
+	}
+	public static void otvoriPregledPredmeta(){
+		SOOtvoriPregledPredmeta.izvrsi();
+		
 	}
 }
