@@ -280,6 +280,16 @@ public class OpisAktivnostiGUI extends JFrame {
 							((Ispit)aktivnost).postaviOcenu((int)rezultat);
 							
 							aktivnost.setEvidentirana(true);
+							
+							for(int i=0;i<GUIKontroler.predmeti.size();i++){
+								if(aktivnost.getPredmet().getNaziv().equals(GUIKontroler.predmeti.get(i).getNaziv())){
+									GUIKontroler.predmeti.get(i).setPolozen(true);
+									GUIKontroler.predmeti.get(i).setOcena((int)rezultat);
+									GUIKontroler.azurirajListuPolozeni();
+									GUIKontroler.azurirajTabeluPredmet();
+									GUIKontroler.azurirajTabeluPolozeni();
+								}
+							}
 						}
 						dispose();
 					} catch (NumberFormatException e) {
