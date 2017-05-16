@@ -88,6 +88,8 @@ public class GlavniProzorGUI extends JFrame {
 	private JScrollPane scrollPanePolozeni;
 	private JLabel lblProsek;
 	public static JTextField textFieldProsek;
+	private JLabel labelBrBodova;
+	public static JTextField textFieldBrojBodova;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -262,6 +264,8 @@ public class GlavniProzorGUI extends JFrame {
 			panelPolozeniIspiti.add(getScrollPanePolozeni());
 			panelPolozeniIspiti.add(getLblProsek());
 			panelPolozeniIspiti.add(getTextFieldProsek());
+			panelPolozeniIspiti.add(getLabelBrBodova());
+			panelPolozeniIspiti.add(getTextFieldBrojBodova());
 		}
 		return panelPolozeniIspiti;
 	}
@@ -938,4 +942,25 @@ public class GlavniProzorGUI extends JFrame {
 		return textFieldProsek;
 	}
 	
+	private JLabel getLabelBrBodova() {
+		if (labelBrBodova == null) {
+			labelBrBodova = new JLabel("Ukupan broj ESPB");
+			labelBrBodova.setForeground(Color.WHITE);
+			labelBrBodova.setFont(new Font("Segoe Script", Font.BOLD, 16));
+			labelBrBodova.setBounds(55, 496, 194, 25);
+		}
+		return labelBrBodova;
+	}
+	private JTextField getTextFieldBrojBodova() {
+		if (textFieldBrojBodova == null) {
+			textFieldBrojBodova = new JTextField();
+			textFieldBrojBodova.setForeground(Color.BLACK);
+			textFieldBrojBodova.setFont(new Font("Segoe Script", Font.BOLD, 17));
+			textFieldBrojBodova.setEditable(false);
+			textFieldBrojBodova.setColumns(10);
+			textFieldBrojBodova.setBounds(259, 496, 86, 20);
+			textFieldBrojBodova.setText("" + GUIKontroler.vratiESPB());
+		}
+		return textFieldBrojBodova;
+	}
 }

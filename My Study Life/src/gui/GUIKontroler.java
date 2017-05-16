@@ -18,6 +18,7 @@ import sistemskeOperacije.SOSerijalizujPolozene;
 import sistemskeOperacije.SOSerijalizujPredmete;
 import sistemskeOperacije.SOUcitajPolozene;
 import sistemskeOperacije.SOUcitajPredmete;
+import sistemskeOperacije.SOVratiESPB;
 import sistemskeOperacije.SOVratiNazivSlike;
 import sistemskeOperacije.SOVratiProsek;
 /**
@@ -200,5 +201,8 @@ public class GUIKontroler {
 	}
 	public static void azurirajProsek(){
 		SOAzurirajProsek.izvrsi();
+	}
+	public static int vratiESPB(){
+		return SOVratiESPB.izvrsi();
 	}
 }
