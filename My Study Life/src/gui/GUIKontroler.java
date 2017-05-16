@@ -61,45 +61,75 @@ public class GUIKontroler {
 			}
 		});
 	}
+	/**
+	 * Metoda otvara prozor DodajKolokvijumGUI
+	 */
 	public static void otvoriDodajKolokvujumGUI() {
 		dodajKolokvijum = new DodajKolokvijumGUI();
 		dodajKolokvijum.setVisible(true);
 	}
-	
+	/**
+	 * Metoda otvara prozor DodajIspitGUI
+	 */
 	public static void otvoriDodajIspitGUI() {
 		dodajIspit = new DodajIspitGUI();
 		dodajIspit.setVisible(true);
 	}
-	
+	/**
+	 * Metoda otvara prozor OpisAktivnosti
+	 */
 	public static void otvoriOpisAktivnosti() {
 		opisAktivnosti = new OpisAktivnostiGUI();
 		opisAktivnosti.setVisible(true);
 	
 	}
-	
+	/**
+	 * Metoda vraca sve studenske aktivnosti
+	 * @return Listu aktivnosti tipa Aktivnost
+	 */
 	public static List<Aktivnost> vratiSveAktivnosti(){
 		return planer.vratiSveAktivnosti();
 	}
-	
+	/**
+	 * Metoda vraca trenutno vreme
+	 * @return Trenutno vreme u vidu GregorianCalendar-a
+	 */
 	public static GregorianCalendar vratiTrenutnoVreme(){
 		return planer.vratiGc();
 	}
-	
+	/**
+	 * Metoda vraca matricu mesecnih datuma
+	 * @return Matricu mesecnih datuma u obliku String[][]
+	 */
 	public static String[][] vratiDatume(){
 		return planer.vratiDatume();
 	}
-	
+	/**
+	 * Metoda koja proverava da li su dva datuma istog dana
+	 * @param g1 prvi datum GregorianCalendar
+	 * @param g2 drugi datim GregorianCalendar
+	 * @return boolean vrednost u zavisnosti od podudaranja datuma
+	 */
 	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
 		return planer.istiDan(g1, g2);
 	}
-	
+	/**
+	 * Metoda popunjava matricu mesecnih datuma
+	 */
 	public static void popuniMatricuDatuma(){
 		planer.popuniMatricuDatuma();
 	}
-	
+	/**
+	 * Metoda pronalazi datu aktivnost na osnuvu vremena njenog odrzavanja
+	 * @param g datum odrzavanja aktivnosti GregorianCalendar
+	 * @return Aktivnost
+	 */
 	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
 		return planer.pronadjiAktivnost(g);
 	}
+	/**
+	 * Metoda koja serijalizuje aktivnosti
+	 */
 	public static void serijalizujAktivnosti(){
 		planer.serijalizujAktivnosti();
 	}
