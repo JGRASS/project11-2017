@@ -63,6 +63,10 @@ public class PrikazPolozenihTabelaModel extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return kolone[column];
 	}
+	/**
+	 * Metoda za azuriranje tabele polozenih ispita
+	 * @param polozeni lista polozenih ispita
+	 */
 	public void azurirajTabeluPolozeni(List<Predmet> polozeni) {
 		this.polozeni=polozeni;
 		fireTableDataChanged();

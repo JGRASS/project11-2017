@@ -13,18 +13,14 @@ public class PrikazPredmetaTabelaModel extends AbstractTableModel {
 	 * 
 	 */
 	private static final long serialVersionUID = -5262200438539935598L;
-	/*
-	 * private String naziv; private int ESBP; private String skolskaGodina;
-	 * private boolean jednosemestralan; private int semestar; private boolean
-	 * polozen; private int ocena; private String napomena;
-	 */
+
 	private String[] kolone = { "Naziv", "ESPB", "Skolska godina", "Semestar" };
 	private List<Predmet> predmeti;
 
 	public PrikazPredmetaTabelaModel(List<Predmet> predmeti) {
 		if (predmeti == null) {
 			this.predmeti = new LinkedList<>();
-			
+
 		} else {
 			this.predmeti = predmeti;
 		}
@@ -61,7 +57,7 @@ public class PrikazPredmetaTabelaModel extends AbstractTableModel {
 		} catch (Exception e) {
 			return "Nepoznat unos";
 		}
-		
+
 	}
 
 	@Override
@@ -69,12 +65,26 @@ public class PrikazPredmetaTabelaModel extends AbstractTableModel {
 		return kolone[column];
 	}
 
-	public void azurirajTabelu(List<Predmet> predmeti){
+	/**
+	 * Metoda se koristi za azuriranje tebele predmeta
+	 * 
+	 * @param predmeti
+	 *            oznacava azuriranu loistu predmeta
+	 */
+	public void azurirajTabelu(List<Predmet> predmeti) {
 		this.predmeti = predmeti;
 		fireTableDataChanged();
 	}
-	public Predmet vratiPredmet(int rowIndex){
+
+	/**
+	 * Metoda koja vraca predmet koji se nalazi u odredjenom redu
+	 * 
+	 * @param rowIndex
+	 *            broj reda koji predmet zelimo
+	 * @return predmet koji se nalazi na zadatom redu
+	 */
+	public Predmet vratiPredmet(int rowIndex) {
 		return predmeti.get(rowIndex);
 	}
-	
+
 }
