@@ -961,6 +961,7 @@ public class GlavniProzorGUI extends JFrame {
 			textFieldBrojBodova.setBounds(259, 496, 86, 20);
 			textFieldBrojBodova.setText("" + GUIKontroler.vratiESPB());
 		}
+		
 		return textFieldBrojBodova;
 	}
 }
