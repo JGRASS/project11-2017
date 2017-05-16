@@ -291,7 +291,7 @@ public class GlavniProzorGUI extends JFrame {
 				}
 			});
 			azurirajLblDatum();
-			azurirajTabelu();
+			GUIKontroler.azurirajTabelu(table);
 			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Centriranje
 																						// teksta
 																						// u
@@ -413,7 +413,7 @@ public class GlavniProzorGUI extends JFrame {
 						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH,
 								GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH) - 1);
 					GUIKontroler.popuniMatricuDatuma();
-					azurirajTabelu();
+					GUIKontroler.azurirajTabelu(table);
 					azurirajLblDatum();
 				}
 			});
@@ -440,7 +440,7 @@ public class GlavniProzorGUI extends JFrame {
 						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH,
 								GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH) + 1);
 					GUIKontroler.popuniMatricuDatuma();
-					azurirajTabelu();
+					GUIKontroler.azurirajTabelu(table);
 					azurirajLblDatum();
 				}
 			});
@@ -456,7 +456,7 @@ public class GlavniProzorGUI extends JFrame {
 					GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR,
 							GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR) - 1);
 					GUIKontroler.popuniMatricuDatuma();
-					azurirajTabelu();
+					GUIKontroler.azurirajTabelu(table);
 					azurirajLblDatum();
 				}
 			});
@@ -477,7 +477,7 @@ public class GlavniProzorGUI extends JFrame {
 					GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR,
 							GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR) + 1);
 					GUIKontroler.popuniMatricuDatuma();
-					azurirajTabelu();
+					GUIKontroler.azurirajTabelu(table);
 					azurirajLblDatum();
 				}
 			});
@@ -501,24 +501,14 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblDatum;
 	}
-
+	/**
+	 * Metoda koja azurira datum
+	 */
+	//Potrabna samo u okviru ove klase
 	private void azurirajLblDatum() {
 		String datum = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH) + 1 + "/"
 				+ GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR);
 		getLblDatum().setText(datum);
-	}
-
-	public static void azurirajTabelu() {
-		PlanerTabelaModel model = (PlanerTabelaModel) table.getModel();
-		model.azurirajTabelu(GUIKontroler.vratiDatume());
-	}
-
-	public static GregorianCalendar selektovanDatum() {
-		GregorianCalendar g = new GregorianCalendar();
-		int datum = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
-		g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR),
-				GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH), datum);
-		return g;
 	}
 
 	private JButton getBtnDodajKolokvijum() {
@@ -813,7 +803,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return label_12;
 	}
-
+	
 	private void podesiPozadinu() {
 		Image img = new ImageIcon(this.getClass().getResource(GUIKontroler.vratiNazivSlike())).getImage();
 		JLabel picLabelPlaner = new JLabel(new ImageIcon(img));

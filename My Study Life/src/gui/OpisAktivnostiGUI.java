@@ -141,7 +141,7 @@ public class OpisAktivnostiGUI extends JFrame {
 								"Ukloni", JOptionPane.YES_NO_OPTION);
 								if(odgovor==JOptionPane.YES_OPTION){
 									GUIKontroler.vratiSveAktivnosti().remove(i);
-									GlavniProzorGUI.azurirajTabelu();
+									GUIKontroler.azurirajTabelu(GlavniProzorGUI.table);
 									dispose();
 									return;
 								}
@@ -249,7 +249,7 @@ public class OpisAktivnostiGUI extends JFrame {
 			textFieldUnos.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldUnos.setBounds(145, 250, 160, 35);
 			textFieldUnos.setColumns(10);
-			if(GlavniProzorGUI.selektovanDatum().after(new GregorianCalendar())){
+			if(GUIKontroler.selektovanDatum(GlavniProzorGUI.table).after(new GregorianCalendar())){
 				textFieldUnos.setEnabled(false);
 				String brDana = String.format("%.2f",((float)(aktivnost.getVremePolaganja().getTimeInMillis() - new GregorianCalendar().getTimeInMillis())/(3600000*24)));
 				textFieldUnos.setText("Jos "+brDana+" dana");
@@ -299,7 +299,7 @@ public class OpisAktivnostiGUI extends JFrame {
 					}
 				}
 			});
-			if(GlavniProzorGUI.selektovanDatum().after(new GregorianCalendar()))
+			if(GUIKontroler.selektovanDatum(GlavniProzorGUI.table).after(new GregorianCalendar()))
 				btnUnesi.setEnabled(false);
 			btnUnesi.setForeground(Color.WHITE);
 			btnUnesi.setFont(new Font("Tahoma", Font.PLAIN, 15));

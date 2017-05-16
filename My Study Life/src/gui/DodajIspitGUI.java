@@ -25,7 +25,11 @@ import aktivnosti.Planer;
 import gui.modeli.FrameDragListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/**
+ * Klasa predstavlja GUI za dodavanje ispita
+ * @author Miro Maric
+ * @version 1.0
+ */
 public class DodajIspitGUI extends JFrame {
 
 	private JPanel contentPane;
@@ -163,7 +167,7 @@ public class DodajIspitGUI extends JFrame {
 						}
 						i.setMesto(textFieldMesto.getText());
 						GUIKontroler.vratiSveAktivnosti().add(i);
-						GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
+						GUIKontroler.azurirajTabelu(GlavniProzorGUI.table); //GuiKontroler?
 						dispose();
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom unosa vremena", "Greska", JOptionPane.OK_OPTION);

@@ -24,7 +24,11 @@ import java.awt.event.ActionEvent;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-
+/**
+ * Klasa predstavlja GUI za dodavanje kolokvijuma
+ * @author Miro Maric
+ * @version 1.0
+ */
 public class DodajKolokvijumGUI extends JFrame {
 
 	private JPanel contentPane;
@@ -150,7 +154,7 @@ public class DodajKolokvijumGUI extends JFrame {
 						}
 						k.setMesto(textFieldMesto.getText());
 						GUIKontroler.vratiSveAktivnosti().add(k);
-						GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
+						GUIKontroler.azurirajTabelu(GlavniProzorGUI.table);
 						dispose();
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom unosa vremena", "Greska", JOptionPane.OK_OPTION);

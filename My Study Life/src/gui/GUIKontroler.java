@@ -6,6 +6,8 @@ import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
 import aktivnosti.*;
+import gui.modeli.MojaTabela;
+import gui.modeli.PlanerTabelaModel;
 import predmeti.Predmet;
 import sistemskeOperacije.SOAzurirajListuPolozenih;
 import sistemskeOperacije.SOAzurirajProsek;
@@ -100,6 +102,32 @@ public class GUIKontroler {
 	public static void serijalizujAktivnosti(){
 		planer.serijalizujAktivnosti();
 	}
+	
+	/**
+	 * Metoda azurira jTable
+	 * @param teble prestvlja tabelu koja se azurira
+	 */
+	public static void azurirajTabelu(MojaTabela table) {
+		PlanerTabelaModel model = (PlanerTabelaModel) table.getModel();
+		model.azurirajTabelu(vratiDatume());
+	}
+	
+	/**
+	 * Metoda koja vraca selektovani datum u tabeli MojaTabela
+	 * @return datum u obliku int
+	 */
+	public static GregorianCalendar selektovanDatum(MojaTabela table) {
+		GregorianCalendar g = new GregorianCalendar();
+		int datum = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
+		g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR),
+				GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH), datum);
+		return g;
+	}
+	/**
+	 * Metoda koja vraca odredjeni GregorianCalendar(godina,mesec,dan) u String obliku
+	 * @param g Datum koji se zeli prikazati u vidu Stringa
+	 * @return Datum u String formatu
+	 */
 	public static String vratiDatumString(GregorianCalendar g){
 		String vreme = "";
 		vreme+=g.get(GregorianCalendar.YEAR)+"/";
@@ -107,14 +135,22 @@ public class GUIKontroler {
 		vreme+=g.get(GregorianCalendar.DATE)+" ";
 		return vreme;
 	}
-	
+	/**
+	 * Metoda koja vraca odredjeni GregorianCalendar(sat,minut) u String obliku
+	 * @param g Datum koji se zeli prikazati u vidu Stringa
+	 * @return Vreme u String formatu
+	 */
 	public static String vratiVremeString(GregorianCalendar g){
 		String vreme = "";
 		vreme+=g.get(GregorianCalendar.HOUR)+":";
 		vreme+=g.get(GregorianCalendar.MINUTE);
 		return vreme;
 	}
-	
+	/**
+	 * Metoda koja nalazi index predmeta(pozicija u listi) na osnovu njegovog naziva
+	 * @param naziv Naziv predmeta
+	 * @return index predmeta u listi predmeta 
+	 */
 	public static int vratiIndexPredmeta(String naziv){
 		for(int i=0;i<GUIKontroler.predmeti.size();i++){
 			if(GUIKontroler.predmeti.get(i).getNaziv().equals(naziv))
