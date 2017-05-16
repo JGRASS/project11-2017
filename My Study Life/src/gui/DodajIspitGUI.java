@@ -70,6 +70,7 @@ public class DodajIspitGUI extends JFrame {
 			comboBoxPredmeti.setForeground(Color.WHITE);
 			comboBoxPredmeti.setBackground(Color.GRAY);
 			for(int i=0;i<GUIKontroler.predmeti.size();i++){
+				if(GUIKontroler.predmeti.get(i).isPolozen()) continue;
 				comboBoxPredmeti.addItem(GUIKontroler.predmeti.get(i).getNaziv());
 			}
 			comboBoxPredmeti.setAlignmentX(comboBoxPredmeti.CENTER_ALIGNMENT);

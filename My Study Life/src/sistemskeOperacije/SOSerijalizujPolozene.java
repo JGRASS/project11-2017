@@ -10,7 +10,7 @@ import gui.GUIKontroler;
 public class SOSerijalizujPolozene {
 	public static void izvrsi(){
 		try {
-			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.s")));
+			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("polozeni.s")));
 			out.writeObject(GUIKontroler.polozeni);
 			out.flush();
 			out.close();

@@ -6,6 +6,7 @@ import java.util.GregorianCalendar;
 import predmeti.Predmet;
 
 public class Ispit extends Aktivnost{
+	
 	private int ocena = -1;
 	
 	public double vratiOcenu() {

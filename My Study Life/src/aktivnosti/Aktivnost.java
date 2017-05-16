@@ -6,7 +6,7 @@ import java.util.GregorianCalendar;
 import predmeti.Predmet;
 
 public abstract class Aktivnost implements Serializable {
-	private Predmet predmet;
+	public Predmet predmet;
 	private GregorianCalendar vremePolaganja;
 	private String mesto;
 	private boolean evidentirana = false;
@@ -45,4 +45,5 @@ public abstract class Aktivnost implements Serializable {
 		if (mesto != null && mesto.length() >= 2)
 			this.mesto = mesto;
 	}
+	
 }
