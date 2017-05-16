@@ -285,9 +285,11 @@ public class OpisAktivnostiGUI extends JFrame {
 								if(aktivnost.getPredmet().getNaziv().equals(GUIKontroler.predmeti.get(i).getNaziv())){
 									GUIKontroler.predmeti.get(i).setPolozen(true);
 									GUIKontroler.predmeti.get(i).setOcena((int)rezultat);
-									GUIKontroler.azurirajListuPolozeni();
 									GUIKontroler.azurirajTabeluPredmet();
+									GUIKontroler.azurirajListuPolozeni();
+									GUIKontroler.polozeni.get(GUIKontroler.polozeni.indexOf(GUIKontroler.predmeti.get(i))).setOcena((int)rezultat);
 									GUIKontroler.azurirajTabeluPolozeni();
+									GUIKontroler.azurirajProsek();
 								}
 							}
 						}
