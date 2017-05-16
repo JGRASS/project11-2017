@@ -16,8 +16,10 @@ import sistemskeOperacije.SOAzurirajTabeluPredmeta;
 import sistemskeOperacije.SOOtvoriDodajPredmet;
 import sistemskeOperacije.SOOtvoriIzmeniPredmet;
 import sistemskeOperacije.SOOtvoriPregledPredmeta;
+import sistemskeOperacije.SOSerijalizujObaveze;
 import sistemskeOperacije.SOSerijalizujPolozene;
 import sistemskeOperacije.SOSerijalizujPredmete;
+import sistemskeOperacije.SOUcitajObaveze;
 import sistemskeOperacije.SOUcitajPolozene;
 import sistemskeOperacije.SOUcitajPredmete;
 import sistemskeOperacije.SOVratiESPB;
@@ -40,11 +42,13 @@ public class GUIKontroler {
 	private static OpisAktivnostiGUI opisAktivnosti;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
+	public static List<Obaveza> obaveze = new LinkedList<>();
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
 		ucitajPredmete();
 		ucitajPolozene();
+		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -220,6 +224,18 @@ public class GUIKontroler {
 	 */
 	public static void serijalizujPolozene(){
 		SOSerijalizujPolozene.izvrsi();
+	}
+	/**
+	 * Metoda se koristi za ucitavanje obaveza iz fajla
+	 */
+	public static void ucitajObaveze(){
+		SOUcitajObaveze.izvrsi();
+	}
+	/**
+	 * Metoda se koristi za serijalizaciju obaveza u file
+	 */
+	public static void serijalizujObaveze(){
+		SOSerijalizujObaveze.izvrsi();
 	}
 	/**
 	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
