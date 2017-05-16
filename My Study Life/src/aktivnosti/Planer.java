@@ -10,7 +10,7 @@ import sistemskeOperacije.SOSerijalizujAktivnosti;
 import sistemskeOperacije.SOUcitajAktivnosti;
 
 public class Planer {
-	private  List<Aktivnost> aktivnosti = new LinkedList<>();
+	public  List<Aktivnost> aktivnosti = new LinkedList<>();
 	private  String[][] datumi = new String[6][7];
 	private  GregorianCalendar gc = new GregorianCalendar();
 	

@@ -1,6 +1,5 @@
 package gui.predmetFunkcije;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
@@ -8,7 +7,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import gui.GUIKontroler;
-import gui.GlavniProzorGUI;
 import predmeti.Predmet;
 
 import javax.swing.JLabel;
@@ -21,8 +19,18 @@ import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 
+/**
+ * Klasa sluzi za dodavanje novog predmeta u tabelu
+ * 
+ * @author Ivan Stanimirovic
+ *
+ */
 public class DodajPredmetGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -4577476079852982437L;
 	private JPanel contentPane;
 	private JLabel lblNaziv;
 	private JTextField textFieldNaziv;
@@ -105,6 +113,7 @@ public class DodajPredmetGUI extends JFrame {
 		return lblNaziv;
 	}
 
+	
 	private JTextField getTextFieldNaziv() {
 		if (textFieldNaziv == null) {
 			textFieldNaziv = new JTextField();
@@ -122,6 +131,7 @@ public class DodajPredmetGUI extends JFrame {
 		return lblEsbp;
 	}
 
+	
 	private JTextField getTextFieldESBP() {
 		if (textFieldESBP == null) {
 			textFieldESBP = new JTextField();
@@ -139,6 +149,7 @@ public class DodajPredmetGUI extends JFrame {
 		return lblSkolskaGodina;
 	}
 
+	
 	private JTextField getTextFieldSkolska() {
 		if (textFieldSkolska == null) {
 			textFieldSkolska = new JTextField();
@@ -155,7 +166,7 @@ public class DodajPredmetGUI extends JFrame {
 		}
 		return lblSemestar;
 	}
-
+	
 	private JTextField getTextFieldSemestar() {
 		if (textFieldSemestar == null) {
 			textFieldSemestar = new JTextField();
@@ -280,16 +291,18 @@ public class DodajPredmetGUI extends JFrame {
 						}
 						String naziv = textFieldNaziv.getText();
 						int ESBP = Integer.parseInt(textFieldESBP.getText());
-						String skolskaGodina=textFieldSkolska.getText();
+						String skolskaGodina = textFieldSkolska.getText();
 						boolean jednosemestralan = chckbxJednosemestralan.isSelected();
-						int semestar= Integer.parseInt(textFieldSemestar.getText());
+						int semestar = Integer.parseInt(textFieldSemestar.getText());
 						boolean polozen = chckbxPolozen.isSelected();
 						String napomena = textAreaNapomena.getText();
-						String forum=textFieldForum.getText();
-						String puskice=textFieldPuskice.getText();
-						Predmet p = new Predmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar, polozen, ocena, napomena, forum, puskice);
+						String forum = textFieldForum.getText();
+						String puskice = textFieldPuskice.getText();
+						Predmet p = new Predmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar, polozen, ocena,
+								napomena, forum, puskice);
 						GUIKontroler.predmeti.add(p);
 						GUIKontroler.azurirajTabeluPredmet();
+						GUIKontroler.azurirajTabeluPolozeni();
 						dispose();
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa",

@@ -1,10 +1,8 @@
 package gui.predmetFunkcije;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -17,9 +15,19 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import gui.GUIKontroler;
-
+import gui.GlavniProzorGUI;
+import predmeti.Predmet;
+/**
+ * Klasa za izmenu predmeta u programu
+ * @author Ivan Stanimirovic
+ *
+ */
 public class IzmeniPredmetGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8376192939809818779L;
 	private JPanel contentPane;
 	private JLabel lblNaziv;
 	private JTextField textFieldNaziv;
@@ -51,6 +59,7 @@ public class IzmeniPredmetGUI extends JFrame {
 			public void run() {
 				try {
 					IzmeniPredmetGUI frame = new IzmeniPredmetGUI();
+					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -269,15 +278,26 @@ public class IzmeniPredmetGUI extends JFrame {
 				public void actionPerformed(ActionEvent e) {
 					try {
 						int ocena;
-						if(chckbxPolozen.isSelected()){
+						if (chckbxPolozen.isSelected()) {
 							ocena = Integer.parseInt(textFieldOcena.getText());
-						}else{
-							ocena=5;
+						} else {
+							ocena = 5;
 						}
-						GUIKontroler.izmeniPredmet(textFieldNaziv.getText(), Integer.parseInt(textFieldESBP.getText()),
-								textFieldSkolska.getText(), chckbxJednosemestralan.isSelected(),
-								Integer.parseInt(textFieldSemestar.getText()), chckbxPolozen.isSelected(),
-								ocena, textAreaNapomena.getText(),textFieldForum.getText(),textFieldPuskice.getText());
+						String naziv = textFieldNaziv.getText();
+						int ESBP = Integer.parseInt(textFieldESBP.getText());
+						String skolskaGodina=textFieldSkolska.getText();
+						boolean jednosemestralan = chckbxJednosemestralan.isSelected();
+						int semestar= Integer.parseInt(textFieldSemestar.getText());
+						boolean polozen = chckbxPolozen.isSelected();
+						String napomena = textAreaNapomena.getText();
+						String forum=textFieldForum.getText();
+						String puskice=textFieldPuskice.getText();
+						Predmet p = new Predmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar, polozen, ocena, napomena, forum, puskice);
+						GUIKontroler.azurirajTabeluPolozeni();
+						GUIKontroler.predmeti.add(p);
+						GUIKontroler.azurirajTabeluPredmet();
+						GUIKontroler.azurirajTabeluPolozeni();
+						dispose();
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(IzmeniPredmetGUI.this, "Doslo je do greske prilikom unosa", "Greska", JOptionPane.ERROR_MESSAGE);
 					}
@@ -302,19 +322,28 @@ public class IzmeniPredmetGUI extends JFrame {
 		}
 		return btnOdustani;
 	}
-	public void popuniPolja(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
-			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
-		textAreaNapomena.setText(napomena);
-		textFieldESBP.setText(ESBP+"");
-		textFieldForum.setText(forum);
-		textFieldNaziv.setText(naziv);
-		if(ocena>5 && polozen){
-			textFieldOcena.setText(ocena+"");
-			chckbxPolozen.setSelected(true);
+	public void popuniPolja() {
+		int red = GlavniProzorGUI.tablePredmeti.getSelectedRow();
+		if (red != -1) {
+			Predmet p = GUIKontroler.predmeti.get(red);
+			textAreaNapomena.setText(p.getNapomena());
+			textFieldESBP.setText(p.getESBP() + "");
+			textFieldNaziv.setText(p.getNaziv());
+			if (p.getOcena() > 5 && p.isPolozen()) {
+				textFieldOcena.setText(p.getOcena() + "");
+				chckbxPolozen.setSelected(true);
+			}
+			textFieldForum.setText(p.getForum());
+			textFieldPuskice.setText(p.getPuskice());
+			chckbxJednosemestralan.setSelected(p.getJednosemestralan());
+			textFieldSemestar.setText(p.getSemestar() + "");
+			textFieldSkolska.setText(p.getSkolskaGodina());
+			for (int i = 0; i < GUIKontroler.predmeti.size(); i++) {
+				if(GUIKontroler.predmeti.get(i).equals(p)){
+					GUIKontroler.predmeti.remove(i);
+					break;
+				}
+			}
 		}
-		chckbxJednosemestralan.setSelected(jednosemestralan);
-		textFieldPuskice.setText(puskice);
-		textFieldSemestar.setText(semsetar+"");
-		textFieldSkolska.setText(skolskaGodina);
 	}
 }
