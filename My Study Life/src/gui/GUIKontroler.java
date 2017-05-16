@@ -18,6 +18,7 @@ import sistemskeOperacije.SOSerijalizujPredmete;
 import sistemskeOperacije.SOUcitajPolozene;
 import sistemskeOperacije.SOUcitajPredmete;
 import sistemskeOperacije.SOVratiNazivSlike;
+import sistemskeOperacije.SOVratiProsek;
 /**
  * 
  * @author Ivan Stanimirovic
@@ -180,6 +181,12 @@ public class GUIKontroler {
 	 */
 	public static void otvoriPregledPredmeta(){
 		SOOtvoriPregledPredmeta.izvrsi();
-		
+	}
+	/**
+	 * Metoda sluzi za vracanje prosecne ocene
+	 * @return double vrednost koje predstavlja prosecnu ocenu
+	 */
+	public static double vratiProsek(){
+		return SOVratiProsek.izvrsi();
 	}
 }

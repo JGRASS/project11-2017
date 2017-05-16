@@ -30,6 +30,7 @@ import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+import javax.swing.JTextField;
 
 /**
  * 
@@ -85,6 +86,8 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel lblNaslov;
 	public static JTable tablePolozeni;
 	private JScrollPane scrollPanePolozeni;
+	private JLabel lblProsek;
+	private JTextField textFieldProsek;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -257,6 +260,8 @@ public class GlavniProzorGUI extends JFrame {
 		if (panelPolozeniIspiti == null) {
 			panelPolozeniIspiti = new JPanel();
 			panelPolozeniIspiti.add(getScrollPanePolozeni());
+			panelPolozeniIspiti.add(getLblProsek());
+			panelPolozeniIspiti.add(getTextFieldProsek());
 		}
 		return panelPolozeniIspiti;
 	}
@@ -905,9 +910,31 @@ public class GlavniProzorGUI extends JFrame {
 	private JScrollPane getScrollPanePolozeni() {
 		if (scrollPanePolozeni == null) {
 			scrollPanePolozeni = new JScrollPane();
-			scrollPanePolozeni.setBounds(0, 0, 835, 530);
+			scrollPanePolozeni.setBounds(0, 0, 835, 485);
 			scrollPanePolozeni.setViewportView(getTablePolozeni());
 		}
 		return scrollPanePolozeni;
 	}
+	private JLabel getLblProsek() {
+		if (lblProsek == null) {
+			lblProsek = new JLabel("Prosek");
+			lblProsek.setFont(new Font("Segoe Script", Font.BOLD, 16));
+			lblProsek.setForeground(Color.WHITE);
+			lblProsek.setBounds(492, 496, 103, 25);
+		}
+		return lblProsek;
+	}
+	private JTextField getTextFieldProsek() {
+		if (textFieldProsek == null) {
+			textFieldProsek = new JTextField();
+			textFieldProsek.setEditable(false);
+			textFieldProsek.setForeground(Color.BLACK);
+			textFieldProsek.setFont(new Font("Segoe Script", Font.BOLD, 17));
+			textFieldProsek.setBounds(571, 499, 86, 20);
+			textFieldProsek.setColumns(10);
+			textFieldProsek.setText("" + GUIKontroler.vratiProsek());
+		}
+		return textFieldProsek;
+	}
+	
 }
