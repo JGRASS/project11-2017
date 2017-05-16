@@ -8,6 +8,7 @@ import java.util.List;
 import aktivnosti.*;
 import predmeti.Predmet;
 import sistemskeOperacije.SOAzurirajListuPolozenih;
+import sistemskeOperacije.SOAzurirajProsek;
 import sistemskeOperacije.SOAzurirajTabeluPolozenih;
 import sistemskeOperacije.SOAzurirajTabeluPredmeta;
 import sistemskeOperacije.SOOtvoriDodajPredmet;
@@ -188,5 +189,8 @@ public class GUIKontroler {
 	 */
 	public static double vratiProsek(){
 		return SOVratiProsek.izvrsi();
+	}
+	public static void azurirajProsek(){
+		SOAzurirajProsek.izvrsi();
 	}
 }

@@ -319,6 +319,7 @@ public class IzmeniPredmetGUI extends JFrame {
 						GUIKontroler.predmeti.add(p);
 						GUIKontroler.azurirajTabeluPredmet();
 						GUIKontroler.azurirajTabeluPolozeni();
+						GUIKontroler.azurirajProsek();
 						dispose();
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(IzmeniPredmetGUI.this, "Doslo je do greske prilikom unosa brojevnih vrednosti",

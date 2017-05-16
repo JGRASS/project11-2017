@@ -87,7 +87,7 @@ public class GlavniProzorGUI extends JFrame {
 	public static JTable tablePolozeni;
 	private JScrollPane scrollPanePolozeni;
 	private JLabel lblProsek;
-	private JTextField textFieldProsek;
+	public static JTextField textFieldProsek;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -629,6 +629,7 @@ public class GlavniProzorGUI extends JFrame {
 							GUIKontroler.predmeti.remove(red);
 							GUIKontroler.azurirajTabeluPredmet();
 							GUIKontroler.azurirajTabeluPolozeni();
+							GUIKontroler.azurirajProsek();
 						}
 					}
 				}
