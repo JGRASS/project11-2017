@@ -141,7 +141,6 @@ public class DodajKolokvijumGUI extends JFrame {
 						k.setVremePolaganja(g);
 						String satString = textFieldH.getText();
 						String minutString = textFieldM.getText();
-						System.out.println(satString);
 						if(!satString.equals("") || !minutString.equals("")){
 							int sat = Integer.parseInt(satString);
 							int minut = Integer.parseInt(minutString);

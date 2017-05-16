@@ -889,7 +889,7 @@ public class GlavniProzorGUI extends JFrame {
 
 	private JLabel getLblNaslov() {
 		if (lblNaslov == null) {
-			lblNaslov = new JLabel("MyStudyLife");
+			lblNaslov = new JLabel("My Study Life");
 			lblNaslov.setForeground(Color.WHITE);
 			lblNaslov.setFont(new Font("Segoe Script", Font.BOLD, 17));
 			lblNaslov.setBounds(5, 0, 800, 25);
