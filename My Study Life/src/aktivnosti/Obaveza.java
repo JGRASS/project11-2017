@@ -4,6 +4,10 @@ import java.io.Serializable;
 
 public class Obaveza implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6241531167998558832L;
 	private String naziv;
 	private String dan;
 	private String sat;
