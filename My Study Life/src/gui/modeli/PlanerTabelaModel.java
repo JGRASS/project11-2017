@@ -54,4 +54,5 @@ public class PlanerTabelaModel extends AbstractTableModel {
 		this.datumi = datumi;
 		fireTableDataChanged();
 	}
+	
 }
