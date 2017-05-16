@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -31,7 +32,7 @@ public class DodajIspitGUI extends JFrame {
 	private JComboBox<String> comboBoxPredmeti;
 	private JLabel lblIzaberiPredmet;
 	private JLabel lblVreme;
-	private JTextField textFieldVreme;
+	private JTextField textFieldH;
 	private JLabel lblMesto;
 	private JTextField textFieldMesto;
 	private JButton btnDodaj;
@@ -39,6 +40,8 @@ public class DodajIspitGUI extends JFrame {
 	private JLabel lblDodajIspit;
 	private JLabel lblX;
 	private JPanel panel;
+	private JTextField textFieldM;
+	private JLabel lblDvodatcka;
 	
 	public DodajIspitGUI() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -54,12 +57,14 @@ public class DodajIspitGUI extends JFrame {
 		contentPane.add(getComboBoxPredmeti());
 		contentPane.add(getLblIzaberiPredmet());
 		contentPane.add(getLblVreme());
-		contentPane.add(getTextFieldVreme());
+		contentPane.add(getTextFieldH());
 		contentPane.add(getLblMesto());
 		contentPane.add(getTextFieldMesto());
 		contentPane.add(getBtnDodaj());
 		contentPane.add(getBtnOdustani());
 		contentPane.add(getPanel());
+		contentPane.add(getTextFieldM());
+		contentPane.add(getLblDvodatcka());
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
@@ -96,16 +101,16 @@ public class DodajIspitGUI extends JFrame {
 		}
 		return lblVreme;
 	}
-	private JTextField getTextFieldVreme() {
-		if (textFieldVreme == null) {
-			textFieldVreme = new JTextField();
-			textFieldVreme.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			textFieldVreme.setHorizontalAlignment(SwingConstants.CENTER);
-			textFieldVreme.setText("h:m");
-			textFieldVreme.setBounds(133, 136, 153, 35);
-			textFieldVreme.setColumns(10);
+	private JTextField getTextFieldH() {
+		if (textFieldH == null) {
+			textFieldH = new JTextField();
+			textFieldH.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			textFieldH.setHorizontalAlignment(SwingConstants.CENTER);
+			textFieldH.setText("h");
+			textFieldH.setBounds(152, 136, 50, 35);
+			textFieldH.setColumns(10);
 		}
-		return textFieldVreme;
+		return textFieldH;
 	}
 	private JLabel getLblMesto() {
 		if (lblMesto == null) {
@@ -134,21 +139,39 @@ public class DodajIspitGUI extends JFrame {
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Ispit i = new Ispit();
-					i.setPredmet(GUIKontroler.predmeti.get(comboBoxPredmeti.getSelectedIndex()));
 					GregorianCalendar g = new GregorianCalendar();
-					g.set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR));
-					g.set(GregorianCalendar.MONTH,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH));
-					g.set(GregorianCalendar.DATE, Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow(),
-							GlavniProzorGUI.table.getSelectedColumn())));
-					String sat = textFieldVreme.getText().substring(0, textFieldVreme.getText().indexOf(':'));
-					String minut = textFieldVreme.getText().substring(textFieldVreme.getText().indexOf(':')+1,textFieldVreme.getText().length() );
-					g.set(GregorianCalendar.HOUR, Integer.parseInt(sat));
-					g.set(GregorianCalendar.MINUTE, Integer.parseInt(minut));	
-					i.setVremePolaganja(g);
-					i.setMesto(textFieldMesto.getText());
-					GUIKontroler.vratiSveAktivnosti().add(i);
-					GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
-					dispose();
+					try {
+						int index = comboBoxPredmeti.getSelectedIndex();
+						if(index==-1)
+							throw new IndexOutOfBoundsException();
+						i.setPredmet(GUIKontroler.predmeti.get(index));
+						
+						g.set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR));
+						g.set(GregorianCalendar.MONTH,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH));
+						g.set(GregorianCalendar.DATE, Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow(),
+								GlavniProzorGUI.table.getSelectedColumn())));
+						i.setVremePolaganja(g);
+						String satString = textFieldH.getText();
+						String minutString = textFieldM.getText();
+						System.out.println(satString);
+						if(!satString.equals("") || !minutString.equals("")){
+							int sat = Integer.parseInt(satString);
+							int minut = Integer.parseInt(minutString);
+							g.set(GregorianCalendar.HOUR, sat);
+							g.set(GregorianCalendar.MINUTE, minut);
+							i.setVremePolaganja(g);
+						}
+						i.setMesto(textFieldMesto.getText());
+						GUIKontroler.vratiSveAktivnosti().add(i);
+						GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
+						dispose();
+					} catch (NumberFormatException e1) {
+						JOptionPane.showMessageDialog(null, "Greska prilikom unosa vremena", "Greska", JOptionPane.OK_OPTION);
+					}catch (IndexOutOfBoundsException e2){
+						JOptionPane.showMessageDialog(null, "Nema unetih predmeta", "Greska", JOptionPane.OK_OPTION);
+					}catch(Exception e3){
+						
+					}
 				}
 			});
 			btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -211,5 +234,24 @@ public class DodajIspitGUI extends JFrame {
 			panel.add(getLblX());
 		}
 		return panel;
+	}
+	private JTextField getTextFieldM() {
+		if (textFieldM == null) {
+			textFieldM = new JTextField();
+			textFieldM.setText("m");
+			textFieldM.setHorizontalAlignment(SwingConstants.CENTER);
+			textFieldM.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			textFieldM.setColumns(10);
+			textFieldM.setBounds(217, 136, 50, 35);
+		}
+		return textFieldM;
+	}
+	private JLabel getLblDvodatcka() {
+		if (lblDvodatcka == null) {
+			lblDvodatcka = new JLabel(":");
+			lblDvodatcka.setFont(new Font("Tahoma", Font.PLAIN, 19));
+			lblDvodatcka.setBounds(206, 138, 10, 27);
+		}
+		return lblDvodatcka;
 	}
 }

@@ -4,8 +4,15 @@ import java.io.Serializable;
 import java.util.GregorianCalendar;
 
 import predmeti.Predmet;
-
+/**
+ * Klasa koja predstavlja studensku aktivnost
+ * @author MikoPC
+ *	
+ */
 public abstract class Aktivnost implements Serializable {
+	/**
+	 * Naziv predmeta
+	 */
 	public Predmet predmet;
 	private GregorianCalendar vremePolaganja;
 	private String mesto;

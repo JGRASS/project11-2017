@@ -5,12 +5,14 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import aktivnosti.Ispit;
 import aktivnosti.Kolokvijum;
 import aktivnosti.Planer;
 import gui.modeli.FrameDragListener;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -29,7 +31,6 @@ public class DodajKolokvijumGUI extends JFrame {
 	private JComboBox<String> comboBoxPredmeti;
 	private JLabel lblIzaberiPredmet;
 	private JLabel lblVreme;
-	private JTextField textFieldVreme;
 	private JLabel lblMesto;
 	private JTextField textFieldMesto;
 	private JButton btnDodaj;
@@ -37,6 +38,9 @@ public class DodajKolokvijumGUI extends JFrame {
 	private JPanel panel;
 	private JLabel lblDodajKolokvijum;
 	private JLabel lblX;
+	private JTextField textFieldH;
+	private JLabel label;
+	private JTextField textFieldM;
 	public DodajKolokvijumGUI() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -51,12 +55,14 @@ public class DodajKolokvijumGUI extends JFrame {
 		contentPane.add(getComboBoxPredmeti());
 		contentPane.add(getLblIzaberiPredmet());
 		contentPane.add(getLblVreme());
-		contentPane.add(getTextFieldVreme());
 		contentPane.add(getLblMesto());
 		contentPane.add(getTextFieldMesto());
 		contentPane.add(getBtnDodaj());
 		contentPane.add(getBtnOdustani());
 		contentPane.add(getPanel());
+		contentPane.add(getTextFieldH());
+		contentPane.add(getLabel());
+		contentPane.add(getTextFieldM());
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
@@ -93,17 +99,6 @@ public class DodajKolokvijumGUI extends JFrame {
 		}
 		return lblVreme;
 	}
-	private JTextField getTextFieldVreme() {
-		if (textFieldVreme == null) {
-			textFieldVreme = new JTextField();
-			textFieldVreme.setFont(new Font("Courier New", Font.PLAIN, 15));
-			textFieldVreme.setHorizontalAlignment(SwingConstants.CENTER);
-			textFieldVreme.setText("h:m");
-			textFieldVreme.setBounds(133, 136, 153, 35);
-			textFieldVreme.setColumns(10);
-		}
-		return textFieldVreme;
-	}
 	private JLabel getLblMesto() {
 		if (lblMesto == null) {
 			lblMesto = new JLabel("Amfiteatar/ucionica");
@@ -131,21 +126,39 @@ public class DodajKolokvijumGUI extends JFrame {
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					Kolokvijum k = new Kolokvijum();
-					k.setPredmet(GUIKontroler.predmeti.get(comboBoxPredmeti.getSelectedIndex()));
 					GregorianCalendar g = new GregorianCalendar();
-					g.set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR));
-					g.set(GregorianCalendar.MONTH,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH));
-					g.set(GregorianCalendar.DATE, Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow(),
-							GlavniProzorGUI.table.getSelectedColumn())));
-					String sat = textFieldVreme.getText().substring(0, textFieldVreme.getText().indexOf(':'));
-					String minut = textFieldVreme.getText().substring(textFieldVreme.getText().indexOf(':')+1,textFieldVreme.getText().length() );
-					g.set(GregorianCalendar.HOUR, Integer.parseInt(sat));
-					g.set(GregorianCalendar.MINUTE, Integer.parseInt(minut));	
-					k.setVremePolaganja(g);
-					k.setMesto(textFieldMesto.getText());
-					GUIKontroler.vratiSveAktivnosti().add(k);
-					GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
-					dispose();
+					try {
+						int index = comboBoxPredmeti.getSelectedIndex();
+						if(index==-1)
+							throw new IndexOutOfBoundsException();
+						k.setPredmet(GUIKontroler.predmeti.get(index));
+						
+						g.set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR));
+						g.set(GregorianCalendar.MONTH,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH));
+						g.set(GregorianCalendar.DATE, Integer.parseInt((String) GlavniProzorGUI.table.getValueAt(GlavniProzorGUI.table.getSelectedRow(),
+								GlavniProzorGUI.table.getSelectedColumn())));
+						k.setVremePolaganja(g);
+						String satString = textFieldH.getText();
+						String minutString = textFieldM.getText();
+						System.out.println(satString);
+						if(!satString.equals("") || !minutString.equals("")){
+							int sat = Integer.parseInt(satString);
+							int minut = Integer.parseInt(minutString);
+							g.set(GregorianCalendar.HOUR, sat);
+							g.set(GregorianCalendar.MINUTE, minut);
+							k.setVremePolaganja(g);
+						}
+						k.setMesto(textFieldMesto.getText());
+						GUIKontroler.vratiSveAktivnosti().add(k);
+						GlavniProzorGUI.azurirajTabelu(); //GuiKontroler?
+						dispose();
+					} catch (NumberFormatException e1) {
+						JOptionPane.showMessageDialog(null, "Greska prilikom unosa vremena", "Greska", JOptionPane.OK_OPTION);
+					}catch (IndexOutOfBoundsException e2){
+						JOptionPane.showMessageDialog(null, "Nema unetih predmeta", "Greska", JOptionPane.OK_OPTION);
+					}catch(Exception e3){
+						
+					}
 				}
 			});
 			btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -207,6 +220,36 @@ public class DodajKolokvijumGUI extends JFrame {
 			lblX.setBounds(420, 0, 30, 20);
 		}
 		return lblX;
+	}
+	private JTextField getTextFieldH() {
+		if (textFieldH == null) {
+			textFieldH = new JTextField();
+			textFieldH.setText("h");
+			textFieldH.setHorizontalAlignment(SwingConstants.CENTER);
+			textFieldH.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			textFieldH.setColumns(10);
+			textFieldH.setBounds(153, 136, 50, 35);
+		}
+		return textFieldH;
+	}
+	private JLabel getLabel() {
+		if (label == null) {
+			label = new JLabel(":");
+			label.setFont(new Font("Tahoma", Font.PLAIN, 19));
+			label.setBounds(207, 138, 10, 27);
+		}
+		return label;
+	}
+	private JTextField getTextFieldM() {
+		if (textFieldM == null) {
+			textFieldM = new JTextField();
+			textFieldM.setText("m");
+			textFieldM.setHorizontalAlignment(SwingConstants.CENTER);
+			textFieldM.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			textFieldM.setColumns(10);
+			textFieldM.setBounds(218, 136, 50, 35);
+		}
+		return textFieldM;
 	}
 }
 
