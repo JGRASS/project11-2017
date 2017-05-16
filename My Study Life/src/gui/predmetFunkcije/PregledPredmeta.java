@@ -354,6 +354,7 @@ public class PregledPredmeta extends JFrame {
 	}
 
 	private static void open(URI uri) {
+		if(uri==null || uri.toString().equals("")) return;
 		if (Desktop.isDesktopSupported()) {
 			try {
 				Desktop.getDesktop().browse(uri);
