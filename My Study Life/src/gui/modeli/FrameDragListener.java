@@ -5,7 +5,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.JFrame;
-//Ova klasa sluzi za podesavanje osobina prozora kod kojih je undecorated(true)
+
+/**
+ * Ova klasa sluzi za pomeranje prozora kod kojih je undecorated(true)
+ * @author Miro Maric
+ * @version 1.0
+ */
 public class FrameDragListener extends MouseAdapter {
 
         private final JFrame frame;

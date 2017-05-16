@@ -11,9 +11,16 @@ import aktivnosti.Ispit;
 import aktivnosti.Kolokvijum;
 import aktivnosti.Planer;
 import gui.GUIKontroler;
-
+/**
+ * Klasa koja predstvalja jTable sa odredjenim modifikacijama
+ * @author Miro Maric
+ * @version 1.0
+ *
+ */
 public class MojaTabela extends JTable {
-
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 252108936505330030L;
 
 	@Override
@@ -48,7 +55,6 @@ public class MojaTabela extends JTable {
 				}
 			}
 		} catch (Exception e) {
-			//Nista ne treba da se uradi u ovom slucaju?
 		}
         return comp;
 
