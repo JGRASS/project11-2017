@@ -114,6 +114,14 @@ public class GUIKontroler {
 		vreme+=g.get(GregorianCalendar.MINUTE);
 		return vreme;
 	}
+	
+	public static int vratiIndexPredmeta(String naziv){
+		for(int i=0;i<GUIKontroler.predmeti.size();i++){
+			if(GUIKontroler.predmeti.get(i).getNaziv().equals(naziv))
+				return i;
+		}
+		return -1;
+	}
 	/**
 	 * Metoda sluzi za vracanje random imena slike koja se koristi kao pozadina glavnog prozora
 	 * @return String vrednost koja predstavlja naziv slike

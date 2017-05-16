@@ -128,7 +128,8 @@ public class DodajKolokvijumGUI extends JFrame {
 					Kolokvijum k = new Kolokvijum();
 					GregorianCalendar g = new GregorianCalendar();
 					try {
-						int index = comboBoxPredmeti.getSelectedIndex();
+						String naziv = comboBoxPredmeti.getItemAt(comboBoxPredmeti.getSelectedIndex()); //bug
+						int index = GUIKontroler.vratiIndexPredmeta(naziv);
 						if(index==-1)
 							throw new IndexOutOfBoundsException();
 						k.setPredmet(GUIKontroler.predmeti.get(index));

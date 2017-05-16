@@ -141,7 +141,8 @@ public class DodajIspitGUI extends JFrame {
 					Ispit i = new Ispit();
 					GregorianCalendar g = new GregorianCalendar();
 					try {
-						int index = comboBoxPredmeti.getSelectedIndex();
+						String naziv = comboBoxPredmeti.getItemAt(comboBoxPredmeti.getSelectedIndex()); //bug
+						int index = GUIKontroler.vratiIndexPredmeta(naziv);
 						if(index==-1)
 							throw new IndexOutOfBoundsException();
 						i.setPredmet(GUIKontroler.predmeti.get(index));
