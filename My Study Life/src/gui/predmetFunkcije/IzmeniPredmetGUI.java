@@ -3,9 +3,14 @@ package gui.predmetFunkcije;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -13,6 +18,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import com.sun.glass.ui.Window;
 
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
@@ -50,7 +57,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JTextField textFieldPuskice;
 	private JButton btnIzmeniPredmet;
 	private JButton btnOdustani;
-
+	private static Predmet predmet;
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +66,6 @@ public class IzmeniPredmetGUI extends JFrame {
 			public void run() {
 				try {
 					IzmeniPredmetGUI frame = new IzmeniPredmetGUI();
-					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,9 +78,9 @@ public class IzmeniPredmetGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public IzmeniPredmetGUI() {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setResizable(false);
-		setTitle("Izmeni predmet");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Izmeni predmet");		
 		setBounds(100, 100, 493, 416);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -315,6 +321,7 @@ public class IzmeniPredmetGUI extends JFrame {
 			btnOdustani = new JButton("Odustani");
 			btnOdustani.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.predmeti.add(predmet);
 					dispose();
 				}
 			});
@@ -340,6 +347,7 @@ public class IzmeniPredmetGUI extends JFrame {
 			textFieldSkolska.setText(p.getSkolskaGodina());
 			for (int i = 0; i < GUIKontroler.predmeti.size(); i++) {
 				if(GUIKontroler.predmeti.get(i).equals(p)){
+					predmet = GUIKontroler.predmeti.get(i);
 					GUIKontroler.predmeti.remove(i);
 					break;
 				}

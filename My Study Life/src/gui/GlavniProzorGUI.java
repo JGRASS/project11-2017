@@ -605,7 +605,7 @@ public class GlavniProzorGUI extends JFrame {
 			scrollPane = new JScrollPane();
 			scrollPane.setViewportBorder(null);
 			scrollPane.setBorder(null);
-			scrollPane.setBounds(0, 32, 724, 498);
+			scrollPane.setBounds(0, 0, 729, 530);
 			scrollPane.setViewportView(getTablePredmeti());
 		}
 		return scrollPane;
