@@ -167,6 +167,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JTextField getTextFieldSkolska() {
 		if (textFieldSkolska == null) {
 			textFieldSkolska = new JTextField();
+			textFieldSkolska.setText("yyyy/yyyy");
 			textFieldSkolska.setBounds(345, 63, 107, 20);
 			textFieldSkolska.setColumns(10);
 		}
@@ -321,7 +322,10 @@ public class DodajPredmetGUI extends JFrame {
 						GUIKontroler.azurirajTabeluPolozeni();
 						dispose();
 					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa",
+						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa brojevnih vrednosti",
+								"Greska", JOptionPane.ERROR_MESSAGE);
+					}catch(RuntimeException e2){
+						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa skolske godine",
 								"Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}

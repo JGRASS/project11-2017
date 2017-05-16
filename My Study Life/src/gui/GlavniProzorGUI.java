@@ -48,7 +48,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel panelPredmeti;
 	private JPanel panelRasporedNastave;
 	private JPanel panelPolozeniIspiti;
-	public static MojaTabela table;  //GuiKontroler?
+	public static MojaTabela table; // GuiKontroler?
 	private JLabel lblNed;
 	private JLabel lblPon;
 	private JLabel lblUto;
@@ -85,6 +85,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel lblNaslov;
 	public static JTable tablePolozeni;
 	private JScrollPane scrollPanePolozeni;
+
 	public GlavniProzorGUI() {
 		setResizable(false);
 		setTitle("MyStudyLife");
@@ -105,6 +106,7 @@ public class GlavniProzorGUI extends JFrame {
 		addMouseMotionListener(frameDragListener);
 
 	}
+
 	private JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
@@ -117,11 +119,11 @@ public class GlavniProzorGUI extends JFrame {
 			tabbedPane.addTab("Predmeti", null, getPanelPredmeti(), null);
 			tabbedPane.addTab("Poloeni ispiti", null, getPanelPolozeniIspiti(), null);
 			tabbedPane.addTab("Polozeni ispiti", null, getPanelPolozeniIspiti(), null);
-			
-			
+
 		}
 		return tabbedPane;
 	}
+
 	private JPanel getPanelPlaner() {
 		if (panelPlaner == null) {
 			panelPlaner = new JPanel();
@@ -149,25 +151,27 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return panelPlaner;
 	}
+
 	private JPanel getPanelPredmeti() {
 		if (panelPredmeti == null) {
 			panelPredmeti = new JPanel();
 			panelPredmeti.setLayout(null);
-			
+
 			panelPredmeti.add(getScrollPane());
 			panelPredmeti.add(getBtnDodaj());
 			panelPredmeti.add(getBtnPregledPredmeta());
 			panelPredmeti.add(getBtnIzmeni());
 			panelPredmeti.add(getBtnObrisi());
-			
+
 		}
 		return panelPredmeti;
 	}
+
 	private JPanel getPanelRasporedNastave() {
 		if (panelRasporedNastave == null) {
 			panelRasporedNastave = new JPanel();
 			panelRasporedNastave.setLayout(null);
-			
+
 			JLabel label = new JLabel("NED");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
 			label.setForeground(Color.WHITE);
@@ -176,7 +180,7 @@ public class GlavniProzorGUI extends JFrame {
 			label.setBounds(52, 11, 98, 35);
 			label.setOpaque(true);
 			panelRasporedNastave.add(label);
-			
+
 			JLabel label_1 = new JLabel("PON");
 			label_1.setOpaque(true);
 			label_1.setHorizontalAlignment(SwingConstants.CENTER);
@@ -185,7 +189,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_1.setBackground(Color.GRAY);
 			label_1.setBounds(149, 11, 98, 35);
 			panelRasporedNastave.add(label_1);
-			
+
 			JLabel label_2 = new JLabel("UTO");
 			label_2.setOpaque(true);
 			label_2.setHorizontalAlignment(SwingConstants.CENTER);
@@ -194,7 +198,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_2.setBackground(Color.GRAY);
 			label_2.setBounds(245, 11, 108, 35);
 			panelRasporedNastave.add(label_2);
-			
+
 			JLabel label_3 = new JLabel("SRE");
 			label_3.setOpaque(true);
 			label_3.setHorizontalAlignment(SwingConstants.CENTER);
@@ -203,7 +207,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_3.setBackground(Color.GRAY);
 			label_3.setBounds(349, 11, 93, 35);
 			panelRasporedNastave.add(label_3);
-			
+
 			JLabel label_4 = new JLabel("CET");
 			label_4.setOpaque(true);
 			label_4.setHorizontalAlignment(SwingConstants.CENTER);
@@ -212,7 +216,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_4.setBackground(Color.GRAY);
 			label_4.setBounds(432, 11, 108, 35);
 			panelRasporedNastave.add(label_4);
-			
+
 			JLabel label_5 = new JLabel("PET");
 			label_5.setOpaque(true);
 			label_5.setHorizontalAlignment(SwingConstants.CENTER);
@@ -221,7 +225,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_5.setBackground(Color.GRAY);
 			label_5.setBounds(538, 11, 98, 35);
 			panelRasporedNastave.add(label_5);
-			
+
 			JLabel label_6 = new JLabel("SUB");
 			label_6.setOpaque(true);
 			label_6.setHorizontalAlignment(SwingConstants.CENTER);
@@ -236,7 +240,7 @@ public class GlavniProzorGUI extends JFrame {
 			panelRasporedNastave.add(getLabel_10());
 			panelRasporedNastave.add(getLabel_11());
 			panelRasporedNastave.add(getLabel_12());
-			
+
 			JLabel label_13 = new JLabel("20:00");
 			label_13.setOpaque(true);
 			label_13.setHorizontalAlignment(SwingConstants.CENTER);
@@ -248,6 +252,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return panelRasporedNastave;
 	}
+
 	private JPanel getPanelPolozeniIspiti() {
 		if (panelPolozeniIspiti == null) {
 			panelPolozeniIspiti = new JPanel();
@@ -267,11 +272,13 @@ public class GlavniProzorGUI extends JFrame {
 			table.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent arg0) {
-					int datum = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
+					int datum = Integer
+							.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
 					GregorianCalendar g = new GregorianCalendar();
-					g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR), GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH), datum);
-					for(int i=0;i<GUIKontroler.vratiSveAktivnosti().size();i++){
-						if(GUIKontroler.istiDan(GUIKontroler.vratiSveAktivnosti().get(i).getVremePolaganja(),g)){
+					g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR),
+							GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH), datum);
+					for (int i = 0; i < GUIKontroler.vratiSveAktivnosti().size(); i++) {
+						if (GUIKontroler.istiDan(GUIKontroler.vratiSveAktivnosti().get(i).getVremePolaganja(), g)) {
 							GUIKontroler.otvoriOpisAktivnosti();
 							return;
 						}
@@ -280,13 +287,17 @@ public class GlavniProzorGUI extends JFrame {
 			});
 			azurirajLblDatum();
 			azurirajTabelu();
-			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); //Centriranje teksta u celijama
+			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Centriranje
+																						// teksta
+																						// u
+																						// celijama
 			centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-			for(int i=0;i<table.getModel().getColumnCount();i++)
+			for (int i = 0; i < table.getModel().getColumnCount(); i++)
 				table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 		return table;
 	}
+
 	private JLabel getLblNed() {
 		if (lblNed == null) {
 			lblNed = new JLabel("NED");
@@ -299,6 +310,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblNed;
 	}
+
 	private JLabel getLblPon() {
 		if (lblPon == null) {
 			lblPon = new JLabel("PON");
@@ -311,6 +323,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblPon;
 	}
+
 	private JLabel getLblUto() {
 		if (lblUto == null) {
 			lblUto = new JLabel("UTO");
@@ -323,6 +336,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblUto;
 	}
+
 	private JLabel getLblSre() {
 		if (lblSre == null) {
 			lblSre = new JLabel("SRE");
@@ -335,6 +349,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblSre;
 	}
+
 	private JLabel getLblCet() {
 		if (lblCet == null) {
 			lblCet = new JLabel("CET");
@@ -347,6 +362,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblCet;
 	}
+
 	private JLabel getLblPet() {
 		if (lblPet == null) {
 			lblPet = new JLabel("PET");
@@ -359,6 +375,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblPet;
 	}
+
 	private JLabel getLblSub() {
 		if (lblSub == null) {
 			lblSub = new JLabel("SUB");
@@ -371,7 +388,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblSub;
 	}
-	
+
 	private JButton getBtnPrethodniMesec() {
 		if (btnPrethodniMesec == null) {
 			btnPrethodniMesec = new JButton("<");
@@ -383,12 +400,13 @@ public class GlavniProzorGUI extends JFrame {
 			btnPrethodniMesec.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int mesec = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH);
-					if(mesec-1==-1){
-						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH,11);
-						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR)-1);
-					}
-					else
-						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH)-1);
+					if (mesec - 1 == -1) {
+						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH, 11);
+						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR,
+								GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR) - 1);
+					} else
+						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH,
+								GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH) - 1);
 					GUIKontroler.popuniMatricuDatuma();
 					azurirajTabelu();
 					azurirajLblDatum();
@@ -397,6 +415,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnPrethodniMesec;
 	}
+
 	private JButton getBtnSledeciMesec() {
 		if (btnSledeciMesec == null) {
 			btnSledeciMesec = new JButton(">");
@@ -408,12 +427,13 @@ public class GlavniProzorGUI extends JFrame {
 			btnSledeciMesec.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int mesec = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH);
-					if(mesec+1==12){
+					if (mesec + 1 == 12) {
 						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH, 0);
-						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR)+1);
-					}
-					else
-						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH)+1);
+						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR,
+								GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR) + 1);
+					} else
+						GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.MONTH,
+								GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH) + 1);
 					GUIKontroler.popuniMatricuDatuma();
 					azurirajTabelu();
 					azurirajLblDatum();
@@ -422,13 +442,14 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnSledeciMesec;
 	}
-	
+
 	private JButton getBtnPrethodnaGodina() {
 		if (btnPrethodnaGodina == null) {
 			btnPrethodnaGodina = new JButton("<<");
 			btnPrethodnaGodina.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR)-1);
+					GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR,
+							GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR) - 1);
 					GUIKontroler.popuniMatricuDatuma();
 					azurirajTabelu();
 					azurirajLblDatum();
@@ -442,12 +463,14 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnPrethodnaGodina;
 	}
+
 	private JButton getBtnSledecaGodina() {
 		if (btnSledecaGodina == null) {
 			btnSledecaGodina = new JButton(">>");
 			btnSledecaGodina.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR)+1);
+					GUIKontroler.vratiTrenutnoVreme().set(GregorianCalendar.YEAR,
+							GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR) + 1);
 					GUIKontroler.popuniMatricuDatuma();
 					azurirajTabelu();
 					azurirajLblDatum();
@@ -461,7 +484,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnSledecaGodina;
 	}
-	
+
 	private JLabel getLblDatum() {
 		if (lblDatum == null) {
 			lblDatum = new JLabel("");
@@ -473,24 +496,26 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblDatum;
 	}
-	
-	private void azurirajLblDatum(){
-		String datum = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH)+1+"/"+ GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR);
+
+	private void azurirajLblDatum() {
+		String datum = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH) + 1 + "/"
+				+ GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR);
 		getLblDatum().setText(datum);
 	}
-	
-	public static void azurirajTabelu(){
-		PlanerTabelaModel model = (PlanerTabelaModel)table.getModel();
+
+	public static void azurirajTabelu() {
+		PlanerTabelaModel model = (PlanerTabelaModel) table.getModel();
 		model.azurirajTabelu(GUIKontroler.vratiDatume());
 	}
-	public static GregorianCalendar selektovanDatum(){
+
+	public static GregorianCalendar selektovanDatum() {
 		GregorianCalendar g = new GregorianCalendar();
 		int datum = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
-		g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR)
-				, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH),datum);
+		g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR),
+				GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH), datum);
 		return g;
 	}
-	
+
 	private JButton getBtnDodajKolokvijum() {
 		if (btnDodajKolokvijum == null) {
 			btnDodajKolokvijum = new JButton();
@@ -503,15 +528,17 @@ public class GlavniProzorGUI extends JFrame {
 			btnDodajKolokvijum.setFocusPainted(false);
 			btnDodajKolokvijum.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(table.getSelectedColumn()==-1){
-						JOptionPane.showMessageDialog(GlavniProzorGUI, "Morate prvo odabrati datum", "Greska",JOptionPane.OK_OPTION);
-					}
-					else
-						GUIKontroler.otvoriDodajKolokvujumGUI();				}
+					if (table.getSelectedColumn() == -1) {
+						JOptionPane.showMessageDialog(GlavniProzorGUI, "Morate prvo odabrati datum", "Greska",
+								JOptionPane.OK_OPTION);
+					} else
+						GUIKontroler.otvoriDodajKolokvujumGUI();
+				}
 			});
 		}
 		return btnDodajKolokvijum;
 	}
+
 	private JButton getBtnDodajIspit() {
 		if (btnDodajIspit == null) {
 			btnDodajIspit = new JButton();
@@ -524,16 +551,17 @@ public class GlavniProzorGUI extends JFrame {
 			btnDodajIspit.setFocusPainted(false);
 			btnDodajIspit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					if(table.getSelectedColumn()==-1){
-						JOptionPane.showMessageDialog(GlavniProzorGUI, "Morate prvo odabrati datum", "Greska",JOptionPane.OK_OPTION);
-					}
-					else
+					if (table.getSelectedColumn() == -1) {
+						JOptionPane.showMessageDialog(GlavniProzorGUI, "Morate prvo odabrati datum", "Greska",
+								JOptionPane.OK_OPTION);
+					} else
 						GUIKontroler.otvoriDodajIspitGUI();
 				}
 			});
 		}
 		return btnDodajIspit;
 	}
+
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
 			btnDodaj = new JButton();
@@ -552,6 +580,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnDodaj;
 	}
+
 	private JButton getBtnIzmeni() {
 		if (btnIzmeni == null) {
 			btnIzmeni = new JButton();
@@ -560,7 +589,7 @@ public class GlavniProzorGUI extends JFrame {
 			Image img = new ImageIcon(this.getClass().getResource("/izmeni.png")).getImage();
 			btnIzmeni.setIcon(new ImageIcon(img));
 			btnIzmeni.setToolTipText("Izmeni predmet");
-			
+
 			btnIzmeni.setBackground(new Color(0, 155, 179));
 			btnIzmeni.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnIzmeni.setFocusPainted(false);
@@ -574,6 +603,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnIzmeni;
 	}
+
 	private JButton getBtnObrisi() {
 		if (btnObrisi == null) {
 			btnObrisi = new JButton();
@@ -587,11 +617,14 @@ public class GlavniProzorGUI extends JFrame {
 			btnObrisi.setBounds(752, 199, 60, 35);
 			btnObrisi.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					int red =tablePredmeti.getSelectedRow();
-					if(red!=-1){
-						GUIKontroler.predmeti.remove(red);
-						GUIKontroler.azurirajTabeluPredmet();
-						GUIKontroler.azurirajTabeluPolozeni();
+					int broj = JOptionPane.showConfirmDialog(GlavniProzorGUI, "Da li zelite da obrisete predmet?","Obrisi predmet", 0);
+					if (broj == JOptionPane.YES_OPTION) {
+						int red = tablePredmeti.getSelectedRow();
+						if (red != -1) {
+							GUIKontroler.predmeti.remove(red);
+							GUIKontroler.azurirajTabeluPredmet();
+							GUIKontroler.azurirajTabeluPolozeni();
+						}
 					}
 				}
 			});
@@ -600,6 +633,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnObrisi;
 	}
+
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
@@ -610,6 +644,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return scrollPane;
 	}
+
 	private JTable getTablePredmeti() {
 		if (tablePredmeti == null) {
 			tablePredmeti = new JTable();
@@ -617,7 +652,7 @@ public class GlavniProzorGUI extends JFrame {
 			tablePredmeti.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					
+
 					btnIzmeni.setEnabled(true);
 					btnObrisi.setEnabled(true);
 					btnPregledPredmeta.setEnabled(true);
@@ -633,6 +668,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return tablePredmeti;
 	}
+
 	private JButton getBtnPregledPredmeta() {
 		if (btnPregledPredmeta == null) {
 			btnPregledPredmeta = new JButton();
@@ -653,9 +689,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnPregledPredmeta;
 	}
-	
-	
-	
+
 	private JLabel getLblKolokvijumBoja() {
 		if (lblKolokvijumBoja == null) {
 			lblKolokvijumBoja = new JLabel("");
@@ -666,6 +700,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblKolokvijumBoja;
 	}
+
 	private JLabel getLblKolokvijum() {
 		if (lblKolokvijum == null) {
 			lblKolokvijum = new JLabel("Kolokvijum");
@@ -674,6 +709,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblKolokvijum;
 	}
+
 	private JLabel getLblIspitBoja() {
 		if (lblIspitBoja == null) {
 			lblIspitBoja = new JLabel("");
@@ -684,6 +720,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblIspitBoja;
 	}
+
 	private JLabel getLblIspit() {
 		if (lblIspit == null) {
 			lblIspit = new JLabel("Ispit");
@@ -692,6 +729,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblIspit;
 	}
+
 	private JLabel getLabel_7() {
 		if (label_7 == null) {
 			label_7 = new JLabel("8:00");
@@ -704,6 +742,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return label_7;
 	}
+
 	private JLabel getLabel_8() {
 		if (label_8 == null) {
 			label_8 = new JLabel("10:00");
@@ -716,6 +755,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return label_8;
 	}
+
 	private JLabel getLabel_9() {
 		if (label_9 == null) {
 			label_9 = new JLabel("12:00");
@@ -728,6 +768,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return label_9;
 	}
+
 	private JLabel getLabel_10() {
 		if (label_10 == null) {
 			label_10 = new JLabel("14:00");
@@ -740,6 +781,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return label_10;
 	}
+
 	private JLabel getLabel_11() {
 		if (label_11 == null) {
 			label_11 = new JLabel("16:00");
@@ -752,6 +794,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return label_11;
 	}
+
 	private JLabel getLabel_12() {
 		if (label_12 == null) {
 			label_12 = new JLabel("18:00");
@@ -764,29 +807,31 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return label_12;
 	}
-	private void podesiPozadinu(){
+
+	private void podesiPozadinu() {
 		Image img = new ImageIcon(this.getClass().getResource(GUIKontroler.vratiNazivSlike())).getImage();
 		JLabel picLabelPlaner = new JLabel(new ImageIcon(img));
-		picLabelPlaner.setSize(850,600);
+		picLabelPlaner.setSize(850, 600);
 		JLabel picLabelPolozeniIspiti = new JLabel(new ImageIcon(img));
 		picLabelPolozeniIspiti.setLocation(0, 0);
-	//	picLabelPolozeniIspiti.setLocation(-545, 5);
-		picLabelPolozeniIspiti.setSize(850,600);
+		// picLabelPolozeniIspiti.setLocation(-545, 5);
+		picLabelPolozeniIspiti.setSize(850, 600);
 		JLabel picLabelRasporedNastave = new JLabel(new ImageIcon(img));
-		picLabelRasporedNastave.setSize(850,600);
+		picLabelRasporedNastave.setSize(850, 600);
 		JLabel picLabelPredmeti = new JLabel(new ImageIcon(img));
 		picLabelPredmeti.setLocation(0, 0);
-	//	picLabelPredmeti.setLocation(-545, 5);
-		picLabelPredmeti.setSize(850,600);
+		// picLabelPredmeti.setLocation(-545, 5);
+		picLabelPredmeti.setSize(850, 600);
 		panelPredmeti.add(picLabelPredmeti);
 		panelPlaner.add(picLabelPlaner);
 		getPanelPolozeniIspiti().setLayout(null);
 		panelPolozeniIspiti.add(picLabelPolozeniIspiti);
-		//Ovde palite pozadinu na vasem jPanelu!!!
-		//panelPolozeniIspiti.add(picLabelPolozeniIspiti);
-		
-		//panelRasporedNastave.add(picLabelRasporedNastave);
+		// Ovde palite pozadinu na vasem jPanelu!!!
+		// panelPolozeniIspiti.add(picLabelPolozeniIspiti);
+
+		// panelRasporedNastave.add(picLabelRasporedNastave);
 	}
+
 	private JPanel getPanelTitleBar() {
 		if (panelTitleBar == null) {
 			panelTitleBar = new JPanel();
@@ -794,10 +839,11 @@ public class GlavniProzorGUI extends JFrame {
 			panelTitleBar.setLayout(null);
 			panelTitleBar.setPreferredSize(new Dimension(0, 25));
 			panelTitleBar.add(getPanelNaslov());
-			
+
 		}
 		return panelTitleBar;
 	}
+
 	private JPanel getPanelNaslov() {
 		if (panelNaslov == null) {
 			panelNaslov = new JPanel();
@@ -810,6 +856,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return panelNaslov;
 	}
+
 	private JLabel getLblX() {
 		if (lblX == null) {
 			lblX = new JLabel("x");
@@ -829,6 +876,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblX;
 	}
+
 	private JLabel getLblNaslov() {
 		if (lblNaslov == null) {
 			lblNaslov = new JLabel("MyStudyLife");
@@ -838,8 +886,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return lblNaslov;
 	}
-	
-	
+
 	private JTable getTablePolozeni() {
 		if (tablePolozeni == null) {
 			tablePolozeni = new JTable();
@@ -851,9 +898,10 @@ public class GlavniProzorGUI extends JFrame {
 		scrollPanePolozeni.getViewport().setOpaque(false);
 		tablePolozeni.setShowGrid(false);
 		tablePolozeni.setRowHeight(25);
-		
+
 		return tablePolozeni;
 	}
+
 	private JScrollPane getScrollPanePolozeni() {
 		if (scrollPanePolozeni == null) {
 			scrollPanePolozeni = new JScrollPane();
