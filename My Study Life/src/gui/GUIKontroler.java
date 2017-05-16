@@ -13,6 +13,7 @@ import java.io.ObjectOutputStream;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 import aktivnosti.*;
 import gui.modeli.MojaTabela;
@@ -40,14 +41,6 @@ public class GUIKontroler {
 					planer.postaviGc(new GregorianCalendar());
 					planer.popuniMatricuDatuma();
 					planer.ucitajAktivnosti();
-					
-					glavniProzor.addWindowListener(new WindowAdapter() {
-						public void windowClosing(WindowEvent e) {
-							planer.serijalizujAktivnosti();
-							serijalizujPredmete();
-							glavniProzor.dispose();
-						};
-					});
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -93,7 +86,9 @@ public class GUIKontroler {
 	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
 		return planer.pronadjiAktivnost(g);
 	}
-	
+	public static void serijalizujAktivnosti(){
+		planer.serijalizujAktivnosti();
+	}
 	public static String vratiDatumString(GregorianCalendar g){
 		String vreme = "";
 		vreme+=g.get(GregorianCalendar.YEAR)+"/";
@@ -109,9 +104,10 @@ public class GUIKontroler {
 		return vreme;
 	}
 	
-	public String vratiNazivSlike() {
-		int broj = (int) (Math.random() * 10);
-		return broj + ".png";
+	public static String vratiNazivSlike() {
+		Random r = new Random();
+		int broj = r.nextInt(5)+1;
+		return "/"+broj+".jpg";
 	}
 	
 	public static void ucitajPredmete(){

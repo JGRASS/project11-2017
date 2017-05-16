@@ -45,6 +45,7 @@ public class OpisAktivnostiGUI extends JFrame {
 					,GlavniProzorGUI.table.getSelectedColumn()))));
 	private JTextField textFieldUnos;
 	private JButton btnUnesi;
+	
 	public OpisAktivnostiGUI() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 450, 400);
@@ -135,8 +136,9 @@ public class OpisAktivnostiGUI extends JFrame {
 						GregorianCalendar g = new GregorianCalendar(godina,mesec,datum);
 						for(int i=0;i<GUIKontroler.vratiSveAktivnosti().size();i++){
 							if(GUIKontroler.istiDan(GUIKontroler.vratiSveAktivnosti().get(i).getVremePolaganja(),g)){
-								int odgovor = JOptionPane.showConfirmDialog(OpisAktivnostiGUI.this, "Da li zaista zelite da uklonite odabranu aktivnost?",
-										"Ukloni", JOptionPane.YES_NO_OPTION);
+								int odgovor = JOptionPane.showConfirmDialog(OpisAktivnostiGUI.this,
+								" Svaka evidencija o aktivnosti ce biti obrisana.\nDa li zaista zelite da uklonite odabranu aktivnost?",
+								"Ukloni", JOptionPane.YES_NO_OPTION);
 								if(odgovor==JOptionPane.YES_OPTION){
 									GUIKontroler.vratiSveAktivnosti().remove(i);
 									GlavniProzorGUI.azurirajTabelu();
@@ -247,20 +249,18 @@ public class OpisAktivnostiGUI extends JFrame {
 			textFieldUnos.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldUnos.setBounds(145, 250, 160, 35);
 			textFieldUnos.setColumns(10);
-			if(GlavniProzorGUI.selektovanDatum().after(new GregorianCalendar()) || aktivnost.isEvidentirana()){
+			if(GlavniProzorGUI.selektovanDatum().after(new GregorianCalendar())){
 				textFieldUnos.setEnabled(false);
-				if(aktivnost.isEvidentirana()){
-					if(aktivnost instanceof Ispit){
-						textFieldUnos.setText((int)((Ispit)aktivnost).vratiOcenu()+"");
-					}
-					else
-						textFieldUnos.setText(((Kolokvijum)aktivnost).vratiBrojPoena()+"");
-				}
-				else{
-					String brDana = String.format("%.2f",((float)(aktivnost.getVremePolaganja().getTimeInMillis() - new GregorianCalendar().getTimeInMillis())/(3600000*24)));
-					textFieldUnos.setText("Jos "+brDana+" dana");
-				}
+				String brDana = String.format("%.2f",((float)(aktivnost.getVremePolaganja().getTimeInMillis() - new GregorianCalendar().getTimeInMillis())/(3600000*24)));
+				textFieldUnos.setText("Jos "+brDana+" dana");
 			}
+		}
+		if(aktivnost.isEvidentirana()){
+			if(aktivnost instanceof Ispit){
+				textFieldUnos.setText(("Ocena: "+(int)((Ispit)aktivnost).vratiOcenu()));
+			}
+			else
+				textFieldUnos.setText("Broj poena: "+((Kolokvijum)aktivnost).vratiBrojPoena()+"");
 		}
 		return textFieldUnos;
 	}
@@ -272,7 +272,6 @@ public class OpisAktivnostiGUI extends JFrame {
 					
 					try {
 						double rezultat =Float.parseFloat(textFieldUnos.getText());
-						JOptionPane.showMessageDialog(null,"Sigurni ste da ste ispravno uneli rezultat?", "Greska", JOptionPane.YES_NO_CANCEL_OPTION);
 						if(aktivnost instanceof Kolokvijum){
 							((Kolokvijum)aktivnost).postaviBrojPoena(rezultat);
 							aktivnost.setEvidentirana(true);
@@ -281,15 +280,15 @@ public class OpisAktivnostiGUI extends JFrame {
 							((Ispit)aktivnost).postaviOcenu((int)rezultat);
 							aktivnost.setEvidentirana(true);
 						}
+						dispose();
 					} catch (NumberFormatException e) {
 						JOptionPane.showMessageDialog(null,"Pogresno uneti rezultati", "Greska", JOptionPane.OK_OPTION);
 					}catch (Exception e) {
 						JOptionPane.showMessageDialog(null,e.getMessage(), "Greska", JOptionPane.OK_OPTION);
 					}
-					dispose();
 				}
 			});
-			if(GlavniProzorGUI.selektovanDatum().after(new GregorianCalendar()) || aktivnost.isEvidentirana())
+			if(GlavniProzorGUI.selektovanDatum().after(new GregorianCalendar()))
 				btnUnesi.setEnabled(false);
 			btnUnesi.setForeground(Color.WHITE);
 			btnUnesi.setFont(new Font("Tahoma", Font.PLAIN, 15));

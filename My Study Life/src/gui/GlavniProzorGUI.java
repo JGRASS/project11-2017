@@ -6,9 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableCellRenderer;
-
-import aktivnosti.Aktivnost;
-import aktivnosti.Planer;
+import gui.modeli.FrameDragListener;
 import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
@@ -17,7 +15,6 @@ import gui.predmetFunkcije.IzmeniPredmetGUI;
 import gui.predmetFunkcije.PregledPredmeta;
 import javax.swing.JTabbedPane;
 import java.awt.Font;
-import java.awt.HeadlessException;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -27,14 +24,10 @@ import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Color;
 
-import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
 import javax.swing.JMenuBar;
@@ -97,6 +90,10 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel label_10;
 	private JLabel label_11;
 	private JLabel label_12;
+	private JPanel panelTitleBar;
+	private JPanel panelNaslov;
+	private JLabel lblX;
+	private JLabel lblNaslov;
 	
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -104,16 +101,26 @@ public class GlavniProzorGUI extends JFrame {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		setLocationRelativeTo(null);
-		setJMenuBar(getMenuBar_1());
+		setUndecorated(true); //Uklanjanje default oblika prozora
+		//setJMenuBar(getMenuBar_1()); //Privremeno iskljuceno zbog estetike
 		contentPane = new JPanel();
+		contentPane.setBackground(Color.GRAY);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
 		contentPane.add(getTabbedPane(), BorderLayout.CENTER);
+		contentPane.add(getPanelTitleBar(), BorderLayout.NORTH);
+		podesiPozadinu();
+		FrameDragListener frameDragListener = new FrameDragListener(this);
+		addMouseListener(frameDragListener);
+		addMouseMotionListener(frameDragListener);
+
 	}
 	private JTabbedPane getTabbedPane() {
 		if (tabbedPane == null) {
 			tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+			tabbedPane.setForeground(Color.WHITE);
+			tabbedPane.setBackground(Color.GRAY);
 			tabbedPane.setFont(new Font("Tahoma", Font.PLAIN, 17));
 			tabbedPane.setFocusable(false);
 			tabbedPane.addTab("Planer", null, getPanelPlaner(), null);
@@ -121,6 +128,8 @@ public class GlavniProzorGUI extends JFrame {
 			tabbedPane.addTab("Predmeti", null, getPanelPredmeti(), null);
 			tabbedPane.addTab("Poloeni ispiti", null, getPanelPolozeniIspiti(), null);
 			tabbedPane.addTab("Polozeni ispiti", null, getPanelPolozeniIspiti(), null);
+			
+			
 		}
 		return tabbedPane;
 	}
@@ -255,7 +264,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JTable getTable() {
 		if (table == null) {
 			table = new MojaTabela();
-			table.setBorder(new LineBorder(new Color(128, 128, 128)));
+			table.setBorder(new LineBorder(Color.WHITE));
 			table.setModel(new PlanerTabelaModel(GUIKontroler.vratiDatume()));
 			table.setBounds(64, 60, 680, 390);
 			table.setRowHeight(65);
@@ -375,6 +384,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnPrethodniMesec.setBackground(Color.GRAY);
 			btnPrethodniMesec.setBounds(338, 459, 60, 35);
 			btnPrethodniMesec.setFocusPainted(false);
+			btnPrethodniMesec.setBorder(new LineBorder(Color.WHITE));
 			btnPrethodniMesec.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int mesec = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH);
@@ -399,6 +409,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnSledeciMesec.setBackground(Color.GRAY);
 			btnSledeciMesec.setBounds(402, 459, 60, 35);
 			btnSledeciMesec.setFocusPainted(false);
+			btnSledeciMesec.setBorder(new LineBorder(Color.WHITE));
 			btnSledeciMesec.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					int mesec = GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH);
@@ -432,6 +443,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnPrethodnaGodina.setFocusPainted(false);
 			btnPrethodnaGodina.setBackground(Color.GRAY);
 			btnPrethodnaGodina.setBounds(254, 459, 80, 35);
+			btnPrethodnaGodina.setBorder(new LineBorder(Color.WHITE));
 		}
 		return btnPrethodnaGodina;
 	}
@@ -450,6 +462,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnSledecaGodina.setFocusPainted(false);
 			btnSledecaGodina.setBackground(Color.GRAY);
 			btnSledecaGodina.setBounds(466, 459, 80, 35);
+			btnSledecaGodina.setBorder(new LineBorder(Color.WHITE));
 		}
 		return btnSledecaGodina;
 	}
@@ -457,8 +470,10 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel getLblDatum() {
 		if (lblDatum == null) {
 			lblDatum = new JLabel("");
+			lblDatum.setBackground(Color.DARK_GRAY);
+			lblDatum.setForeground(Color.BLACK);
 			lblDatum.setHorizontalAlignment(SwingConstants.CENTER);
-			lblDatum.setFont(new Font("Courier New", Font.PLAIN, 21));
+			lblDatum.setFont(new Font("Arial", Font.PLAIN, 21));
 			lblDatum.setBounds(79, 0, 650, 23);
 		}
 		return lblDatum;
@@ -716,12 +731,14 @@ public class GlavniProzorGUI extends JFrame {
 			lblKolokvijumBoja.setBounds(70, 461, 15, 15);
 			lblKolokvijumBoja.setBackground(new Color(112, 155, 179));
 			lblKolokvijumBoja.setOpaque(true);
+			lblKolokvijumBoja.setBorder(new LineBorder(Color.WHITE));
 		}
 		return lblKolokvijumBoja;
 	}
 	private JLabel getLblKolokvijum() {
 		if (lblKolokvijum == null) {
 			lblKolokvijum = new JLabel("Kolokvijum");
+			lblKolokvijum.setForeground(Color.WHITE);
 			lblKolokvijum.setBounds(90, 462, 72, 15);
 		}
 		return lblKolokvijum;
@@ -732,12 +749,14 @@ public class GlavniProzorGUI extends JFrame {
 			lblIspitBoja.setOpaque(true);
 			lblIspitBoja.setBackground(new Color(0, 155, 179));
 			lblIspitBoja.setBounds(70, 478, 15, 15);
+			lblIspitBoja.setBorder(new LineBorder(Color.WHITE));
 		}
 		return lblIspitBoja;
 	}
 	private JLabel getLblIspit() {
 		if (lblIspit == null) {
 			lblIspit = new JLabel("Ispit");
+			lblIspit.setForeground(Color.WHITE);
 			lblIspit.setBounds(90, 479, 72, 15);
 		}
 		return lblIspit;
@@ -813,5 +832,72 @@ public class GlavniProzorGUI extends JFrame {
 			label_12.setBounds(10, 370, 46, 65);
 		}
 		return label_12;
+	}
+	private void podesiPozadinu(){
+		Image img = new ImageIcon(this.getClass().getResource(GUIKontroler.vratiNazivSlike())).getImage();
+		JLabel picLabelPlaner = new JLabel(new ImageIcon(img));
+		picLabelPlaner.setSize(850,600);
+		JLabel picLabelPolozeniIspiti = new JLabel(new ImageIcon(img));
+		picLabelPolozeniIspiti.setLocation(-545, 5);
+		picLabelPolozeniIspiti.setSize(1920,1075);
+		JLabel picLabelPredmeti = new JLabel(new ImageIcon(img));
+		picLabelPredmeti.setSize(850,600);
+		JLabel picLabelRasporedNastave = new JLabel(new ImageIcon(img));
+		picLabelRasporedNastave.setSize(850,600);
+		panelPlaner.add(picLabelPlaner);
+		//Ovde palite pozadinu na vasem jPanelu!!!
+		//panelPolozeniIspiti.add(picLabelPolozeniIspiti);
+		//panelPredmeti.add(picLabelPredmeti);
+		//panelRasporedNastave.add(picLabelRasporedNastave);
+	}
+	private JPanel getPanelTitleBar() {
+		if (panelTitleBar == null) {
+			panelTitleBar = new JPanel();
+			panelTitleBar.setBackground(Color.GRAY);
+			panelTitleBar.setLayout(null);
+			panelTitleBar.setPreferredSize(new Dimension(0, 25));
+			panelTitleBar.add(getPanelNaslov());
+			
+		}
+		return panelTitleBar;
+	}
+	private JPanel getPanelNaslov() {
+		if (panelNaslov == null) {
+			panelNaslov = new JPanel();
+			panelNaslov.setLayout(null);
+			panelNaslov.setPreferredSize(new Dimension(0, 20));
+			panelNaslov.setBackground(Color.GRAY);
+			panelNaslov.setBounds(0, 0, 840, 25);
+			panelNaslov.add(getLblNaslov());
+			panelNaslov.add(getLblX());
+		}
+		return panelNaslov;
+	}
+	private JLabel getLblX() {
+		if (lblX == null) {
+			lblX = new JLabel("x");
+			lblX.setBounds(810, 0, 30, 20);
+			lblX.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent arg0) {
+					GUIKontroler.serijalizujAktivnosti();
+					GUIKontroler.serijalizujPredmete();
+					dispose();
+				}
+			});
+			lblX.setHorizontalAlignment(SwingConstants.CENTER);
+			lblX.setForeground(Color.WHITE);
+			lblX.setFont(new Font("Tahoma", Font.BOLD, 19));
+		}
+		return lblX;
+	}
+	private JLabel getLblNaslov() {
+		if (lblNaslov == null) {
+			lblNaslov = new JLabel("MyStudyLife");
+			lblNaslov.setForeground(Color.WHITE);
+			lblNaslov.setFont(new Font("Segoe Script", Font.BOLD, 17));
+			lblNaslov.setBounds(5, 0, 800, 25);
+		}
+		return lblNaslov;
 	}
 }
