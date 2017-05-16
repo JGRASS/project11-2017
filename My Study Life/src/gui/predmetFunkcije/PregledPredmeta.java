@@ -26,7 +26,11 @@ import aktivnosti.Planer;
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
 import predmeti.Predmet;
-
+/**
+ * Klasa za pregled predmeta iz tabele
+ * @author Ivan Stanimirovic
+ *
+ */
 public class PregledPredmeta extends JFrame {
 
 	/**

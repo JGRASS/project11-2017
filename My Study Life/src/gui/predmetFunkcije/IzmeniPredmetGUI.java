@@ -1,12 +1,8 @@
 package gui.predmetFunkcije;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.net.URI;
-import java.net.URISyntaxException;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
@@ -21,9 +17,17 @@ import javax.swing.border.EmptyBorder;
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
 import predmeti.Predmet;
-
+/**
+ * Klasa za izmenu predmeta u programu
+ * @author Ivan Stanimirovic
+ *
+ */
 public class IzmeniPredmetGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 8376192939809818779L;
 	private JPanel contentPane;
 	private JLabel lblNaziv;
 	private JTextField textFieldNaziv;

@@ -11,9 +11,6 @@ import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.modeli.PrikazPolozenihTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
-import gui.predmetFunkcije.DodajPredmetGUI;
-import gui.predmetFunkcije.IzmeniPredmetGUI;
-import gui.predmetFunkcije.PregledPredmeta;
 import javax.swing.JTabbedPane;
 import java.awt.Font;
 import java.awt.Image;
@@ -34,7 +31,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
-
+/**
+ * 
+ * @author Ivan Stanimirovic
+ * @author Milos Mirkovic
+ * @author Miro Maric
+ * @version 1.0.0
+ *
+ */
 public class GlavniProzorGUI extends JFrame {
 	private static final long serialVersionUID = 7088262915872956309L;
 	public static final Component GlavniProzorGUI = null;
@@ -766,7 +770,7 @@ public class GlavniProzorGUI extends JFrame {
 		JLabel picLabelPolozeniIspiti = new JLabel(new ImageIcon(img));
 		picLabelPolozeniIspiti.setLocation(0, 0);
 	//	picLabelPolozeniIspiti.setLocation(-545, 5);
-		picLabelPolozeniIspiti.setSize(835,710);
+		picLabelPolozeniIspiti.setSize(850,600);
 		JLabel picLabelRasporedNastave = new JLabel(new ImageIcon(img));
 		picLabelRasporedNastave.setSize(850,600);
 		JLabel picLabelPredmeti = new JLabel(new ImageIcon(img));

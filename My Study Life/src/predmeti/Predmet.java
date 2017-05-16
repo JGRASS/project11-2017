@@ -1,7 +1,14 @@
 package predmeti;
 
 import java.io.Serializable;
-
+/**
+ * Klasa predmet, sadrz atribute predmeta
+ * @author Ivan Stanimirovic
+ * @author Milos Mirkovic
+ * @author Miro Maric
+ * @version 1.0.0
+ *
+ */
 public class Predmet implements Serializable {
 	/**
 	 * 
@@ -17,7 +24,19 @@ public class Predmet implements Serializable {
 	private String napomena;
 	private String forum;
 	private String puskice;
-	
+	/**
+	 * Konstruktor koji pravi predmet automatski
+	 * @param naziv prosledjuje se naziv predmeta
+	 * @param ESBP prosledjuje se broj ESBP poena
+	 * @param skolskaGodina prosledjuje se skolska godina u obliku xxxx/xxxx
+	 * @param jednosemestralan prosledjuje se boolean vrednost da li je jednosemestralan ili nije
+	 * @param semestar prosledjuje se broj semestra
+	 * @param polozen prosledjuje se boolean vrednost da li je polozen ili ne
+	 * @param ocena prosledjuje se ocena
+	 * @param napomena napomena za neki predmet u slucaju da je ima
+	 * @param forum prosledjuje se string koji predstavlja link za FONForum
+	 * @param puskice prosledjuje se string koji predstavlja link za sajt puskice
+	 */
 	public Predmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan, int semestar, boolean polozen, int ocena,String napomena, String forum, String puskice) {
 		setESBP(ESBP);
 		setForum(forum);

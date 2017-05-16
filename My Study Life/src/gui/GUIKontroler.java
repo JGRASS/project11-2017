@@ -1,27 +1,11 @@
 package gui;
 
 import java.awt.EventQueue;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
-
 import aktivnosti.*;
-import gui.modeli.MojaTabela;
-import gui.modeli.PrikazPolozenihTabelaModel;
-import gui.modeli.PrikazPredmetaTabelaModel;
-import gui.predmetFunkcije.DodajPredmetGUI;
-import gui.predmetFunkcije.IzmeniPredmetGUI;
-import gui.predmetFunkcije.PregledPredmeta;
 import predmeti.Predmet;
 import sistemskeOperacije.SOAzurirajListuPolozenih;
 import sistemskeOperacije.SOAzurirajTabeluPolozenih;
@@ -34,6 +18,14 @@ import sistemskeOperacije.SOSerijalizujPredmete;
 import sistemskeOperacije.SOUcitajPolozene;
 import sistemskeOperacije.SOUcitajPredmete;
 import sistemskeOperacije.SOVratiNazivSlike;
+/**
+ * 
+ * @author Ivan Stanimirovic
+ * @author Milos Mirkovic
+ * @author Miro Maric
+ * @version 1.0.0
+ *
+ */
 public class GUIKontroler {
 	
 	private static Planer planer;
@@ -120,42 +112,72 @@ public class GUIKontroler {
 		vreme+=g.get(GregorianCalendar.MINUTE);
 		return vreme;
 	}
-	
+	/**
+	 * Metoda sluzi za vracanje random imena slike koja se koristi kao pozadina glavnog prozora
+	 * @return String vrednost koja predstavlja naziv slike
+	 */
 	public static String vratiNazivSlike() {
 		return SOVratiNazivSlike.izvrsi();
 	}
-	
+	/**
+	 * Metoda se koristi za ucitavanje predmeta iz fajla
+	 */
 	public static void ucitajPredmete(){
 		SOUcitajPredmete.izvrsi();
 	}
+	/**
+	 * Metoda se korsiti za serializaciju predmeta u file
+	 */
 	public static void serijalizujPredmete(){
 		SOSerijalizujPredmete.izvrsi();
 		
 	}
+	/**
+	 * Metoda se koristi za ucitavanje polozenih predmeta iz fajla
+	 */
 	public static void ucitajPolozene(){
 		SOUcitajPolozene.izvrsi();
 	}
+	/**
+	 * Metoda se koristi za serializaciju polozenih predmeta u file
+	 */
 	public static void serijalizujPolozene(){
 		SOSerijalizujPolozene.izvrsi();
 	}
-
+	/**
+	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
+	 */
 	public static void azurirajTabeluPredmet(){
 		SOAzurirajTabeluPredmeta.izvrsi();
 		
 	}
-	
+	/**
+	 * Metoda se koristi za azuriranje tebele polozenih ispita iz liste polozeni ispiti
+	 */
 	public static void azurirajTabeluPolozeni(){
 		SOAzurirajTabeluPolozenih.izvrsi();
 	}
+	/**
+	 * Metoda se koristi za azuriranje liste polozenih predmeta iz liste predmeta
+	 */
 	public static void azurirajListuPolozeni(){
 		SOAzurirajListuPolozenih.izvrsi();
 	}
+	/**
+	 * Metoda otvara novi GUI za dodavanje predmeta
+	 */
 	public static void otvoriDodajPredmetGUI(){
 		SOOtvoriDodajPredmet.izvrsi();
 	}
+	/**
+	 * Metoda otvara novi Gui za izmenu predmeta
+	 */
 	public static void otvoriIzmeniPredmetGUI(){
 		SOOtvoriIzmeniPredmet.izvrsi();
 	}
+	/**
+	 * Metoda otvara novi GUI za pregled predmeta
+	 */
 	public static void otvoriPregledPredmeta(){
 		SOOtvoriPregledPredmeta.izvrsi();
 		
