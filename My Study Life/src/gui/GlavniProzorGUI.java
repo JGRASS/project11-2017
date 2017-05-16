@@ -466,7 +466,7 @@ public class GlavniProzorGUI extends JFrame {
 		if (lblDatum == null) {
 			lblDatum = new JLabel("");
 			lblDatum.setBackground(Color.DARK_GRAY);
-			lblDatum.setForeground(Color.BLACK);
+			lblDatum.setForeground(Color.WHITE);
 			lblDatum.setHorizontalAlignment(SwingConstants.CENTER);
 			lblDatum.setFont(new Font("Courier New", Font.BOLD, 21));
 			lblDatum.setBounds(79, 0, 650, 23);

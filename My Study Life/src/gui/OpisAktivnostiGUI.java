@@ -278,6 +278,7 @@ public class OpisAktivnostiGUI extends JFrame {
 						}
 						else{
 							((Ispit)aktivnost).postaviOcenu((int)rezultat);
+							
 							aktivnost.setEvidentirana(true);
 						}
 						dispose();
