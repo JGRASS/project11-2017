@@ -3,9 +3,14 @@ package gui.predmetFunkcije;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -14,9 +19,17 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import com.sun.glass.ui.Window;
+
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
+import gui.modeli.FrameDragListener;
 import predmeti.Predmet;
+import java.awt.Color;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 /**
  * Klasa za izmenu predmeta u programu
  * @author Ivan Stanimirovic
@@ -50,7 +63,10 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JTextField textFieldPuskice;
 	private JButton btnIzmeniPredmet;
 	private JButton btnOdustani;
-
+	private static Predmet predmet;
+	private JPanel panel;
+	private JLabel lblIzmeniPredmet;
+	private JLabel label_1;
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +75,6 @@ public class IzmeniPredmetGUI extends JFrame {
 			public void run() {
 				try {
 					IzmeniPredmetGUI frame = new IzmeniPredmetGUI();
-					
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -72,10 +87,11 @@ public class IzmeniPredmetGUI extends JFrame {
 	 * Create the frame.
 	 */
 	public IzmeniPredmetGUI() {
+		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setResizable(false);
-		setTitle("Izmeni predmet");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("Izmeni predmet");		
 		setBounds(100, 100, 493, 416);
+		setUndecorated(true);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -100,12 +116,16 @@ public class IzmeniPredmetGUI extends JFrame {
 		contentPane.add(getTextFieldPuskice());
 		contentPane.add(getBtnIzmeniPredmet());
 		contentPane.add(getBtnOdustani());
+		contentPane.add(getPanel());
+		FrameDragListener frameDragListener = new FrameDragListener(this);
+		addMouseListener(frameDragListener);
+		addMouseMotionListener(frameDragListener);
 	}
 
 	private JLabel getLblNaziv() {
 		if (lblNaziv == null) {
 			lblNaziv = new JLabel("Naziv");
-			lblNaziv.setBounds(10, 11, 46, 14);
+			lblNaziv.setBounds(10, 36, 46, 14);
 		}
 		return lblNaziv;
 	}
@@ -113,7 +133,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JTextField getTextFieldNaziv() {
 		if (textFieldNaziv == null) {
 			textFieldNaziv = new JTextField();
-			textFieldNaziv.setBounds(10, 38, 107, 20);
+			textFieldNaziv.setBounds(10, 63, 107, 20);
 			textFieldNaziv.setColumns(10);
 		}
 		return textFieldNaziv;
@@ -122,7 +142,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JLabel getLblEsbp() {
 		if (lblEsbp == null) {
 			lblEsbp = new JLabel("ESBP");
-			lblEsbp.setBounds(173, 11, 46, 14);
+			lblEsbp.setBounds(173, 36, 46, 14);
 		}
 		return lblEsbp;
 	}
@@ -130,7 +150,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JTextField getTextFieldESBP() {
 		if (textFieldESBP == null) {
 			textFieldESBP = new JTextField();
-			textFieldESBP.setBounds(173, 38, 107, 20);
+			textFieldESBP.setBounds(173, 63, 107, 20);
 			textFieldESBP.setColumns(10);
 		}
 		return textFieldESBP;
@@ -139,7 +159,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JLabel getLblSkolskaGodina() {
 		if (lblSkolskaGodina == null) {
 			lblSkolskaGodina = new JLabel("Skolska godina");
-			lblSkolskaGodina.setBounds(345, 11, 107, 14);
+			lblSkolskaGodina.setBounds(345, 36, 107, 14);
 		}
 		return lblSkolskaGodina;
 	}
@@ -147,7 +167,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JTextField getTextFieldSkolska() {
 		if (textFieldSkolska == null) {
 			textFieldSkolska = new JTextField();
-			textFieldSkolska.setBounds(345, 38, 107, 20);
+			textFieldSkolska.setBounds(345, 63, 107, 20);
 			textFieldSkolska.setColumns(10);
 		}
 		return textFieldSkolska;
@@ -156,7 +176,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JLabel getLblSemestar() {
 		if (lblSemestar == null) {
 			lblSemestar = new JLabel("Semestar");
-			lblSemestar.setBounds(10, 85, 56, 14);
+			lblSemestar.setBounds(10, 110, 56, 14);
 		}
 		return lblSemestar;
 	}
@@ -164,7 +184,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JTextField getTextFieldSemestar() {
 		if (textFieldSemestar == null) {
 			textFieldSemestar = new JTextField();
-			textFieldSemestar.setBounds(10, 108, 107, 20);
+			textFieldSemestar.setBounds(10, 133, 107, 20);
 			textFieldSemestar.setColumns(10);
 		}
 		return textFieldSemestar;
@@ -173,7 +193,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JCheckBox getChckbxJednosemestralan() {
 		if (chckbxJednosemestralan == null) {
 			chckbxJednosemestralan = new JCheckBox("Jednosemestralan");
-			chckbxJednosemestralan.setBounds(141, 107, 144, 23);
+			chckbxJednosemestralan.setBounds(141, 132, 144, 23);
 		}
 		return chckbxJednosemestralan;
 	}
@@ -190,7 +210,7 @@ public class IzmeniPredmetGUI extends JFrame {
 					}
 				}
 			});
-			chckbxPolozen.setBounds(285, 107, 78, 23);
+			chckbxPolozen.setBounds(285, 132, 78, 23);
 		}
 		return chckbxPolozen;
 	}
@@ -198,7 +218,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JLabel getLblOcena() {
 		if (lblOcena == null) {
 			lblOcena = new JLabel("Ocena");
-			lblOcena.setBounds(370, 85, 46, 14);
+			lblOcena.setBounds(370, 110, 46, 14);
 		}
 		return lblOcena;
 	}
@@ -207,7 +227,7 @@ public class IzmeniPredmetGUI extends JFrame {
 		if (textFieldOcena == null) {
 			textFieldOcena = new JTextField();
 			textFieldOcena.setEditable(false);
-			textFieldOcena.setBounds(370, 108, 107, 20);
+			textFieldOcena.setBounds(370, 133, 107, 20);
 			textFieldOcena.setColumns(10);
 		}
 		return textFieldOcena;
@@ -223,7 +243,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 176, 230, 104);
+			scrollPane.setBounds(10, 201, 230, 104);
 			scrollPane.setViewportView(getTextAreaNapomena());
 		}
 		return scrollPane;
@@ -232,7 +252,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JLabel getLblNapomena() {
 		if (lblNapomena == null) {
 			lblNapomena = new JLabel("Napomena");
-			lblNapomena.setBounds(10, 153, 78, 14);
+			lblNapomena.setBounds(10, 178, 78, 14);
 		}
 		return lblNapomena;
 	}
@@ -240,7 +260,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JLabel getLblFonforumLink() {
 		if (lblFonforumLink == null) {
 			lblFonforumLink = new JLabel("FonForum link");
-			lblFonforumLink.setBounds(298, 153, 107, 14);
+			lblFonforumLink.setBounds(298, 178, 107, 14);
 		}
 		return lblFonforumLink;
 	}
@@ -248,7 +268,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JTextField getTextFieldForum() {
 		if (textFieldForum == null) {
 			textFieldForum = new JTextField();
-			textFieldForum.setBounds(298, 179, 107, 20);
+			textFieldForum.setBounds(298, 204, 107, 20);
 			textFieldForum.setColumns(10);
 		}
 		return textFieldForum;
@@ -257,7 +277,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JLabel getLblPuskiceLink() {
 		if (lblPuskiceLink == null) {
 			lblPuskiceLink = new JLabel("Puskice link");
-			lblPuskiceLink.setBounds(298, 231, 107, 14);
+			lblPuskiceLink.setBounds(298, 256, 107, 14);
 		}
 		return lblPuskiceLink;
 	}
@@ -265,7 +285,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JTextField getTextFieldPuskice() {
 		if (textFieldPuskice == null) {
 			textFieldPuskice = new JTextField();
-			textFieldPuskice.setBounds(298, 256, 107, 20);
+			textFieldPuskice.setBounds(298, 281, 107, 20);
 			textFieldPuskice.setColumns(10);
 		}
 		return textFieldPuskice;
@@ -274,6 +294,8 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JButton getBtnIzmeniPredmet() {
 		if (btnIzmeniPredmet == null) {
 			btnIzmeniPredmet = new JButton("Izmeni predmet");
+			btnIzmeniPredmet.setBackground(Color.GRAY);
+			btnIzmeniPredmet.setForeground(Color.WHITE);
 			btnIzmeniPredmet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					try {
@@ -305,7 +327,7 @@ public class IzmeniPredmetGUI extends JFrame {
 			});
 			
 				
-			btnIzmeniPredmet.setBounds(10, 324, 169, 23);
+			btnIzmeniPredmet.setBounds(30, 349, 169, 35);
 		}
 		return btnIzmeniPredmet;
 	}
@@ -313,12 +335,15 @@ public class IzmeniPredmetGUI extends JFrame {
 	private JButton getBtnOdustani() {
 		if (btnOdustani == null) {
 			btnOdustani = new JButton("Odustani");
+			btnOdustani.setBackground(Color.GRAY);
+			btnOdustani.setForeground(Color.WHITE);
 			btnOdustani.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.predmeti.add(predmet);
 					dispose();
 				}
 			});
-			btnOdustani.setBounds(283, 324, 169, 23);
+			btnOdustani.setBounds(290, 349, 169, 35);
 		}
 		return btnOdustani;
 	}
@@ -340,10 +365,49 @@ public class IzmeniPredmetGUI extends JFrame {
 			textFieldSkolska.setText(p.getSkolskaGodina());
 			for (int i = 0; i < GUIKontroler.predmeti.size(); i++) {
 				if(GUIKontroler.predmeti.get(i).equals(p)){
+					predmet = GUIKontroler.predmeti.get(i);
 					GUIKontroler.predmeti.remove(i);
 					break;
 				}
 			}
 		}
+	}
+	private JPanel getPanel() {
+		if (panel == null) {
+			panel = new JPanel();
+			panel.setBackground(Color.GRAY);
+			panel.setBounds(0, 0, 493, 25);
+			panel.setLayout(null);
+			panel.add(getLblIzmeniPredmet());
+			panel.add(getLabel_1());
+		}
+		return panel;
+	}
+	private JLabel getLblIzmeniPredmet() {
+		if (lblIzmeniPredmet == null) {
+			lblIzmeniPredmet = new JLabel("Izmeni predmet");
+			lblIzmeniPredmet.setForeground(Color.WHITE);
+			lblIzmeniPredmet.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			lblIzmeniPredmet.setBackground(Color.GRAY);
+			lblIzmeniPredmet.setBounds(5, 0, 405, 25);
+		}
+		return lblIzmeniPredmet;
+	}
+	private JLabel getLabel_1() {
+		if (label_1 == null) {
+			label_1 = new JLabel("x");
+			label_1.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					dispose();
+				}
+			});
+			label_1.setHorizontalAlignment(SwingConstants.CENTER);
+			label_1.setForeground(Color.WHITE);
+			label_1.setFont(new Font("Tahoma", Font.BOLD, 19));
+			label_1.setBackground(Color.GRAY);
+			label_1.setBounds(463, 0, 30, 20);
+		}
+		return label_1;
 	}
 }

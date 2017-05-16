@@ -605,7 +605,7 @@ public class GlavniProzorGUI extends JFrame {
 			scrollPane = new JScrollPane();
 			scrollPane.setViewportBorder(null);
 			scrollPane.setBorder(null);
-			scrollPane.setBounds(0, 32, 724, 498);
+			scrollPane.setBounds(0, 0, 729, 530);
 			scrollPane.setViewportView(getTablePredmeti());
 		}
 		return scrollPane;
@@ -628,6 +628,7 @@ public class GlavniProzorGUI extends JFrame {
 			scrollPane.setOpaque(false);
 			scrollPane.getViewport().setOpaque(false);
 			tablePredmeti.setShowGrid(false);
+			tablePredmeti.setRowHeight(25);
 			GUIKontroler.azurirajTabeluPredmet();
 		}
 		return tablePredmeti;
@@ -849,6 +850,7 @@ public class GlavniProzorGUI extends JFrame {
 		scrollPanePolozeni.setOpaque(false);
 		scrollPanePolozeni.getViewport().setOpaque(false);
 		tablePolozeni.setShowGrid(false);
+		tablePolozeni.setRowHeight(25);
 		
 		return tablePolozeni;
 	}
