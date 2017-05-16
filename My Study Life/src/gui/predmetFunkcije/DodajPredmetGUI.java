@@ -167,7 +167,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JTextField getTextFieldSkolska() {
 		if (textFieldSkolska == null) {
 			textFieldSkolska = new JTextField();
-			textFieldSkolska.setText("xxxx/yyyy");
+			textFieldSkolska.setText("yyyy/yyyy");
 			textFieldSkolska.setBounds(345, 63, 107, 20);
 			textFieldSkolska.setColumns(10);
 		}
