@@ -17,7 +17,7 @@ public class Obaveza implements Serializable {
 		return naziv;
 	}
 	public void setNaziv(String naziv) {
-		if (naziv != null) {
+		if (naziv != null && naziv != "") {
 			this.naziv = naziv;
 		}else 
 			throw new RuntimeException("Naziv obaveze ne moze biti null");
@@ -26,7 +26,7 @@ public class Obaveza implements Serializable {
 		return dan;
 	}
 	public void setDan(String dan) {
-		if (dan != null) {
+		if (dan != null && dan != "") {
 			this.dan = dan;
 		}else 
 			throw new RuntimeException("Dan obaveze ne moze biti null");
@@ -35,7 +35,7 @@ public class Obaveza implements Serializable {
 		return sat;
 	}
 	public void setSat(String sat) {
-		if (sat != null) {
+		if (sat != null && sat != "") {
 			this.sat = sat;
 		}else 
 			throw new RuntimeException("Sat obaveze ne moze biti null");
@@ -44,7 +44,7 @@ public class Obaveza implements Serializable {
 		return minut;
 	}
 	public void setMinut(String minut) {
-		if (minut != null) {
+		if (minut != null && minut != "") {
 			this.minut = minut;
 		}else 
 			throw new RuntimeException("Minut obaveze ne moze biti null");
@@ -53,7 +53,7 @@ public class Obaveza implements Serializable {
 		return mesto;
 	}
 	public void setMesto(String mesto) {
-		if (mesto != null) {
+		if (mesto != null && mesto != "") {
 			this.mesto = mesto;
 		}else 
 			throw new RuntimeException("Mesto obaveze ne moze biti null");

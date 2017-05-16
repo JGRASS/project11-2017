@@ -8,6 +8,7 @@ import java.util.List;
 import aktivnosti.*;
 import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
+import gui.raspored.DodajObavezu;
 import predmeti.Predmet;
 import sistemskeOperacije.SOAzurirajListuPolozenih;
 import sistemskeOperacije.SOAzurirajProsek;
@@ -40,6 +41,7 @@ public class GUIKontroler {
 	private static DodajKolokvijumGUI dodajKolokvijum;
 	private static DodajIspitGUI dodajIspit;
 	private static OpisAktivnostiGUI opisAktivnosti;
+	private static DodajObavezu dodajObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
 	public static List<Obaveza> obaveze = new LinkedList<>();
@@ -48,6 +50,7 @@ public class GUIKontroler {
 	public static void main(String[] args) {
 		ucitajPredmete();
 		ucitajPolozene();
+		ucitajObaveze();
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -85,6 +88,14 @@ public class GUIKontroler {
 	public static void otvoriOpisAktivnosti() {
 		opisAktivnosti = new OpisAktivnostiGUI();
 		opisAktivnosti.setVisible(true);
+	
+	}
+	/**
+	 * Metoda otvara prozor OpisAktivnosti
+	 */
+	public static void otvoriDodajObavezu() {
+		dodajObavezu = new DodajObavezu();
+		dodajObavezu.setVisible(true);
 	
 	}
 	/**
@@ -287,4 +298,6 @@ public class GUIKontroler {
 	public static int vratiESPB(){
 		return SOVratiESPB.izvrsi();
 	}
+	
+	
 }
