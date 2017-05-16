@@ -31,6 +31,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * 
@@ -90,6 +91,9 @@ public class GlavniProzorGUI extends JFrame {
 	public static JTextField textFieldProsek;
 	private JLabel labelBrBodova;
 	public static JTextField textFieldBrojBodova;
+	private JTable table_1;
+	private JButton btnDodajObavezu;
+	private JButton btnIzbrisiObavezu;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -254,6 +258,9 @@ public class GlavniProzorGUI extends JFrame {
 			label_13.setBackground(Color.BLACK);
 			label_13.setBounds(10, 435, 46, 65);
 			panelRasporedNastave.add(label_13);
+			panelRasporedNastave.add(getTable_1());
+			panelRasporedNastave.add(getBtnDodajObavezu());
+			panelRasporedNastave.add(getBtnIzbrisiObavezu());
 		}
 		return panelRasporedNastave;
 	}
@@ -953,5 +960,59 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		
 		return textFieldBrojBodova;
+	}
+	private JTable getTable_1() {
+		if (table_1 == null) {
+			table_1 = new JTable();
+			table_1.setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+				},
+				new String[] {
+					"NED", "PON", "UTO", "SRE", "CET", "PET", "SUB"
+				}
+			));
+			table_1.setBounds(731, 45, -676, 455);
+		}
+		return table_1;
+	}
+	private JButton getBtnDodajObavezu() {
+		if (btnDodajObavezu == null) {
+			btnDodajObavezu = new JButton();
+			btnDodajObavezu.setToolTipText("Dodaj predmet");
+			btnDodajObavezu.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnDodajObavezu.setFocusPainted(false);
+			btnDodajObavezu.setBackground(new Color(0, 155, 179));
+			btnDodajObavezu.setBounds(752, 75, 60, 35);
+			Image img = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
+			btnDodajObavezu.setIcon(new ImageIcon(img));
+		}
+		return btnDodajObavezu;
+	}
+	private JButton getBtnIzbrisiObavezu() {
+		if (btnIzbrisiObavezu == null) {
+			btnIzbrisiObavezu = new JButton();
+			btnIzbrisiObavezu.setToolTipText("Obrisi predmet");
+			btnIzbrisiObavezu.setPreferredSize(new Dimension(140, 23));
+			btnIzbrisiObavezu.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnIzbrisiObavezu.setFocusPainted(false);
+			btnIzbrisiObavezu.setEnabled(false);
+			btnIzbrisiObavezu.setBackground(new Color(0, 155, 179));
+			btnIzbrisiObavezu.setBounds(752, 158, 60, 35);
+			Image img = new ImageIcon(this.getClass().getResource("/obrisi.png")).getImage();
+			btnIzbrisiObavezu.setIcon(new ImageIcon(img));
+		}
+		return btnIzbrisiObavezu;
 	}
 }
