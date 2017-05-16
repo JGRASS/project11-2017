@@ -17,6 +17,7 @@ import java.util.Random;
 
 import aktivnosti.*;
 import gui.modeli.MojaTabela;
+import gui.modeli.PrikazPolozenihTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
 import predmeti.Predmet;
 public class GUIKontroler {
@@ -27,10 +28,12 @@ public class GUIKontroler {
 	private static DodajIspitGUI dodajIspit;
 	private static OpisAktivnostiGUI opisAktivnosti;
 	public static List<Predmet> predmeti = new LinkedList<>();
+	public static List<Predmet> polozeni = new LinkedList<>();
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
 		ucitajPredmete();
+		ucitajPolozene();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -123,7 +126,7 @@ public class GUIKontroler {
 	}
 	public static void serijalizujPredmete(){
 		try {
-			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.s")));
+			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("polozeni.s")));
 			out.writeObject(predmeti);
 			out.flush();
 			out.close();
@@ -132,13 +135,48 @@ public class GUIKontroler {
 		}
 		
 	}
-
-	public static void izmeniPredmet(String naziv, int ESBP, String skolskaGodina, boolean jednosemestralan,
-			int semsetar, boolean polozen, int ocena, String napomena, String forum, String puskice) {
-		
+	public static void ucitajPolozene(){
+		try {
+			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("polozeni.s")));
+			polozeni = (LinkedList<Predmet>) in.readObject();
+			in.close();
+			
+		} catch (ClassNotFoundException | IOException e) {
+			polozeni = new LinkedList<>();
+		}
 	}
+	public static void serijalizujPolozene(){
+		try {
+			ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("predmeti.s")));
+			out.writeObject(polozeni);
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 	public static void azurirajTabeluPredmet(){
 		PrikazPredmetaTabelaModel model = (PrikazPredmetaTabelaModel) GlavniProzorGUI.tablePredmeti.getModel();
 		model.azurirajTabelu(predmeti);
+		
+	}
+	
+	public static void azurirajTabeluPolozeni(){
+		PrikazPolozenihTabelaModel model = (PrikazPolozenihTabelaModel) GlavniProzorGUI.tablePolozeni.getModel();
+		azurirajListuPolozeni();
+		model.azurirajTabeluPolozeni(polozeni);
+	}
+	public static void azurirajListuPolozeni(){
+		for (int i = 0; i < predmeti.size(); i++) {
+			if(predmeti.get(i).isPolozen() && !polozeni.contains(predmeti.get(i))){
+				polozeni.add(predmeti.get(i));
+			}
+		}
+		for (int i = 0; i < polozeni.size(); i++) {
+			if(!predmeti.contains(polozeni.get(i))){
+				polozeni.remove(i);
+			}
+		}
 	}
 }

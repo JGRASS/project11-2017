@@ -290,6 +290,7 @@ public class DodajPredmetGUI extends JFrame {
 						Predmet p = new Predmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar, polozen, ocena, napomena, forum, puskice);
 						GUIKontroler.predmeti.add(p);
 						GUIKontroler.azurirajTabeluPredmet();
+						GUIKontroler.azurirajTabeluPolozeni();
 						dispose();
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa",

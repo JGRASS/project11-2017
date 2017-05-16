@@ -1,5 +1,6 @@
 package gui.predmetFunkcije;
 
+import java.awt.Component;
 import java.awt.Desktop;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
@@ -12,13 +13,16 @@ import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import aktivnosti.Ispit;
+import aktivnosti.Kolokvijum;
+import aktivnosti.Planer;
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
 import predmeti.Predmet;
@@ -29,6 +33,7 @@ public class PregledPredmeta extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = -7481533085338081853L;
+	protected static final Component PregledPredmeta  = null;
 	private JPanel contentPane;
 	private JLabel lblNaziv;
 	private JTextField textFieldNaziv;
@@ -304,6 +309,19 @@ public class PregledPredmeta extends JFrame {
 	private JButton getBtnKolokvijum() {
 		if (btnKolokvijum == null) {
 			btnKolokvijum = new JButton("Kolokvijum");
+			btnKolokvijum.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Planer p = new Planer();
+					String naziv= textFieldNaziv.getText();
+					for(int i = 0; i<p.aktivnosti.size();i++){
+						if((p.aktivnosti.get(i) instanceof Kolokvijum) && p.aktivnosti.get(i).getPredmet().getNaziv().equals(naziv)){
+							String poruka = "Kolokvijum iz predmeta " + naziv + "je " + p.aktivnosti.get(i).getVremePolaganja().getTime();
+							JOptionPane.showMessageDialog(PregledPredmeta, poruka);
+							break;
+						}
+					}
+				}
+			});
 			btnKolokvijum.setBounds(333, 227, 107, 23);
 		}
 		return btnKolokvijum;
@@ -312,6 +330,20 @@ public class PregledPredmeta extends JFrame {
 	private JButton getBtnIspit() {
 		if (btnIspit == null) {
 			btnIspit = new JButton("Ispit");
+			btnIspit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					Planer p = new Planer();
+					String naziv= textFieldNaziv.getText();
+					for(int i = 0; i<p.aktivnosti.size();i++){
+						if((p.aktivnosti.get(i) instanceof Ispit) && p.aktivnosti.get(i).getPredmet().getNaziv().equals(naziv)){
+							String poruka = "Ispit iz predmeta " + naziv + "je " + p.aktivnosti.get(i).getVremePolaganja().getTime();
+							JOptionPane.showMessageDialog(PregledPredmeta, poruka);
+							break;
+						}
+					}
+				}
+				
+			});
 			btnIspit.setBounds(333, 285, 107, 23);
 		}
 		return btnIspit;

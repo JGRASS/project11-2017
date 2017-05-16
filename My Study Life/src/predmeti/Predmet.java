@@ -124,8 +124,8 @@ public class Predmet implements Serializable {
 	}
 	@Override
 	public boolean equals(Object obj) {
-		String naziv = (String)obj;
-		if(this.naziv.equals(naziv)){
+		Predmet p = (Predmet)obj;
+		if(p.getNaziv().equals(naziv) && p.getESBP()==getESBP() && p.getSkolskaGodina().equals(getSkolskaGodina())){
 			return true;
 		}
 		return false;

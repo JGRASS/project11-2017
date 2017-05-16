@@ -9,6 +9,7 @@ import javax.swing.table.DefaultTableCellRenderer;
 import gui.modeli.FrameDragListener;
 import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
+import gui.modeli.PrikazPolozenihTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
 import gui.predmetFunkcije.DodajPredmetGUI;
 import gui.predmetFunkcije.IzmeniPredmetGUI;
@@ -30,13 +31,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.Dimension;
 import javax.swing.JScrollPane;
-import javax.swing.JMenuBar;
-import javax.swing.JMenu;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
-import javax.swing.KeyStroke;
-import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
 import javax.swing.border.LineBorder;
 
 
@@ -64,22 +59,12 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton btnSledecaGodina;
 	private JButton btnDodajKolokvijum;
 	private JButton btnDodajIspit;
-	private JPanel panel;
 	private JButton btnDodaj;
 	private JButton btnIzmeni;
 	private JButton btnObrisi;
 	private JScrollPane scrollPane;
 	public static JTable tablePredmeti;
 	private JButton btnPregledPredmeta;
-	private JMenuBar menuBar;
-	private JMenu mnFile;
-	private JMenu mnEdit;
-	private JMenu mnHelp;
-	private JMenuItem mntmDodajPredmet;
-	private JMenuItem mntmDodajIspit;
-	private JMenuItem mntmDodajKolokvijum;
-	private JMenuItem mntmAbout;
-	private JMenuItem mntmIzlaz;
 	private JLabel lblKolokvijumBoja;
 	private JLabel lblKolokvijum;
 	private JLabel lblIspitBoja;
@@ -94,7 +79,8 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel panelNaslov;
 	private JLabel lblX;
 	private JLabel lblNaslov;
-	
+	public static JTable tablePolozeni;
+	private JScrollPane scrollPanePolozeni;
 	public GlavniProzorGUI() {
 		setResizable(false);
 		setTitle("MyStudyLife");
@@ -163,9 +149,14 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel getPanelPredmeti() {
 		if (panelPredmeti == null) {
 			panelPredmeti = new JPanel();
-			panelPredmeti.setLayout(new BorderLayout(0, 0));
-			panelPredmeti.add(getPanel(), BorderLayout.EAST);
-			panelPredmeti.add(getScrollPane(), BorderLayout.CENTER);
+			panelPredmeti.setLayout(null);
+			
+			panelPredmeti.add(getScrollPane());
+			panelPredmeti.add(getBtnDodaj());
+			panelPredmeti.add(getBtnPregledPredmeta());
+			panelPredmeti.add(getBtnIzmeni());
+			panelPredmeti.add(getBtnObrisi());
+			
 		}
 		return panelPredmeti;
 	}
@@ -257,6 +248,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel getPanelPolozeniIspiti() {
 		if (panelPolozeniIspiti == null) {
 			panelPolozeniIspiti = new JPanel();
+			panelPolozeniIspiti.add(getScrollPanePolozeni());
 		}
 		return panelPolozeniIspiti;
 	}
@@ -539,32 +531,36 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnDodajIspit;
 	}
-	private JPanel getPanel() {
-		if (panel == null) {
-			panel = new JPanel();
-			panel.setPreferredSize(new Dimension(150, 10));
-			panel.add(getBtnDodaj());
-			panel.add(getBtnPregledPredmeta());
-			panel.add(getBtnIzmeni());
-			panel.add(getBtnObrisi());
-		}
-		return panel;
-	}
 	private JButton getBtnDodaj() {
 		if (btnDodaj == null) {
-			btnDodaj = new JButton("Dodaj predmet");
+			btnDodaj = new JButton();
+			btnDodaj.setToolTipText("Dodaj predmet");
+			Image img = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
+			btnDodaj.setIcon(new ImageIcon(img));
+			btnDodaj.setBounds(752, 32, 60, 35);
+			btnDodaj.setBackground(new Color(0, 155, 179));
+			btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnDodaj.setFocusPainted(false);
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					otvoriDodajPredmetGUI();
 				}
 			});
-			btnDodaj.setPreferredSize(new Dimension(140, 23));
 		}
 		return btnDodaj;
 	}
 	private JButton getBtnIzmeni() {
 		if (btnIzmeni == null) {
-			btnIzmeni = new JButton("Izmeni predmet");
+			btnIzmeni = new JButton();
+			btnIzmeni.setToolTipText("Izmeni predmet");
+			btnIzmeni.setBounds(752, 139, 60, 35);
+			Image img = new ImageIcon(this.getClass().getResource("/izmeni.png")).getImage();
+			btnIzmeni.setIcon(new ImageIcon(img));
+			btnIzmeni.setToolTipText("Izmeni predmet");
+			
+			btnIzmeni.setBackground(new Color(0, 155, 179));
+			btnIzmeni.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnIzmeni.setFocusPainted(false);
 			btnIzmeni.setEnabled(false);
 			btnIzmeni.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -577,13 +573,22 @@ public class GlavniProzorGUI extends JFrame {
 	}
 	private JButton getBtnObrisi() {
 		if (btnObrisi == null) {
-			btnObrisi = new JButton("Obrisi predmet");
+			btnObrisi = new JButton();
+			btnObrisi.setToolTipText("Obrisi predmet");
+			Image img = new ImageIcon(this.getClass().getResource("/obrisi.png")).getImage();
+			btnObrisi.setIcon(new ImageIcon(img));
+			btnObrisi.setToolTipText("Obrisi predmet");
+			btnObrisi.setBackground(new Color(0, 155, 179));
+			btnObrisi.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnObrisi.setFocusPainted(false);
+			btnObrisi.setBounds(752, 199, 60, 35);
 			btnObrisi.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					int red =tablePredmeti.getSelectedRow();
 					if(red!=-1){
 						GUIKontroler.predmeti.remove(red);
 						GUIKontroler.azurirajTabeluPredmet();
+						GUIKontroler.azurirajTabeluPolozeni();
 					}
 				}
 			});
@@ -595,6 +600,9 @@ public class GlavniProzorGUI extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
+			scrollPane.setViewportBorder(null);
+			scrollPane.setBorder(null);
+			scrollPane.setBounds(0, 32, 724, 498);
 			scrollPane.setViewportView(getTablePredmeti());
 		}
 		return scrollPane;
@@ -602,6 +610,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JTable getTablePredmeti() {
 		if (tablePredmeti == null) {
 			tablePredmeti = new JTable();
+			tablePredmeti.setBorder(null);
 			tablePredmeti.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
@@ -612,13 +621,24 @@ public class GlavniProzorGUI extends JFrame {
 				}
 			});
 			tablePredmeti.setModel(new PrikazPredmetaTabelaModel(null));
+			tablePredmeti.setOpaque(false);
+			scrollPane.setOpaque(false);
+			scrollPane.getViewport().setOpaque(false);
+			tablePredmeti.setShowGrid(false);
 			GUIKontroler.azurirajTabeluPredmet();
 		}
 		return tablePredmeti;
 	}
 	private JButton getBtnPregledPredmeta() {
 		if (btnPregledPredmeta == null) {
-			btnPregledPredmeta = new JButton("Pregled predmeta");
+			btnPregledPredmeta = new JButton();
+			Image img = new ImageIcon(this.getClass().getResource("/trazi.png")).getImage();
+			btnPregledPredmeta.setIcon(new ImageIcon(img));
+			btnPregledPredmeta.setToolTipText("Pregled predmeta");
+			btnPregledPredmeta.setBounds(752, 88, 60, 35);
+			btnPregledPredmeta.setBackground(new Color(0, 155, 179));
+			btnPregledPredmeta.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnPregledPredmeta.setFocusPainted(false);
 			btnPregledPredmeta.setEnabled(false);
 			btnPregledPredmeta.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -629,83 +649,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnPregledPredmeta;
 	}
-	private JMenuBar getMenuBar_1() {
-		if (menuBar == null) {
-			menuBar = new JMenuBar();
-			menuBar.add(getMnFile());
-			menuBar.add(getMnEdit());
-			menuBar.add(getMnHelp());
-		}
-		return menuBar;
-	}
-	private JMenu getMnFile() {
-		if (mnFile == null) {
-			mnFile = new JMenu("File");
-			mnFile.add(getMntmDodajPredmet());
-			mnFile.add(getMntmDodajIspit());
-			mnFile.add(getMntmDodajKolokvijum());
-			mnFile.add(getMntmIzlaz());
-		}
-		return mnFile;
-	}
-	private JMenu getMnEdit() {
-		if (mnEdit == null) {
-			mnEdit = new JMenu("Edit");
-		}
-		return mnEdit;
-	}
-	private JMenu getMnHelp() {
-		if (mnHelp == null) {
-			mnHelp = new JMenu("Help");
-			mnHelp.add(getMntmAbout());
-		}
-		return mnHelp;
-	}
-	private JMenuItem getMntmDodajPredmet() {
-		if (mntmDodajPredmet == null) {
-			mntmDodajPredmet = new JMenuItem("Dodaj predmet");
-			mntmDodajPredmet.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_P, InputEvent.CTRL_MASK));
-		}
-		return mntmDodajPredmet;
-	}
-	private JMenuItem getMntmDodajIspit() {
-		if (mntmDodajIspit == null) {
-			mntmDodajIspit = new JMenuItem("Dodaj ispit");
-			mntmDodajIspit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_I, InputEvent.CTRL_MASK));
-		}
-		return mntmDodajIspit;
-	}
-	private JMenuItem getMntmDodajKolokvijum() {
-		if (mntmDodajKolokvijum == null) {
-			mntmDodajKolokvijum = new JMenuItem("Dodaj kolokvijum");
-			mntmDodajKolokvijum.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_K, InputEvent.CTRL_MASK));
-		}
-		return mntmDodajKolokvijum;
-	}
-	private JMenuItem getMntmAbout() {
-		if (mntmAbout == null) {
-			mntmAbout = new JMenuItem("About");
-		}
-		return mntmAbout;
-	}
-	private JMenuItem getMntmIzlaz() {
-		if (mntmIzlaz == null) {
-			mntmIzlaz = new JMenuItem("Izlaz");
-			mntmIzlaz.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					Component frame = null;
-
-					int odgovor = JOptionPane.showConfirmDialog(frame, "Da li zelite da zatvorite aplikaciju?",
-							"Exit", JOptionPane.YES_NO_CANCEL_OPTION);
-					if (odgovor == JOptionPane.YES_OPTION)
-						System.exit(0);
-
-				}
-			});
-			mntmIzlaz.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_X, InputEvent.ALT_MASK));
-		}
-		return mntmIzlaz;
-	}
+	
 	private void otvoriDodajPredmetGUI(){
 		DodajPredmetGUI d = new DodajPredmetGUI();
 		d.setVisible(true);
@@ -716,6 +660,7 @@ public class GlavniProzorGUI extends JFrame {
 		//i.popuniPolja("das", 5, "dasds", true, 5, true, 8, "dassa", "dsasa", "dassa");
 		i.setVisible(true);
 		i.setLocationRelativeTo(GlavniProzorGUI);
+		i.popuniPolja();
 	}
 	private void otvoriPregledPredmeta(){
 		PregledPredmeta p = new PregledPredmeta();
@@ -838,16 +783,22 @@ public class GlavniProzorGUI extends JFrame {
 		JLabel picLabelPlaner = new JLabel(new ImageIcon(img));
 		picLabelPlaner.setSize(850,600);
 		JLabel picLabelPolozeniIspiti = new JLabel(new ImageIcon(img));
-		picLabelPolozeniIspiti.setLocation(-545, 5);
-		picLabelPolozeniIspiti.setSize(1920,1075);
-		JLabel picLabelPredmeti = new JLabel(new ImageIcon(img));
-		picLabelPredmeti.setSize(850,600);
+		picLabelPolozeniIspiti.setLocation(0, 0);
+	//	picLabelPolozeniIspiti.setLocation(-545, 5);
+		picLabelPolozeniIspiti.setSize(835,710);
 		JLabel picLabelRasporedNastave = new JLabel(new ImageIcon(img));
 		picLabelRasporedNastave.setSize(850,600);
+		JLabel picLabelPredmeti = new JLabel(new ImageIcon(img));
+		picLabelPredmeti.setLocation(0, 0);
+	//	picLabelPredmeti.setLocation(-545, 5);
+		picLabelPredmeti.setSize(850,600);
+		panelPredmeti.add(picLabelPredmeti);
 		panelPlaner.add(picLabelPlaner);
+		getPanelPolozeniIspiti().setLayout(null);
+		panelPolozeniIspiti.add(picLabelPolozeniIspiti);
 		//Ovde palite pozadinu na vasem jPanelu!!!
 		//panelPolozeniIspiti.add(picLabelPolozeniIspiti);
-		//panelPredmeti.add(picLabelPredmeti);
+		
 		//panelRasporedNastave.add(picLabelRasporedNastave);
 	}
 	private JPanel getPanelTitleBar() {
@@ -882,6 +833,7 @@ public class GlavniProzorGUI extends JFrame {
 				public void mouseClicked(MouseEvent arg0) {
 					GUIKontroler.serijalizujAktivnosti();
 					GUIKontroler.serijalizujPredmete();
+					GUIKontroler.serijalizujPolozene();
 					dispose();
 				}
 			});
@@ -899,5 +851,28 @@ public class GlavniProzorGUI extends JFrame {
 			lblNaslov.setBounds(5, 0, 800, 25);
 		}
 		return lblNaslov;
+	}
+	
+	
+	private JTable getTablePolozeni() {
+		if (tablePolozeni == null) {
+			tablePolozeni = new JTable();
+		}
+		tablePolozeni.setModel(new PrikazPolozenihTabelaModel(null));
+		GUIKontroler.azurirajTabeluPolozeni();
+		tablePolozeni.setOpaque(false);
+		scrollPanePolozeni.setOpaque(false);
+		scrollPanePolozeni.getViewport().setOpaque(false);
+		tablePolozeni.setShowGrid(false);
+		
+		return tablePolozeni;
+	}
+	private JScrollPane getScrollPanePolozeni() {
+		if (scrollPanePolozeni == null) {
+			scrollPanePolozeni = new JScrollPane();
+			scrollPanePolozeni.setBounds(0, 0, 835, 530);
+			scrollPanePolozeni.setViewportView(getTablePolozeni());
+		}
+		return scrollPanePolozeni;
 	}
 }
