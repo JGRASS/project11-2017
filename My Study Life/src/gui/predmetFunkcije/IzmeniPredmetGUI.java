@@ -321,7 +321,11 @@ public class IzmeniPredmetGUI extends JFrame {
 						GUIKontroler.azurirajTabeluPolozeni();
 						dispose();
 					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(IzmeniPredmetGUI.this, "Doslo je do greske prilikom unosa", "Greska", JOptionPane.ERROR_MESSAGE);
+						JOptionPane.showMessageDialog(IzmeniPredmetGUI.this, "Doslo je do greske prilikom unosa brojevnih vrednosti",
+								"Greska", JOptionPane.ERROR_MESSAGE);
+					}catch(RuntimeException e2){
+						JOptionPane.showMessageDialog(IzmeniPredmetGUI.this, "Doslo je do greske prilikom unosa skolske godine",
+								"Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
@@ -399,6 +403,8 @@ public class IzmeniPredmetGUI extends JFrame {
 			label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
+					GUIKontroler.predmeti.add(predmet);
+					GUIKontroler.azurirajTabeluPredmet();
 					dispose();
 				}
 			});
