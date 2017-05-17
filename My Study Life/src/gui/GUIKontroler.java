@@ -48,9 +48,9 @@ public class GUIKontroler {
 	public static SistemskiKontroler SK = new SistemskiKontroler();
 
 	private static IzbrisiObavezu izbrisiObavezu;
-	public static List<Predmet> predmeti = new LinkedList<>();
+	//public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Obaveza> obaveze = new LinkedList<>();
-	public static List<Predmet> polozeni = new LinkedList<>();
+	//public static List<Predmet> polozeni = new LinkedList<>();
 
 
 	public static Color plavaT = new Color(0, 155, 179);
@@ -562,7 +562,20 @@ public class GUIKontroler {
 	public static int vratiESPB() {
 		return SK.vratiESPB();
 	}
-
+	/**
+	 * Metoda koja sluzi za dodavanje predmeta u listu
+	 * @param naziv predstavlja naziv predmeta
+	 * @param ESBP predstavlja boroj ESBP poena koje taj predmet nosi
+	 * @param skolskaGodina	predstavlja String u obliku yyyy/yyyy 
+	 * @param jednosemestralan boolean vrednost 
+	 * @param semestar  vrednost koja predstavlja broj semestra
+	 * @param polozen boolean vrednost 
+	 * @param ocena  vrednost koja predstavlja ocenu na ispitu
+	 * @param napomena String sa napomenom o predmetu
+	 * @param forum String koji predstavlja link za forum
+	 * @param puskice String koji predstavlja link za puskice
+	 * @return int vrednost 1- ako je sve uspesno izvrseno ili 0 ako nije
+	 */
 	public static int dodajPredmet(String naziv, String ESBP, String skolskaGodina, boolean jednosemestralan,
 			String semestar, boolean polozen, String ocena, String napomena, String forum, String puskice) {
 		try {
@@ -581,7 +594,22 @@ public class GUIKontroler {
 			return 0;
 		}
 	}
-
+	/**
+	 * 
+	 * Metoda koja sluzi za dodavanje predmeta u listu
+	 * @param naziv predstavlja naziv predmeta
+	 * @param ESBP predstavlja boroj ESBP poena koje taj predmet nosi
+	 * @param skolskaGodina	predstavlja String u obliku yyyy/yyyy 
+	 * @param jednosemestralan boolean vrednost 
+	 * @param semestar  vrednost koja predstavlja broj semestra
+	 * @param polozen boolean vrednost 
+	 * @param ocena  vrednost koja predstavlja ocenu na ispitu
+	 * @param napomena String sa napomenom o predmetu
+	 * @param forum String koji predstavlja link za forum
+	 * @param puskice String koji predstavlja link za puskice
+	 * @param predmet predstavlja predmet koji se trenutno posmatra u prozoru
+	 * @return int vrednost 1- ako je sve uspesno izvrseno ili 0 ako nije
+	 */
 	public static int izmeniPredmet(String naziv, String ESBP, String skolskaGodina, boolean jednosemestralan,
 			String semestar, boolean polozen, String ocena, String napomena, String forum, String puskice,
 			Predmet predmet) {
