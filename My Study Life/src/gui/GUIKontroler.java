@@ -38,35 +38,30 @@ import sistemskeOperacije.SOVratiProsek;
  */
 public class GUIKontroler {
 	
-	private static Planer planer;
-	private static GlavniProzorGUI glavniProzor ; //Ovde pravite staticke promeljive. Njima posle pristupamo pomocu GuiKontroler.xxx iz bilo koje druge klase.
+	private static Planer planer  = SistemskiKontroler.planer;
+	private static GlavniProzorGUI glavniProzor ;
 	private static DodajKolokvijumGUI dodajKolokvijum;
 	private static DodajIspitGUI dodajIspit;
 	private static OpisAktivnostiGUI opisAktivnosti;
 	private static DodajObavezu dodajObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Obaveza> obaveze = new LinkedList<>();
-	public static List<Predmet> polozeni = new LinkedList<>(); //Svuda gde koristite ove boje, dovucite ih sa GUIKontolera
+	public static List<Predmet> polozeni = new LinkedList<>(); 
 	public static SistemskiKontroler SK = new SistemskiKontroler();
 	public static Color plavaT = new Color(0, 155, 179);
 	public static Color plavaS = new Color(112, 155, 179);
-	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
-	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
+		postaviGc();
 		ucitajPredmete();
 		ucitajPolozene();
+		ucitajAktivnosti();
 		ucitajObaveze();
-		
+		popuniMatricuDatuma();
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					planer = new Planer();
 					glavniProzor = new GlavniProzorGUI();
 					glavniProzor.setVisible(true);
-					
-					planer.postaviGc(new GregorianCalendar());
-					planer.popuniMatricuDatuma();
-					planer.ucitajAktivnosti();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -95,119 +90,67 @@ public class GUIKontroler {
 		opisAktivnosti.setVisible(true);
 	
 	}
-	/**
-	 * Metoda otvara prozor OpisAktivnosti
-	 */
+	
 	public static void otvoriDodajObavezu() {
 		dodajObavezu = new DodajObavezu();
 		dodajObavezu.setVisible(true);
 	
 	}
-	/**
-	 * Metoda vraca sve studenske aktivnosti
-	 * @return Listu aktivnosti tipa Aktivnost
-	 */
+	
 	public static List<Aktivnost> vratiSveAktivnosti(){
-		return planer.vratiSveAktivnosti();
+		return SistemskiKontroler.vratiSveAktivnosti();
 	}
-	/**
-	 * Metoda vraca trenutno vreme
-	 * @return Trenutno vreme u vidu GregorianCalendar-a
-	 */
+	
 	public static GregorianCalendar vratiTrenutnoVreme(){
-		return planer.vratiGc();
+		return SistemskiKontroler.vratiTrenutnoVreme();
 	}
-	/**
-	 * Metoda vraca matricu mesecnih datuma
-	 * @return Matricu mesecnih datuma u obliku String[][]
-	 */
+	
 	public static String[][] vratiDatume(){
-		return planer.vratiDatume();
+		return SistemskiKontroler.vratiDatume();
 	}
-	/**
-	 * Metoda koja proverava da li su dva datuma istog dana
-	 * @param g1 prvi datum GregorianCalendar
-	 * @param g2 drugi datim GregorianCalendar
-	 * @return boolean vrednost u zavisnosti od podudaranja datuma
-	 */
+	
 	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
-		return planer.istiDan(g1, g2);
+		return SistemskiKontroler.istiDan(g1, g2);
 	}
-	/**
-	 * Metoda popunjava matricu mesecnih datuma
-	 */
+	
 	public static void popuniMatricuDatuma(){
-		planer.popuniMatricuDatuma();
+		SistemskiKontroler.popuniMatricuDatuma();
 	}
-	/**
-	 * Metoda pronalazi datu aktivnost na osnuvu vremena njenog odrzavanja
-	 * @param g datum odrzavanja aktivnosti GregorianCalendar
-	 * @return Aktivnost
-	 */
+	
 	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
-		return planer.pronadjiAktivnost(g);
+		return SistemskiKontroler.pronadjiAktivnost(g);
 	}
-	/**
-	 * Metoda koja serijalizuje aktivnosti
-	 */
+	
+	public static void postaviGc (){
+		SistemskiKontroler.postaviGc();
+	}
+	
 	public static void serijalizujAktivnosti(){
-		planer.serijalizujAktivnosti();
+		SistemskiKontroler.serijalizujAktivnosti();
 	}
 	
-	/**
-	 * Metoda azurira jTable
-	 * @param teble prestvlja tabelu koja se azurira
-	 */
+	public static void ucitajAktivnosti(){
+		SistemskiKontroler.ucitajAktivnosti();
+	}
+	
 	public static void azurirajTabelu(MojaTabela table) {
-		PlanerTabelaModel model = (PlanerTabelaModel) table.getModel();
-		model.azurirajTabelu(vratiDatume());
+		SistemskiKontroler.azurirajTabelu(table);
 	}
 	
-	/**
-	 * Metoda koja vraca selektovani datum u tabeli MojaTabela
-	 * @return datum u obliku int
-	 */
 	public static GregorianCalendar selektovanDatum(MojaTabela table) {
-		GregorianCalendar g = new GregorianCalendar();
-		int datum = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
-		g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR),
-				GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH), datum);
-		return g;
+		return SistemskiKontroler.selektovanDatum(table);
 	}
-	/**
-	 * Metoda koja vraca odredjeni GregorianCalendar(godina,mesec,dan) u String obliku
-	 * @param g Datum koji se zeli prikazati u vidu Stringa
-	 * @return Datum u String formatu
-	 */
+	
 	public static String vratiDatumString(GregorianCalendar g){
-		String vreme = "";
-		vreme+=g.get(GregorianCalendar.YEAR)+"/";
-		vreme+=g.get(GregorianCalendar.MONTH)+"/";
-		vreme+=g.get(GregorianCalendar.DATE)+" ";
-		return vreme;
+		return SistemskiKontroler.vratiDatumString(g);
 	}
-	/**
-	 * Metoda koja vraca odredjeni GregorianCalendar(sat,minut) u String obliku
-	 * @param g Datum koji se zeli prikazati u vidu Stringa
-	 * @return Vreme u String formatu
-	 */
+	
 	public static String vratiVremeString(GregorianCalendar g){
-		String vreme = "";
-		vreme+=g.get(GregorianCalendar.HOUR)+":";
-		vreme+=g.get(GregorianCalendar.MINUTE);
-		return vreme;
+		return SistemskiKontroler.vratiVremeString(g);
 	}
-	/**
-	 * Metoda koja nalazi index predmeta(pozicija u listi) na osnovu njegovog naziva
-	 * @param naziv Naziv predmeta
-	 * @return index predmeta u listi predmeta 
-	 */
+	
 	public static int vratiIndexPredmeta(String naziv){
-		for(int i=0;i<GUIKontroler.predmeti.size();i++){
-			if(GUIKontroler.predmeti.get(i).getNaziv().equals(naziv))
-				return i;
-		}
-		return -1;
+		return SistemskiKontroler.vratiIndexPredmeta(naziv);
 	}
 	/**
 	 * Metoda sluzi za vracanje random imena slike koja se koristi kao pozadina glavnog prozora
