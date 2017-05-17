@@ -11,8 +11,10 @@ import sistemskeOperacije.SOAzurirajTabeluPredmeta;
 import sistemskeOperacije.SOOtvoriDodajPredmet;
 import sistemskeOperacije.SOOtvoriIzmeniPredmet;
 import sistemskeOperacije.SOOtvoriPregledPredmeta;
+import sistemskeOperacije.SOSerijalizujObaveze;
 import sistemskeOperacije.SOSerijalizujPolozene;
 import sistemskeOperacije.SOSerijalizujPredmete;
+import sistemskeOperacije.SOUcitajObaveze;
 import sistemskeOperacije.SOUcitajPolozene;
 import sistemskeOperacije.SOUcitajPredmete;
 import sistemskeOperacije.SOVratiESPB;
@@ -42,6 +44,14 @@ public class SistemskiKontroler {
 
 	public  void serijalizujPolozene(){
 		SOSerijalizujPolozene.izvrsi();
+	}
+	
+	public static void ucitajObaveze(){
+		SOUcitajObaveze.izvrsi();
+	}
+
+	public static void serijalizujObaveze(){
+		SOSerijalizujObaveze.izvrsi();
 	}
 	
 	public  void azurirajTabeluPredmet(){

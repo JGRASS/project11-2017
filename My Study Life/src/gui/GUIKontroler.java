@@ -245,13 +245,13 @@ public class GUIKontroler {
 	 * Metoda se koristi za ucitavanje obaveza iz fajla
 	 */
 	public static void ucitajObaveze(){
-		SOUcitajObaveze.izvrsi();
+		SK.ucitajObaveze();
 	}
 	/**
 	 * Metoda se koristi za serijalizaciju obaveza u file
 	 */
 	public static void serijalizujObaveze(){
-		SOSerijalizujObaveze.izvrsi();
+		SK.serijalizujObaveze();
 	}
 	/**
 	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
