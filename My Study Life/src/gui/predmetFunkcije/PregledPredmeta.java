@@ -273,7 +273,7 @@ public class PregledPredmeta extends JFrame {
 	public void popuniPolja() {
 		int red = GlavniProzorGUI.tablePredmeti.getSelectedRow();
 		if (red != -1) {
-			Predmet p = GUIKontroler.predmeti.get(red);
+			Predmet p = GUIKontroler.SK.predmeti.get(red);
 			textAreaNapomena.setText(p.getNapomena());
 			textFieldESBP.setText(p.getESBP() + "");
 			textFieldNaziv.setText(p.getNaziv());

@@ -281,13 +281,13 @@ public class OpisAktivnostiGUI extends JFrame {
 							
 							aktivnost.setEvidentirana(true);
 							
-							for(int i=0;i<GUIKontroler.predmeti.size();i++){
-								if(aktivnost.getPredmet().getNaziv().equals(GUIKontroler.predmeti.get(i).getNaziv())){
-									GUIKontroler.predmeti.get(i).setPolozen(true);
-									GUIKontroler.predmeti.get(i).setOcena((int)rezultat);
+							for(int i=0;i<GUIKontroler.SK.predmeti.size();i++){
+								if(aktivnost.getPredmet().getNaziv().equals(GUIKontroler.SK.predmeti.get(i).getNaziv())){
+									GUIKontroler.SK.predmeti.get(i).setPolozen(true);
+									GUIKontroler.SK.predmeti.get(i).setOcena((int)rezultat);
 									GUIKontroler.azurirajTabeluPredmet();
 									GUIKontroler.azurirajListuPolozeni();
-									GUIKontroler.polozeni.get(GUIKontroler.polozeni.indexOf(GUIKontroler.predmeti.get(i))).setOcena((int)rezultat);
+									GUIKontroler.SK.polozeni.get(GUIKontroler.SK.polozeni.indexOf(GUIKontroler.SK.predmeti.get(i))).setOcena((int)rezultat);
 									GUIKontroler.azurirajTabeluPolozeni();
 									GUIKontroler.azurirajProsek();
 								}

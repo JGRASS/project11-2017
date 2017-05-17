@@ -76,9 +76,9 @@ public class DodajKolokvijumGUI extends JFrame {
 			comboBoxPredmeti = new JComboBox<String>();
 			comboBoxPredmeti.setForeground(Color.WHITE);
 			comboBoxPredmeti.setBackground(Color.GRAY);
-			for(int i=0;i<GUIKontroler.predmeti.size();i++){
-				if(GUIKontroler.predmeti.get(i).isPolozen()) continue;
-				comboBoxPredmeti.addItem(GUIKontroler.predmeti.get(i).getNaziv());
+			for(int i=0;i<GUIKontroler.SK.predmeti.size();i++){
+				if(GUIKontroler.SK.predmeti.get(i).isPolozen()) continue;
+				comboBoxPredmeti.addItem(GUIKontroler.SK.predmeti.get(i).getNaziv());
 			}
 			comboBoxPredmeti.setAlignmentX(comboBoxPredmeti.CENTER_ALIGNMENT);
 			comboBoxPredmeti.setBounds(86, 74, 250, 35);
@@ -136,7 +136,7 @@ public class DodajKolokvijumGUI extends JFrame {
 						int index = GUIKontroler.vratiIndexPredmeta(naziv);
 						if(index==-1)
 							throw new IndexOutOfBoundsException();
-						k.setPredmet(GUIKontroler.predmeti.get(index));
+						k.setPredmet(GUIKontroler.SK.predmeti.get(index));
 						
 						g.set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR));
 						g.set(GregorianCalendar.MONTH,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH));

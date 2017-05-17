@@ -14,14 +14,13 @@ import sistemskeOperacije.SOAzurirajListuPolozenih;
 import sistemskeOperacije.SOAzurirajProsek;
 import sistemskeOperacije.SOAzurirajTabeluPolozenih;
 import sistemskeOperacije.SOAzurirajTabeluPredmeta;
+
 import sistemskeOperacije.SOIstiDan;
-import sistemskeOperacije.SOOtvoriDodajPredmet;
-import sistemskeOperacije.SOOtvoriIzmeniPredmet;
-import sistemskeOperacije.SOOtvoriPregledPredmeta;
 import sistemskeOperacije.SOPopuniMatricuDatuma;
 import sistemskeOperacije.SOPronadjiAktivnost;
 import sistemskeOperacije.SOSelektovaniDatum;
 import sistemskeOperacije.SOSerijalizujAktivnosti;
+
 import sistemskeOperacije.SOSerijalizujObaveze;
 import sistemskeOperacije.SOSerijalizujPolozene;
 import sistemskeOperacije.SOSerijalizujPredmete;
@@ -154,18 +153,7 @@ public class SistemskiKontroler {
 		SOAzurirajListuPolozenih.izvrsi();
 	}
 	
-	public  void otvoriDodajPredmetGUI(){
-		SOOtvoriDodajPredmet.izvrsi();
-	}
-	
-	public  void otvoriIzmeniPredmetGUI(){
-		SOOtvoriIzmeniPredmet.izvrsi();
-	}
-	
-	public  void otvoriPregledPredmeta(){
-		SOOtvoriPregledPredmeta.izvrsi();
-	}
-	
+
 	public  double vratiProsek(){
 		return SOVratiProsek.izvrsi();
 	}
