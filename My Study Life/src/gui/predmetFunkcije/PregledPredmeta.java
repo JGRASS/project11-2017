@@ -337,15 +337,7 @@ public class PregledPredmeta extends JFrame {
 			btnKolokvijum.setForeground(Color.WHITE);
 			btnKolokvijum.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Planer p = new Planer();
-					String naziv= textFieldNaziv.getText();
-					for(int i = 0; i<p.aktivnosti.size();i++){
-						if((p.aktivnosti.get(i) instanceof Kolokvijum) && p.aktivnosti.get(i).getPredmet().getNaziv().equals(naziv)){
-							String poruka = "Kolokvijum iz predmeta " + naziv + "je " + p.aktivnosti.get(i).getVremePolaganja().getTime();
-							JOptionPane.showMessageDialog(PregledPredmeta, poruka);
-							break;
-						}
-					}
+					GUIKontroler.otvoriPregledAktivnosti();
 				}
 			});
 			btnKolokvijum.setBounds(333, 252, 110, 35);
@@ -361,15 +353,7 @@ public class PregledPredmeta extends JFrame {
 			btnIspit.setForeground(Color.WHITE);
 			btnIspit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					Planer p = new Planer();
-					String naziv= textFieldNaziv.getText();
-					for(int i = 0; i<p.aktivnosti.size();i++){
-						if((p.aktivnosti.get(i) instanceof Ispit) && p.aktivnosti.get(i).getPredmet().getNaziv().equals(naziv)){
-							String poruka = "Ispit iz predmeta " + naziv + "je " + p.aktivnosti.get(i).getVremePolaganja().getTime();
-							JOptionPane.showMessageDialog(PregledPredmeta, poruka);
-							break;
-						}
-					}
+					GUIKontroler.otvoriPregledAktivnosti();
 				}
 				
 			});
