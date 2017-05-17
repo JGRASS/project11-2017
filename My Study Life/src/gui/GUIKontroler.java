@@ -11,6 +11,7 @@ import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.raspored.DodajObavezu;
 import predmeti.Predmet;
+import sismeskiKontroler.SistemskiKontroler;
 import sistemskeOperacije.SOAzurirajListuPolozenih;
 import sistemskeOperacije.SOAzurirajProsek;
 import sistemskeOperacije.SOAzurirajTabeluPolozenih;
@@ -44,8 +45,9 @@ public class GUIKontroler {
 	private static OpisAktivnostiGUI opisAktivnosti;
 	private static DodajObavezu dodajObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
-	public static List<Predmet> polozeni = new LinkedList<>();
 	public static List<Obaveza> obaveze = new LinkedList<>();
+	public static List<Predmet> polozeni = new LinkedList<>();
+	public static SistemskiKontroler SK = new SistemskiKontroler();
 	public static Color plavaS = new Color(112, 155, 179);
 	public static Color plavaT = new Color(0, 155, 179);
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
@@ -212,32 +214,32 @@ public class GUIKontroler {
 	 * @return String vrednost koja predstavlja naziv slike
 	 */
 	public static String vratiNazivSlike() {
-		return SOVratiNazivSlike.izvrsi();
+		return SK.vratiNazivSlike();
 	}
 	/**
 	 * Metoda se koristi za ucitavanje predmeta iz fajla
 	 */
 	public static void ucitajPredmete(){
-		SOUcitajPredmete.izvrsi();
+		SK.ucitajPredmete();
 	}
 	/**
 	 * Metoda se korsiti za serializaciju predmeta u file
 	 */
 	public static void serijalizujPredmete(){
-		SOSerijalizujPredmete.izvrsi();
+		SK.serijalizujPredmete();
 		
 	}
 	/**
 	 * Metoda se koristi za ucitavanje polozenih predmeta iz fajla
 	 */
 	public static void ucitajPolozene(){
-		SOUcitajPolozene.izvrsi();
+		SK.ucitajPolozene();
 	}
 	/**
 	 * Metoda se koristi za serializaciju polozenih predmeta u file
 	 */
 	public static void serijalizujPolozene(){
-		SOSerijalizujPolozene.izvrsi();
+		SK.serijalizujPolozene();
 	}
 	/**
 	 * Metoda se koristi za ucitavanje obaveza iz fajla
@@ -255,52 +257,58 @@ public class GUIKontroler {
 	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
 	 */
 	public static void azurirajTabeluPredmet(){
-		SOAzurirajTabeluPredmeta.izvrsi();
+		SK.azurirajTabeluPredmet();
 		
 	}
 	/**
 	 * Metoda se koristi za azuriranje tebele polozenih ispita iz liste polozeni ispiti
 	 */
 	public static void azurirajTabeluPolozeni(){
-		SOAzurirajTabeluPolozenih.izvrsi();
+		SK.azurirajTabeluPolozeni();
 	}
 	/**
 	 * Metoda se koristi za azuriranje liste polozenih predmeta iz liste predmeta
 	 */
 	public static void azurirajListuPolozeni(){
-		SOAzurirajListuPolozenih.izvrsi();
+		SK.azurirajListuPolozeni();
 	}
 	/**
 	 * Metoda otvara novi GUI za dodavanje predmeta
 	 */
 	public static void otvoriDodajPredmetGUI(){
-		SOOtvoriDodajPredmet.izvrsi();
+		SK.otvoriDodajPredmetGUI();
 	}
 	/**
 	 * Metoda otvara novi Gui za izmenu predmeta
 	 */
 	public static void otvoriIzmeniPredmetGUI(){
-		SOOtvoriIzmeniPredmet.izvrsi();
+		SK.otvoriIzmeniPredmetGUI();
 	}
 	/**
 	 * Metoda otvara novi GUI za pregled predmeta
 	 */
 	public static void otvoriPregledPredmeta(){
-		SOOtvoriPregledPredmeta.izvrsi();
+		SK.otvoriPregledPredmeta();
 	}
 	/**
 	 * Metoda sluzi za vracanje prosecne ocene
 	 * @return double vrednost koje predstavlja prosecnu ocenu
 	 */
 	public static double vratiProsek(){
-		return SOVratiProsek.izvrsi();
+		return SK.vratiProsek();
 	}
+	/**
+	 * Metoda sluzi za azuriranje proseka i upisivanje u tektualni editor
+	 */
 	public static void azurirajProsek(){
-		SOAzurirajProsek.izvrsi();
+		SK.azurirajProsek();
 	}
+	/**
+	 * Metoda sluzi za pronalazenje i vracanje zbira ESPB poena
+	 * @return int vrednost kao zbir svih poena
+	 */
 	public static int vratiESPB(){
-		return SOVratiESPB.izvrsi();
+		return SK.vratiESPB();
 	}
-	
-	
+
 }

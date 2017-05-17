@@ -10,10 +10,10 @@ public class SOAzurirajListuPolozenih {
 				GUIKontroler.polozeni.add(GUIKontroler.predmeti.get(i));
 			}
 		}
-//		for (int i = 0; i < GUIKontroler.polozeni.size(); i++) {
-//			if(!GUIKontroler.predmeti.contains(GUIKontroler.polozeni.get(i))){
-//				GUIKontroler.polozeni.remove(i);
-//			}
-//		}
+		for (int i = 0; i < GUIKontroler.polozeni.size(); i++) {
+			if(!GUIKontroler.predmeti.contains(GUIKontroler.polozeni.get(i))){
+				GUIKontroler.polozeni.remove(i);
+			}
+		}
 	}
 }
