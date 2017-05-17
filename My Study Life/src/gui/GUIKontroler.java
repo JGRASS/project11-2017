@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import java.util.GregorianCalendar;
@@ -40,6 +41,8 @@ public class GUIKontroler {
 	private static OpisAktivnostiGUI opisAktivnosti;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
+	public static Color plavaS = new Color(112, 155, 179);
+	public static Color plavaT = new Color(0, 155, 179);
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
@@ -61,45 +64,75 @@ public class GUIKontroler {
 			}
 		});
 	}
+	/**
+	 * Metoda otvara prozor DodajKolokvijumGUI
+	 */
 	public static void otvoriDodajKolokvujumGUI() {
 		dodajKolokvijum = new DodajKolokvijumGUI();
 		dodajKolokvijum.setVisible(true);
 	}
-	
+	/**
+	 * Metoda otvara prozor DodajIspitGUI
+	 */
 	public static void otvoriDodajIspitGUI() {
 		dodajIspit = new DodajIspitGUI();
 		dodajIspit.setVisible(true);
 	}
-	
+	/**
+	 * Metoda otvara prozor OpisAktivnosti
+	 */
 	public static void otvoriOpisAktivnosti() {
 		opisAktivnosti = new OpisAktivnostiGUI();
 		opisAktivnosti.setVisible(true);
 	
 	}
-	
+	/**
+	 * Metoda vraca sve studenske aktivnosti
+	 * @return Listu aktivnosti tipa Aktivnost
+	 */
 	public static List<Aktivnost> vratiSveAktivnosti(){
 		return planer.vratiSveAktivnosti();
 	}
-	
+	/**
+	 * Metoda vraca trenutno vreme
+	 * @return Trenutno vreme u vidu GregorianCalendar-a
+	 */
 	public static GregorianCalendar vratiTrenutnoVreme(){
 		return planer.vratiGc();
 	}
-	
+	/**
+	 * Metoda vraca matricu mesecnih datuma
+	 * @return Matricu mesecnih datuma u obliku String[][]
+	 */
 	public static String[][] vratiDatume(){
 		return planer.vratiDatume();
 	}
-	
+	/**
+	 * Metoda koja proverava da li su dva datuma istog dana
+	 * @param g1 prvi datum GregorianCalendar
+	 * @param g2 drugi datim GregorianCalendar
+	 * @return boolean vrednost u zavisnosti od podudaranja datuma
+	 */
 	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
 		return planer.istiDan(g1, g2);
 	}
-	
+	/**
+	 * Metoda popunjava matricu mesecnih datuma
+	 */
 	public static void popuniMatricuDatuma(){
 		planer.popuniMatricuDatuma();
 	}
-	
+	/**
+	 * Metoda pronalazi datu aktivnost na osnuvu vremena njenog odrzavanja
+	 * @param g datum odrzavanja aktivnosti GregorianCalendar
+	 * @return Aktivnost
+	 */
 	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
 		return planer.pronadjiAktivnost(g);
 	}
+	/**
+	 * Metoda koja serijalizuje aktivnosti
+	 */
 	public static void serijalizujAktivnosti(){
 		planer.serijalizujAktivnosti();
 	}
