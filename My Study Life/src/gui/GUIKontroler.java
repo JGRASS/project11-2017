@@ -202,7 +202,10 @@ public class GUIKontroler {
 	public static void serijalizujObaveze(){
 		SK.serijalizujObaveze();
 	}
-	
+	/**
+	 * Sluzi za azuriranje tabele pri unosu nove obaveze
+	 * @param Nova obaveza
+	 */
 	public static void azurirajTabeluObaveza(Obaveza o){
 		int sat = Integer.parseInt(o.getSat());
 		switch (o.getDan()) {
@@ -230,7 +233,10 @@ public class GUIKontroler {
 
 		}
 	}
-	
+		/**
+		 * Sluzi za brisanje iz tabele obaveze
+		 * @param Obaveza koju zelimo da izbacimo
+		 */
 	public static void izbrisiIzTabeleObaveza(Obaveza o){
 		int sat = Integer.parseInt(o.getSat());
 		switch (o.getDan()) {
@@ -258,7 +264,9 @@ public class GUIKontroler {
 
 		}
 	}
-	
+		/**
+		 * Sluzi za brisanje iz tabele ako tako sto selektujemo zeljenu celiju u tabeli
+		 */
 	public static void izvrsiObrisiObavezu(){
 		int sat = GlavniProzorGUI.tableraspored.getSelectedRow();
 		int dan = GlavniProzorGUI.tableraspored.getSelectedColumn();
