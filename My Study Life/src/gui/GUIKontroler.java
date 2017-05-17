@@ -102,6 +102,10 @@ public class GUIKontroler {
 		dodajObavezu.setVisible(true);
 	
 	}
+	
+	public static void dodajObavezu(Obaveza o){
+		SK.dodajObavezu(o);
+	}
 	/**
 	 * Metoda vraca sve studenske aktivnosti
 	 * @return Listu aktivnosti tipa Aktivnost
