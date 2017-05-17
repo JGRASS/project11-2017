@@ -50,6 +50,10 @@ public class PlanerTabelaModel extends AbstractTableModel {
 	public String getColumnName(int index) {
 		return dani[index];
 	}
+	/**
+	 * Metoda koja azurira Planer
+	 * @param datumi Matrica mesecnih datuma
+	 */
 	public void azurirajTabelu(String[][] datumi){
 		this.datumi = datumi;
 		fireTableDataChanged();

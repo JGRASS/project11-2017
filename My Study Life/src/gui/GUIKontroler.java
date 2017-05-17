@@ -16,6 +16,7 @@ import gui.predmetFunkcije.DodajPredmetGUI;
 import gui.predmetFunkcije.IzmeniPredmetGUI;
 import gui.predmetFunkcije.PregledPredmeta;
 import gui.raspored.DodajObavezu;
+import gui.raspored.IzbrisiObavezu;
 import predmeti.Predmet;
 import sismeskiKontroler.SistemskiKontroler;
 
@@ -27,17 +28,21 @@ import sismeskiKontroler.SistemskiKontroler;
  * @version 1.0.0
  *
  */
-public class GUIKontroler {
 
-	private static Planer planer;
-	private static GlavniProzorGUI glavniProzor; // Ovde pravite staticke
+ // Ovde pravite staticke
 													// promeljive. Njima posle
 													// pristupamo pomocu
 													// GuiKontroler.xxx iz bilo
 													// koje druge klase.
+
+public class GUIKontroler {
+	
+	private static Planer planer  = SistemskiKontroler.planer;
+	private static GlavniProzorGUI glavniProzor ;
 	private static DodajKolokvijumGUI dodajKolokvijum;
 	private static DodajIspitGUI dodajIspit;
 	private static OpisAktivnostiGUI opisAktivnosti;
+	private static PregledKolokvijumaGUI pregledKolokvijuma;
 	private static DodajObavezu dodajObavezu;
 	//public static List<Predmet> predmeti = new LinkedList<>();
 	//public static List<Predmet> polozeni = new LinkedList<>(); // Svuda gde
@@ -47,27 +52,43 @@ public class GUIKontroler {
 																// sa
 																// GUIKontolera
 	public static SistemskiKontroler SK = new SistemskiKontroler();
+
+	private static IzbrisiObavezu izbrisiObavezu;
+	public static List<Predmet> predmeti = new LinkedList<>();
+	public static List<Obaveza> obaveze = new LinkedList<>();
+	public static List<Predmet> polozeni = new LinkedList<>();
+
+
 	public static Color plavaT = new Color(0, 155, 179);
-	public static Color plavaS = new Color(112, 155, 179);
+
 
 	// Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom
 	// zatvaranja/otvaranja programa.
 	// Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
+
+	public static Color plavaS = new Color(112, 155, 179);
+
 	public static void main(String[] args) {
+		postaviGc();
 		ucitajPredmete();
 		ucitajPolozene();
+		ucitajAktivnosti();
 		ucitajObaveze();
+
+
+
+		popuniMatricuDatuma();
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					planer = new Planer();
 					glavniProzor = new GlavniProzorGUI();
 					glavniProzor.setVisible(true);
 
+
 					planer.postaviGc(new GregorianCalendar());
-					planer.popuniMatricuDatuma();
-					planer.ucitajAktivnosti();
+					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -101,44 +122,61 @@ public class GUIKontroler {
 	}
 
 	/**
-	 * Metoda otvara prozor OpisAktivnosti
+	 * Metoda otvara prozor PregledAktivnostiGUIGUI
 	 */
+	public static void otvoriPregledAktivnosti(){
+		pregledKolokvijuma = new PregledKolokvijumaGUI();
+		pregledKolokvijuma.setVisible(true);
+	}
 	public static void otvoriDodajObavezu() {
 		dodajObavezu = new DodajObavezu();
 		dodajObavezu.setVisible(true);
 
 	}
 
-	public static void dodajObavezu(Obaveza o) {
+	
+	public static void dodajObavezu(Obaveza o){
+
 		SK.dodajObavezu(o);
 	}
 
+
+	
+	public static void izbrisiObavezu(Obaveza o){
+		SK.izbrisiObavezu(o);
+	}
 	/**
 	 * Metoda vraca sve studenske aktivnosti
 	 * 
 	 * @return Listu aktivnosti tipa Aktivnost
 	 */
-	public static List<Aktivnost> vratiSveAktivnosti() {
-		return planer.vratiSveAktivnosti();
+	public static List<Aktivnost> vratiSveAktivnosti(){
+		return SistemskiKontroler.vratiSveAktivnosti();
+
 	}
+
 
 	/**
 	 * Metoda vraca trenutno vreme
 	 * 
 	 * @return Trenutno vreme u vidu GregorianCalendar-a
 	 */
-	public static GregorianCalendar vratiTrenutnoVreme() {
-		return planer.vratiGc();
+	public static GregorianCalendar vratiTrenutnoVreme(){
+		return SistemskiKontroler.vratiTrenutnoVreme();
+
 	}
+
 
 	/**
 	 * Metoda vraca matricu mesecnih datuma
 	 * 
 	 * @return Matricu mesecnih datuma u obliku String[][]
 	 */
-	public static String[][] vratiDatume() {
-		return planer.vratiDatume();
+	public static String[][] vratiDatume(){
+		return SistemskiKontroler.vratiDatume();
+
 	}
+
 
 	/**
 	 * Metoda koja proverava da li su dva datuma istog dana
@@ -149,16 +187,19 @@ public class GUIKontroler {
 	 *            drugi datim GregorianCalendar
 	 * @return boolean vrednost u zavisnosti od podudaranja datuma
 	 */
-	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2) {
-		return planer.istiDan(g1, g2);
+	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
+		return SistemskiKontroler.istiDan(g1, g2);
+
 	}
 
 	/**
 	 * Metoda popunjava matricu mesecnih datuma
 	 */
-	public static void popuniMatricuDatuma() {
-		planer.popuniMatricuDatuma();
+	public static void popuniMatricuDatuma(){
+		SistemskiKontroler.popuniMatricuDatuma();
+
 	}
+
 
 	/**
 	 * Metoda pronalazi datu aktivnost na osnuvu vremena njenog odrzavanja
@@ -167,27 +208,44 @@ public class GUIKontroler {
 	 *            datum odrzavanja aktivnosti GregorianCalendar
 	 * @return Aktivnost
 	 */
-	public static Aktivnost pronadjiAktivnost(GregorianCalendar g) {
-		return planer.pronadjiAktivnost(g);
+	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
+		return SistemskiKontroler.pronadjiAktivnost(g);
+
 	}
 
+
+	
+	
+	public static void postaviGc (){
+		SistemskiKontroler.postaviGc();
+	}
 	/**
 	 * Metoda koja serijalizuje aktivnosti
 	 */
-	public static void serijalizujAktivnosti() {
-		planer.serijalizujAktivnosti();
+
+	public static void serijalizujAktivnosti(){
+		SistemskiKontroler.serijalizujAktivnosti();
+
 	}
 
+
+	
+	
+	public static void ucitajAktivnosti(){
+		SistemskiKontroler.ucitajAktivnosti();
+	}
+	
 	/**
 	 * Metoda azurira jTable
 	 * 
 	 * @param teble
 	 *            prestvlja tabelu koja se azurira
 	 */
+
 	public static void azurirajTabelu(MojaTabela table) {
-		PlanerTabelaModel model = (PlanerTabelaModel) table.getModel();
-		model.azurirajTabelu(vratiDatume());
+		SistemskiKontroler.azurirajTabelu(table);
 	}
+
 
 	/**
 	 * Metoda koja vraca selektovani datum u tabeli MojaTabela
@@ -195,12 +253,9 @@ public class GUIKontroler {
 	 * @return datum u obliku int
 	 */
 	public static GregorianCalendar selektovanDatum(MojaTabela table) {
-		GregorianCalendar g = new GregorianCalendar();
-		int datum = Integer.parseInt((String) table.getValueAt(table.getSelectedRow(), table.getSelectedColumn()));
-		g.set(GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR),
-				GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH), datum);
-		return g;
+		return SistemskiKontroler.selektovanDatum(table);
 	}
+
 
 	/**
 	 * Metoda koja vraca odredjeni GregorianCalendar(godina,mesec,dan) u String
@@ -210,13 +265,10 @@ public class GUIKontroler {
 	 *            Datum koji se zeli prikazati u vidu Stringa
 	 * @return Datum u String formatu
 	 */
-	public static String vratiDatumString(GregorianCalendar g) {
-		String vreme = "";
-		vreme += g.get(GregorianCalendar.YEAR) + "/";
-		vreme += g.get(GregorianCalendar.MONTH) + "/";
-		vreme += g.get(GregorianCalendar.DATE) + " ";
-		return vreme;
+	public static String vratiDatumString(GregorianCalendar g){
+		return SistemskiKontroler.vratiDatumString(g);
 	}
+
 
 	/**
 	 * Metoda koja vraca odredjeni GregorianCalendar(sat,minut) u String obliku
@@ -225,12 +277,12 @@ public class GUIKontroler {
 	 *            Datum koji se zeli prikazati u vidu Stringa
 	 * @return Vreme u String formatu
 	 */
-	public static String vratiVremeString(GregorianCalendar g) {
-		String vreme = "";
-		vreme += g.get(GregorianCalendar.HOUR) + ":";
-		vreme += g.get(GregorianCalendar.MINUTE);
-		return vreme;
+
+	public static String vratiVremeString(GregorianCalendar g){
+		return SistemskiKontroler.vratiVremeString(g);
+
 	}
+
 
 	/**
 	 * Metoda koja nalazi index predmeta(pozicija u listi) na osnovu njegovog
@@ -240,12 +292,9 @@ public class GUIKontroler {
 	 *            Naziv predmeta
 	 * @return index predmeta u listi predmeta
 	 */
-	public static int vratiIndexPredmeta(String naziv) {
-		for (int i = 0; i < SK.predmeti.size(); i++) {
-			if (SK.predmeti.get(i).getNaziv().equals(naziv))
-				return i;
-		}
-		return -1;
+
+	public static int vratiIndexPredmeta(String naziv){
+		return SistemskiKontroler.vratiIndexPredmeta(naziv);
 	}
 
 	/**
@@ -302,7 +351,139 @@ public class GUIKontroler {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Metoda se koristi za azuriranje tabele predmeta iz liste predmet
+=======
+	 * Sluzi za azuriranje tabele pri unosu nove obaveze
+	 * @param Nova obaveza
+	 */
+	public static void azurirajTabeluObaveza(Obaveza o){
+		int sat = Integer.parseInt(o.getSat());
+		switch (o.getDan()) {
+		case "NED":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 0);
+			break;
+		case "PON":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 1);
+			break;
+		case "UTO":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 2);
+			break;
+		case "SRE":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 3);
+			break;
+		case "CET":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 4);
+			break;
+		case "PET":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 5);
+			break;
+		case "SUB":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 6);
+			break;
+
+		}
+	}
+		/**
+		 * Sluzi za brisanje iz tabele obaveze
+		 * @param Obaveza koju zelimo da izbacimo
+		 */
+	public static void izbrisiIzTabeleObaveza(Obaveza o){
+		int sat = Integer.parseInt(o.getSat());
+		switch (o.getDan()) {
+		case "NED":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 0);
+			break;
+		case "PON":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 1);
+			break;
+		case "UTO":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 2);
+			break;
+		case "SRE":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 3);
+			break;
+		case "CET":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 4);
+			break;
+		case "PET":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 5);
+			break;
+		case "SUB":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 6);
+			break;
+
+		}
+	}
+		/**
+		 * Sluzi za brisanje iz tabele ako tako sto selektujemo zeljenu celiju u tabeli
+		 */
+	public static void izvrsiObrisiObavezu(){
+		int sat = GlavniProzorGUI.tableraspored.getSelectedRow();
+		int dan = GlavniProzorGUI.tableraspored.getSelectedColumn();
+		if (sat != -1 && dan != -1) {
+			GlavniProzorGUI.tableraspored.setValueAt("", sat, dan);
+		}
+		String s = String.valueOf(sat);
+		switch (dan) {
+		case 0:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("NED") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 1:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("PON") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 2:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("UTO") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;	
+		case 3:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("SRE") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 4:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("CET") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 5:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("PET") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 6:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("SUB") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+
+		case -1:
+		//	GUIKontroler.otvoriIzbrisiObavezu();
+			break;
+		}
+	}
+	/**
+	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
+>>>>>>> branch 'master' of https://github.com/JGRASS/project11-2017
 	 */
 	public static void azurirajTabeluPredmet() {
 		SK.azurirajTabeluPredmet();

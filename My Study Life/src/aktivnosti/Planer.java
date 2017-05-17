@@ -102,39 +102,39 @@ public class Planer {
 		else
 			throw new RuntimeException("Aktivnost mora biti razlicita od null");
 	}
-	/**
-	 * Proverava da su dva datuma istog dana
-	 * @param g1 Datum kao GregorianCalendar
-	 * @param g2 Datum kao GregorianCalendar
-	 * @return Boolean vrednost u zavisnosti od poklapanja unetih datuma
-	 */
-	public boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
-		return SOIstiDan.izvrsi(g1, g2);
-	}
-	/**
-	 * Pronalazi aktivnost u listi studenskih aktivnosti na osnuvu datuma odrzavanja
-	 * @param g Datum odrzavanja aktivnosti kao GregorianCalendar
-	 * @return Aktivnost ili null ako aktivnost nije pronadjena
-	 */
-	public  Aktivnost pronadjiAktivnost(GregorianCalendar g){
-		return SOPronadjiAktivnost.izvrsi(aktivnosti, g);
-	}
-	/**
-	 * Popunjava matricu mesecnih datuma
-	 */
-	public void popuniMatricuDatuma(){
-		SOPopuniMatricuDatuma.izvrsi(gc, datumi);
-	}
-	/**
-	 * Deserijalizuje listu studenskih aktivnosti
-	 */
-	public  void ucitajAktivnosti(){
-		postaviAktivnosti(SOUcitajAktivnosti.izvrsi());
-	}
-	/**
-	 * Serijalizuje listu studenskih aktivnosti
-	 */
-	public void serijalizujAktivnosti(){
-		SOSerijalizujAktivnosti.izvrsi(aktivnosti);
-	}
+//	/**
+//	 * Proverava da su dva datuma istog dana
+//	 * @param g1 Datum kao GregorianCalendar
+//	 * @param g2 Datum kao GregorianCalendar
+//	 * @return Boolean vrednost u zavisnosti od poklapanja unetih datuma
+//	 */
+//	public boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
+//		return SOIstiDan.izvrsi(g1, g2);
+//	}
+//	/**
+//	 * Pronalazi aktivnost u listi studenskih aktivnosti na osnuvu datuma odrzavanja
+//	 * @param g Datum odrzavanja aktivnosti kao GregorianCalendar
+//	 * @return Aktivnost ili null ako aktivnost nije pronadjena
+//	 */
+//	public  Aktivnost pronadjiAktivnost(GregorianCalendar g){
+//		return SOPronadjiAktivnost.izvrsi(aktivnosti, g);
+//	}
+//	/**
+//	 * Popunjava matricu mesecnih datuma
+//	 */
+//	public void popuniMatricuDatuma(){
+//		SOPopuniMatricuDatuma.izvrsi(gc, datumi);
+//	}
+//	/**
+//	 * Deserijalizuje listu studenskih aktivnosti
+//	 */
+//	public  void ucitajAktivnosti(){
+//		postaviAktivnosti(SOUcitajAktivnosti.izvrsi());
+//	}
+//	/**
+//	 * Serijalizuje listu studenskih aktivnosti
+//	 */
+//	public void serijalizujAktivnosti(){
+//		SOSerijalizujAktivnosti.izvrsi(aktivnosti);
+//	}
 }

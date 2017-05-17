@@ -92,19 +92,18 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel labelBrBodova;
 	public static JTextField textFieldBrojBodova;
 	private JButton btnDodajObavezu;
-	private JButton btnIzbrisiObavezu;
-	private String[][] raspored = new String[7][7];
-	private JTable tableraspored;
+	public static JTable tableraspored;
 	private JLabel label_14;
 	private JLabel label_15;
 	private JLabel label_16;
 	private JLabel label_17;
 	private JLabel label_18;
+	private JButton btnIzbrisiObavezu;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
 		setTitle("MyStudyLife");
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
@@ -270,8 +269,8 @@ public class GlavniProzorGUI extends JFrame {
 			panelRasporedObaveza.add(getLabel_17());
 			panelRasporedObaveza.add(getLabel_18());
 			panelRasporedObaveza.add(getBtnDodajObavezu());
-			panelRasporedObaveza.add(getBtnIzbrisiObavezu());
 			panelRasporedObaveza.add(getTableraspored());
+			panelRasporedObaveza.add(getBtnIzbrisiObavezu());
 		}
 		return panelRasporedObaveza;
 	}
@@ -993,22 +992,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnDodajObavezu;
 	}
-	private JButton getBtnIzbrisiObavezu() {
-		if (btnIzbrisiObavezu == null) {
-			btnIzbrisiObavezu = new JButton();
-			btnIzbrisiObavezu.setToolTipText("Obrisi predmet");
-			btnIzbrisiObavezu.setPreferredSize(new Dimension(140, 23));
-			btnIzbrisiObavezu.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnIzbrisiObavezu.setFocusPainted(false);
-			btnIzbrisiObavezu.setEnabled(false);
-			btnIzbrisiObavezu.setBackground(new Color(0, 155, 179));
-			btnIzbrisiObavezu.setBounds(752, 158, 60, 35);
-			Image img = new ImageIcon(this.getClass().getResource("/obrisi.png")).getImage();
-			btnIzbrisiObavezu.setIcon(new ImageIcon(img));
-		}
-		return btnIzbrisiObavezu;
-	}
-	private JTable getTableraspored() {
+	private static JTable getTableraspored() {
 		if (tableraspored == null) {
 			tableraspored = new JTable();
 			tableraspored.setRowHeight(38);
@@ -1030,9 +1014,14 @@ public class GlavniProzorGUI extends JFrame {
 					{null, null, null, null, null, null, null},
 				},
 				new String[] {
-					"Ponedeljak", "Utorak", "Sreda", "Cetvratk", "Petak", "Subota", "Nedelja"
+						"Nedelja", "Ponedeljak", "Utorak", "Sreda", "Cetvratk", "Petak", "Subota"
 				}
 			) {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 2715811565171747797L;
+			
 				boolean[] columnEditables = new boolean[] {
 					false, false, false, false, false, false, false
 				};
@@ -1102,5 +1091,24 @@ public class GlavniProzorGUI extends JFrame {
 			label_18.setBounds(10, 386, 46, 40);
 		}
 		return label_18;
+	}
+	private JButton getBtnIzbrisiObavezu() {
+		if (btnIzbrisiObavezu == null) {
+			btnIzbrisiObavezu = new JButton();
+			btnIzbrisiObavezu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.izvrsiObrisiObavezu();
+				}
+			});
+			btnIzbrisiObavezu.setToolTipText("Obrisi predmet");
+			btnIzbrisiObavezu.setPreferredSize(new Dimension(140, 23));
+			btnIzbrisiObavezu.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			btnIzbrisiObavezu.setFocusPainted(false);
+			btnIzbrisiObavezu.setBackground(new Color(0, 155, 179));
+			btnIzbrisiObavezu.setBounds(752, 208, 60, 35);
+			Image img = new ImageIcon(this.getClass().getResource("/obrisi.png")).getImage();
+			btnIzbrisiObavezu.setIcon(new ImageIcon(img));
+		}
+		return btnIzbrisiObavezu;
 	}
 }
