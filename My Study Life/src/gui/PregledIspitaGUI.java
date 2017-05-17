@@ -54,7 +54,7 @@ public class PregledIspitaGUI extends JFrame {
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
 		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
-		String nazivPredmeta = GUIKontroler.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
+		String nazivPredmeta = GUIKontroler.SK.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
 		for(int i=0;i<sveAktivnosti.size();i++){
 			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Ispit)){
 				ispiti.add((Ispit)sveAktivnosti.get(i));
