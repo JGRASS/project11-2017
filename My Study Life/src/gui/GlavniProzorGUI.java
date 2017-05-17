@@ -275,6 +275,7 @@ public class GlavniProzorGUI extends JFrame {
 			panelRasporedObaveza.add(getTableraspored());
 			panelRasporedObaveza.add(getBtnIzbrisiObavezu());
 			panelRasporedObaveza.add(getBtnUcitaj());
+			
 		}
 		return panelRasporedObaveza;
 	}
@@ -840,8 +841,6 @@ public class GlavniProzorGUI extends JFrame {
 		picLabelPolozeniIspiti.setLocation(0, 0);
 		// picLabelPolozeniIspiti.setLocation(-545, 5);
 		picLabelPolozeniIspiti.setSize(850, 600);
-		JLabel picLabelRasporedNastave = new JLabel(new ImageIcon(img));
-		picLabelRasporedNastave.setSize(850, 600);
 		JLabel picLabelPredmeti = new JLabel(new ImageIcon(img));
 		picLabelPredmeti.setLocation(0, 0);
 		// picLabelPredmeti.setLocation(-545, 5);
@@ -850,8 +849,10 @@ public class GlavniProzorGUI extends JFrame {
 		panelPlaner.add(picLabelPlaner);
 		getPanelPolozeniIspiti().setLayout(null);
 		panelPolozeniIspiti.add(picLabelPolozeniIspiti);
+		JLabel picLabelRasporedNastave = new JLabel(new ImageIcon(img));
+		picLabelRasporedNastave.setSize(850, 600);
 		// Ovde palite pozadinu na vasem jPanelu!!!
-		// panelRasporedNastave.add(picLabelRasporedNastave);
+		panelRasporedObaveza.add(picLabelRasporedNastave);
 	}
 
 	private JPanel getPanelTitleBar() {
