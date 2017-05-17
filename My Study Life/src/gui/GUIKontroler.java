@@ -262,9 +262,9 @@ public class GUIKontroler {
 	public static void izvrsiObrisiObavezu(){
 		int sat = GlavniProzorGUI.tableraspored.getSelectedRow();
 		int dan = GlavniProzorGUI.tableraspored.getSelectedColumn();
-		//if (sat != -1 && dan != -1) {
+		if (sat != -1 && dan != -1) {
 			GlavniProzorGUI.tableraspored.setValueAt("", sat, dan);
-		//}
+		}
 		String s = String.valueOf(sat);
 		switch (dan) {
 		case 0:
@@ -317,8 +317,8 @@ public class GUIKontroler {
 			}
 			break;
 
-		default:
-			System.out.println("Selektujte celiju sa obavezom koju zelite da izbrisete");
+		case -1:
+			GUIKontroler.otvoriIzbrisiObavezu();
 			break;
 		}
 	}
