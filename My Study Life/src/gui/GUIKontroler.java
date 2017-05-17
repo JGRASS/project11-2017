@@ -29,6 +29,7 @@ public class GUIKontroler {
 	private static DodajIspitGUI dodajIspit;
 	private static OpisAktivnostiGUI opisAktivnosti;
 	private static PregledKolokvijumaGUI pregledKolokvijuma;
+	private static PregledIspitaGUI pregledIspita;
 	private static DodajObavezu dodajObavezu;
 	private static IzbrisiObavezu izbrisiObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
@@ -80,9 +81,16 @@ public class GUIKontroler {
 	/**
 	 * Metoda otvara prozor PregledAktivnostiGUIGUI
 	 */
-	public static void otvoriPregledAktivnosti(){
+	public static void otvoriPregledKolokvijuma(){
 		pregledKolokvijuma = new PregledKolokvijumaGUI();
 		pregledKolokvijuma.setVisible(true);
+	}
+	/**
+	 * Metoda otvara prozr PregledIspitaGUI
+	 */
+	public static void otvoriPregledIspita() {
+		pregledIspita = new PregledIspitaGUI();
+		pregledIspita.setVisible(true);
 	}
 	public static void otvoriDodajObavezu() {
 		dodajObavezu = new DodajObavezu();

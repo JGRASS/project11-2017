@@ -337,7 +337,7 @@ public class PregledPredmeta extends JFrame {
 			btnKolokvijum.setForeground(Color.WHITE);
 			btnKolokvijum.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.otvoriPregledAktivnosti();
+					GUIKontroler.otvoriPregledKolokvijuma();
 				}
 			});
 			btnKolokvijum.setBounds(333, 252, 110, 35);
@@ -353,7 +353,7 @@ public class PregledPredmeta extends JFrame {
 			btnIspit.setForeground(Color.WHITE);
 			btnIspit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.otvoriPregledAktivnosti();
+					GUIKontroler.otvoriPregledIspita();
 				}
 				
 			});
