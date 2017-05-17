@@ -46,11 +46,11 @@ public class SistemskiKontroler {
 		SOSerijalizujPolozene.izvrsi();
 	}
 	
-	public static void ucitajObaveze(){
+	public void ucitajObaveze(){
 		SOUcitajObaveze.izvrsi();
 	}
 
-	public static void serijalizujObaveze(){
+	public void serijalizujObaveze(){
 		SOSerijalizujObaveze.izvrsi();
 	}
 	
