@@ -27,6 +27,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class PregledKolokvijumaGUI extends JFrame {
 
@@ -36,8 +37,9 @@ public class PregledKolokvijumaGUI extends JFrame {
 	private JLabel lblX;
 	private List<Kolokvijum> kolokvijumi = new LinkedList<>();
 	private JPanel panel_1;
-	private JTextArea textArea;
 	private JButton btnNewButton;
+	private JScrollPane scrollPane;
+	private JTextArea textArea;
 	
 	public PregledKolokvijumaGUI() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,17 +105,10 @@ public class PregledKolokvijumaGUI extends JFrame {
 			panel_1 = new JPanel();
 			panel_1.setBounds(0, 25, 450, 275);
 			panel_1.setLayout(null);
-			panel_1.add(getTextArea());
 			panel_1.add(getBtnNewButton());
+			panel_1.add(getScrollPane());
 		}
 		return panel_1;
-	}
-	private JTextArea getTextArea() {
-		if (textArea == null) {
-			textArea = new JTextArea();
-			textArea.setBounds(10, 10, 430, 225);
-		}
-		return textArea;
 	}
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
@@ -128,5 +123,31 @@ public class PregledKolokvijumaGUI extends JFrame {
 			btnNewButton.setBounds(170, 240, 110, 35);
 		}
 		return btnNewButton;
+	}
+
+	private JTextArea getTextArea() {
+		if (textArea == null) {
+			textArea = new JTextArea();
+			textArea.setEditable(false);
+			textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
+			textArea.setBackground(SystemColor.menu);
+			String tekst = "m";
+			for(int i=0;i<kolokvijumi.size();i++){
+				Kolokvijum k = kolokvijumi.get(i);
+				tekst+="Datum: "+GUIKontroler.vratiDatumString(k.getVremePolaganja())
+				+"+   Broj poena: "+k.vratiBrojPoena()+"   Mesto: "+k.getMesto()+
+				"   Vreme: "+GUIKontroler.vratiVremeString(k.getVremePolaganja())+"\n\n";
+			}
+			textArea.setText(tekst);
+		}
+		return textArea;
+	}
+	private JScrollPane getScrollPane() {
+		if (scrollPane == null) {
+			scrollPane = new JScrollPane(textArea);
+			scrollPane.setBounds(10, 11, 430, 224);
+			scrollPane.setViewportView(getTextArea());
+		}
+		return scrollPane;
 	}
 }
