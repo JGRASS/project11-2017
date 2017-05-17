@@ -28,6 +28,7 @@ public class GUIKontroler {
 	private static DodajKolokvijumGUI dodajKolokvijum;
 	private static DodajIspitGUI dodajIspit;
 	private static OpisAktivnostiGUI opisAktivnosti;
+	private static PregledKolokvijumaGUI pregledKolokvijuma;
 	private static DodajObavezu dodajObavezu;
 	private static IzbrisiObavezu izbrisiObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
@@ -76,7 +77,13 @@ public class GUIKontroler {
 		opisAktivnosti.setVisible(true);
 	
 	}
-	
+	/**
+	 * Metoda otvara prozor PregledAktivnostiGUIGUI
+	 */
+	public static void otvoriPregledAktivnosti(){
+		pregledKolokvijuma = new PregledKolokvijumaGUI();
+		pregledKolokvijuma.setVisible(true);
+	}
 	public static void otvoriDodajObavezu() {
 		dodajObavezu = new DodajObavezu();
 		dodajObavezu.setVisible(true);
