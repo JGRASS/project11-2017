@@ -184,6 +184,34 @@ public class GUIKontroler {
 	public static void serijalizujObaveze(){
 		SK.serijalizujObaveze();
 	}
+	
+	public static void azurirajTabeluObaveza(Obaveza o){
+		int sat = Integer.parseInt(o.getSat());
+		switch (o.getDan()) {
+		case "NED":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + o.getMesto(), sat-8, 0);
+			break;
+		case "PON":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + o.getMesto(), sat-8, 1);
+			break;
+		case "UTO":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + o.getMesto(), sat-8, 2);
+			break;
+		case "SRE":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + o.getMesto(), sat-8, 3);
+			break;
+		case "CET":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + o.getMesto(), sat-8, 4);
+			break;
+		case "PET":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + o.getMesto(), sat-8, 5);
+			break;
+		case "SUB":
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + o.getMesto(), sat-8, 6);
+			break;
+
+		}
+	}
 	/**
 	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
 	 */

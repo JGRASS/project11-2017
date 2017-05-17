@@ -130,6 +130,7 @@ public class DodajObavezu extends JFrame {
 						o.setMinut((String)comboBoxMinut.getSelectedItem());
 						o.setMesto(txtMesto.getText());
 						GUIKontroler.dodajObavezu(o);
+						GUIKontroler.azurirajTabeluObaveza(o);
 					}else{
 						System.out.println("Morate popuniti sva polja, i dan ukucati u formatu: PON, UTO, SRE ...");
 					}

@@ -93,8 +93,7 @@ public class GlavniProzorGUI extends JFrame {
 	public static JTextField textFieldBrojBodova;
 	private JButton btnDodajObavezu;
 	private JButton btnIzbrisiObavezu;
-	private String[][] raspored = new String[7][7];
-	private JTable tableraspored;
+	public static JTable tableraspored;
 	private JLabel label_14;
 	private JLabel label_15;
 	private JLabel label_16;
@@ -1010,7 +1009,7 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return btnIzbrisiObavezu;
 	}
-	private JTable getTableraspored() {
+	private static JTable getTableraspored() {
 		if (tableraspored == null) {
 			tableraspored = new JTable();
 			tableraspored.setRowHeight(38);
@@ -1032,9 +1031,14 @@ public class GlavniProzorGUI extends JFrame {
 					{null, null, null, null, null, null, null},
 				},
 				new String[] {
-					"Ponedeljak", "Utorak", "Sreda", "Cetvratk", "Petak", "Subota", "Nedelja"
+						"Nedelja", "Ponedeljak", "Utorak", "Sreda", "Cetvratk", "Petak", "Subota"
 				}
 			) {
+				/**
+				 * 
+				 */
+				private static final long serialVersionUID = 2715811565171747797L;
+			
 				boolean[] columnEditables = new boolean[] {
 					false, false, false, false, false, false, false
 				};
