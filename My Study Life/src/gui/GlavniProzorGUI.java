@@ -268,6 +268,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel getPanelPolozeniIspiti() {
 		if (panelPolozeniIspiti == null) {
 			panelPolozeniIspiti = new JPanel();
+			panelPolozeniIspiti.setBorder(null);
 			panelPolozeniIspiti.add(getScrollPanePolozeni());
 			panelPolozeniIspiti.add(getLblProsek());
 			panelPolozeniIspiti.add(getTextFieldProsek());
@@ -530,7 +531,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnDodajKolokvijum.setForeground(Color.WHITE);
 			btnDodajKolokvijum.setBackground(new Color(112, 155, 179));
 			btnDodajKolokvijum.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnDodajKolokvijum.setBounds(684, 459, 60, 35);
+			btnDodajKolokvijum.setBounds(614, 459, 60, 35);
 			btnDodajKolokvijum.setFocusPainted(false);
 			btnDodajKolokvijum.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -551,9 +552,9 @@ public class GlavniProzorGUI extends JFrame {
 			Image img = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
 			btnDodajIspit.setIcon(new ImageIcon(img));
 			btnDodajKolokvijum.setForeground(Color.WHITE);
-			btnDodajIspit.setBackground(new Color(0, 155, 179));
+			btnDodajIspit.setBackground(GUIKontroler.plavaT);
 			btnDodajIspit.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnDodajIspit.setBounds(614, 459, 60, 35);
+			btnDodajIspit.setBounds(684, 459, 60, 35);
 			btnDodajIspit.setFocusPainted(false);
 			btnDodajIspit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -575,7 +576,7 @@ public class GlavniProzorGUI extends JFrame {
 			Image img = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
 			btnDodaj.setIcon(new ImageIcon(img));
 			btnDodaj.setBounds(752, 32, 60, 35);
-			btnDodaj.setBackground(new Color(0, 155, 179));
+			btnDodaj.setBackground(GUIKontroler.plavaS);
 			btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnDodaj.setFocusPainted(false);
 			btnDodaj.addActionListener(new ActionListener() {
@@ -701,7 +702,7 @@ public class GlavniProzorGUI extends JFrame {
 		if (lblKolokvijumBoja == null) {
 			lblKolokvijumBoja = new JLabel("");
 			lblKolokvijumBoja.setBounds(70, 461, 15, 15);
-			lblKolokvijumBoja.setBackground(new Color(112, 155, 179));
+			lblKolokvijumBoja.setBackground(GUIKontroler.plavaS);
 			lblKolokvijumBoja.setOpaque(true);
 			lblKolokvijumBoja.setBorder(new LineBorder(Color.WHITE));
 		}
@@ -721,7 +722,7 @@ public class GlavniProzorGUI extends JFrame {
 		if (lblIspitBoja == null) {
 			lblIspitBoja = new JLabel("");
 			lblIspitBoja.setOpaque(true);
-			lblIspitBoja.setBackground(new Color(0, 155, 179));
+			lblIspitBoja.setBackground(GUIKontroler.plavaT);
 			lblIspitBoja.setBounds(70, 478, 15, 15);
 			lblIspitBoja.setBorder(new LineBorder(Color.WHITE));
 		}

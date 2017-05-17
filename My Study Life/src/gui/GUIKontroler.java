@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 
 import java.util.GregorianCalendar;
@@ -45,6 +46,8 @@ public class GUIKontroler {
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
 	public static List<Obaveza> obaveze = new LinkedList<>();
+	public static Color plavaS = new Color(112, 155, 179);
+	public static Color plavaT = new Color(0, 155, 179);
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
