@@ -140,7 +140,7 @@ public class IzbrisiObavezu extends JFrame {
 						GUIKontroler.izbrisiIzTabeleObaveza(o);
 						dispose();
 					}else{
-						System.out.println("Morate popuniti sva polja, i dan ukucati u formatu: PON, UTO, SRE ...");
+						JOptionPane.showMessageDialog(IzbrisiObavezu.this, "Morate popuniti sva polja, i dan ukucati u formatu: PON, UTO, SRE ...");
 					}
 				}
 			});

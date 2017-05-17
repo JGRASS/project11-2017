@@ -140,7 +140,7 @@ public class DodajObavezu extends JFrame {
 						GUIKontroler.azurirajTabeluObaveza(o);
 						dispose();
 					}else{
-						System.out.println("Morate popuniti sva polja, i dan ukucati u formatu: PON, UTO, SRE ...");
+						JOptionPane.showMessageDialog(DodajObavezu.this, "Morate popuniti sva polja, i dan ukucati u formatu: PON, UTO, SRE ...");
 					}
 				}
 			});
