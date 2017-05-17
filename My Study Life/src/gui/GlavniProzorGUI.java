@@ -98,6 +98,11 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton btnIzbrisiObavezu;
 	private String[][] raspored = new String[7][7];
 	private JTable tableraspored;
+	private JLabel label_14;
+	private JLabel label_15;
+	private JLabel label_16;
+	private JLabel label_17;
+	private JLabel label_18;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -248,20 +253,25 @@ public class GlavniProzorGUI extends JFrame {
 			label_6.setBounds(631, 11, 101, 35);
 			panelRasporedObaveza.add(label_6);
 			panelRasporedObaveza.add(getLabel_7());
+			panelRasporedObaveza.add(getLabel_14());
 			panelRasporedObaveza.add(getLabel_8());
 			panelRasporedObaveza.add(getLabel_9());
 			panelRasporedObaveza.add(getLabel_10());
 			panelRasporedObaveza.add(getLabel_11());
 			panelRasporedObaveza.add(getLabel_12());
 
-			JLabel label_13 = new JLabel("20:00");
+			JLabel label_13 = new JLabel("19:00");
 			label_13.setOpaque(true);
 			label_13.setHorizontalAlignment(SwingConstants.CENTER);
 			label_13.setForeground(Color.WHITE);
 			label_13.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_13.setBackground(Color.BLACK);
-			label_13.setBounds(10, 435, 46, 65);
+			label_13.setBounds(10, 460, 46, 40);
 			panelRasporedObaveza.add(label_13);
+			panelRasporedObaveza.add(getLabel_15());
+			panelRasporedObaveza.add(getLabel_16());
+			panelRasporedObaveza.add(getLabel_17());
+			panelRasporedObaveza.add(getLabel_18());
 			panelRasporedObaveza.add(getBtnDodajObavezu());
 			panelRasporedObaveza.add(getBtnIzbrisiObavezu());
 			panelRasporedObaveza.add(getTableraspored());
@@ -749,7 +759,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_7.setHorizontalAlignment(SwingConstants.CENTER);
 			label_7.setForeground(Color.WHITE);
 			label_7.setBackground(Color.BLACK);
-			label_7.setBounds(10, 45, 46, 65);
+			label_7.setBounds(10, 45, 46, 40);
 			label_7.setOpaque(true);
 		}
 		return label_7;
@@ -763,7 +773,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_8.setForeground(Color.WHITE);
 			label_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_8.setBackground(Color.BLACK);
-			label_8.setBounds(10, 110, 46, 65);
+			label_8.setBounds(10, 119, 46, 40);
 		}
 		return label_8;
 	}
@@ -776,7 +786,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_9.setForeground(Color.WHITE);
 			label_9.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_9.setBackground(Color.BLACK);
-			label_9.setBounds(10, 175, 46, 65);
+			label_9.setBounds(10, 197, 46, 40);
 		}
 		return label_9;
 	}
@@ -789,7 +799,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_10.setForeground(Color.WHITE);
 			label_10.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_10.setBackground(Color.BLACK);
-			label_10.setBounds(10, 240, 46, 65);
+			label_10.setBounds(10, 272, 46, 40);
 		}
 		return label_10;
 	}
@@ -802,7 +812,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_11.setForeground(Color.WHITE);
 			label_11.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_11.setBackground(Color.BLACK);
-			label_11.setBounds(10, 305, 46, 65);
+			label_11.setBounds(10, 349, 46, 40);
 		}
 		return label_11;
 	}
@@ -815,7 +825,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_12.setForeground(Color.WHITE);
 			label_12.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_12.setBackground(Color.BLACK);
-			label_12.setBounds(10, 370, 46, 65);
+			label_12.setBounds(10, 425, 46, 35);
 		}
 		return label_12;
 	}
@@ -1006,11 +1016,96 @@ public class GlavniProzorGUI extends JFrame {
 	private JTable getTableraspored() {
 		if (tableraspored == null) {
 			tableraspored = new JTable();
-			tableraspored.setRowHeight(65);
+			tableraspored.setRowHeight(38);
 			tableraspored.setPreferredScrollableViewportSize(new Dimension(450, 450));
 			tableraspored.setBounds(52, 45, 682, 455);
-			tableraspored.setModel(new PrikazRasporedTabelaModel(raspored));
+			tableraspored.setModel(new DefaultTableModel(
+				new Object[][] {
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+					{null, null, null, null, null, null, null},
+				},
+				new String[] {
+					"Ponedeljak", "Utorak", "Sreda", "Cetvratk", "Petak", "Subota", "Nedelja"
+				}
+			) {
+				boolean[] columnEditables = new boolean[] {
+					false, false, false, false, false, false, false
+				};
+				public boolean isCellEditable(int row, int column) {
+					return columnEditables[column];
+				}
+			});
 		}
 		return tableraspored;
+	}
+	private JLabel getLabel_14() {
+		if (label_14 == null) {
+			label_14 = new JLabel("9:00");
+			label_14.setOpaque(true);
+			label_14.setHorizontalAlignment(SwingConstants.CENTER);
+			label_14.setForeground(Color.WHITE);
+			label_14.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_14.setBackground(Color.BLACK);
+			label_14.setBounds(10, 83, 46, 40);
+		}
+		return label_14;
+	}
+	private JLabel getLabel_15() {
+		if (label_15 == null) {
+			label_15 = new JLabel("11:00");
+			label_15.setOpaque(true);
+			label_15.setHorizontalAlignment(SwingConstants.CENTER);
+			label_15.setForeground(Color.WHITE);
+			label_15.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_15.setBackground(Color.BLACK);
+			label_15.setBounds(10, 158, 46, 40);
+		}
+		return label_15;
+	}
+	private JLabel getLabel_16() {
+		if (label_16 == null) {
+			label_16 = new JLabel("13:00");
+			label_16.setOpaque(true);
+			label_16.setHorizontalAlignment(SwingConstants.CENTER);
+			label_16.setForeground(Color.WHITE);
+			label_16.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_16.setBackground(Color.BLACK);
+			label_16.setBounds(10, 234, 46, 40);
+		}
+		return label_16;
+	}
+	private JLabel getLabel_17() {
+		if (label_17 == null) {
+			label_17 = new JLabel("15:00");
+			label_17.setOpaque(true);
+			label_17.setHorizontalAlignment(SwingConstants.CENTER);
+			label_17.setForeground(Color.WHITE);
+			label_17.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_17.setBackground(Color.BLACK);
+			label_17.setBounds(10, 310, 46, 40);
+		}
+		return label_17;
+	}
+	private JLabel getLabel_18() {
+		if (label_18 == null) {
+			label_18 = new JLabel("17:00");
+			label_18.setOpaque(true);
+			label_18.setHorizontalAlignment(SwingConstants.CENTER);
+			label_18.setForeground(Color.WHITE);
+			label_18.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			label_18.setBackground(Color.BLACK);
+			label_18.setBounds(10, 386, 46, 40);
+		}
+		return label_18;
 	}
 }
