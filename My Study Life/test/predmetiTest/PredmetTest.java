@@ -1,7 +1,7 @@
-package predmeti;
+package predmetiTest;
 
 import static org.junit.Assert.*;
-
+import predmeti.Predmet;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -11,9 +11,6 @@ import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.modeli.PrikazPolozenihTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
-import gui.modeli.PrikazRasporedTabelaModel;
-import jdk.net.NetworkPermission;
-
 import javax.swing.JTabbedPane;
 import java.awt.Font;
 import java.awt.Image;
