@@ -93,7 +93,7 @@ public class Predmet implements Serializable {
 	 */
 	public void setNaziv(String naziv) {
 		if(naziv==null || naziv.length()<2)
-			throw new RuntimeException("Naziv predeta mora biti ispravno unet");
+			throw new RuntimeException("Naziv predmeta mora biti ispravno unet");
 		this.naziv = naziv;
 	}
 	/**
@@ -125,7 +125,7 @@ public class Predmet implements Serializable {
 	 */
 	public void setSkolskaGodina(String skolskaGodina) {
 		if(skolskaGodina==null || skolskaGodina.length()!=9 || !skolskaGodina.contains("/"))	
-			throw new RuntimeException("Skolska goidna mora biti uneta ispravno");
+			throw new RuntimeException("Skolska godina mora biti uneta ispravno");
 		this.skolskaGodina = skolskaGodina;
 	}
 	/**
