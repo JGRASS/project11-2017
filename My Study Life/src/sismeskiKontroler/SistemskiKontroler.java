@@ -56,6 +56,10 @@ public class SistemskiKontroler {
 		SOSerijalizujObaveze.izvrsi();
 	}
 	
+	public void dodajObavezu(Obaveza o){
+		obaveze.add(o);
+	}
+	
 	public  void azurirajTabeluPredmet(){
 		SOAzurirajTabeluPredmeta.izvrsi();
 		

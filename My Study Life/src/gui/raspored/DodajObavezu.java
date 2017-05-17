@@ -24,6 +24,8 @@ import aktivnosti.Obaveza;
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
 import gui.modeli.FrameDragListener;
+import sismeskiKontroler.SistemskiKontroler;
+
 import javax.swing.DefaultComboBoxModel;
 
 public class DodajObavezu extends JFrame {
@@ -127,7 +129,9 @@ public class DodajObavezu extends JFrame {
 						o.setSat((String)comboBoxSat.getSelectedItem());
 						o.setMinut((String)comboBoxMinut.getSelectedItem());
 						o.setMesto(txtMesto.getText());
-						GUIKontroler.obaveze.add(o);
+						GUIKontroler.dodajObavezu(o);
+					}else{
+						System.out.println("Morate popuniti sva polja, i dan ukucati u formatu: PON, UTO, SRE ...");
 					}
 				}
 			});

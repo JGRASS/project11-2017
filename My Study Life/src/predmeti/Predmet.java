@@ -49,6 +49,10 @@ public class Predmet implements Serializable {
 		setSemestar(semestar);
 		setSkolskaGodina(skolskaGodina);
 	}
+	/**
+	 * Vraca link za FONForum
+	 * @return
+	 */
 	public String getForum() {
 		return forum;
 	}
