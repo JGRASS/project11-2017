@@ -1,13 +1,8 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-import com.sun.java.accessibility.util.GUIInitializedListener;
 
 import aktivnosti.Aktivnost;
 import aktivnosti.Kolokvijum;
@@ -21,9 +16,7 @@ import java.awt.event.MouseEvent;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JScrollPane;
-import javax.swing.JTextPane;
 import javax.swing.JTextArea;
-import javax.swing.JEditorPane;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -56,7 +49,7 @@ public class PregledKolokvijumaGUI extends JFrame {
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
 		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
-		String nazivPredmeta = GUIKontroler.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
+		String nazivPredmeta = GUIKontroler.SK.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
 		for(int i=0;i<sveAktivnosti.size();i++){
 			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Kolokvijum)){
 				kolokvijumi.add((Kolokvijum)sveAktivnosti.get(i));

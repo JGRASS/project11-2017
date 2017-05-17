@@ -1,6 +1,5 @@
 package sistemskeOperacije;
 
-import gui.GUIKontroler;
 import sismeskiKontroler.SistemskiKontroler;
 
 public class SOVratiESPB {

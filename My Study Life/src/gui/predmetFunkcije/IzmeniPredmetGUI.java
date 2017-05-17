@@ -345,6 +345,9 @@ public class IzmeniPredmetGUI extends JFrame {
 		}
 		return btnOdustani;
 	}
+	/**
+	 * Metoda sluzi da iz tabele izvuce predmet i da popuni polja u prozoru IzmeniPredmetGUI sa podacima o tom predmetu
+	 */
 	public void popuniPolja() {
 		int red = GlavniProzorGUI.tablePredmeti.getSelectedRow();
 		if (red != -1) {
