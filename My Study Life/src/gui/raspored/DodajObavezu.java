@@ -120,8 +120,15 @@ public class DodajObavezu extends JFrame {
 			btnDodaj = new JButton("Dodaj");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if ((txtObaveza.getText() != "") && (txtMesto.getText() != "") &&
-						((txtDan.getText() == "NED") || (txtDan.getText() == "PON")|| (txtDan.getText() == "UTO") || (txtDan.getText() == "SRE") || (txtDan.getText() == "CET") || (txtDan.getText() == "PET") || (txtDan.getText() == "SUB"))
+				if ((txtObaveza.getText() != "") && 
+							(txtMesto.getText() != "") &&
+						   ((txtDan.getText().equals("NED")) ||
+							(txtDan.getText().equals("PON")) || 
+							(txtDan.getText().equals("UTO")) || 
+							(txtDan.getText().equals("SRE")) || 
+							(txtDan.getText().equals("CET")) || 
+							(txtDan.getText().equals("PET")) || 
+							(txtDan.getText().equals("SUB")))
 						 ) {
 						Obaveza o = new Obaveza();
 						o.setNaziv(txtObaveza.getText());
