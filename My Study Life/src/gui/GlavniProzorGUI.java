@@ -639,7 +639,7 @@ public class GlavniProzorGUI extends JFrame {
 					if (broj == JOptionPane.YES_OPTION) {
 						int red = tablePredmeti.getSelectedRow();
 						if (red != -1) {
-							GUIKontroler.predmeti.remove(red);
+							GUIKontroler.SK.predmeti.remove(red);
 							GUIKontroler.azurirajTabeluPredmet();
 							GUIKontroler.azurirajTabeluPolozeni();
 							GUIKontroler.azurirajProsek();
@@ -848,8 +848,6 @@ public class GlavniProzorGUI extends JFrame {
 		getPanelPolozeniIspiti().setLayout(null);
 		panelPolozeniIspiti.add(picLabelPolozeniIspiti);
 		// Ovde palite pozadinu na vasem jPanelu!!!
-		// panelPolozeniIspiti.add(picLabelPolozeniIspiti);
-
 		// panelRasporedNastave.add(picLabelRasporedNastave);
 	}
 

@@ -6,12 +6,19 @@ import java.awt.EventQueue;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
+
 import aktivnosti.*;
 import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
+import gui.predmetFunkcije.DodajPredmetGUI;
+import gui.predmetFunkcije.IzmeniPredmetGUI;
+import gui.predmetFunkcije.PregledPredmeta;
 import gui.raspored.DodajObavezu;
 import predmeti.Predmet;
 import sismeskiKontroler.SistemskiKontroler;
+
 /**
  * 
  * @author Ivan Stanimirovic
@@ -21,32 +28,43 @@ import sismeskiKontroler.SistemskiKontroler;
  *
  */
 public class GUIKontroler {
-	
+
 	private static Planer planer;
-	private static GlavniProzorGUI glavniProzor ; //Ovde pravite staticke promeljive. Njima posle pristupamo pomocu GuiKontroler.xxx iz bilo koje druge klase.
+	private static GlavniProzorGUI glavniProzor; // Ovde pravite staticke
+													// promeljive. Njima posle
+													// pristupamo pomocu
+													// GuiKontroler.xxx iz bilo
+													// koje druge klase.
 	private static DodajKolokvijumGUI dodajKolokvijum;
 	private static DodajIspitGUI dodajIspit;
 	private static OpisAktivnostiGUI opisAktivnosti;
 	private static DodajObavezu dodajObavezu;
-	public static List<Predmet> predmeti = new LinkedList<>();
-	public static List<Predmet> polozeni = new LinkedList<>(); //Svuda gde koristite ove boje, dovucite ih sa GUIKontolera
+	//public static List<Predmet> predmeti = new LinkedList<>();
+	//public static List<Predmet> polozeni = new LinkedList<>(); // Svuda gde
+																// koristite ove
+																// boje,
+																// dovucite ih
+																// sa
+																// GUIKontolera
 	public static SistemskiKontroler SK = new SistemskiKontroler();
 	public static Color plavaT = new Color(0, 155, 179);
 	public static Color plavaS = new Color(112, 155, 179);
-	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
-	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
+
+	// Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom
+	// zatvaranja/otvaranja programa.
+	// Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
 	public static void main(String[] args) {
 		ucitajPredmete();
 		ucitajPolozene();
 		ucitajObaveze();
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					planer = new Planer();
 					glavniProzor = new GlavniProzorGUI();
 					glavniProzor.setVisible(true);
-					
+
 					planer.postaviGc(new GregorianCalendar());
 					planer.popuniMatricuDatuma();
 					planer.ucitajAktivnosti();
@@ -56,6 +74,7 @@ public class GUIKontroler {
 			}
 		});
 	}
+
 	/**
 	 * Metoda otvara prozor DodajKolokvijumGUI
 	 */
@@ -63,6 +82,7 @@ public class GUIKontroler {
 		dodajKolokvijum = new DodajKolokvijumGUI();
 		dodajKolokvijum.setVisible(true);
 	}
+
 	/**
 	 * Metoda otvara prozor DodajIspitGUI
 	 */
@@ -70,88 +90,108 @@ public class GUIKontroler {
 		dodajIspit = new DodajIspitGUI();
 		dodajIspit.setVisible(true);
 	}
+
 	/**
 	 * Metoda otvara prozor OpisAktivnosti
 	 */
 	public static void otvoriOpisAktivnosti() {
 		opisAktivnosti = new OpisAktivnostiGUI();
 		opisAktivnosti.setVisible(true);
-	
+
 	}
+
 	/**
 	 * Metoda otvara prozor OpisAktivnosti
 	 */
 	public static void otvoriDodajObavezu() {
 		dodajObavezu = new DodajObavezu();
 		dodajObavezu.setVisible(true);
-	
+
 	}
-	
-	public static void dodajObavezu(Obaveza o){
+
+	public static void dodajObavezu(Obaveza o) {
 		SK.dodajObavezu(o);
 	}
+
 	/**
 	 * Metoda vraca sve studenske aktivnosti
+	 * 
 	 * @return Listu aktivnosti tipa Aktivnost
 	 */
-	public static List<Aktivnost> vratiSveAktivnosti(){
+	public static List<Aktivnost> vratiSveAktivnosti() {
 		return planer.vratiSveAktivnosti();
 	}
+
 	/**
 	 * Metoda vraca trenutno vreme
+	 * 
 	 * @return Trenutno vreme u vidu GregorianCalendar-a
 	 */
-	public static GregorianCalendar vratiTrenutnoVreme(){
+	public static GregorianCalendar vratiTrenutnoVreme() {
 		return planer.vratiGc();
 	}
+
 	/**
 	 * Metoda vraca matricu mesecnih datuma
+	 * 
 	 * @return Matricu mesecnih datuma u obliku String[][]
 	 */
-	public static String[][] vratiDatume(){
+	public static String[][] vratiDatume() {
 		return planer.vratiDatume();
 	}
+
 	/**
 	 * Metoda koja proverava da li su dva datuma istog dana
-	 * @param g1 prvi datum GregorianCalendar
-	 * @param g2 drugi datim GregorianCalendar
+	 * 
+	 * @param g1
+	 *            prvi datum GregorianCalendar
+	 * @param g2
+	 *            drugi datim GregorianCalendar
 	 * @return boolean vrednost u zavisnosti od podudaranja datuma
 	 */
-	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2){
+	public static boolean istiDan(GregorianCalendar g1, GregorianCalendar g2) {
 		return planer.istiDan(g1, g2);
 	}
+
 	/**
 	 * Metoda popunjava matricu mesecnih datuma
 	 */
-	public static void popuniMatricuDatuma(){
+	public static void popuniMatricuDatuma() {
 		planer.popuniMatricuDatuma();
 	}
+
 	/**
 	 * Metoda pronalazi datu aktivnost na osnuvu vremena njenog odrzavanja
-	 * @param g datum odrzavanja aktivnosti GregorianCalendar
+	 * 
+	 * @param g
+	 *            datum odrzavanja aktivnosti GregorianCalendar
 	 * @return Aktivnost
 	 */
-	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
+	public static Aktivnost pronadjiAktivnost(GregorianCalendar g) {
 		return planer.pronadjiAktivnost(g);
 	}
+
 	/**
 	 * Metoda koja serijalizuje aktivnosti
 	 */
-	public static void serijalizujAktivnosti(){
+	public static void serijalizujAktivnosti() {
 		planer.serijalizujAktivnosti();
 	}
-	
+
 	/**
 	 * Metoda azurira jTable
-	 * @param teble prestvlja tabelu koja se azurira
+	 * 
+	 * @param teble
+	 *            prestvlja tabelu koja se azurira
 	 */
 	public static void azurirajTabelu(MojaTabela table) {
 		PlanerTabelaModel model = (PlanerTabelaModel) table.getModel();
 		model.azurirajTabelu(vratiDatume());
 	}
-	
+
 	/**
 	 * Metoda koja vraca selektovani datum u tabeli MojaTabela
+	 * 
 	 * @return datum u obliku int
 	 */
 	public static GregorianCalendar selektovanDatum(MojaTabela table) {
@@ -161,141 +201,229 @@ public class GUIKontroler {
 				GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH), datum);
 		return g;
 	}
+
 	/**
-	 * Metoda koja vraca odredjeni GregorianCalendar(godina,mesec,dan) u String obliku
-	 * @param g Datum koji se zeli prikazati u vidu Stringa
+	 * Metoda koja vraca odredjeni GregorianCalendar(godina,mesec,dan) u String
+	 * obliku
+	 * 
+	 * @param g
+	 *            Datum koji se zeli prikazati u vidu Stringa
 	 * @return Datum u String formatu
 	 */
-	public static String vratiDatumString(GregorianCalendar g){
+	public static String vratiDatumString(GregorianCalendar g) {
 		String vreme = "";
-		vreme+=g.get(GregorianCalendar.YEAR)+"/";
-		vreme+=g.get(GregorianCalendar.MONTH)+"/";
-		vreme+=g.get(GregorianCalendar.DATE)+" ";
+		vreme += g.get(GregorianCalendar.YEAR) + "/";
+		vreme += g.get(GregorianCalendar.MONTH) + "/";
+		vreme += g.get(GregorianCalendar.DATE) + " ";
 		return vreme;
 	}
+
 	/**
 	 * Metoda koja vraca odredjeni GregorianCalendar(sat,minut) u String obliku
-	 * @param g Datum koji se zeli prikazati u vidu Stringa
+	 * 
+	 * @param g
+	 *            Datum koji se zeli prikazati u vidu Stringa
 	 * @return Vreme u String formatu
 	 */
-	public static String vratiVremeString(GregorianCalendar g){
+	public static String vratiVremeString(GregorianCalendar g) {
 		String vreme = "";
-		vreme+=g.get(GregorianCalendar.HOUR)+":";
-		vreme+=g.get(GregorianCalendar.MINUTE);
+		vreme += g.get(GregorianCalendar.HOUR) + ":";
+		vreme += g.get(GregorianCalendar.MINUTE);
 		return vreme;
 	}
+
 	/**
-	 * Metoda koja nalazi index predmeta(pozicija u listi) na osnovu njegovog naziva
-	 * @param naziv Naziv predmeta
-	 * @return index predmeta u listi predmeta 
+	 * Metoda koja nalazi index predmeta(pozicija u listi) na osnovu njegovog
+	 * naziva
+	 * 
+	 * @param naziv
+	 *            Naziv predmeta
+	 * @return index predmeta u listi predmeta
 	 */
-	public static int vratiIndexPredmeta(String naziv){
-		for(int i=0;i<GUIKontroler.predmeti.size();i++){
-			if(GUIKontroler.predmeti.get(i).getNaziv().equals(naziv))
+	public static int vratiIndexPredmeta(String naziv) {
+		for (int i = 0; i < SK.predmeti.size(); i++) {
+			if (SK.predmeti.get(i).getNaziv().equals(naziv))
 				return i;
 		}
 		return -1;
 	}
+
 	/**
-	 * Metoda sluzi za vracanje random imena slike koja se koristi kao pozadina glavnog prozora
+	 * Metoda sluzi za vracanje random imena slike koja se koristi kao pozadina
+	 * glavnog prozora
+	 * 
 	 * @return String vrednost koja predstavlja naziv slike
 	 */
 	public static String vratiNazivSlike() {
 		return SK.vratiNazivSlike();
 	}
+
 	/**
 	 * Metoda se koristi za ucitavanje predmeta iz fajla
 	 */
-	public static void ucitajPredmete(){
+	public static void ucitajPredmete() {
 		SK.ucitajPredmete();
 	}
+
 	/**
 	 * Metoda se korsiti za serializaciju predmeta u file
 	 */
-	public static void serijalizujPredmete(){
+	public static void serijalizujPredmete() {
 		SK.serijalizujPredmete();
-		
+
 	}
+
 	/**
 	 * Metoda se koristi za ucitavanje polozenih predmeta iz fajla
 	 */
-	public static void ucitajPolozene(){
+	public static void ucitajPolozene() {
 		SK.ucitajPolozene();
 	}
+
 	/**
 	 * Metoda se koristi za serializaciju polozenih predmeta u file
 	 */
-	public static void serijalizujPolozene(){
+	public static void serijalizujPolozene() {
 		SK.serijalizujPolozene();
 	}
+
 	/**
 	 * Metoda se koristi za ucitavanje obaveza iz fajla
 	 */
-	public static void ucitajObaveze(){
+	public static void ucitajObaveze() {
 		SK.ucitajObaveze();
 	}
+
 	/**
 	 * Metoda se koristi za serijalizaciju obaveza u file
 	 */
-	public static void serijalizujObaveze(){
+	public static void serijalizujObaveze() {
 		SK.serijalizujObaveze();
 	}
+
 	/**
-	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
+	 * Metoda se koristi za azuriranje tabele predmeta iz liste predmet
 	 */
-	public static void azurirajTabeluPredmet(){
+	public static void azurirajTabeluPredmet() {
 		SK.azurirajTabeluPredmet();
-		
+
 	}
+
 	/**
-	 * Metoda se koristi za azuriranje tebele polozenih ispita iz liste polozeni ispiti
+	 * Metoda se koristi za azuriranje tebele polozenih ispita iz liste polozeni
+	 * ispiti
 	 */
-	public static void azurirajTabeluPolozeni(){
+	public static void azurirajTabeluPolozeni() {
 		SK.azurirajTabeluPolozeni();
 	}
+
 	/**
-	 * Metoda se koristi za azuriranje liste polozenih predmeta iz liste predmeta
+	 * Metoda se koristi za azuriranje liste polozenih predmeta iz liste
+	 * predmeta
 	 */
-	public static void azurirajListuPolozeni(){
+	public static void azurirajListuPolozeni() {
 		SK.azurirajListuPolozeni();
 	}
+
 	/**
 	 * Metoda otvara novi GUI za dodavanje predmeta
 	 */
-	public static void otvoriDodajPredmetGUI(){
-		SK.otvoriDodajPredmetGUI();
+	public static void otvoriDodajPredmetGUI() {
+		DodajPredmetGUI d = new DodajPredmetGUI();
+		d.setVisible(true);
+		d.setLocationRelativeTo(GlavniProzorGUI.GlavniProzorGUI);
 	}
+
 	/**
 	 * Metoda otvara novi Gui za izmenu predmeta
 	 */
-	public static void otvoriIzmeniPredmetGUI(){
-		SK.otvoriIzmeniPredmetGUI();
+	public static void otvoriIzmeniPredmetGUI() {
+		IzmeniPredmetGUI i = new IzmeniPredmetGUI();
+
+		i.setVisible(true);
+		i.setLocationRelativeTo(GlavniProzorGUI.GlavniProzorGUI);
+		i.popuniPolja();
 	}
+
 	/**
 	 * Metoda otvara novi GUI za pregled predmeta
 	 */
-	public static void otvoriPregledPredmeta(){
-		SK.otvoriPregledPredmeta();
+	public static void otvoriPregledPredmeta() {
+		PregledPredmeta p = new PregledPredmeta();
+
+		p.setVisible(true);
+		p.setLocationRelativeTo(GlavniProzorGUI.GlavniProzorGUI);
+		p.popuniPolja();
 	}
+
 	/**
 	 * Metoda sluzi za vracanje prosecne ocene
+	 * 
 	 * @return double vrednost koje predstavlja prosecnu ocenu
 	 */
-	public static double vratiProsek(){
+	public static double vratiProsek() {
 		return SK.vratiProsek();
 	}
+
 	/**
 	 * Metoda sluzi za azuriranje proseka i upisivanje u tektualni editor
 	 */
-	public static void azurirajProsek(){
+	public static void azurirajProsek() {
 		SK.azurirajProsek();
 	}
+
 	/**
 	 * Metoda sluzi za pronalazenje i vracanje zbira ESPB poena
+	 * 
 	 * @return int vrednost kao zbir svih poena
 	 */
-	public static int vratiESPB(){
+	public static int vratiESPB() {
 		return SK.vratiESPB();
+	}
+
+	public static int dodajPredmet(String naziv, String ESBP, String skolskaGodina, boolean jednosemestralan,
+			String semestar, boolean polozen, String ocena, String napomena, String forum, String puskice) {
+		try {
+
+			Predmet p = new Predmet(naziv, Integer.parseInt(ESBP), skolskaGodina, jednosemestralan,
+					Integer.parseInt(semestar), polozen, Integer.parseInt(ocena), napomena, forum, puskice);
+			SK.predmeti.add(p);
+			return 1;
+		} catch (NumberFormatException e1) {
+			JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom unosa brojevnih vrednosti", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+			return 0;
+		} catch (RuntimeException e2) {
+			JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom unosa skolske godine", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+			return 0;
+		}
+	}
+
+	public static int izmeniPredmet(String naziv, String ESBP, String skolskaGodina, boolean jednosemestralan,
+			String semestar, boolean polozen, String ocena, String napomena, String forum, String puskice,
+			Predmet predmet) {
+		try {
+			Predmet p = new Predmet(naziv, Integer.parseInt(ESBP), skolskaGodina, jednosemestralan,
+					Integer.parseInt(semestar), polozen, Integer.parseInt(ocena), napomena, forum, puskice);
+			for (int i = 0; i < SK.predmeti.size(); i++) {
+				if (SK.predmeti.get(i).equals(predmet)) {
+					SK.predmeti.remove(i);
+					break;
+				}
+			}
+			SK.predmeti.add(p);
+			return 1;
+		} catch (NumberFormatException e1) {
+			JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom unosa brojevnih vrednosti", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+			return 0;
+		} catch (RuntimeException e2) {
+			JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom unosa skolske godine", "Greska",
+					JOptionPane.ERROR_MESSAGE);
+			return 0;
+		}
+
 	}
 
 }
