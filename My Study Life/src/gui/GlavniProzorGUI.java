@@ -11,6 +11,9 @@ import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.modeli.PrikazPolozenihTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
+import gui.modeli.PrikazRasporedTabelaModel;
+import jdk.net.NetworkPermission;
+
 import javax.swing.JTabbedPane;
 import java.awt.Font;
 import java.awt.Image;
@@ -91,9 +94,10 @@ public class GlavniProzorGUI extends JFrame {
 	public static JTextField textFieldProsek;
 	private JLabel labelBrBodova;
 	public static JTextField textFieldBrojBodova;
-	private JTable table_1;
 	private JButton btnDodajObavezu;
 	private JButton btnIzbrisiObavezu;
+	private String[][] raspored = new String[7][7];
+	private JTable tableraspored;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -180,7 +184,6 @@ public class GlavniProzorGUI extends JFrame {
 		if (panelRasporedObaveza == null) {
 			panelRasporedObaveza = new JPanel();
 			panelRasporedObaveza.setLayout(null);
-			panelRasporedObaveza.add(getTable_1());
 
 			JLabel label = new JLabel("NED");
 			label.setHorizontalAlignment(SwingConstants.CENTER);
@@ -261,6 +264,7 @@ public class GlavniProzorGUI extends JFrame {
 			panelRasporedObaveza.add(label_13);
 			panelRasporedObaveza.add(getBtnDodajObavezu());
 			panelRasporedObaveza.add(getBtnIzbrisiObavezu());
+			panelRasporedObaveza.add(getTableraspored());
 		}
 		return panelRasporedObaveza;
 	}
@@ -966,32 +970,6 @@ public class GlavniProzorGUI extends JFrame {
 		
 		return textFieldBrojBodova;
 	}
-	private JTable getTable_1() {
-		if (table_1 == null) {
-			table_1 = new JTable();
-			table_1.setModel(new DefaultTableModel(
-				new Object[][] {
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-					{null, null, null, null, null, null, null},
-				},
-				new String[] {
-					"NED", "PON", "UTO", "SRE", "CET", "PET", "SUB"
-				}
-			));
-			table_1.setBounds(731, 45, -676, 455);
-		}
-		return table_1;
-	}
 	private JButton getBtnDodajObavezu() {
 		if (btnDodajObavezu == null) {
 			btnDodajObavezu = new JButton();
@@ -1024,5 +1002,15 @@ public class GlavniProzorGUI extends JFrame {
 			btnIzbrisiObavezu.setIcon(new ImageIcon(img));
 		}
 		return btnIzbrisiObavezu;
+	}
+	private JTable getTableraspored() {
+		if (tableraspored == null) {
+			tableraspored = new JTable();
+			tableraspored.setRowHeight(65);
+			tableraspored.setPreferredScrollableViewportSize(new Dimension(450, 450));
+			tableraspored.setBounds(52, 45, 682, 455);
+			tableraspored.setModel(new PrikazRasporedTabelaModel(raspored));
+		}
+		return tableraspored;
 	}
 }
