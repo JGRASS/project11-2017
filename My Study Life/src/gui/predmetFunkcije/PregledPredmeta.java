@@ -269,11 +269,13 @@ public class PregledPredmeta extends JFrame {
 		}
 		return lblNapomena;
 	}
-
+	/**
+	 * Metoda sluzi da iz tabele izvuce predmet i da popuni polja u prozoru IzmeniPredmetGUI sa podacima o tom predmetu
+	 */
 	public void popuniPolja() {
 		int red = GlavniProzorGUI.tablePredmeti.getSelectedRow();
 		if (red != -1) {
-			Predmet p = GUIKontroler.predmeti.get(red);
+			Predmet p = GUIKontroler.SK.predmeti.get(red);
 			textAreaNapomena.setText(p.getNapomena());
 			textFieldESBP.setText(p.getESBP() + "");
 			textFieldNaziv.setText(p.getNaziv());
@@ -337,7 +339,7 @@ public class PregledPredmeta extends JFrame {
 			btnKolokvijum.setForeground(Color.WHITE);
 			btnKolokvijum.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.otvoriPregledAktivnosti();
+					GUIKontroler.otvoriPregledKolokvijuma();
 				}
 			});
 			btnKolokvijum.setBounds(333, 252, 110, 35);
@@ -353,7 +355,7 @@ public class PregledPredmeta extends JFrame {
 			btnIspit.setForeground(Color.WHITE);
 			btnIspit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					GUIKontroler.otvoriPregledAktivnosti();
+					GUIKontroler.otvoriPregledIspita();
 				}
 				
 			});

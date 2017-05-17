@@ -298,35 +298,28 @@ public class IzmeniPredmetGUI extends JFrame {
 			btnIzmeniPredmet.setForeground(Color.WHITE);
 			btnIzmeniPredmet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					try {
-						int ocena;
-						if (chckbxPolozen.isSelected()) {
-							ocena = Integer.parseInt(textFieldOcena.getText());
-						} else {
-							ocena = 5;
-						}
-						String naziv = textFieldNaziv.getText();
-						int ESBP = Integer.parseInt(textFieldESBP.getText());
-						String skolskaGodina=textFieldSkolska.getText();
-						boolean jednosemestralan = chckbxJednosemestralan.isSelected();
-						int semestar= Integer.parseInt(textFieldSemestar.getText());
-						boolean polozen = chckbxPolozen.isSelected();
-						String napomena = textAreaNapomena.getText();
-						String forum=textFieldForum.getText();
-						String puskice=textFieldPuskice.getText();
-						Predmet p = new Predmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar, polozen, ocena, napomena, forum, puskice);
-						GUIKontroler.azurirajTabeluPolozeni();
-						GUIKontroler.predmeti.add(p);
+					String ocena;
+					if (chckbxPolozen.isSelected()) {
+						ocena = textFieldOcena.getText();
+					} else {
+						ocena = "5";
+					}
+					String naziv = textFieldNaziv.getText();
+					String ESBP = textFieldESBP.getText();
+					String skolskaGodina = textFieldSkolska.getText();
+					boolean jednosemestralan = chckbxJednosemestralan.isSelected();
+					String semestar = textFieldSemestar.getText();
+					boolean polozen = chckbxPolozen.isSelected();
+					String napomena = textAreaNapomena.getText();
+					String forum = textFieldForum.getText();
+					String puskice = textFieldPuskice.getText();
+					int provera = GUIKontroler.izmeniPredmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar,
+							polozen, ocena, napomena, forum, puskice,predmet);
+					if (provera == 1) {
 						GUIKontroler.azurirajTabeluPredmet();
 						GUIKontroler.azurirajTabeluPolozeni();
 						GUIKontroler.azurirajProsek();
 						dispose();
-					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(IzmeniPredmetGUI.this, "Doslo je do greske prilikom unosa brojevnih vrednosti",
-								"Greska", JOptionPane.ERROR_MESSAGE);
-					}catch(RuntimeException e2){
-						JOptionPane.showMessageDialog(IzmeniPredmetGUI.this, "Doslo je do greske prilikom unosa skolske godine",
-								"Greska", JOptionPane.ERROR_MESSAGE);
 					}
 				}
 			});
@@ -344,7 +337,7 @@ public class IzmeniPredmetGUI extends JFrame {
 			btnOdustani.setForeground(Color.WHITE);
 			btnOdustani.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					GUIKontroler.predmeti.add(predmet);
+					GUIKontroler.azurirajTabeluPredmet();
 					dispose();
 				}
 			});
@@ -352,29 +345,26 @@ public class IzmeniPredmetGUI extends JFrame {
 		}
 		return btnOdustani;
 	}
+	/**
+	 * Metoda sluzi da iz tabele izvuce predmet i da popuni polja u prozoru IzmeniPredmetGUI sa podacima o tom predmetu
+	 */
 	public void popuniPolja() {
 		int red = GlavniProzorGUI.tablePredmeti.getSelectedRow();
 		if (red != -1) {
-			Predmet p = GUIKontroler.predmeti.get(red);
-			textAreaNapomena.setText(p.getNapomena());
-			textFieldESBP.setText(p.getESBP() + "");
-			textFieldNaziv.setText(p.getNaziv());
-			if (p.getOcena() > 5 && p.isPolozen()) {
-				textFieldOcena.setText(p.getOcena() + "");
+			predmet= GUIKontroler.SK.predmeti.get(red);
+			textAreaNapomena.setText(predmet.getNapomena());
+			textFieldESBP.setText(predmet.getESBP() + "");
+			textFieldNaziv.setText(predmet.getNaziv());
+			if (predmet.getOcena() > 5 && predmet.isPolozen()) {
+				textFieldOcena.setText(predmet.getOcena() + "");
 				chckbxPolozen.setSelected(true);
 			}
-			textFieldForum.setText(p.getForum());
-			textFieldPuskice.setText(p.getPuskice());
-			chckbxJednosemestralan.setSelected(p.getJednosemestralan());
-			textFieldSemestar.setText(p.getSemestar() + "");
-			textFieldSkolska.setText(p.getSkolskaGodina());
-			for (int i = 0; i < GUIKontroler.predmeti.size(); i++) {
-				if(GUIKontroler.predmeti.get(i).equals(p)){
-					predmet = GUIKontroler.predmeti.get(i);
-					GUIKontroler.predmeti.remove(i);
-					break;
-				}
-			}
+			textFieldForum.setText(predmet.getForum());
+			textFieldPuskice.setText(predmet.getPuskice());
+			chckbxJednosemestralan.setSelected(predmet.getJednosemestralan());
+			textFieldSemestar.setText(predmet.getSemestar() + "");
+			textFieldSkolska.setText(predmet.getSkolskaGodina());
+			
 		}
 	}
 	private JPanel getPanel() {
@@ -404,7 +394,6 @@ public class IzmeniPredmetGUI extends JFrame {
 			label_1.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseClicked(MouseEvent e) {
-					GUIKontroler.predmeti.add(predmet);
 					GUIKontroler.azurirajTabeluPredmet();
 					dispose();
 				}

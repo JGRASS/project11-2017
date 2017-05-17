@@ -106,7 +106,7 @@ public class GlavniProzorGUI extends JFrame {
 	public GlavniProzorGUI() {
 		setResizable(false);
 		setTitle("MyStudyLife");
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		setLocationRelativeTo(null);
 		setUndecorated(true);
@@ -642,7 +642,7 @@ public class GlavniProzorGUI extends JFrame {
 					if (broj == JOptionPane.YES_OPTION) {
 						int red = tablePredmeti.getSelectedRow();
 						if (red != -1) {
-							GUIKontroler.predmeti.remove(red);
+							GUIKontroler.SK.predmeti.remove(red);
 							GUIKontroler.azurirajTabeluPredmet();
 							GUIKontroler.azurirajTabeluPolozeni();
 							GUIKontroler.azurirajProsek();
@@ -851,8 +851,6 @@ public class GlavniProzorGUI extends JFrame {
 		getPanelPolozeniIspiti().setLayout(null);
 		panelPolozeniIspiti.add(picLabelPolozeniIspiti);
 		// Ovde palite pozadinu na vasem jPanelu!!!
-		// panelPolozeniIspiti.add(picLabelPolozeniIspiti);
-
 		// panelRasporedNastave.add(picLabelRasporedNastave);
 	}
 
@@ -1122,14 +1120,9 @@ public class GlavniProzorGUI extends JFrame {
 			btnUcitaj = new JButton();
 			btnUcitaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-					if (SistemskiKontroler.obaveze.size()> 0) {
-						System.out.println(SistemskiKontroler.obaveze.get(0).getDan());
-						System.out.println(SistemskiKontroler.obaveze.get(0).getSat());
-						System.out.println(SistemskiKontroler.obaveze.get(0).getMinut());
-						System.out.println(SistemskiKontroler.obaveze.get(0).getMesto());
-						System.out.println(SistemskiKontroler.obaveze.get(0).getNaziv());
+					
 						GUIKontroler.popuniTabeluObaveza();
-					}
+					
 				}
 			});
 			btnUcitaj.setText("Ucitaj\r\n");

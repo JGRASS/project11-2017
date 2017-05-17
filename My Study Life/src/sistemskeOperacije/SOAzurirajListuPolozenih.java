@@ -1,18 +1,17 @@
 package sistemskeOperacije;
 
-import gui.GUIKontroler;
-import gui.GlavniProzorGUI;
+import sismeskiKontroler.SistemskiKontroler;
 
 public class SOAzurirajListuPolozenih {
 	public static void izvrsi(){
-		for (int i = 0; i < GUIKontroler.predmeti.size(); i++) {
-			if(GUIKontroler.predmeti.get(i).isPolozen() && !GUIKontroler.polozeni.contains(GUIKontroler.predmeti.get(i))){
-				GUIKontroler.polozeni.add(GUIKontroler.predmeti.get(i));
+		for (int i = 0; i < SistemskiKontroler.predmeti.size(); i++) {
+			if(SistemskiKontroler.predmeti.get(i).isPolozen() && !SistemskiKontroler.polozeni.contains(SistemskiKontroler.predmeti.get(i))){
+				SistemskiKontroler.polozeni.add(SistemskiKontroler.predmeti.get(i));
 			}
 		}
-		for (int i = 0; i < GUIKontroler.polozeni.size(); i++) {
-			if(!GUIKontroler.predmeti.contains(GUIKontroler.polozeni.get(i))){
-				GUIKontroler.polozeni.remove(i);
+		for (int i = 0; i < SistemskiKontroler.polozeni.size(); i++) {
+			if(!SistemskiKontroler.predmeti.contains(SistemskiKontroler.polozeni.get(i))){
+				SistemskiKontroler.polozeni.remove(i);
 			}
 		}
 	}

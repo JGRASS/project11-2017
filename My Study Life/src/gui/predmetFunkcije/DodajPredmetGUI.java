@@ -127,7 +127,6 @@ public class DodajPredmetGUI extends JFrame {
 		return lblNaziv;
 	}
 
-	
 	private JTextField getTextFieldNaziv() {
 		if (textFieldNaziv == null) {
 			textFieldNaziv = new JTextField();
@@ -145,7 +144,6 @@ public class DodajPredmetGUI extends JFrame {
 		return lblEsbp;
 	}
 
-	
 	private JTextField getTextFieldESBP() {
 		if (textFieldESBP == null) {
 			textFieldESBP = new JTextField();
@@ -163,7 +161,6 @@ public class DodajPredmetGUI extends JFrame {
 		return lblSkolskaGodina;
 	}
 
-	
 	private JTextField getTextFieldSkolska() {
 		if (textFieldSkolska == null) {
 			textFieldSkolska = new JTextField();
@@ -181,7 +178,7 @@ public class DodajPredmetGUI extends JFrame {
 		}
 		return lblSemestar;
 	}
-	
+
 	private JTextField getTextFieldSemestar() {
 		if (textFieldSemestar == null) {
 			textFieldSemestar = new JTextField();
@@ -299,36 +296,31 @@ public class DodajPredmetGUI extends JFrame {
 			btnDodajPredmet.setBackground(Color.GRAY);
 			btnDodajPredmet.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					try {
-						int ocena;
-						if (chckbxPolozen.isSelected()) {
-							ocena = Integer.parseInt(textFieldOcena.getText());
-						} else {
-							ocena = 5;
-						}
-						String naziv = textFieldNaziv.getText();
-						int ESBP = Integer.parseInt(textFieldESBP.getText());
-						String skolskaGodina = textFieldSkolska.getText();
-						boolean jednosemestralan = chckbxJednosemestralan.isSelected();
-						int semestar = Integer.parseInt(textFieldSemestar.getText());
-						boolean polozen = chckbxPolozen.isSelected();
-						String napomena = textAreaNapomena.getText();
-						String forum = textFieldForum.getText();
-						String puskice = textFieldPuskice.getText();
-						Predmet p = new Predmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar, polozen, ocena,
-								napomena, forum, puskice);
-						GUIKontroler.predmeti.add(p);
+
+					String ocena;
+					if (chckbxPolozen.isSelected()) {
+						ocena = textFieldOcena.getText();
+					} else {
+						ocena = "5";
+					}
+					String naziv = textFieldNaziv.getText();
+					String ESBP = textFieldESBP.getText();
+					String skolskaGodina = textFieldSkolska.getText();
+					boolean jednosemestralan = chckbxJednosemestralan.isSelected();
+					String semestar = textFieldSemestar.getText();
+					boolean polozen = chckbxPolozen.isSelected();
+					String napomena = textAreaNapomena.getText();
+					String forum = textFieldForum.getText();
+					String puskice = textFieldPuskice.getText();
+					int provera = GUIKontroler.dodajPredmet(naziv, ESBP, skolskaGodina, jednosemestralan, semestar,
+							polozen, ocena, napomena, forum, puskice);
+					if (provera == 1) {
 						GUIKontroler.azurirajTabeluPredmet();
 						GUIKontroler.azurirajTabeluPolozeni();
 						GUIKontroler.azurirajProsek();
 						dispose();
-					} catch (NumberFormatException e1) {
-						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa brojevnih vrednosti",
-								"Greska", JOptionPane.ERROR_MESSAGE);
-					}catch(RuntimeException e2){
-						JOptionPane.showMessageDialog(DodajPredmetGUI.this, "Doslo je do greske prilikom unosa skolske godine",
-								"Greska", JOptionPane.ERROR_MESSAGE);
 					}
+
 				}
 			});
 			btnDodajPredmet.setBounds(30, 349, 169, 35);
@@ -350,6 +342,7 @@ public class DodajPredmetGUI extends JFrame {
 		}
 		return btnOdustani;
 	}
+
 	private JPanel getPanel() {
 		if (panel == null) {
 			panel = new JPanel();
@@ -361,6 +354,7 @@ public class DodajPredmetGUI extends JFrame {
 		}
 		return panel;
 	}
+
 	private JLabel getLblDodajPredmet() {
 		if (lblDodajPredmet == null) {
 			lblDodajPredmet = new JLabel("Dodaj predmet");
@@ -371,6 +365,7 @@ public class DodajPredmetGUI extends JFrame {
 		}
 		return lblDodajPredmet;
 	}
+
 	private JLabel getLblX() {
 		if (lblX == null) {
 			lblX = new JLabel("x");
