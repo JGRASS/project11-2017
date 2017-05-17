@@ -212,6 +212,70 @@ public class GUIKontroler {
 
 		}
 	}
+	
+	public static void izvrsiObrisiObavezu(){
+		int sat = GlavniProzorGUI.tableraspored.getSelectedRow();
+		int dan = GlavniProzorGUI.tableraspored.getSelectedColumn();
+		if (sat != -1 && dan != -1) {
+			GlavniProzorGUI.tableraspored.setValueAt("", sat, dan);
+		}
+		String s = String.valueOf(sat);
+		switch (dan) {
+		case 0:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("NED") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 1:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("PON") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 2:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("UTO") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;	
+		case 3:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("SRE") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 4:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("CET") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 5:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("PET") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+		case 6:
+			for (int i = 0; i < SK.obaveze.size(); i++) {
+				if(SK.obaveze.get(i).getDan().equals("SUB") && SK.obaveze.get(i).getSat().equals(s)){
+					SK.obaveze.remove(i);
+				}
+			}
+			break;
+
+		default:
+			System.out.println("Selektujte celiju sa obavezom koju zelite da izbrisete");
+			break;
+		}
+	}
 	/**
 	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
 	 */

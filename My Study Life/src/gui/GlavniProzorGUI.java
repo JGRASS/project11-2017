@@ -997,6 +997,11 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton getBtnIzbrisiObavezu() {
 		if (btnIzbrisiObavezu == null) {
 			btnIzbrisiObavezu = new JButton();
+			btnIzbrisiObavezu.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					GUIKontroler.izvrsiObrisiObavezu();
+				}
+			});
 			btnIzbrisiObavezu.setToolTipText("Obrisi predmet");
 			btnIzbrisiObavezu.setPreferredSize(new Dimension(140, 23));
 			btnIzbrisiObavezu.setFont(new Font("Tahoma", Font.PLAIN, 15));
