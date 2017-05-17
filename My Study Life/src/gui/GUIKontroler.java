@@ -10,6 +10,7 @@ import aktivnosti.*;
 import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.raspored.DodajObavezu;
+import gui.raspored.IzbrisiObavezu;
 import predmeti.Predmet;
 import sismeskiKontroler.SistemskiKontroler;
 /**
@@ -29,6 +30,7 @@ public class GUIKontroler {
 	private static OpisAktivnostiGUI opisAktivnosti;
 	private static PregledKolokvijumaGUI pregledKolokvijuma;
 	private static DodajObavezu dodajObavezu;
+	private static IzbrisiObavezu izbrisiObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Obaveza> obaveze = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
@@ -88,8 +90,17 @@ public class GUIKontroler {
 	
 	}
 	
+	public static void otvoriIzbrisiObavezu(){
+		izbrisiObavezu = new IzbrisiObavezu();
+		izbrisiObavezu.setVisible(true);
+	}
+	
 	public static void dodajObavezu(Obaveza o){
 		SK.dodajObavezu(o);
+	}
+	
+	public static void izbrisiObavezu(Obaveza o){
+		SK.izbrisiObavezu(o);
 	}
 	
 	public static List<Aktivnost> vratiSveAktivnosti(){
@@ -191,7 +202,10 @@ public class GUIKontroler {
 	public static void serijalizujObaveze(){
 		SK.serijalizujObaveze();
 	}
-	
+	/**
+	 * Sluzi za azuriranje tabele pri unosu nove obaveze
+	 * @param Nova obaveza
+	 */
 	public static void azurirajTabeluObaveza(Obaveza o){
 		int sat = Integer.parseInt(o.getSat());
 		switch (o.getDan()) {
@@ -219,7 +233,40 @@ public class GUIKontroler {
 
 		}
 	}
-	
+		/**
+		 * Sluzi za brisanje iz tabele obaveze
+		 * @param Obaveza koju zelimo da izbacimo
+		 */
+	public static void izbrisiIzTabeleObaveza(Obaveza o){
+		int sat = Integer.parseInt(o.getSat());
+		switch (o.getDan()) {
+		case "NED":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 0);
+			break;
+		case "PON":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 1);
+			break;
+		case "UTO":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 2);
+			break;
+		case "SRE":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 3);
+			break;
+		case "CET":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 4);
+			break;
+		case "PET":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 5);
+			break;
+		case "SUB":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 6);
+			break;
+
+		}
+	}
+		/**
+		 * Sluzi za brisanje iz tabele ako tako sto selektujemo zeljenu celiju u tabeli
+		 */
 	public static void izvrsiObrisiObavezu(){
 		int sat = GlavniProzorGUI.tableraspored.getSelectedRow();
 		int dan = GlavniProzorGUI.tableraspored.getSelectedColumn();
@@ -278,8 +325,8 @@ public class GUIKontroler {
 			}
 			break;
 
-		default:
-			System.out.println("Selektujte celiju sa obavezom koju zelite da izbrisete");
+		case -1:
+			GUIKontroler.otvoriIzbrisiObavezu();
 			break;
 		}
 	}
