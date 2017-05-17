@@ -137,6 +137,10 @@ public class SistemskiKontroler {
 		obaveze.add(o);
 	}
 	
+	public void izbrisiObavezu(Obaveza o){
+		obaveze.remove(o);
+	}
+	
 	public  void azurirajTabeluPredmet(){
 		SOAzurirajTabeluPredmeta.izvrsi();
 		

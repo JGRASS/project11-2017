@@ -999,7 +999,8 @@ public class GlavniProzorGUI extends JFrame {
 			btnIzbrisiObavezu = new JButton();
 			btnIzbrisiObavezu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					GUIKontroler.izvrsiObrisiObavezu();
+					GUIKontroler.otvoriIzbrisiObavezu();;
+					
 				}
 			});
 			btnIzbrisiObavezu.setToolTipText("Obrisi predmet");

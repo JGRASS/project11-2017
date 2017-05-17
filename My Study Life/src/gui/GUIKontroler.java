@@ -10,6 +10,7 @@ import aktivnosti.*;
 import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.raspored.DodajObavezu;
+import gui.raspored.IzbrisiObavezu;
 import predmeti.Predmet;
 import sismeskiKontroler.SistemskiKontroler;
 /**
@@ -28,6 +29,7 @@ public class GUIKontroler {
 	private static DodajIspitGUI dodajIspit;
 	private static OpisAktivnostiGUI opisAktivnosti;
 	private static DodajObavezu dodajObavezu;
+	private static IzbrisiObavezu izbrisiObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Obaveza> obaveze = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
@@ -81,8 +83,17 @@ public class GUIKontroler {
 	
 	}
 	
+	public static void otvoriIzbrisiObavezu(){
+		izbrisiObavezu = new IzbrisiObavezu();
+		izbrisiObavezu.setVisible(true);
+	}
+	
 	public static void dodajObavezu(Obaveza o){
 		SK.dodajObavezu(o);
+	}
+	
+	public static void izbrisiObavezu(Obaveza o){
+		SK.izbrisiObavezu(o);
 	}
 	
 	public static List<Aktivnost> vratiSveAktivnosti(){
@@ -213,12 +224,40 @@ public class GUIKontroler {
 		}
 	}
 	
+	public static void izbrisiIzTabeleObaveza(Obaveza o){
+		int sat = Integer.parseInt(o.getSat());
+		switch (o.getDan()) {
+		case "NED":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 0);
+			break;
+		case "PON":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 1);
+			break;
+		case "UTO":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 2);
+			break;
+		case "SRE":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 3);
+			break;
+		case "CET":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 4);
+			break;
+		case "PET":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 5);
+			break;
+		case "SUB":
+			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 6);
+			break;
+
+		}
+	}
+	
 	public static void izvrsiObrisiObavezu(){
 		int sat = GlavniProzorGUI.tableraspored.getSelectedRow();
 		int dan = GlavniProzorGUI.tableraspored.getSelectedColumn();
-		if (sat != -1 && dan != -1) {
+		//if (sat != -1 && dan != -1) {
 			GlavniProzorGUI.tableraspored.setValueAt("", sat, dan);
-		}
+		//}
 		String s = String.valueOf(sat);
 		switch (dan) {
 		case 0:
