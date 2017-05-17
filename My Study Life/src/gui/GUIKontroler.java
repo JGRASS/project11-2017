@@ -44,13 +44,6 @@ public class GUIKontroler {
 	private static OpisAktivnostiGUI opisAktivnosti;
 	private static PregledKolokvijumaGUI pregledKolokvijuma;
 	private static DodajObavezu dodajObavezu;
-	//public static List<Predmet> predmeti = new LinkedList<>();
-	//public static List<Predmet> polozeni = new LinkedList<>(); // Svuda gde
-																// koristite ove
-																// boje,
-																// dovucite ih
-																// sa
-																// GUIKontolera
 	public static SistemskiKontroler SK = new SistemskiKontroler();
 
 	private static IzbrisiObavezu izbrisiObavezu;
