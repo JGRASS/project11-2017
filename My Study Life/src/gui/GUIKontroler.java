@@ -12,22 +12,6 @@ import gui.modeli.PlanerTabelaModel;
 import gui.raspored.DodajObavezu;
 import predmeti.Predmet;
 import sismeskiKontroler.SistemskiKontroler;
-import sistemskeOperacije.SOAzurirajListuPolozenih;
-import sistemskeOperacije.SOAzurirajProsek;
-import sistemskeOperacije.SOAzurirajTabeluPolozenih;
-import sistemskeOperacije.SOAzurirajTabeluPredmeta;
-import sistemskeOperacije.SOOtvoriDodajPredmet;
-import sistemskeOperacije.SOOtvoriIzmeniPredmet;
-import sistemskeOperacije.SOOtvoriPregledPredmeta;
-import sistemskeOperacije.SOSerijalizujObaveze;
-import sistemskeOperacije.SOSerijalizujPolozene;
-import sistemskeOperacije.SOSerijalizujPredmete;
-import sistemskeOperacije.SOUcitajObaveze;
-import sistemskeOperacije.SOUcitajPolozene;
-import sistemskeOperacije.SOUcitajPredmete;
-import sistemskeOperacije.SOVratiESPB;
-import sistemskeOperacije.SOVratiNazivSlike;
-import sistemskeOperacije.SOVratiProsek;
 /**
  * 
  * @author Ivan Stanimirovic
