@@ -3,6 +3,7 @@ package sismeskiKontroler;
 import java.util.LinkedList;
 import java.util.List;
 
+import aktivnosti.Obaveza;
 import predmeti.Predmet;
 import sistemskeOperacije.SOAzurirajListuPolozenih;
 import sistemskeOperacije.SOAzurirajProsek;
@@ -24,6 +25,7 @@ import sistemskeOperacije.SOVratiProsek;
 public class SistemskiKontroler {
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
+	public static List<Obaveza> obaveze = new LinkedList<>();
 	
 	public  String vratiNazivSlike() {
 		return SOVratiNazivSlike.izvrsi();

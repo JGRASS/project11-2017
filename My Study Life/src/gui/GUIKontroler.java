@@ -45,7 +45,6 @@ public class GUIKontroler {
 	private static OpisAktivnostiGUI opisAktivnosti;
 	private static DodajObavezu dodajObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
-	public static List<Obaveza> obaveze = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>(); //Svuda gde koristite ove boje, dovucite ih sa GUIKontolera
 	public static SistemskiKontroler SK = new SistemskiKontroler();
 	public static Color plavaT = new Color(0, 155, 179);
