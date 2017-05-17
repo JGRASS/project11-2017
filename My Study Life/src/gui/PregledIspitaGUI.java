@@ -13,6 +13,8 @@ import aktivnosti.Aktivnost;
 import aktivnosti.Ispit;
 import aktivnosti.Kolokvijum;
 import gui.modeli.FrameDragListener;
+import sismeskiKontroler.SistemskiKontroler;
+
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -40,6 +42,13 @@ public class PregledIspitaGUI extends JFrame {
 	private JTextArea textArea;
 	
 	public PregledIspitaGUI() {
+		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
+		String nazivPredmeta = SistemskiKontroler.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
+		for(int i=0;i<sveAktivnosti.size();i++){
+			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Ispit)){
+				ispiti.add((Ispit)sveAktivnosti.get(i));
+			}
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
@@ -53,13 +62,6 @@ public class PregledIspitaGUI extends JFrame {
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
-		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
-		String nazivPredmeta = GUIKontroler.SK.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
-		for(int i=0;i<sveAktivnosti.size();i++){
-			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Ispit)){
-				ispiti.add((Ispit)sveAktivnosti.get(i));
-			}
-		}
 	}
 
 	private JPanel getPanel() {
@@ -136,12 +138,17 @@ public class PregledIspitaGUI extends JFrame {
 			textArea.setEditable(false);
 			textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 			textArea.setBackground(SystemColor.menu);
-			String tekst = "";
+			String tekst = String.format("%s%13s%10s%10s\n","Datum","Ocena","Mesto","Vreme");
 			for(int i=0;i<ispiti.size();i++){
 				Ispit ispit = ispiti.get(i);
-				tekst+="Datum: "+GUIKontroler.vratiDatumString(ispit.getVremePolaganja())
-				+"+   Ocena: "+ispit.vratiOcenu()+"   Mesto: "+ispit.getMesto()+
-				"   Vreme: "+GUIKontroler.vratiVremeString(ispit.getVremePolaganja())+"\n\n";
+				String ocena = ispit.vratiOcenu()+"";
+				String mesto = ispit.getMesto();
+				if(ocena.equals("-1"));
+					ocena = "/";
+				if(mesto==null)
+						mesto = "/";
+				tekst+=String.format("%s%6s%10s%12s\n",GUIKontroler.vratiDatumString(ispit.getVremePolaganja()),
+				ocena,mesto,GUIKontroler.vratiVremeString(ispit.getVremePolaganja()));
 			}
 			textArea.setText(tekst);
 		}
