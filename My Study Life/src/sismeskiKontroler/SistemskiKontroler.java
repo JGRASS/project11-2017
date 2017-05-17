@@ -6,9 +6,9 @@ import java.util.List;
 
 import aktivnosti.Aktivnost;
 import aktivnosti.Planer;
-import gui.GUIKontroler;
 import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
+import aktivnosti.Obaveza;
 import predmeti.Predmet;
 import sistemskeOperacije.SOAzurirajListuPolozenih;
 import sistemskeOperacije.SOAzurirajProsek;
@@ -40,6 +40,7 @@ public class SistemskiKontroler {
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
 	//public static List<Aktivnost> aktivnosti = new LinkedList<>(); o.O <-
+	public static List<Obaveza> obaveze = new LinkedList<>();
 	
 	
 	public static List<Aktivnost> vratiSveAktivnosti(){
@@ -78,12 +79,15 @@ public class SistemskiKontroler {
 	public static GregorianCalendar selektovanDatum(MojaTabela table) {
 		return SOSelektovaniDatum.izvrsi(table);
 	}
+	
 	public static String vratiDatumString(GregorianCalendar g){
 		return SOVratiDatumString.izvrsi(g);
 	}
+	
 	public static String vratiVremeString(GregorianCalendar g){
 		return SOVratiVremeString.izvrsi(g);
 	}
+	
 	public static int vratiIndexPredmeta(String naziv){
 		for(int i=0;i<predmeti.size();i++){
 			if(predmeti.get(i).getNaziv().equals(naziv))
@@ -91,15 +95,19 @@ public class SistemskiKontroler {
 		}
 		return -1;
 	}
+	
 	public static boolean istiDan(GregorianCalendar g1,GregorianCalendar g2){
 		return SOIstiDan.izvrsi(g1, g2);
 	}
+	
 	public static void popuniMatricuDatuma(){
 		SOPopuniMatricuDatuma.izvrsi(planer.vratiGc(), planer.vratiDatume());
 	}
+	
 	public static Aktivnost pronadjiAktivnost(GregorianCalendar g){
 		return SOPronadjiAktivnost.izvrsi(planer.aktivnosti, g);
 	}
+	
 	public static void ucitajPredmete(){
 		SOUcitajPredmete.izvrsi();
 	}
@@ -123,6 +131,10 @@ public class SistemskiKontroler {
 
 	public void serijalizujObaveze(){
 		SOSerijalizujObaveze.izvrsi();
+	}
+	
+	public void dodajObavezu(Obaveza o){
+		obaveze.add(o);
 	}
 	
 	public  void azurirajTabeluPredmet(){

@@ -12,22 +12,6 @@ import gui.modeli.PlanerTabelaModel;
 import gui.raspored.DodajObavezu;
 import predmeti.Predmet;
 import sismeskiKontroler.SistemskiKontroler;
-import sistemskeOperacije.SOAzurirajListuPolozenih;
-import sistemskeOperacije.SOAzurirajProsek;
-import sistemskeOperacije.SOAzurirajTabeluPolozenih;
-import sistemskeOperacije.SOAzurirajTabeluPredmeta;
-import sistemskeOperacije.SOOtvoriDodajPredmet;
-import sistemskeOperacije.SOOtvoriIzmeniPredmet;
-import sistemskeOperacije.SOOtvoriPregledPredmeta;
-import sistemskeOperacije.SOSerijalizujObaveze;
-import sistemskeOperacije.SOSerijalizujPolozene;
-import sistemskeOperacije.SOSerijalizujPredmete;
-import sistemskeOperacije.SOUcitajObaveze;
-import sistemskeOperacije.SOUcitajPolozene;
-import sistemskeOperacije.SOUcitajPredmete;
-import sistemskeOperacije.SOVratiESPB;
-import sistemskeOperacije.SOVratiNazivSlike;
-import sistemskeOperacije.SOVratiProsek;
 /**
  * 
  * @author Ivan Stanimirovic
@@ -46,7 +30,7 @@ public class GUIKontroler {
 	private static DodajObavezu dodajObavezu;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Obaveza> obaveze = new LinkedList<>();
-	public static List<Predmet> polozeni = new LinkedList<>(); 
+	public static List<Predmet> polozeni = new LinkedList<>();
 	public static SistemskiKontroler SK = new SistemskiKontroler();
 	public static Color plavaT = new Color(0, 155, 179);
 	public static Color plavaS = new Color(112, 155, 179);
@@ -95,6 +79,10 @@ public class GUIKontroler {
 		dodajObavezu = new DodajObavezu();
 		dodajObavezu.setVisible(true);
 	
+	}
+	
+	public static void dodajObavezu(Obaveza o){
+		SK.dodajObavezu(o);
 	}
 	
 	public static List<Aktivnost> vratiSveAktivnosti(){

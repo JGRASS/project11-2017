@@ -8,16 +8,17 @@ import java.util.LinkedList;
 
 import aktivnosti.Obaveza;
 import gui.GUIKontroler;
+import sismeskiKontroler.SistemskiKontroler;
 
 public class SOUcitajObaveze {
 	public static void izvrsi(){
 		try {
 			ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("obaveze.s")));
-			GUIKontroler.obaveze = (LinkedList<Obaveza>) in.readObject();
+			SistemskiKontroler.obaveze = (LinkedList<Obaveza>) in.readObject();
 			in.close();
 			
 		} catch (ClassNotFoundException | IOException e) {
-			GUIKontroler.obaveze = new LinkedList<>();
+			SistemskiKontroler.obaveze = new LinkedList<>();
 		}
 		
 	}
