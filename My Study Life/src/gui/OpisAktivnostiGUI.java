@@ -24,7 +24,11 @@ import java.awt.event.MouseEvent;
 import java.util.GregorianCalendar;
 import javax.swing.JButton;
 import javax.swing.JTextField;
-
+/**
+ * Klasa koja predstavlja GUI-opis studenske aktivnosti
+ * @author Miro Maric
+ * @version 1.0
+ */
 public class OpisAktivnostiGUI extends JFrame {
 
 	private JPanel contentPane;
@@ -233,10 +237,6 @@ public class OpisAktivnostiGUI extends JFrame {
 	private JLabel getLblRezultati() {
 		if (lblRezultati == null) {
 			lblRezultati = new JLabel("Unesi ocenu/rezultat:");
-//			if(GlavniProzorGUI.selektovanDatum().before(new GregorianCalendar())){
-//				lblRezultati.setText("Rezultati: ");
-//				lblRezultati.setVisible(true);
-//			}
 			lblRezultati.setHorizontalAlignment(SwingConstants.CENTER);
 			lblRezultati.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			lblRezultati.setBounds(10, 214, 430, 25);

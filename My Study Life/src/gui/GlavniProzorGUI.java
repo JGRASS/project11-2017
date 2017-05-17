@@ -808,7 +808,9 @@ public class GlavniProzorGUI extends JFrame {
 		}
 		return label_12;
 	}
-	
+	/**
+	 * Metoda koja podesava pozadinu u celom prog
+	 */
 	private void podesiPozadinu() {
 		Image img = new ImageIcon(this.getClass().getResource(GUIKontroler.vratiNazivSlike())).getImage();
 		JLabel picLabelPlaner = new JLabel(new ImageIcon(img));
@@ -881,6 +883,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel getLblNaslov() {
 		if (lblNaslov == null) {
 			lblNaslov = new JLabel("My Study Life");
+			lblNaslov.setBackground(Color.LIGHT_GRAY);
 			lblNaslov.setForeground(Color.WHITE);
 			lblNaslov.setFont(new Font("Segoe Script", Font.BOLD, 17));
 			lblNaslov.setBounds(5, 0, 800, 25);

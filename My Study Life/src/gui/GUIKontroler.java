@@ -41,7 +41,7 @@ public class GUIKontroler {
 	private static OpisAktivnostiGUI opisAktivnosti;
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
-	public static Color plavaS = new Color(112, 155, 179);
+	public static Color plavaS = new Color(112, 155, 179); //Svuda gde koristite ove boje, dovucite ih sa GUIKontolera
 	public static Color plavaT = new Color(0, 155, 179);
 	//Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom zatvaranja/otvaranja programa.
 	//Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
