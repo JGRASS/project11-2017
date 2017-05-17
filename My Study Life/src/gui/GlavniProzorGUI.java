@@ -11,6 +11,8 @@ import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.modeli.PrikazPolozenihTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
+import sismeskiKontroler.SistemskiKontroler;
+
 import javax.swing.JTabbedPane;
 import java.awt.Font;
 import java.awt.Image;
@@ -99,6 +101,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel label_17;
 	private JLabel label_18;
 	private JButton btnIzbrisiObavezu;
+	private JButton btnUcitaj;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -271,6 +274,7 @@ public class GlavniProzorGUI extends JFrame {
 			panelRasporedObaveza.add(getBtnDodajObavezu());
 			panelRasporedObaveza.add(getTableraspored());
 			panelRasporedObaveza.add(getBtnIzbrisiObavezu());
+			panelRasporedObaveza.add(getBtnUcitaj());
 		}
 		return panelRasporedObaveza;
 	}
@@ -1110,5 +1114,24 @@ public class GlavniProzorGUI extends JFrame {
 			btnIzbrisiObavezu.setIcon(new ImageIcon(img));
 		}
 		return btnIzbrisiObavezu;
+	}
+	private JButton getBtnUcitaj() {
+		if (btnUcitaj == null) {
+			btnUcitaj = new JButton();
+			btnUcitaj.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					
+						GUIKontroler.popuniTabeluObaveza();
+					
+				}
+			});
+			btnUcitaj.setText("Ucitaj\r\n");
+			btnUcitaj.setToolTipText("Dodaj predmet");
+			btnUcitaj.setFont(new Font("Tahoma", Font.PLAIN, 10));
+			btnUcitaj.setFocusPainted(false);
+			btnUcitaj.setBackground(new Color(0, 155, 179));
+			btnUcitaj.setBounds(752, 145, 60, 35);
+		}
+		return btnUcitaj;
 	}
 }

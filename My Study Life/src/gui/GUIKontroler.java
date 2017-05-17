@@ -192,10 +192,21 @@ public class GUIKontroler {
 		return SistemskiKontroler.istiDan(g1, g2);
 
 	}
+	
+	/**
+	 * Metoda popunjava tabelu obaveza
+	 */
+	public static void popuniTabeluObaveza(){
+		for (int i = 0; i < SistemskiKontroler.obaveze.size(); i++) {
+			azurirajTabeluObaveza(SistemskiKontroler.obaveze.get(i));
+		}
+	}
+	
 
 	/**
 	 * Metoda popunjava matricu mesecnih datuma
 	 */
+
 	public static void popuniMatricuDatuma(){
 		SistemskiKontroler.popuniMatricuDatuma();
 
@@ -347,40 +358,38 @@ public class GUIKontroler {
 	/**
 	 * Metoda se koristi za serijalizaciju obaveza u file
 	 */
-	public static void serijalizujObaveze() {
-		SK.serijalizujObaveze();
-	}
+	public static void serijalizujObaveze(){
+		SistemskiKontroler.serijalizujObaveze();
+		}
 
 	/**
-<<<<<<< HEAD
-	 * Metoda se koristi za azuriranje tabele predmeta iz liste predmet
-=======
 	 * Sluzi za azuriranje tabele pri unosu nove obaveze
 	 * @param Nova obaveza
 	 */
 	public static void azurirajTabeluObaveza(Obaveza o){
 		int sat = Integer.parseInt(o.getSat());
+		sat -= 8;
 		switch (o.getDan()) {
 		case "NED":
-			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 0);
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat, 0);
 			break;
 		case "PON":
-			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 1);
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat, 1);
 			break;
 		case "UTO":
-			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 2);
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat, 2);
 			break;
 		case "SRE":
-			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 3);
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat, 3);
 			break;
 		case "CET":
-			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 4);
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat, 4);
 			break;
 		case "PET":
-			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 5);
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat, 5);
 			break;
 		case "SUB":
-			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat-8, 6);
+			GlavniProzorGUI.tableraspored.setValueAt(o.getNaziv() + "-" + o.getMesto(), sat, 6);
 			break;
 
 		}
@@ -484,7 +493,6 @@ public class GUIKontroler {
 	}
 	/**
 	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
->>>>>>> branch 'master' of https://github.com/JGRASS/project11-2017
 	 */
 	public static void azurirajTabeluPredmet() {
 		SK.azurirajTabeluPredmet();
