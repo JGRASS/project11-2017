@@ -10,6 +10,7 @@ import javax.swing.border.EmptyBorder;
 import com.sun.java.accessibility.util.GUIInitializedListener;
 
 import aktivnosti.Aktivnost;
+import aktivnosti.Ispit;
 import aktivnosti.Kolokvijum;
 import gui.modeli.FrameDragListener;
 import java.awt.Color;
@@ -42,6 +43,13 @@ public class PregledKolokvijumaGUI extends JFrame {
 	private List<Kolokvijum> kolokvijumi = new LinkedList<>();
 	
 	public PregledKolokvijumaGUI() {
+		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
+		String nazivPredmeta = GUIKontroler.SK.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
+		for(int i=0;i<sveAktivnosti.size();i++){
+			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Kolokvijum)){
+				kolokvijumi.add((Kolokvijum)sveAktivnosti.get(i));
+			}
+		}
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		setLocationRelativeTo(null);
@@ -55,13 +63,6 @@ public class PregledKolokvijumaGUI extends JFrame {
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
-		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
-		String nazivPredmeta = GUIKontroler.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
-		for(int i=0;i<sveAktivnosti.size();i++){
-			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Kolokvijum)){
-				kolokvijumi.add((Kolokvijum)sveAktivnosti.get(i));
-			}
-		}
 	}
 
 	private JPanel getPanel() {
@@ -131,12 +132,17 @@ public class PregledKolokvijumaGUI extends JFrame {
 			textArea.setEditable(false);
 			textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 			textArea.setBackground(SystemColor.menu);
-			String tekst = "";
+			String tekst = String.format("%s%13s%10s%10s\n","Datum","Br poena","Mesto","Vreme");
 			for(int i=0;i<kolokvijumi.size();i++){
 				Kolokvijum k = kolokvijumi.get(i);
-				tekst+="Datum: "+GUIKontroler.vratiDatumString(k.getVremePolaganja())
-				+"+   Broj poena: "+k.vratiBrojPoena()+"   Mesto: "+k.getMesto()+
-				"   Vreme: "+GUIKontroler.vratiVremeString(k.getVremePolaganja())+"\n\n";
+				String brojPoena = k.vratiBrojPoena()+"";
+				String mesto = k.getMesto();
+				if(brojPoena.equals("-1"));
+					brojPoena = "/";
+				if(mesto==null)
+						mesto = "/";
+				tekst+=String.format("%s%5s%12s%11s\n",GUIKontroler.vratiDatumString(k.getVremePolaganja()),
+				brojPoena,k.getMesto(),GUIKontroler.vratiVremeString(k.getVremePolaganja()));
 			}
 			textArea.setText(tekst);
 		}
