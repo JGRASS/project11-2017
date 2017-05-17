@@ -129,7 +129,7 @@ public class SistemskiKontroler {
 		SOUcitajObaveze.izvrsi();
 	}
 
-	public void serijalizujObaveze(){
+	public static void serijalizujObaveze(){
 		SOSerijalizujObaveze.izvrsi();
 	}
 	
