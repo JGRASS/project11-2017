@@ -107,6 +107,7 @@ public class PregledKolokvijumaGUI extends JFrame {
 	private JButton getBtnNewButton() {
 		if (btnNewButton == null) {
 			btnNewButton = new JButton("Izlaz");
+			btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			btnNewButton.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					dispose();
@@ -114,7 +115,7 @@ public class PregledKolokvijumaGUI extends JFrame {
 			});
 			btnNewButton.setBackground(Color.GRAY);
 			btnNewButton.setForeground(Color.WHITE);
-			btnNewButton.setBounds(170, 240, 110, 35);
+			btnNewButton.setBounds(165, 238, 130, 35);
 		}
 		return btnNewButton;
 	}
@@ -122,6 +123,7 @@ public class PregledKolokvijumaGUI extends JFrame {
 	private JTextArea getTextArea() {
 		if (textArea == null) {
 			textArea = new JTextArea();
+			textArea.setLocation(21, 0);
 			textArea.setEditable(false);
 			textArea.setFont(new Font("Monospaced", Font.PLAIN, 15));
 			textArea.setBackground(SystemColor.menu);

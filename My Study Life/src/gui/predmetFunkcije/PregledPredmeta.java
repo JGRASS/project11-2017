@@ -69,6 +69,7 @@ public class PregledPredmeta extends JFrame {
 	private JPanel panel;
 	private JLabel lblPregledPredmeta;
 	private JLabel lblX;
+	private JButton btnIzlaz;
 
 	/**
 	 * Launch the application.
@@ -118,6 +119,7 @@ public class PregledPredmeta extends JFrame {
 		contentPane.add(getBtnKolokvijum());
 		contentPane.add(getBtnIspit());
 		contentPane.add(getPanel());
+		contentPane.add(getBtnIzlaz());
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
@@ -126,7 +128,8 @@ public class PregledPredmeta extends JFrame {
 	private JLabel getLblNaziv() {
 		if (lblNaziv == null) {
 			lblNaziv = new JLabel("Naziv");
-			lblNaziv.setBounds(10, 36, 46, 14);
+			lblNaziv.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblNaziv.setBounds(10, 36, 150, 14);
 		}
 		return lblNaziv;
 	}
@@ -136,7 +139,7 @@ public class PregledPredmeta extends JFrame {
 			textFieldNaziv = new JTextField();
 			textFieldNaziv.setEnabled(false);
 			textFieldNaziv.setEditable(false);
-			textFieldNaziv.setBounds(10, 63, 107, 20);
+			textFieldNaziv.setBounds(10, 63, 150, 35);
 			textFieldNaziv.setColumns(10);
 		}
 		return textFieldNaziv;
@@ -145,7 +148,8 @@ public class PregledPredmeta extends JFrame {
 	private JLabel getLblEsbp() {
 		if (lblEsbp == null) {
 			lblEsbp = new JLabel("ESBP");
-			lblEsbp.setBounds(173, 36, 46, 14);
+			lblEsbp.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblEsbp.setBounds(173, 36, 150, 14);
 		}
 		return lblEsbp;
 	}
@@ -155,7 +159,7 @@ public class PregledPredmeta extends JFrame {
 			textFieldESBP = new JTextField();
 			textFieldESBP.setEnabled(false);
 			textFieldESBP.setEditable(false);
-			textFieldESBP.setBounds(173, 63, 107, 20);
+			textFieldESBP.setBounds(173, 63, 150, 35);
 			textFieldESBP.setColumns(10);
 		}
 		return textFieldESBP;
@@ -164,7 +168,8 @@ public class PregledPredmeta extends JFrame {
 	private JLabel getLblSkolskaGodina() {
 		if (lblSkolskaGodina == null) {
 			lblSkolskaGodina = new JLabel("Skolska godina");
-			lblSkolskaGodina.setBounds(345, 36, 107, 14);
+			lblSkolskaGodina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblSkolskaGodina.setBounds(333, 36, 150, 14);
 		}
 		return lblSkolskaGodina;
 	}
@@ -174,7 +179,7 @@ public class PregledPredmeta extends JFrame {
 			textFieldSkolska = new JTextField();
 			textFieldSkolska.setEnabled(false);
 			textFieldSkolska.setEditable(false);
-			textFieldSkolska.setBounds(345, 63, 107, 20);
+			textFieldSkolska.setBounds(333, 63, 150, 35);
 			textFieldSkolska.setColumns(10);
 		}
 		return textFieldSkolska;
@@ -183,7 +188,8 @@ public class PregledPredmeta extends JFrame {
 	private JLabel getLblSemestar() {
 		if (lblSemestar == null) {
 			lblSemestar = new JLabel("Semestar");
-			lblSemestar.setBounds(10, 110, 56, 14);
+			lblSemestar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblSemestar.setBounds(10, 110, 65, 25);
 		}
 		return lblSemestar;
 	}
@@ -193,7 +199,7 @@ public class PregledPredmeta extends JFrame {
 			textFieldSemestar = new JTextField();
 			textFieldSemestar.setEnabled(false);
 			textFieldSemestar.setEditable(false);
-			textFieldSemestar.setBounds(10, 133, 107, 20);
+			textFieldSemestar.setBounds(10, 133, 65, 35);
 			textFieldSemestar.setColumns(10);
 		}
 		return textFieldSemestar;
@@ -202,8 +208,9 @@ public class PregledPredmeta extends JFrame {
 	private JCheckBox getChckbxJednosemestralan() {
 		if (chckbxJednosemestralan == null) {
 			chckbxJednosemestralan = new JCheckBox("Jednosemestralan");
+			chckbxJednosemestralan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			chckbxJednosemestralan.setEnabled(false);
-			chckbxJednosemestralan.setBounds(10, 173, 144, 23);
+			chckbxJednosemestralan.setBounds(99, 133, 144, 35);
 		}
 		return chckbxJednosemestralan;
 	}
@@ -211,6 +218,7 @@ public class PregledPredmeta extends JFrame {
 	private JCheckBox getChckbxPolozen() {
 		if (chckbxPolozen == null) {
 			chckbxPolozen = new JCheckBox("Polozen");
+			chckbxPolozen.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			chckbxPolozen.setEnabled(false);
 			chckbxPolozen.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
@@ -221,7 +229,7 @@ public class PregledPredmeta extends JFrame {
 					}
 				}
 			});
-			chckbxPolozen.setBounds(173, 132, 78, 23);
+			chckbxPolozen.setBounds(245, 133, 78, 35);
 		}
 		return chckbxPolozen;
 	}
@@ -229,7 +237,8 @@ public class PregledPredmeta extends JFrame {
 	private JLabel getLblOcena() {
 		if (lblOcena == null) {
 			lblOcena = new JLabel("Ocena");
-			lblOcena.setBounds(298, 110, 46, 14);
+			lblOcena.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblOcena.setBounds(333, 110, 150, 14);
 		}
 		return lblOcena;
 	}
@@ -238,7 +247,7 @@ public class PregledPredmeta extends JFrame {
 		if (textFieldOcena == null) {
 			textFieldOcena = new JTextField();
 			textFieldOcena.setEditable(false);
-			textFieldOcena.setBounds(298, 133, 107, 20);
+			textFieldOcena.setBounds(333, 133, 150, 35);
 			textFieldOcena.setColumns(10);
 		}
 		return textFieldOcena;
@@ -256,7 +265,7 @@ public class PregledPredmeta extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 250, 270, 134);
+			scrollPane.setBounds(10, 250, 313, 134);
 			scrollPane.setViewportView(getTextAreaNapomena());
 		}
 		return scrollPane;
@@ -265,6 +274,7 @@ public class PregledPredmeta extends JFrame {
 	private JLabel getLblNapomena() {
 		if (lblNapomena == null) {
 			lblNapomena = new JLabel("Napomena");
+			lblNapomena.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			lblNapomena.setBounds(10, 225, 78, 14);
 		}
 		return lblNapomena;
@@ -301,6 +311,7 @@ public class PregledPredmeta extends JFrame {
 	private JButton getBtnFonforum() {
 		if (btnFonforum == null) {
 			btnFonforum = new JButton("FonForum");
+			btnFonforum.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			btnFonforum.setBackground(Color.GRAY);
 			btnFonforum.setForeground(Color.WHITE);
 			
@@ -309,7 +320,7 @@ public class PregledPredmeta extends JFrame {
 					open(forum);
 				}
 			});
-			btnFonforum.setBounds(173, 173, 110, 35);
+			btnFonforum.setBounds(173, 190, 130, 35);
 			btnFonforum.setFocusPainted(false);
 		}
 		return btnFonforum;
@@ -318,6 +329,7 @@ public class PregledPredmeta extends JFrame {
 	private JButton getBtnPuskice() {
 		if (btnPuskice == null) {
 			btnPuskice = new JButton("Puskice");
+			btnPuskice.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			btnPuskice.setBackground(Color.GRAY);
 			btnPuskice.setForeground(Color.WHITE);
 			
@@ -326,7 +338,7 @@ public class PregledPredmeta extends JFrame {
 					open(puskice);
 				}
 			});
-			btnPuskice.setBounds(298, 173, 110, 35);
+			btnPuskice.setBounds(333, 190, 130, 35);
 			btnPuskice.setFocusPainted(false);
 		}
 		return btnPuskice;
@@ -335,6 +347,7 @@ public class PregledPredmeta extends JFrame {
 	private JButton getBtnKolokvijum() {
 		if (btnKolokvijum == null) {
 			btnKolokvijum = new JButton("Kolokvijum");
+			btnKolokvijum.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			btnKolokvijum.setBackground(Color.GRAY);
 			btnKolokvijum.setForeground(Color.WHITE);
 			btnKolokvijum.addActionListener(new ActionListener() {
@@ -342,7 +355,7 @@ public class PregledPredmeta extends JFrame {
 					GUIKontroler.otvoriPregledKolokvijuma();
 				}
 			});
-			btnKolokvijum.setBounds(333, 252, 110, 35);
+			btnKolokvijum.setBounds(333, 252, 130, 35);
 			btnKolokvijum.setFocusPainted(false);
 		}
 		return btnKolokvijum;
@@ -351,6 +364,7 @@ public class PregledPredmeta extends JFrame {
 	private JButton getBtnIspit() {
 		if (btnIspit == null) {
 			btnIspit = new JButton("Ispit");
+			btnIspit.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			btnIspit.setBackground(Color.GRAY);
 			btnIspit.setForeground(Color.WHITE);
 			btnIspit.addActionListener(new ActionListener() {
@@ -359,7 +373,7 @@ public class PregledPredmeta extends JFrame {
 				}
 				
 			});
-			btnIspit.setBounds(333, 310, 110, 35);
+			btnIspit.setBounds(333, 305, 130, 35);
 			btnIspit.setFocusPainted(false);
 		}
 		return btnIspit;
@@ -393,7 +407,7 @@ public class PregledPredmeta extends JFrame {
 			lblPregledPredmeta.setForeground(Color.WHITE);
 			lblPregledPredmeta.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			lblPregledPredmeta.setBackground(Color.GRAY);
-			lblPregledPredmeta.setBounds(0, 0, 405, 25);
+			lblPregledPredmeta.setBounds(5, 0, 405, 25);
 		}
 		return lblPregledPredmeta;
 	}
@@ -413,5 +427,21 @@ public class PregledPredmeta extends JFrame {
 			lblX.setBounds(463, 0, 30, 20);
 		}
 		return lblX;
+	}
+	private JButton getBtnIzlaz() {
+		if (btnIzlaz == null) {
+			btnIzlaz = new JButton("Izlaz");
+			btnIzlaz.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent arg0) {
+					dispose();
+				}
+			});
+			btnIzlaz.setForeground(Color.WHITE);
+			btnIzlaz.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			btnIzlaz.setFocusPainted(false);
+			btnIzlaz.setBackground(Color.GRAY);
+			btnIzlaz.setBounds(333, 356, 130, 35);
+		}
+		return btnIzlaz;
 	}
 }

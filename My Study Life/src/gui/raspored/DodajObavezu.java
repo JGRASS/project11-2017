@@ -81,9 +81,9 @@ public class DodajObavezu extends JFrame {
 	private JLabel getLblObaveza() {
 		if (lblObaveza == null) {
 			lblObaveza = new JLabel("Unesite obavezu");
-			lblObaveza.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			lblObaveza.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			lblObaveza.setHorizontalAlignment(SwingConstants.CENTER);
-			lblObaveza.setBounds(86, 45, 250, 27);
+			lblObaveza.setBounds(86, 36, 250, 25);
 		}
 		return lblObaveza;
 	}
@@ -91,8 +91,8 @@ public class DodajObavezu extends JFrame {
 		if (lblVreme == null) {
 			lblVreme = new JLabel("Vreme:");
 			lblVreme.setHorizontalAlignment(SwingConstants.CENTER);
-			lblVreme.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblVreme.setBounds(86, 109, 250, 27);
+			lblVreme.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblVreme.setBounds(86, 93, 250, 25);
 		}
 		return lblVreme;
 	}
@@ -100,8 +100,8 @@ public class DodajObavezu extends JFrame {
 		if (lblMesto == null) {
 			lblMesto = new JLabel("Mesto");
 			lblMesto.setHorizontalAlignment(SwingConstants.CENTER);
-			lblMesto.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblMesto.setBounds(86, 171, 250, 27);
+			lblMesto.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblMesto.setBounds(132, 169, 154, 25);
 		}
 		return lblMesto;
 	}
@@ -109,9 +109,9 @@ public class DodajObavezu extends JFrame {
 		if (txtMesto == null) {
 			txtMesto = new JTextField();
 			txtMesto.setHorizontalAlignment(SwingConstants.CENTER);
-			txtMesto.setFont(new Font("Courier New", Font.PLAIN, 15));
+			txtMesto.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			txtMesto.setColumns(10);
-			txtMesto.setBounds(133, 194, 153, 35);
+			txtMesto.setBounds(136, 192, 150, 35);
 		}
 		return txtMesto;
 	}
@@ -147,7 +147,7 @@ public class DodajObavezu extends JFrame {
 			btnDodaj.setForeground(Color.WHITE);
 			btnDodaj.setBackground(Color.GRAY);
 			btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnDodaj.setBounds(57, 240, 140, 35);
+			btnDodaj.setBounds(57, 238, 140, 35);
 			btnDodaj.setFocusPainted(false);
 		}
 		return btnDodaj;
@@ -163,7 +163,7 @@ public class DodajObavezu extends JFrame {
 				}
 			});
 			btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnOdustani.setBounds(217, 240, 140, 35);
+			btnOdustani.setBounds(217, 238, 140, 35);
 			btnOdustani.setFocusPainted(false);
 		}
 		return btnOdustani;
@@ -211,14 +211,16 @@ public class DodajObavezu extends JFrame {
 		if (lblDvotacka == null) {
 			lblDvotacka = new JLabel(":");
 			lblDvotacka.setFont(new Font("Tahoma", Font.PLAIN, 19));
-			lblDvotacka.setBounds(268, 145, 10, 27);
+			lblDvotacka.setBounds(256, 129, 10, 27);
 		}
 		return lblDvotacka;
 	}
 	private JTextField getTxtObaveza() {
 		if (txtObaveza == null) {
 			txtObaveza = new JTextField();
-			txtObaveza.setBounds(86, 78, 243, 25);
+			txtObaveza.setHorizontalAlignment(SwingConstants.CENTER);
+			txtObaveza.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			txtObaveza.setBounds(136, 62, 150, 35);
 			txtObaveza.setColumns(10);
 		}
 		return txtObaveza;
@@ -226,9 +228,9 @@ public class DodajObavezu extends JFrame {
 	private JTextField getTxtDan() {
 		if (txtDan == null) {
 			txtDan = new JTextField();
-			txtDan.setFont(new Font("Tahoma", Font.PLAIN, 18));
+			txtDan.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			txtDan.setHorizontalAlignment(SwingConstants.CENTER);
-			txtDan.setBounds(118, 147, 86, 25);
+			txtDan.setBounds(86, 134, 85, 25);
 			txtDan.setColumns(10);
 		}
 		return txtDan;
@@ -237,7 +239,7 @@ public class DodajObavezu extends JFrame {
 		if (lblDan == null) {
 			lblDan = new JLabel("Dan");
 			lblDan.setHorizontalAlignment(SwingConstants.CENTER);
-			lblDan.setBounds(133, 134, 46, 14);
+			lblDan.setBounds(93, 118, 70, 14);
 		}
 		return lblDan;
 	}
@@ -245,7 +247,7 @@ public class DodajObavezu extends JFrame {
 		if (lblSat == null) {
 			lblSat = new JLabel("Sat");
 			lblSat.setHorizontalAlignment(SwingConstants.CENTER);
-			lblSat.setBounds(218, 134, 46, 14);
+			lblSat.setBounds(200, 118, 46, 14);
 		}
 		return lblSat;
 	}
@@ -253,7 +255,7 @@ public class DodajObavezu extends JFrame {
 		if (lblMinut == null) {
 			lblMinut = new JLabel("Minut");
 			lblMinut.setHorizontalAlignment(SwingConstants.CENTER);
-			lblMinut.setBounds(283, 134, 46, 14);
+			lblMinut.setBounds(276, 118, 46, 14);
 		}
 		return lblMinut;
 	}
@@ -262,7 +264,7 @@ public class DodajObavezu extends JFrame {
 			comboBoxSat = new JComboBox();
 			comboBoxSat.setModel(new DefaultComboBoxModel(new String[] {"8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 			comboBoxSat.setMaximumRowCount(12);
-			comboBoxSat.setBounds(217, 151, 46, 20);
+			comboBoxSat.setBounds(200, 134, 46, 25);
 		}
 		return comboBoxSat;
 	}
@@ -270,7 +272,7 @@ public class DodajObavezu extends JFrame {
 		if (comboBoxMinut == null) {
 			comboBoxMinut = new JComboBox();
 			comboBoxMinut.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "56", "57", "58", "59", "60"}));
-			comboBoxMinut.setBounds(282, 152, 39, 20);
+			comboBoxMinut.setBounds(276, 134, 46, 25);
 		}
 		return comboBoxMinut;
 	}

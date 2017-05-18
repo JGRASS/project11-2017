@@ -83,16 +83,16 @@ public class DodajIspitGUI extends JFrame {
 				comboBoxPredmeti.addItem(GUIKontroler.SK.predmeti.get(i).getNaziv());
 			}
 			comboBoxPredmeti.setAlignmentX(comboBoxPredmeti.CENTER_ALIGNMENT);
-			comboBoxPredmeti.setBounds(86, 74, 250, 35);
+			comboBoxPredmeti.setBounds(100, 77, 250, 35);
 		}
 		return comboBoxPredmeti;
 	}
 	private JLabel getLblIzaberiPredmet() {
 		if (lblIzaberiPredmet == null) {
 			lblIzaberiPredmet = new JLabel("Izaberi predmet:*");
-			lblIzaberiPredmet.setFont(new Font("Tahoma", Font.PLAIN, 15));
+			lblIzaberiPredmet.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			lblIzaberiPredmet.setHorizontalAlignment(SwingConstants.CENTER);
-			lblIzaberiPredmet.setBounds(86, 45, 250, 27);
+			lblIzaberiPredmet.setBounds(100, 47, 250, 27);
 		}
 		return lblIzaberiPredmet;
 	}
@@ -100,8 +100,8 @@ public class DodajIspitGUI extends JFrame {
 		if (lblVreme == null) {
 			lblVreme = new JLabel("Vreme:");
 			lblVreme.setHorizontalAlignment(SwingConstants.CENTER);
-			lblVreme.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblVreme.setBounds(86, 109, 250, 27);
+			lblVreme.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblVreme.setBounds(100, 111, 250, 27);
 		}
 		return lblVreme;
 	}
@@ -111,7 +111,7 @@ public class DodajIspitGUI extends JFrame {
 			textFieldH.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			textFieldH.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldH.setText("h");
-			textFieldH.setBounds(152, 136, 50, 35);
+			textFieldH.setBounds(166, 138, 50, 35);
 			textFieldH.setColumns(10);
 		}
 		return textFieldH;
@@ -120,8 +120,8 @@ public class DodajIspitGUI extends JFrame {
 		if (lblMesto == null) {
 			lblMesto = new JLabel("Amfiteatar/ucionica");
 			lblMesto.setHorizontalAlignment(SwingConstants.CENTER);
-			lblMesto.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			lblMesto.setBounds(86, 171, 250, 27);
+			lblMesto.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblMesto.setBounds(100, 173, 250, 27);
 		}
 		return lblMesto;
 	}
@@ -131,7 +131,7 @@ public class DodajIspitGUI extends JFrame {
 			textFieldMesto.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldMesto.setFont(new Font("Courier New", Font.PLAIN, 15));
 			textFieldMesto.setColumns(10);
-			textFieldMesto.setBounds(133, 194, 153, 35);
+			textFieldMesto.setBounds(150, 196, 150, 35);
 		}
 		return textFieldMesto;
 	}
@@ -178,8 +178,8 @@ public class DodajIspitGUI extends JFrame {
 					}
 				}
 			});
-			btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnDodaj.setBounds(57, 240, 140, 35);
+			btnDodaj.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			btnDodaj.setBounds(50, 240, 140, 35);
 			btnDodaj.setFocusPainted(false);
 		}
 		return btnDodaj;
@@ -194,8 +194,8 @@ public class DodajIspitGUI extends JFrame {
 					dispose();
 				}
 			});
-			btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnOdustani.setBounds(217, 240, 140, 35);
+			btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			btnOdustani.setBounds(250, 240, 140, 35);
 			btnOdustani.setFocusPainted(false);
 		}
 		return btnOdustani;
@@ -246,7 +246,7 @@ public class DodajIspitGUI extends JFrame {
 			textFieldM.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldM.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			textFieldM.setColumns(10);
-			textFieldM.setBounds(217, 136, 50, 35);
+			textFieldM.setBounds(231, 138, 50, 35);
 		}
 		return textFieldM;
 	}
@@ -254,7 +254,7 @@ public class DodajIspitGUI extends JFrame {
 		if (lblDvodatcka == null) {
 			lblDvodatcka = new JLabel(":");
 			lblDvodatcka.setFont(new Font("Tahoma", Font.PLAIN, 19));
-			lblDvodatcka.setBounds(206, 138, 10, 27);
+			lblDvodatcka.setBounds(220, 140, 10, 27);
 		}
 		return lblDvodatcka;
 	}

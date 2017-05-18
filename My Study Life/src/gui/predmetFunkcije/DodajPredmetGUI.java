@@ -122,7 +122,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JLabel getLblNaziv() {
 		if (lblNaziv == null) {
 			lblNaziv = new JLabel("Naziv");
-			lblNaziv.setBounds(10, 36, 46, 14);
+			lblNaziv.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblNaziv.setBounds(10, 36, 150, 25);
 		}
 		return lblNaziv;
 	}
@@ -130,7 +131,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JTextField getTextFieldNaziv() {
 		if (textFieldNaziv == null) {
 			textFieldNaziv = new JTextField();
-			textFieldNaziv.setBounds(10, 63, 107, 20);
+			textFieldNaziv.setBounds(10, 63, 150, 35);
 			textFieldNaziv.setColumns(10);
 		}
 		return textFieldNaziv;
@@ -139,7 +140,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JLabel getLblEsbp() {
 		if (lblEsbp == null) {
 			lblEsbp = new JLabel("ESBP");
-			lblEsbp.setBounds(173, 36, 46, 14);
+			lblEsbp.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblEsbp.setBounds(173, 36, 150, 25);
 		}
 		return lblEsbp;
 	}
@@ -147,7 +149,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JTextField getTextFieldESBP() {
 		if (textFieldESBP == null) {
 			textFieldESBP = new JTextField();
-			textFieldESBP.setBounds(173, 63, 107, 20);
+			textFieldESBP.setBounds(173, 63, 150, 35);
 			textFieldESBP.setColumns(10);
 		}
 		return textFieldESBP;
@@ -156,7 +158,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JLabel getLblSkolskaGodina() {
 		if (lblSkolskaGodina == null) {
 			lblSkolskaGodina = new JLabel("Skolska godina");
-			lblSkolskaGodina.setBounds(345, 36, 107, 14);
+			lblSkolskaGodina.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblSkolskaGodina.setBounds(335, 36, 150, 25);
 		}
 		return lblSkolskaGodina;
 	}
@@ -165,7 +168,7 @@ public class DodajPredmetGUI extends JFrame {
 		if (textFieldSkolska == null) {
 			textFieldSkolska = new JTextField();
 			textFieldSkolska.setText("yyyy/yyyy");
-			textFieldSkolska.setBounds(345, 63, 107, 20);
+			textFieldSkolska.setBounds(335, 63, 150, 35);
 			textFieldSkolska.setColumns(10);
 		}
 		return textFieldSkolska;
@@ -174,7 +177,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JLabel getLblSemestar() {
 		if (lblSemestar == null) {
 			lblSemestar = new JLabel("Semestar");
-			lblSemestar.setBounds(10, 110, 56, 14);
+			lblSemestar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblSemestar.setBounds(10, 110, 75, 25);
 		}
 		return lblSemestar;
 	}
@@ -182,7 +186,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JTextField getTextFieldSemestar() {
 		if (textFieldSemestar == null) {
 			textFieldSemestar = new JTextField();
-			textFieldSemestar.setBounds(10, 133, 107, 20);
+			textFieldSemestar.setBounds(10, 133, 75, 35);
 			textFieldSemestar.setColumns(10);
 		}
 		return textFieldSemestar;
@@ -191,7 +195,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JCheckBox getChckbxJednosemestralan() {
 		if (chckbxJednosemestralan == null) {
 			chckbxJednosemestralan = new JCheckBox("Jednosemestralan");
-			chckbxJednosemestralan.setBounds(141, 132, 144, 23);
+			chckbxJednosemestralan.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			chckbxJednosemestralan.setBounds(92, 133, 144, 35);
 		}
 		return chckbxJednosemestralan;
 	}
@@ -199,6 +204,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JCheckBox getChckbxPolozen() {
 		if (chckbxPolozen == null) {
 			chckbxPolozen = new JCheckBox("Polozen");
+			chckbxPolozen.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			chckbxPolozen.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					if (chckbxPolozen.isSelected()) {
@@ -208,7 +214,7 @@ public class DodajPredmetGUI extends JFrame {
 					}
 				}
 			});
-			chckbxPolozen.setBounds(285, 132, 78, 23);
+			chckbxPolozen.setBounds(236, 133, 87, 35);
 		}
 		return chckbxPolozen;
 	}
@@ -216,7 +222,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JLabel getLblOcena() {
 		if (lblOcena == null) {
 			lblOcena = new JLabel("Ocena");
-			lblOcena.setBounds(370, 110, 46, 14);
+			lblOcena.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblOcena.setBounds(335, 109, 150, 25);
 		}
 		return lblOcena;
 	}
@@ -225,7 +232,7 @@ public class DodajPredmetGUI extends JFrame {
 		if (textFieldOcena == null) {
 			textFieldOcena = new JTextField();
 			textFieldOcena.setEditable(false);
-			textFieldOcena.setBounds(370, 133, 107, 20);
+			textFieldOcena.setBounds(335, 133, 150, 35);
 			textFieldOcena.setColumns(10);
 		}
 		return textFieldOcena;
@@ -241,7 +248,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JScrollPane getScrollPane() {
 		if (scrollPane == null) {
 			scrollPane = new JScrollPane();
-			scrollPane.setBounds(10, 201, 230, 104);
+			scrollPane.setBounds(10, 201, 313, 116);
 			scrollPane.setViewportView(getTextAreaNapomena());
 		}
 		return scrollPane;
@@ -250,7 +257,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JLabel getLblNapomena() {
 		if (lblNapomena == null) {
 			lblNapomena = new JLabel("Napomena");
-			lblNapomena.setBounds(10, 178, 78, 14);
+			lblNapomena.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblNapomena.setBounds(10, 178, 313, 25);
 		}
 		return lblNapomena;
 	}
@@ -258,7 +266,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JLabel getLblFonforumLink() {
 		if (lblFonforumLink == null) {
 			lblFonforumLink = new JLabel("FonForum link");
-			lblFonforumLink.setBounds(298, 178, 107, 14);
+			lblFonforumLink.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblFonforumLink.setBounds(333, 179, 152, 25);
 		}
 		return lblFonforumLink;
 	}
@@ -266,7 +275,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JTextField getTextFieldForum() {
 		if (textFieldForum == null) {
 			textFieldForum = new JTextField();
-			textFieldForum.setBounds(298, 204, 107, 20);
+			textFieldForum.setBounds(333, 205, 150, 35);
 			textFieldForum.setColumns(10);
 		}
 		return textFieldForum;
@@ -275,7 +284,8 @@ public class DodajPredmetGUI extends JFrame {
 	private JLabel getLblPuskiceLink() {
 		if (lblPuskiceLink == null) {
 			lblPuskiceLink = new JLabel("Puskice link");
-			lblPuskiceLink.setBounds(298, 256, 107, 14);
+			lblPuskiceLink.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblPuskiceLink.setBounds(333, 257, 150, 25);
 		}
 		return lblPuskiceLink;
 	}
@@ -283,7 +293,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JTextField getTextFieldPuskice() {
 		if (textFieldPuskice == null) {
 			textFieldPuskice = new JTextField();
-			textFieldPuskice.setBounds(298, 281, 107, 20);
+			textFieldPuskice.setBounds(333, 282, 150, 35);
 			textFieldPuskice.setColumns(10);
 		}
 		return textFieldPuskice;
@@ -292,6 +302,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JButton getBtnDodajPredmet() {
 		if (btnDodajPredmet == null) {
 			btnDodajPredmet = new JButton("Dodaj predmet");
+			btnDodajPredmet.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			btnDodajPredmet.setForeground(Color.WHITE);
 			btnDodajPredmet.setBackground(Color.GRAY);
 			btnDodajPredmet.addActionListener(new ActionListener() {
@@ -323,7 +334,7 @@ public class DodajPredmetGUI extends JFrame {
 
 				}
 			});
-			btnDodajPredmet.setBounds(30, 349, 169, 35);
+			btnDodajPredmet.setBounds(30, 349, 140, 35);
 		}
 		return btnDodajPredmet;
 	}
@@ -331,6 +342,7 @@ public class DodajPredmetGUI extends JFrame {
 	private JButton getBtnOdustani() {
 		if (btnOdustani == null) {
 			btnOdustani = new JButton("Odustani");
+			btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			btnOdustani.setForeground(Color.WHITE);
 			btnOdustani.setBackground(Color.GRAY);
 			btnOdustani.addActionListener(new ActionListener() {
@@ -338,7 +350,7 @@ public class DodajPredmetGUI extends JFrame {
 					dispose();
 				}
 			});
-			btnOdustani.setBounds(290, 349, 169, 35);
+			btnOdustani.setBounds(320, 349, 140, 35);
 		}
 		return btnOdustani;
 	}

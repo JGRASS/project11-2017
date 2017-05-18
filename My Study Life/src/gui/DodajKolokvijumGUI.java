@@ -81,16 +81,16 @@ public class DodajKolokvijumGUI extends JFrame {
 				comboBoxPredmeti.addItem(GUIKontroler.SK.predmeti.get(i).getNaziv());
 			}
 			comboBoxPredmeti.setAlignmentX(comboBoxPredmeti.CENTER_ALIGNMENT);
-			comboBoxPredmeti.setBounds(86, 74, 250, 35);
+			comboBoxPredmeti.setBounds(100, 75, 250, 35);
 		}
 		return comboBoxPredmeti;
 	}
 	private JLabel getLblIzaberiPredmet() {
 		if (lblIzaberiPredmet == null) {
 			lblIzaberiPredmet = new JLabel("Izaberi predmet:*");
-			lblIzaberiPredmet.setFont(new Font("Courier New", Font.PLAIN, 15));
+			lblIzaberiPredmet.setFont(new Font("Tahoma", Font.PLAIN, 14));
 			lblIzaberiPredmet.setHorizontalAlignment(SwingConstants.CENTER);
-			lblIzaberiPredmet.setBounds(86, 45, 250, 27);
+			lblIzaberiPredmet.setBounds(101, 46, 250, 27);
 		}
 		return lblIzaberiPredmet;
 	}
@@ -98,8 +98,8 @@ public class DodajKolokvijumGUI extends JFrame {
 		if (lblVreme == null) {
 			lblVreme = new JLabel("Vreme:");
 			lblVreme.setHorizontalAlignment(SwingConstants.CENTER);
-			lblVreme.setFont(new Font("Courier New", Font.PLAIN, 15));
-			lblVreme.setBounds(86, 109, 250, 27);
+			lblVreme.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblVreme.setBounds(101, 110, 250, 27);
 		}
 		return lblVreme;
 	}
@@ -107,8 +107,8 @@ public class DodajKolokvijumGUI extends JFrame {
 		if (lblMesto == null) {
 			lblMesto = new JLabel("Amfiteatar/ucionica");
 			lblMesto.setHorizontalAlignment(SwingConstants.CENTER);
-			lblMesto.setFont(new Font("Courier New", Font.PLAIN, 15));
-			lblMesto.setBounds(86, 171, 250, 27);
+			lblMesto.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			lblMesto.setBounds(100, 172, 250, 27);
 		}
 		return lblMesto;
 	}
@@ -118,7 +118,7 @@ public class DodajKolokvijumGUI extends JFrame {
 			textFieldMesto.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldMesto.setFont(new Font("Courier New", Font.PLAIN, 15));
 			textFieldMesto.setColumns(10);
-			textFieldMesto.setBounds(133, 194, 153, 35);
+			textFieldMesto.setBounds(148, 195, 155, 35);
 		}
 		return textFieldMesto;
 	}
@@ -182,7 +182,7 @@ public class DodajKolokvijumGUI extends JFrame {
 				}
 			});
 			btnOdustani.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			btnOdustani.setBounds(217, 240, 140, 35);
+			btnOdustani.setBounds(250, 240, 140, 35);
 			btnOdustani.setFocusPainted(false);
 		}
 		return btnOdustani;
@@ -232,7 +232,7 @@ public class DodajKolokvijumGUI extends JFrame {
 			textFieldH.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldH.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			textFieldH.setColumns(10);
-			textFieldH.setBounds(153, 136, 50, 35);
+			textFieldH.setBounds(168, 137, 50, 35);
 		}
 		return textFieldH;
 	}
@@ -240,7 +240,7 @@ public class DodajKolokvijumGUI extends JFrame {
 		if (label == null) {
 			label = new JLabel(":");
 			label.setFont(new Font("Tahoma", Font.PLAIN, 19));
-			label.setBounds(207, 138, 10, 27);
+			label.setBounds(222, 139, 10, 27);
 		}
 		return label;
 	}
@@ -251,7 +251,7 @@ public class DodajKolokvijumGUI extends JFrame {
 			textFieldM.setHorizontalAlignment(SwingConstants.CENTER);
 			textFieldM.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			textFieldM.setColumns(10);
-			textFieldM.setBounds(218, 136, 50, 35);
+			textFieldM.setBounds(233, 137, 50, 35);
 		}
 		return textFieldM;
 	}

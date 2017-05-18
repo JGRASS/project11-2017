@@ -194,7 +194,7 @@ public class GlavniProzorGUI extends JFrame {
 			label.setForeground(Color.WHITE);
 			label.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label.setBackground(Color.GRAY);
-			label.setBounds(52, 11, 98, 35);
+			label.setBounds(50, 10, 100, 35);
 			label.setOpaque(true);
 			panelRasporedObaveza.add(label);
 
@@ -204,7 +204,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_1.setForeground(Color.WHITE);
 			label_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_1.setBackground(Color.GRAY);
-			label_1.setBounds(149, 11, 98, 35);
+			label_1.setBounds(149, 10, 98, 35);
 			panelRasporedObaveza.add(label_1);
 
 			JLabel label_2 = new JLabel("UTO");
@@ -213,7 +213,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_2.setForeground(Color.WHITE);
 			label_2.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_2.setBackground(Color.GRAY);
-			label_2.setBounds(245, 11, 108, 35);
+			label_2.setBounds(245, 10, 108, 35);
 			panelRasporedObaveza.add(label_2);
 
 			JLabel label_3 = new JLabel("SRE");
@@ -222,7 +222,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_3.setForeground(Color.WHITE);
 			label_3.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_3.setBackground(Color.GRAY);
-			label_3.setBounds(349, 11, 93, 35);
+			label_3.setBounds(349, 10, 93, 35);
 			panelRasporedObaveza.add(label_3);
 
 			JLabel label_4 = new JLabel("CET");
@@ -231,7 +231,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_4.setForeground(Color.WHITE);
 			label_4.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_4.setBackground(Color.GRAY);
-			label_4.setBounds(432, 11, 108, 35);
+			label_4.setBounds(432, 10, 108, 35);
 			panelRasporedObaveza.add(label_4);
 
 			JLabel label_5 = new JLabel("PET");
@@ -240,7 +240,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_5.setForeground(Color.WHITE);
 			label_5.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_5.setBackground(Color.GRAY);
-			label_5.setBounds(538, 11, 98, 35);
+			label_5.setBounds(538, 10, 98, 35);
 			panelRasporedObaveza.add(label_5);
 
 			JLabel label_6 = new JLabel("SUB");
@@ -249,7 +249,7 @@ public class GlavniProzorGUI extends JFrame {
 			label_6.setForeground(Color.WHITE);
 			label_6.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_6.setBackground(Color.GRAY);
-			label_6.setBounds(631, 11, 101, 35);
+			label_6.setBounds(631, 10, 101, 35);
 			panelRasporedObaveza.add(label_6);
 			panelRasporedObaveza.add(getLabel_7());
 			panelRasporedObaveza.add(getLabel_14());
@@ -264,8 +264,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_13.setHorizontalAlignment(SwingConstants.CENTER);
 			label_13.setForeground(Color.WHITE);
 			label_13.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_13.setBackground(Color.BLACK);
-			label_13.setBounds(10, 460, 46, 40);
+			label_13.setBackground(Color.DARK_GRAY);
+			label_13.setBounds(5, 460, 46, 40);
 			panelRasporedObaveza.add(label_13);
 			panelRasporedObaveza.add(getLabel_15());
 			panelRasporedObaveza.add(getLabel_16());
@@ -759,8 +759,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_7.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			label_7.setHorizontalAlignment(SwingConstants.CENTER);
 			label_7.setForeground(Color.WHITE);
-			label_7.setBackground(Color.BLACK);
-			label_7.setBounds(10, 45, 46, 40);
+			label_7.setBackground(Color.DARK_GRAY);
+			label_7.setBounds(5, 45, 46, 40);
 			label_7.setOpaque(true);
 		}
 		return label_7;
@@ -773,8 +773,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_8.setHorizontalAlignment(SwingConstants.CENTER);
 			label_8.setForeground(Color.WHITE);
 			label_8.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_8.setBackground(Color.BLACK);
-			label_8.setBounds(10, 119, 46, 40);
+			label_8.setBackground(Color.DARK_GRAY);
+			label_8.setBounds(5, 119, 46, 40);
 		}
 		return label_8;
 	}
@@ -786,8 +786,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_9.setHorizontalAlignment(SwingConstants.CENTER);
 			label_9.setForeground(Color.WHITE);
 			label_9.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_9.setBackground(Color.BLACK);
-			label_9.setBounds(10, 197, 46, 40);
+			label_9.setBackground(Color.DARK_GRAY);
+			label_9.setBounds(5, 197, 46, 40);
 		}
 		return label_9;
 	}
@@ -799,8 +799,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_10.setHorizontalAlignment(SwingConstants.CENTER);
 			label_10.setForeground(Color.WHITE);
 			label_10.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_10.setBackground(Color.BLACK);
-			label_10.setBounds(10, 272, 46, 40);
+			label_10.setBackground(Color.DARK_GRAY);
+			label_10.setBounds(5, 272, 46, 40);
 		}
 		return label_10;
 	}
@@ -812,8 +812,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_11.setHorizontalAlignment(SwingConstants.CENTER);
 			label_11.setForeground(Color.WHITE);
 			label_11.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_11.setBackground(Color.BLACK);
-			label_11.setBounds(10, 349, 46, 40);
+			label_11.setBackground(Color.DARK_GRAY);
+			label_11.setBounds(5, 349, 46, 40);
 		}
 		return label_11;
 	}
@@ -825,8 +825,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_12.setHorizontalAlignment(SwingConstants.CENTER);
 			label_12.setForeground(Color.WHITE);
 			label_12.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_12.setBackground(Color.BLACK);
-			label_12.setBounds(10, 425, 46, 35);
+			label_12.setBackground(Color.DARK_GRAY);
+			label_12.setBounds(5, 425, 46, 35);
 		}
 		return label_12;
 	}
@@ -850,7 +850,8 @@ public class GlavniProzorGUI extends JFrame {
 		getPanelPolozeniIspiti().setLayout(null);
 		panelPolozeniIspiti.add(picLabelPolozeniIspiti);
 		JLabel picLabelRasporedNastave = new JLabel(new ImageIcon(img));
-		picLabelRasporedNastave.setSize(850, 600);
+		picLabelRasporedNastave.setLocation(0, 0);
+		picLabelRasporedNastave.setSize(835, 530);
 		// Ovde palite pozadinu na vasem jPanelu!!!
 		panelRasporedObaveza.add(picLabelRasporedNastave);
 	}
@@ -938,9 +939,10 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel getLblProsek() {
 		if (lblProsek == null) {
 			lblProsek = new JLabel("Prosek");
-			lblProsek.setFont(new Font("Segoe Script", Font.BOLD, 16));
+			lblProsek.setHorizontalAlignment(SwingConstants.CENTER);
+			lblProsek.setFont(new Font("Tahoma", Font.BOLD, 14));
 			lblProsek.setForeground(Color.WHITE);
-			lblProsek.setBounds(492, 496, 103, 25);
+			lblProsek.setBounds(475, 496, 86, 25);
 		}
 		return lblProsek;
 	}
@@ -949,8 +951,8 @@ public class GlavniProzorGUI extends JFrame {
 			textFieldProsek = new JTextField();
 			textFieldProsek.setEditable(false);
 			textFieldProsek.setForeground(Color.BLACK);
-			textFieldProsek.setFont(new Font("Segoe Script", Font.BOLD, 17));
-			textFieldProsek.setBounds(571, 499, 86, 20);
+			textFieldProsek.setFont(new Font("Tahoma", Font.BOLD, 14));
+			textFieldProsek.setBounds(567, 491, 100, 35);
 			textFieldProsek.setColumns(10);
 			textFieldProsek.setText("" + GUIKontroler.vratiProsek());
 		}
@@ -961,7 +963,7 @@ public class GlavniProzorGUI extends JFrame {
 		if (labelBrBodova == null) {
 			labelBrBodova = new JLabel("Ukupan broj ESPB");
 			labelBrBodova.setForeground(Color.WHITE);
-			labelBrBodova.setFont(new Font("Segoe Script", Font.BOLD, 16));
+			labelBrBodova.setFont(new Font("Tahoma", Font.BOLD, 14));
 			labelBrBodova.setBounds(55, 496, 194, 25);
 		}
 		return labelBrBodova;
@@ -970,10 +972,10 @@ public class GlavniProzorGUI extends JFrame {
 		if (textFieldBrojBodova == null) {
 			textFieldBrojBodova = new JTextField();
 			textFieldBrojBodova.setForeground(Color.BLACK);
-			textFieldBrojBodova.setFont(new Font("Segoe Script", Font.BOLD, 17));
+			textFieldBrojBodova.setFont(new Font("Tahoma", Font.BOLD, 14));
 			textFieldBrojBodova.setEditable(false);
 			textFieldBrojBodova.setColumns(10);
-			textFieldBrojBodova.setBounds(259, 496, 86, 20);
+			textFieldBrojBodova.setBounds(205, 491, 100, 35);
 			textFieldBrojBodova.setText("" + GUIKontroler.vratiESPB());
 		}
 		
@@ -991,7 +993,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnDodajObavezu.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnDodajObavezu.setFocusPainted(false);
 			btnDodajObavezu.setBackground(new Color(0, 155, 179));
-			btnDodajObavezu.setBounds(752, 75, 60, 35);
+			btnDodajObavezu.setBounds(752, 45, 60, 35);
 			Image img = new ImageIcon(this.getClass().getResource("/add.png")).getImage();
 			btnDodajObavezu.setIcon(new ImageIcon(img));
 		}
@@ -1002,7 +1004,7 @@ public class GlavniProzorGUI extends JFrame {
 			tableraspored = new JTable();
 			tableraspored.setRowHeight(38);
 			tableraspored.setPreferredScrollableViewportSize(new Dimension(450, 450));
-			tableraspored.setBounds(52, 45, 682, 455);
+			tableraspored.setBounds(50, 45, 682, 455);
 			tableraspored.setModel(new DefaultTableModel(
 				new Object[][] {
 					{null, null, null, null, null, null, null},
@@ -1044,8 +1046,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_14.setHorizontalAlignment(SwingConstants.CENTER);
 			label_14.setForeground(Color.WHITE);
 			label_14.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_14.setBackground(Color.BLACK);
-			label_14.setBounds(10, 83, 46, 40);
+			label_14.setBackground(Color.DARK_GRAY);
+			label_14.setBounds(5, 83, 46, 40);
 		}
 		return label_14;
 	}
@@ -1056,8 +1058,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_15.setHorizontalAlignment(SwingConstants.CENTER);
 			label_15.setForeground(Color.WHITE);
 			label_15.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_15.setBackground(Color.BLACK);
-			label_15.setBounds(10, 158, 46, 40);
+			label_15.setBackground(Color.DARK_GRAY);
+			label_15.setBounds(5, 158, 46, 40);
 		}
 		return label_15;
 	}
@@ -1068,8 +1070,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_16.setHorizontalAlignment(SwingConstants.CENTER);
 			label_16.setForeground(Color.WHITE);
 			label_16.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_16.setBackground(Color.BLACK);
-			label_16.setBounds(10, 234, 46, 40);
+			label_16.setBackground(Color.DARK_GRAY);
+			label_16.setBounds(5, 234, 46, 40);
 		}
 		return label_16;
 	}
@@ -1080,8 +1082,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_17.setHorizontalAlignment(SwingConstants.CENTER);
 			label_17.setForeground(Color.WHITE);
 			label_17.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_17.setBackground(Color.BLACK);
-			label_17.setBounds(10, 310, 46, 40);
+			label_17.setBackground(Color.DARK_GRAY);
+			label_17.setBounds(5, 310, 46, 40);
 		}
 		return label_17;
 	}
@@ -1092,8 +1094,8 @@ public class GlavniProzorGUI extends JFrame {
 			label_18.setHorizontalAlignment(SwingConstants.CENTER);
 			label_18.setForeground(Color.WHITE);
 			label_18.setFont(new Font("Tahoma", Font.PLAIN, 15));
-			label_18.setBackground(Color.BLACK);
-			label_18.setBounds(10, 386, 46, 40);
+			label_18.setBackground(Color.DARK_GRAY);
+			label_18.setBounds(5, 386, 46, 40);
 		}
 		return label_18;
 	}
@@ -1110,7 +1112,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnIzbrisiObavezu.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnIzbrisiObavezu.setFocusPainted(false);
 			btnIzbrisiObavezu.setBackground(new Color(0, 155, 179));
-			btnIzbrisiObavezu.setBounds(752, 208, 60, 35);
+			btnIzbrisiObavezu.setBounds(752, 134, 60, 35);
 			Image img = new ImageIcon(this.getClass().getResource("/obrisi.png")).getImage();
 			btnIzbrisiObavezu.setIcon(new ImageIcon(img));
 		}
@@ -1119,6 +1121,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JButton getBtnUcitaj() {
 		if (btnUcitaj == null) {
 			btnUcitaj = new JButton();
+			btnUcitaj.setForeground(Color.WHITE);
 			btnUcitaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
 					
@@ -1131,7 +1134,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnUcitaj.setFont(new Font("Tahoma", Font.PLAIN, 10));
 			btnUcitaj.setFocusPainted(false);
 			btnUcitaj.setBackground(new Color(0, 155, 179));
-			btnUcitaj.setBounds(752, 145, 60, 35);
+			btnUcitaj.setBounds(752, 90, 60, 35);
 		}
 		return btnUcitaj;
 	}
