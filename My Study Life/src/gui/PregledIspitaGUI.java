@@ -5,6 +5,9 @@ import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import aktivnosti.Aktivnost;
 import aktivnosti.Ispit;
 import gui.modeli.FrameDragListener;
@@ -43,11 +46,13 @@ public class PregledIspitaGUI extends JFrame {
 	private JButton btnIzlaz;
 	private JScrollPane scrollPane;
 	private JTextArea textArea;
-	
 	public PregledIspitaGUI() {
 		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
 		String nazivPredmeta = GUIKontroler.vratiPredmete().get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
+		System.out.println(nazivPredmeta);
+		
 		for(int i=0;i<sveAktivnosti.size();i++){
+			System.out.println(sveAktivnosti.get(i).getPredmet().getNaziv());
 			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Ispit)){
 				ispiti.add((Ispit)sveAktivnosti.get(i));
 			}
@@ -65,6 +70,7 @@ public class PregledIspitaGUI extends JFrame {
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
+		System.out.println(ispiti);
 	}
 
 	private JPanel getPanel() {

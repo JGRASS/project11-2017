@@ -144,7 +144,7 @@ public class DodajIspitGUI extends JFrame {
 					Ispit i = new Ispit();
 					GregorianCalendar g = new GregorianCalendar();
 					try {
-						String naziv = comboBoxPredmeti.getItemAt(comboBoxPredmeti.getSelectedIndex()); //bug
+						String naziv = comboBoxPredmeti.getItemAt(comboBoxPredmeti.getSelectedIndex());
 						int index = GUIKontroler.vratiIndexPredmeta(naziv);
 						if(index==-1)
 							throw new IndexOutOfBoundsException();
@@ -166,14 +166,14 @@ public class DodajIspitGUI extends JFrame {
 						}
 						i.setMesto(textFieldMesto.getText());
 						GUIKontroler.vratiSveAktivnosti().add(i);
-						GUIKontroler.azurirajTabelu(GlavniProzorGUI.table); //GuiKontroler?
+						GUIKontroler.azurirajTabelu(GlavniProzorGUI.table);
 						dispose();
 					} catch (NumberFormatException e1) {
 						JOptionPane.showMessageDialog(null, "Greska prilikom unosa vremena", "Greska", JOptionPane.OK_OPTION);
 					}catch (IndexOutOfBoundsException e2){
 						JOptionPane.showMessageDialog(null, "Nema unetih predmeta", "Greska", JOptionPane.OK_OPTION);
 					}catch(Exception e3){
-						
+						System.out.println(e3);
 					}
 				}
 			});
