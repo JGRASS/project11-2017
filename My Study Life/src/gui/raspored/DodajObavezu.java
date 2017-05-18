@@ -41,12 +41,12 @@ public class DodajObavezu extends JFrame {
 	private JPanel panel;
 	private JLabel lblDvotacka;
 	private JTextField txtObaveza;
-	private JTextField txtDan;
 	private JLabel lblDan;
 	private JLabel lblSat;
 	private JLabel lblMinut;
-	private JComboBox comboBoxSat;
-	private JComboBox comboBoxMinut;
+	private JComboBox<?> comboBoxSat;
+	private JComboBox<String> comboBoxMinut;
+	private JComboBox<String> comboBox;
 	
 	public DodajObavezu() {
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -68,12 +68,12 @@ public class DodajObavezu extends JFrame {
 		contentPane.add(getPanel());
 		contentPane.add(getLblDvotacka());
 		contentPane.add(getTxtObaveza());
-		contentPane.add(getTxtDan());
 		contentPane.add(getLblDan());
 		contentPane.add(getLblSat());
 		contentPane.add(getLblMinut());
 		contentPane.add(getComboBoxSat());
 		contentPane.add(getComboBox_1());
+		contentPane.add(getComboBox());
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
@@ -120,28 +120,15 @@ public class DodajObavezu extends JFrame {
 			btnDodaj = new JButton("Dodaj");
 			btnDodaj.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
-				if ((txtObaveza.getText() != "") && 
-							(txtMesto.getText() != "") &&
-						   ((txtDan.getText().equals("NED")) ||
-							(txtDan.getText().equals("PON")) || 
-							(txtDan.getText().equals("UTO")) || 
-							(txtDan.getText().equals("SRE")) || 
-							(txtDan.getText().equals("CET")) || 
-							(txtDan.getText().equals("PET")) || 
-							(txtDan.getText().equals("SUB")))
-						 ) {
-						Obaveza o = new Obaveza();
-						o.setNaziv(txtObaveza.getText());
-						o.setDan(txtDan.getText());
-						o.setSat((String)comboBoxSat.getSelectedItem());
-						o.setMinut((String)comboBoxMinut.getSelectedItem());
-						o.setMesto(txtMesto.getText());
-						GUIKontroler.dodajObavezu(o);
-						GUIKontroler.azurirajTabeluObaveza(o);
-						dispose();
-					}else{
-						JOptionPane.showMessageDialog(DodajObavezu.this, "Morate popuniti sva polja, i dan ukucati u formatu: PON, UTO, SRE ...");
-					}
+					Obaveza o = new Obaveza();
+					o.setNaziv(txtObaveza.getText());
+					o.setDan(comboBox.getSelectedItem()+"");
+					o.setSat((String)comboBoxSat.getSelectedItem());
+					o.setMinut((String)comboBoxMinut.getSelectedItem());
+					o.setMesto(txtMesto.getText());
+					GUIKontroler.dodajObavezu(o);
+					GUIKontroler.azurirajTabeluObaveza(o);
+					dispose();
 				}
 			});
 			btnDodaj.setForeground(Color.WHITE);
@@ -225,21 +212,11 @@ public class DodajObavezu extends JFrame {
 		}
 		return txtObaveza;
 	}
-	private JTextField getTxtDan() {
-		if (txtDan == null) {
-			txtDan = new JTextField();
-			txtDan.setFont(new Font("Tahoma", Font.PLAIN, 14));
-			txtDan.setHorizontalAlignment(SwingConstants.CENTER);
-			txtDan.setBounds(86, 134, 85, 25);
-			txtDan.setColumns(10);
-		}
-		return txtDan;
-	}
 	private JLabel getLblDan() {
 		if (lblDan == null) {
 			lblDan = new JLabel("Dan");
 			lblDan.setHorizontalAlignment(SwingConstants.CENTER);
-			lblDan.setBounds(93, 118, 70, 14);
+			lblDan.setBounds(97, 118, 70, 14);
 		}
 		return lblDan;
 	}
@@ -259,21 +236,36 @@ public class DodajObavezu extends JFrame {
 		}
 		return lblMinut;
 	}
-	private JComboBox getComboBoxSat() {
+	private JComboBox<String> getComboBoxSat() {
 		if (comboBoxSat == null) {
-			comboBoxSat = new JComboBox();
+			comboBoxSat = new JComboBox<String>();
+			comboBoxSat.setForeground(Color.WHITE);
+			comboBoxSat.setBackground(Color.GRAY);
 			comboBoxSat.setModel(new DefaultComboBoxModel(new String[] {"8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
 			comboBoxSat.setMaximumRowCount(12);
 			comboBoxSat.setBounds(200, 134, 46, 25);
 		}
-		return comboBoxSat;
+		return (JComboBox<String>) comboBoxSat;
 	}
 	private JComboBox getComboBox_1() {
 		if (comboBoxMinut == null) {
 			comboBoxMinut = new JComboBox();
+			comboBoxMinut.setForeground(Color.WHITE);
+			comboBoxMinut.setBackground(Color.GRAY);
 			comboBoxMinut.setModel(new DefaultComboBoxModel(new String[] {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "56", "57", "58", "59", "60"}));
 			comboBoxMinut.setBounds(276, 134, 46, 25);
 		}
 		return comboBoxMinut;
+	}
+	private JComboBox<String> getComboBox() {
+		if (comboBox == null) {
+			comboBox = new JComboBox<String>();
+			comboBox.setForeground(Color.WHITE);
+			comboBox.setBackground(Color.GRAY);
+			comboBox.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			comboBox.setModel(new DefaultComboBoxModel(new String[] {"PON", "UTO", "SRE", "CET", "PET", "SUB", "NED"}));
+			comboBox.setBounds(100, 136, 67, 22);
+		}
+		return comboBox;
 	}
 }

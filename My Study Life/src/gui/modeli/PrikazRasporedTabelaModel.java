@@ -36,6 +36,9 @@ public class PrikazRasporedTabelaModel extends AbstractTableModel {
 	public String getColumnName(int column) {
 		return dani[column];
 	}
+	public String getRowName(int row){
+		return (row+7)+"";
+	}
 	public void azurirajTabelu(String[][] raspored){
 		this.raspored = raspored;
 		fireTableDataChanged();

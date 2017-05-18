@@ -9,8 +9,11 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
+import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory.Default;
+
 import aktivnosti.*;
 import gui.modeli.MojaTabela;
+import gui.modeli.PrikazRasporedTabelaModel;
 import gui.predmetFunkcije.DodajPredmetGUI;
 import gui.predmetFunkcije.IzmeniPredmetGUI;
 import gui.predmetFunkcije.PregledPredmeta;
@@ -374,100 +377,41 @@ public class GUIKontroler {
 		}
 	}
 		/**
-		 * Sluzi za brisanje iz tabele obaveze
-		 * @param Obaveza koju zelimo da izbacimo
-		 */
-	public static void izbrisiIzTabeleObaveza(Obaveza o){
-		int sat = Integer.parseInt(o.getSat());
-		switch (o.getDan()) {
-		case "NED":
-			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 0);
-			break;
-		case "PON":
-			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 1);
-			break;
-		case "UTO":
-			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 2);
-			break;
-		case "SRE":
-			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 3);
-			break;
-		case "CET":
-			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 4);
-			break;
-		case "PET":
-			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 5);
-			break;
-		case "SUB":
-			GlavniProzorGUI.tableraspored.setValueAt("", sat-8, 6);
-			break;
-
-		}
-	}
-		/**
 		 * Sluzi za brisanje iz tabele ako tako sto selektujemo zeljenu celiju u tabeli
 		 */
 	public static void izvrsiObrisiObavezu(){
-		int sat = GlavniProzorGUI.tableraspored.getSelectedRow();
-		int dan = GlavniProzorGUI.tableraspored.getSelectedColumn();
-		if (sat != -1 && dan != -1) {
-			GlavniProzorGUI.tableraspored.setValueAt("", sat, dan);
+		String tekst = GlavniProzorGUI.tableraspored.getValueAt(GlavniProzorGUI.tableraspored.getSelectedRow(),
+				GlavniProzorGUI.tableraspored.getSelectedColumn())+"";
+		String dan = vratiIndexDana(GlavniProzorGUI.tableraspored.getSelectedColumn());
+		for(int i=0;i<SistemskiKontroler.vratiObaveze().size();i++){
+			if((SistemskiKontroler.vratiObaveze().get(i).getNaziv()+"-"+SistemskiKontroler.vratiObaveze().get(i).getMesto()).equals(tekst)){
+				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals(dan)){
+					SistemskiKontroler.vratiObaveze().remove(i);
+				}
+			}
 		}
-		String s = String.valueOf(sat);
+		GlavniProzorGUI.tableraspored.setValueAt("",GlavniProzorGUI.tableraspored.getSelectedRow(), GlavniProzorGUI.tableraspored.getSelectedColumn());
+		
+	}
+	
+	public static String vratiIndexDana(int dan){
 		switch (dan) {
 		case 0:
-			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
-				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("NED") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
-					SistemskiKontroler.vratiObaveze().remove(i);
-				}
-			}
-			break;
+			return "NED";
 		case 1:
-			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
-				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("PON") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
-					SistemskiKontroler.vratiObaveze().remove(i);
-				}
-			}
-			break;
+			return "PON";
 		case 2:
-			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
-				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("UTO") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
-					SistemskiKontroler.vratiObaveze().remove(i);
-				}
-			}
-			break;	
+			return "UTO";
 		case 3:
-			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
-				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("SRE") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
-					SistemskiKontroler.vratiObaveze().remove(i);
-				}
-			}
-			break;
+			return "SRE";
 		case 4:
-			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
-				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("CET") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
-					SistemskiKontroler.vratiObaveze().remove(i);
-				}
-			}
-			break;
+			return "CET";
 		case 5:
-			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
-				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("PET") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
-					SistemskiKontroler.vratiObaveze().remove(i);
-				}
-			}
-			break;
+			return "PET";
 		case 6:
-			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
-				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("SUB") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
-					SistemskiKontroler.vratiObaveze().remove(i);
-				}
-			}
-			break;
-
-		case -1:
-		//	GUIKontroler.otvoriIzbrisiObavezu();
-			break;
+			return "SUB";
+		default:
+			return "";
 		}
 	}
 	/**
