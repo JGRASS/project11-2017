@@ -11,12 +11,10 @@ import javax.swing.JOptionPane;
 
 import aktivnosti.*;
 import gui.modeli.MojaTabela;
-import gui.modeli.PlanerTabelaModel;
 import gui.predmetFunkcije.DodajPredmetGUI;
 import gui.predmetFunkcije.IzmeniPredmetGUI;
 import gui.predmetFunkcije.PregledPredmeta;
 import gui.raspored.DodajObavezu;
-import gui.raspored.IzbrisiObavezu;
 import predmeti.Predmet;
 import sismeskiKontroler.SistemskiKontroler;
 
@@ -45,12 +43,8 @@ public class GUIKontroler {
 	private static PregledKolokvijumaGUI pregledKolokvijuma;
 	private static PregledIspitaGUI pregledIspita;
 	private static DodajObavezu dodajObavezu;
-	public static SistemskiKontroler SK = new SistemskiKontroler();
-
-	private static IzbrisiObavezu izbrisiObavezu;
-	//public static List<Predmet> predmeti = new LinkedList<>();
+	//public static SistemskiKontroler SK = new SistemskiKontroler();
 	public static List<Obaveza> obaveze = new LinkedList<>();
-	//public static List<Predmet> polozeni = new LinkedList<>();
 
 
 	public static Color plavaT = new Color(0, 155, 179);
@@ -134,17 +128,28 @@ public class GUIKontroler {
 		dodajObavezu.setVisible(true);
 
 	}
-
+	
+	public static List<Predmet> vratiPredmete(){
+		return SistemskiKontroler.vratiPredmete();
+	}
+	
+	public static List<Predmet> vratiPolozene(){
+		return SistemskiKontroler.vratiPolozene();
+	}
+	
+	public static List<Obaveza> vratiObaveze(){
+		return SistemskiKontroler.vratiObaveze();
+	}
 	
 	public static void dodajObavezu(Obaveza o){
 
-		SK.dodajObavezu(o);
+		SistemskiKontroler.dodajObavezu(o);
 	}
 
 
 	
 	public static void izbrisiObavezu(Obaveza o){
-		SK.izbrisiObavezu(o);
+		SistemskiKontroler.izbrisiObavezu(o);
 	}
 	/**
 	 * Metoda vraca sve studenske aktivnosti
@@ -316,21 +321,21 @@ public class GUIKontroler {
 	 * @return String vrednost koja predstavlja naziv slike
 	 */
 	public static String vratiNazivSlike() {
-		return SK.vratiNazivSlike();
+		return SistemskiKontroler.vratiNazivSlike();
 	}
 
 	/**
 	 * Metoda se koristi za ucitavanje predmeta iz fajla
 	 */
 	public static void ucitajPredmete() {
-		SK.ucitajPredmete();
+		SistemskiKontroler.ucitajPredmete();
 	}
 
 	/**
 	 * Metoda se korsiti za serializaciju predmeta u file
 	 */
 	public static void serijalizujPredmete() {
-		SK.serijalizujPredmete();
+		SistemskiKontroler.serijalizujPredmete();
 
 	}
 
@@ -338,21 +343,21 @@ public class GUIKontroler {
 	 * Metoda se koristi za ucitavanje polozenih predmeta iz fajla
 	 */
 	public static void ucitajPolozene() {
-		SK.ucitajPolozene();
+		SistemskiKontroler.ucitajPolozene();
 	}
 
 	/**
 	 * Metoda se koristi za serializaciju polozenih predmeta u file
 	 */
 	public static void serijalizujPolozene() {
-		SK.serijalizujPolozene();
+		SistemskiKontroler.serijalizujPolozene();
 	}
 
 	/**
 	 * Metoda se koristi za ucitavanje obaveza iz fajla
 	 */
 	public static void ucitajObaveze() {
-		SK.ucitajObaveze();
+		SistemskiKontroler.ucitajObaveze();
 	}
 
 	/**
@@ -437,51 +442,51 @@ public class GUIKontroler {
 		String s = String.valueOf(sat);
 		switch (dan) {
 		case 0:
-			for (int i = 0; i < SK.obaveze.size(); i++) {
-				if(SK.obaveze.get(i).getDan().equals("NED") && SK.obaveze.get(i).getSat().equals(s)){
-					SK.obaveze.remove(i);
+			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
+				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("NED") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
+					SistemskiKontroler.vratiObaveze().remove(i);
 				}
 			}
 			break;
 		case 1:
-			for (int i = 0; i < SK.obaveze.size(); i++) {
-				if(SK.obaveze.get(i).getDan().equals("PON") && SK.obaveze.get(i).getSat().equals(s)){
-					SK.obaveze.remove(i);
+			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
+				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("PON") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
+					SistemskiKontroler.vratiObaveze().remove(i);
 				}
 			}
 			break;
 		case 2:
-			for (int i = 0; i < SK.obaveze.size(); i++) {
-				if(SK.obaveze.get(i).getDan().equals("UTO") && SK.obaveze.get(i).getSat().equals(s)){
-					SK.obaveze.remove(i);
+			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
+				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("UTO") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
+					SistemskiKontroler.vratiObaveze().remove(i);
 				}
 			}
 			break;	
 		case 3:
-			for (int i = 0; i < SK.obaveze.size(); i++) {
-				if(SK.obaveze.get(i).getDan().equals("SRE") && SK.obaveze.get(i).getSat().equals(s)){
-					SK.obaveze.remove(i);
+			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
+				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("SRE") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
+					SistemskiKontroler.vratiObaveze().remove(i);
 				}
 			}
 			break;
 		case 4:
-			for (int i = 0; i < SK.obaveze.size(); i++) {
-				if(SK.obaveze.get(i).getDan().equals("CET") && SK.obaveze.get(i).getSat().equals(s)){
-					SK.obaveze.remove(i);
+			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
+				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("CET") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
+					SistemskiKontroler.vratiObaveze().remove(i);
 				}
 			}
 			break;
 		case 5:
-			for (int i = 0; i < SK.obaveze.size(); i++) {
-				if(SK.obaveze.get(i).getDan().equals("PET") && SK.obaveze.get(i).getSat().equals(s)){
-					SK.obaveze.remove(i);
+			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
+				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("PET") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
+					SistemskiKontroler.vratiObaveze().remove(i);
 				}
 			}
 			break;
 		case 6:
-			for (int i = 0; i < SK.obaveze.size(); i++) {
-				if(SK.obaveze.get(i).getDan().equals("SUB") && SK.obaveze.get(i).getSat().equals(s)){
-					SK.obaveze.remove(i);
+			for (int i = 0; i < SistemskiKontroler.vratiObaveze().size(); i++) {
+				if(SistemskiKontroler.vratiObaveze().get(i).getDan().equals("SUB") && SistemskiKontroler.vratiObaveze().get(i).getSat().equals(s)){
+					SistemskiKontroler.vratiObaveze().remove(i);
 				}
 			}
 			break;
@@ -495,7 +500,7 @@ public class GUIKontroler {
 	 *Metoda se koristi za azuriranje tabele predmeta iz liste predmet
 	 */
 	public static void azurirajTabeluPredmet() {
-		SK.azurirajTabeluPredmet();
+		SistemskiKontroler.azurirajTabeluPredmet();
 
 	}
 
@@ -504,7 +509,7 @@ public class GUIKontroler {
 	 * ispiti
 	 */
 	public static void azurirajTabeluPolozeni() {
-		SK.azurirajTabeluPolozeni();
+		SistemskiKontroler.azurirajTabeluPolozeni();
 	}
 
 	/**
@@ -512,7 +517,7 @@ public class GUIKontroler {
 	 * predmeta
 	 */
 	public static void azurirajListuPolozeni() {
-		SK.azurirajListuPolozeni();
+		SistemskiKontroler.azurirajListuPolozeni();
 	}
 
 	/**
@@ -552,14 +557,14 @@ public class GUIKontroler {
 	 * @return double vrednost koje predstavlja prosecnu ocenu
 	 */
 	public static double vratiProsek() {
-		return SK.vratiProsek();
+		return SistemskiKontroler.vratiProsek();
 	}
 
 	/**
 	 * Metoda sluzi za azuriranje proseka i upisivanje u tektualni editor
 	 */
 	public static void azurirajProsek() {
-		SK.azurirajProsek();
+		SistemskiKontroler.azurirajProsek();
 	}
 
 	/**
@@ -568,7 +573,7 @@ public class GUIKontroler {
 	 * @return int vrednost kao zbir svih poena
 	 */
 	public static int vratiESPB() {
-		return SK.vratiESPB();
+		return SistemskiKontroler.vratiESPB();
 	}
 	/**
 	 * Metoda koja sluzi za dodavanje predmeta u listu
@@ -590,7 +595,7 @@ public class GUIKontroler {
 
 			Predmet p = new Predmet(naziv, Integer.parseInt(ESBP), skolskaGodina, jednosemestralan,
 					Integer.parseInt(semestar), polozen, Integer.parseInt(ocena), napomena, forum, puskice);
-			SK.predmeti.add(p);
+			SistemskiKontroler.vratiPredmete().add(p);
 			return 1;
 		} catch (NumberFormatException e1) {
 			JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom unosa brojevnih vrednosti", "Greska",
@@ -624,13 +629,13 @@ public class GUIKontroler {
 		try {
 			Predmet p = new Predmet(naziv, Integer.parseInt(ESBP), skolskaGodina, jednosemestralan,
 					Integer.parseInt(semestar), polozen, Integer.parseInt(ocena), napomena, forum, puskice);
-			for (int i = 0; i < SK.predmeti.size(); i++) {
-				if (SK.predmeti.get(i).equals(predmet)) {
-					SK.predmeti.remove(i);
+			for (int i = 0; i < SistemskiKontroler.vratiPredmete().size(); i++) {
+				if (SistemskiKontroler.vratiPredmete().get(i).equals(predmet)) {
+					SistemskiKontroler.vratiPredmete().remove(i);
 					break;
 				}
 			}
-			SK.predmeti.add(p);
+			SistemskiKontroler.vratiPredmete().add(p);
 			return 1;
 		} catch (NumberFormatException e1) {
 			JOptionPane.showMessageDialog(null, "Doslo je do greske prilikom unosa brojevnih vrednosti", "Greska",

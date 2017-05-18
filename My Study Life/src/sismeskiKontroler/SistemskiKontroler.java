@@ -38,7 +38,6 @@ public class SistemskiKontroler {
 	public static Planer planer  = new Planer();
 	public static List<Predmet> predmeti = new LinkedList<>();
 	public static List<Predmet> polozeni = new LinkedList<>();
-	//public static List<Aktivnost> aktivnosti = new LinkedList<>(); o.O <-
 	public static List<Obaveza> obaveze = new LinkedList<>();
 	
 	
@@ -116,15 +115,15 @@ public class SistemskiKontroler {
 		
 	}
 	
-	public  void ucitajPolozene(){
+	public static void ucitajPolozene(){
 		SOUcitajPolozene.izvrsi();
 	}
 
-	public  void serijalizujPolozene(){
+	public static  void serijalizujPolozene(){
 		SOSerijalizujPolozene.izvrsi();
 	}
 	
-	public void ucitajObaveze(){
+	public static void ucitajObaveze(){
 		SOUcitajObaveze.izvrsi();
 	}
 
@@ -132,39 +131,50 @@ public class SistemskiKontroler {
 		SOSerijalizujObaveze.izvrsi();
 	}
 	
-	public void dodajObavezu(Obaveza o){
+	public static void dodajObavezu(Obaveza o){
 		obaveze.add(o);
 	}
 	
-	public void izbrisiObavezu(Obaveza o){
+	public static void izbrisiObavezu(Obaveza o){
 		obaveze.remove(o);
 	}
 	
-	public  void azurirajTabeluPredmet(){
+	public static void azurirajTabeluPredmet(){
 		SOAzurirajTabeluPredmeta.izvrsi();
 		
 	}
 	
-	public  void azurirajTabeluPolozeni(){
+	public static void azurirajTabeluPolozeni(){
 		SOAzurirajTabeluPolozenih.izvrsi();
 	}
 	
-	public  void azurirajListuPolozeni(){
+	public static void azurirajListuPolozeni(){
 		SOAzurirajListuPolozenih.izvrsi();
 	}
 	
 
-	public  double vratiProsek(){
+	public static double vratiProsek(){
 		return SOVratiProsek.izvrsi();
 	}
 	
-	public  void azurirajProsek(){
+	public static void azurirajProsek(){
 		SOAzurirajProsek.izvrsi();
 	}
 	
-	public  int vratiESPB(){
+	public static int vratiESPB(){
 		return SOVratiESPB.izvrsi();
 	}
-
+	
+	public static List<Predmet> vratiPredmete(){
+		return predmeti;
+	}
+	
+	public static List<Predmet> vratiPolozene(){
+		return polozeni;
+	}
+	
+	public static List<Obaveza> vratiObaveze(){
+		return obaveze;
+	}
 
 }

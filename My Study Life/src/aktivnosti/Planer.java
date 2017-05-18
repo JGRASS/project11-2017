@@ -3,11 +3,6 @@ package aktivnosti;
 import java.util.GregorianCalendar;
 import java.util.LinkedList;
 import java.util.List;
-import sistemskeOperacije.SOIstiDan;
-import sistemskeOperacije.SOPopuniMatricuDatuma;
-import sistemskeOperacije.SOPronadjiAktivnost;
-import sistemskeOperacije.SOSerijalizujAktivnosti;
-import sistemskeOperacije.SOUcitajAktivnosti;
 /**
  * Klasa koja predstavlja planer aktivnosti
  * @author Miro Maric

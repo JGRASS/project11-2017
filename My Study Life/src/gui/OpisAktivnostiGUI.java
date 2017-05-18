@@ -2,13 +2,10 @@ package gui;
 
 import aktivnosti.*;
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import aktivnosti.Aktivnost;
-import aktivnosti.Planer;
 import gui.modeli.FrameDragListener;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,7 +13,6 @@ import javax.swing.SwingConstants;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -31,6 +27,11 @@ import javax.swing.JTextField;
  */
 public class OpisAktivnostiGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JPanel panel;
 	private JLabel lblX;
@@ -281,13 +282,13 @@ public class OpisAktivnostiGUI extends JFrame {
 							
 							aktivnost.setEvidentirana(true);
 							
-							for(int i=0;i<GUIKontroler.SK.predmeti.size();i++){
-								if(aktivnost.getPredmet().getNaziv().equals(GUIKontroler.SK.predmeti.get(i).getNaziv())){
-									GUIKontroler.SK.predmeti.get(i).setPolozen(true);
-									GUIKontroler.SK.predmeti.get(i).setOcena((int)rezultat);
+							for(int i=0;i<GUIKontroler.vratiPredmete().size();i++){
+								if(aktivnost.getPredmet().getNaziv().equals(GUIKontroler.vratiPredmete().get(i).getNaziv())){
+									GUIKontroler.vratiPredmete().get(i).setPolozen(true);
+									GUIKontroler.vratiPredmete().get(i).setOcena((int)rezultat);
 									GUIKontroler.azurirajTabeluPredmet();
 									GUIKontroler.azurirajListuPolozeni();
-									GUIKontroler.SK.polozeni.get(GUIKontroler.SK.polozeni.indexOf(GUIKontroler.SK.predmeti.get(i))).setOcena((int)rezultat);
+									GUIKontroler.vratiPolozene().get(GUIKontroler.vratiPolozene().indexOf(GUIKontroler.vratiPolozene().get(i))).setOcena((int)rezultat);
 									GUIKontroler.azurirajTabeluPolozeni();
 									GUIKontroler.azurirajProsek();
 								}

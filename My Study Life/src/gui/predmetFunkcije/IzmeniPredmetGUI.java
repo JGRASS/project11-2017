@@ -3,24 +3,15 @@ package gui.predmetFunkcije;
 import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import com.sun.glass.ui.Window;
-
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
 import gui.modeli.FrameDragListener;
@@ -41,6 +32,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	 * 
 	 */
 	private static final long serialVersionUID = 8376192939809818779L;
+	
 	private JPanel contentPane;
 	private JLabel lblNaziv;
 	private JTextField textFieldNaziv;
@@ -363,7 +355,7 @@ public class IzmeniPredmetGUI extends JFrame {
 	public void popuniPolja() {
 		int red = GlavniProzorGUI.tablePredmeti.getSelectedRow();
 		if (red != -1) {
-			predmet= GUIKontroler.SK.predmeti.get(red);
+			predmet= GUIKontroler.vratiPredmete().get(red);
 			textAreaNapomena.setText(predmet.getNapomena());
 			textFieldESBP.setText(predmet.getESBP() + "");
 			textFieldNaziv.setText(predmet.getNaziv());

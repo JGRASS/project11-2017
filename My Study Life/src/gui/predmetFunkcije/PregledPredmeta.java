@@ -8,21 +8,15 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-
-import aktivnosti.Ispit;
-import aktivnosti.Kolokvijum;
-import aktivnosti.Planer;
 import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
 import gui.modeli.FrameDragListener;
@@ -285,7 +279,7 @@ public class PregledPredmeta extends JFrame {
 	public void popuniPolja() {
 		int red = GlavniProzorGUI.tablePredmeti.getSelectedRow();
 		if (red != -1) {
-			Predmet p = GUIKontroler.SK.predmeti.get(red);
+			Predmet p = GUIKontroler.vratiPredmete().get(red);
 			textAreaNapomena.setText(p.getNapomena());
 			textFieldESBP.setText(p.getESBP() + "");
 			textFieldNaziv.setText(p.getNaziv());
@@ -385,9 +379,9 @@ public class PregledPredmeta extends JFrame {
 			try {
 				Desktop.getDesktop().browse(uri);
 			} catch (IOException e) {
-				/* TODO: error handling */ }
+			}
 		} else {
-			/* TODO: error handling */ }
+		 }
 	}
 
 	private JPanel getPanel() {

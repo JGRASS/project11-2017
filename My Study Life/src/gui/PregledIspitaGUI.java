@@ -1,20 +1,13 @@
 package gui;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import aktivnosti.Aktivnost;
 import aktivnosti.Ispit;
-import aktivnosti.Kolokvijum;
 import gui.modeli.FrameDragListener;
-import sismeskiKontroler.SistemskiKontroler;
-
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
@@ -28,9 +21,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
-
+/**
+ * Klasa predstavlja GUI za pregled ispita
+ * @author Miro Maric
+ * @version 1.0
+ *
+ */
 public class PregledIspitaGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private List<Ispit> ispiti = new LinkedList<>();
 	private JPanel panel;
@@ -43,7 +46,7 @@ public class PregledIspitaGUI extends JFrame {
 	
 	public PregledIspitaGUI() {
 		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
-		String nazivPredmeta = GUIKontroler.SK.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
+		String nazivPredmeta = GUIKontroler.vratiPredmete().get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
 		for(int i=0;i<sveAktivnosti.size();i++){
 			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Ispit)){
 				ispiti.add((Ispit)sveAktivnosti.get(i));

@@ -3,9 +3,7 @@ package gui;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import aktivnosti.Aktivnost;
-import aktivnosti.Ispit;
 import aktivnosti.Kolokvijum;
 import gui.modeli.FrameDragListener;
 import java.awt.Color;
@@ -22,9 +20,19 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
-
+/**
+ * Klasa predstavlja GUI za pregled kolokvijuma
+ * @author Miro Maric
+ * @version 1.0
+ *
+ */
 public class PregledKolokvijumaGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JPanel panel;
 	private JLabel lblNaslov;
@@ -37,7 +45,7 @@ public class PregledKolokvijumaGUI extends JFrame {
 	
 	public PregledKolokvijumaGUI() {
 		List<Aktivnost> sveAktivnosti = GUIKontroler.vratiSveAktivnosti();
-		String nazivPredmeta = GUIKontroler.SK.predmeti.get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
+		String nazivPredmeta = GUIKontroler.vratiPredmete().get(GlavniProzorGUI.tablePredmeti.getSelectedRow()).getNaziv();
 		for(int i=0;i<sveAktivnosti.size();i++){
 			if(sveAktivnosti.get(i).getPredmet().getNaziv().equals(nazivPredmeta) && (sveAktivnosti.get(i) instanceof Kolokvijum)){
 				kolokvijumi.add((Kolokvijum)sveAktivnosti.get(i));

@@ -1,13 +1,11 @@
 package gui;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.GregorianCalendar;
-
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,10 +16,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
-
 import aktivnosti.Ispit;
-import aktivnosti.Kolokvijum;
-import aktivnosti.Planer;
 import gui.modeli.FrameDragListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -32,6 +27,10 @@ import java.awt.event.MouseEvent;
  */
 public class DodajIspitGUI extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JComboBox<String> comboBoxPredmeti;
 	private JLabel lblIzaberiPredmet;
@@ -78,11 +77,11 @@ public class DodajIspitGUI extends JFrame {
 			comboBoxPredmeti = new JComboBox<String>();
 			comboBoxPredmeti.setForeground(Color.WHITE);
 			comboBoxPredmeti.setBackground(Color.GRAY);
-			for(int i=0;i<GUIKontroler.SK.predmeti.size();i++){
-				if(GUIKontroler.SK.predmeti.get(i).isPolozen()) continue;
-				comboBoxPredmeti.addItem(GUIKontroler.SK.predmeti.get(i).getNaziv());
+			for(int i=0;i<GUIKontroler.vratiPredmete().size();i++){
+				if(GUIKontroler.vratiPredmete().get(i).isPolozen()) continue;
+				comboBoxPredmeti.addItem(GUIKontroler.vratiPredmete().get(i).getNaziv());
 			}
-			comboBoxPredmeti.setAlignmentX(comboBoxPredmeti.CENTER_ALIGNMENT);
+			comboBoxPredmeti.setAlignmentX(Component.CENTER_ALIGNMENT);
 			comboBoxPredmeti.setBounds(100, 77, 250, 35);
 		}
 		return comboBoxPredmeti;
@@ -149,7 +148,7 @@ public class DodajIspitGUI extends JFrame {
 						int index = GUIKontroler.vratiIndexPredmeta(naziv);
 						if(index==-1)
 							throw new IndexOutOfBoundsException();
-						i.setPredmet(GUIKontroler.SK.predmeti.get(index));
+						i.setPredmet(GUIKontroler.vratiPredmete().get(index));
 						
 						g.set(GregorianCalendar.YEAR, GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.YEAR));
 						g.set(GregorianCalendar.MONTH,GUIKontroler.vratiTrenutnoVreme().get(GregorianCalendar.MONTH));

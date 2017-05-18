@@ -1,5 +1,4 @@
 package gui;
-
 import java.awt.BorderLayout;
 import java.awt.Component;
 import javax.swing.JFrame;
@@ -11,8 +10,6 @@ import gui.modeli.MojaTabela;
 import gui.modeli.PlanerTabelaModel;
 import gui.modeli.PrikazPolozenihTabelaModel;
 import gui.modeli.PrikazPredmetaTabelaModel;
-import sismeskiKontroler.SistemskiKontroler;
-
 import javax.swing.JTabbedPane;
 import java.awt.Font;
 import java.awt.Image;
@@ -23,7 +20,6 @@ import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.JLabel;
 import java.awt.Color;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.MouseAdapter;
@@ -643,7 +639,7 @@ public class GlavniProzorGUI extends JFrame {
 					if (broj == JOptionPane.YES_OPTION) {
 						int red = tablePredmeti.getSelectedRow();
 						if (red != -1) {
-							GUIKontroler.SK.predmeti.remove(red);
+							GUIKontroler.vratiPredmete().remove(red);
 							GUIKontroler.azurirajTabeluPredmet();
 							GUIKontroler.azurirajTabeluPolozeni();
 							GUIKontroler.azurirajProsek();
