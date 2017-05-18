@@ -48,7 +48,7 @@ public class GlavniProzorGUI extends JFrame {
 	private JPanel panelPredmeti;
 	private JPanel panelRasporedObaveza;
 	private JPanel panelPolozeniIspiti;
-	public static MojaTabela table; // GuiKontroler?
+	public static MojaTabela table;
 	private JLabel lblNed;
 	private JLabel lblPon;
 	private JLabel lblUto;
@@ -315,10 +315,7 @@ public class GlavniProzorGUI extends JFrame {
 			});
 			azurirajLblDatum();
 			GUIKontroler.azurirajTabelu(table);
-			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer(); // Centriranje
-																						// teksta
-																						// u
-																						// celijama
+			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();																// celijama
 			centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 			for (int i = 0; i < table.getModel().getColumnCount(); i++)
 				table.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
@@ -660,6 +657,7 @@ public class GlavniProzorGUI extends JFrame {
 			scrollPane.setBorder(null);
 			scrollPane.setBounds(0, 0, 729, 530);
 			scrollPane.setViewportView(getTablePredmeti());
+			scrollPane.setBorder(null);
 		}
 		return scrollPane;
 	}
@@ -667,6 +665,9 @@ public class GlavniProzorGUI extends JFrame {
 	private JTable getTablePredmeti() {
 		if (tablePredmeti == null) {
 			tablePredmeti = new JTable();
+			tablePredmeti.setFont(new Font("Tahoma", Font.PLAIN, 14));
+			tablePredmeti.setForeground(Color.WHITE);
+			tablePredmeti.setBackground(Color.GRAY);
 			tablePredmeti.setBorder(null);
 			tablePredmeti.addMouseListener(new MouseAdapter() {
 				@Override
@@ -682,8 +683,12 @@ public class GlavniProzorGUI extends JFrame {
 			scrollPane.setOpaque(false);
 			scrollPane.getViewport().setOpaque(false);
 			tablePredmeti.setShowGrid(false);
-			tablePredmeti.setRowHeight(25);
+			tablePredmeti.setRowHeight(30);
 			GUIKontroler.azurirajTabeluPredmet();
+			DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();																// celijama
+			centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+			for (int i = 0; i < tablePredmeti.getModel().getColumnCount(); i++)
+				tablePredmeti.getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
 		}
 		return tablePredmeti;
 	}
@@ -919,7 +924,9 @@ public class GlavniProzorGUI extends JFrame {
 		scrollPanePolozeni.setOpaque(false);
 		scrollPanePolozeni.getViewport().setOpaque(false);
 		tablePolozeni.setShowGrid(false);
-		tablePolozeni.setRowHeight(25);
+		tablePolozeni.setRowHeight(30);
+		tablePolozeni.setBackground(Color.GRAY);
+		tablePolozeni.setForeground(Color.WHITE);
 
 		return tablePolozeni;
 	}
@@ -1032,6 +1039,7 @@ public class GlavniProzorGUI extends JFrame {
 					return columnEditables[column];
 				}
 			});
+		
 		}
 		return tableraspored;
 	}

@@ -1,6 +1,9 @@
 package sistemskeOperacije;
-
-import gui.GUIKontroler;
+/**
+ * Klasa koja predstavlja sistemsku opraciju vraca prosek
+ * @author Ivan Stanimirovic
+ * @version 1.0
+ */
 import sismeskiKontroler.SistemskiKontroler;
 
 public class SOVratiProsek {

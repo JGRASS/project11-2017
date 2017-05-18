@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.LinkedList;
-
-import gui.GUIKontroler;
 import predmeti.Predmet;
 import sismeskiKontroler.SistemskiKontroler;
 

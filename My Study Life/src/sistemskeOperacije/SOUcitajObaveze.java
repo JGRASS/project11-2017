@@ -5,9 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.LinkedList;
-
 import aktivnosti.Obaveza;
-import gui.GUIKontroler;
 import sismeskiKontroler.SistemskiKontroler;
 
 public class SOUcitajObaveze {

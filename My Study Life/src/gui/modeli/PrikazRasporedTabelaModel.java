@@ -4,6 +4,11 @@ import javax.swing.table.AbstractTableModel;
 
 public class PrikazRasporedTabelaModel extends AbstractTableModel {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String[] dani = { "Ponedeljak", "Utorak", "Sreda", "Cetvratk", "Petak", "Subota", "Nedelja" };
 	private String[][] raspored = new String[7][7];
 	

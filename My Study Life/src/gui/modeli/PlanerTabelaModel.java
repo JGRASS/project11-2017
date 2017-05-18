@@ -1,9 +1,6 @@
 package gui.modeli;
 
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
-
-import org.omg.PortableServer.ServantRetentionPolicyValue;
 /**
  * Klasa koja predstavlja tableModel sa odredjenim podesavanjima
  * @author Miro Maric

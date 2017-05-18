@@ -6,10 +6,8 @@ import java.awt.Font;
 import java.util.GregorianCalendar;
 import javax.swing.JTable;
 import javax.swing.table.TableCellRenderer;
-
 import aktivnosti.Ispit;
 import aktivnosti.Kolokvijum;
-import aktivnosti.Planer;
 import gui.GUIKontroler;
 /**
  * Klasa koja predstvalja jTable sa odredjenim modifikacijama

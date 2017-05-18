@@ -8,10 +8,7 @@ import javax.swing.border.EmptyBorder;
 
 import gui.GUIKontroler;
 import gui.modeli.FrameDragListener;
-import predmeti.Predmet;
-
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
 import java.awt.event.ActionListener;

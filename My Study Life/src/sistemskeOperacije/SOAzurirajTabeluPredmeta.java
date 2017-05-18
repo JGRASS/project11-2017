@@ -1,6 +1,5 @@
 package sistemskeOperacije;
 
-import gui.GUIKontroler;
 import gui.GlavniProzorGUI;
 import gui.modeli.PrikazPredmetaTabelaModel;
 import sismeskiKontroler.SistemskiKontroler;

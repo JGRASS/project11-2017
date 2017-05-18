@@ -4,8 +4,6 @@ import java.io.BufferedOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-
-import gui.GUIKontroler;
 import sismeskiKontroler.SistemskiKontroler;
 
 public class SOSerijalizujPolozene {

@@ -2,10 +2,7 @@ package gui.modeli;
 
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.swing.table.AbstractTableModel;
-
-import gui.GUIKontroler;
 import predmeti.Predmet;
 
 public class PrikazPolozenihTabelaModel extends AbstractTableModel {

@@ -26,13 +26,6 @@ import sismeskiKontroler.SistemskiKontroler;
  * @version 1.0.0
  *
  */
-
- // Ovde pravite staticke
-													// promeljive. Njima posle
-													// pristupamo pomocu
-													// GuiKontroler.xxx iz bilo
-													// koje druge klase.
-
 public class GUIKontroler {
 	
 	private static Planer planer  = SistemskiKontroler.planer;
@@ -43,40 +36,22 @@ public class GUIKontroler {
 	private static PregledKolokvijumaGUI pregledKolokvijuma;
 	private static PregledIspitaGUI pregledIspita;
 	private static DodajObavezu dodajObavezu;
-	//public static SistemskiKontroler SK = new SistemskiKontroler();
 	public static List<Obaveza> obaveze = new LinkedList<>();
-
-
 	public static Color plavaT = new Color(0, 155, 179);
-
-
-	// Ovu listu moramo da serijalizujemo/deserijalizujemo prilikom
-	// zatvaranja/otvaranja programa.
-	// Osim ove, moramo imati jos i liste predmeti,polozeniIspiti...
-
 	public static Color plavaS = new Color(112, 155, 179);
-
+	
 	public static void main(String[] args) {
 		postaviGc();
 		ucitajPredmete();
 		ucitajPolozene();
 		ucitajAktivnosti();
 		ucitajObaveze();
-
-
-
 		popuniMatricuDatuma();
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
 					glavniProzor = new GlavniProzorGUI();
 					glavniProzor.setVisible(true);
-
-
-					planer.postaviGc(new GregorianCalendar());
-					
-
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
