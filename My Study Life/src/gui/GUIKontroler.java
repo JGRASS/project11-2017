@@ -36,7 +36,6 @@ public class GUIKontroler {
 	private static PregledKolokvijumaGUI pregledKolokvijuma;
 	private static PregledIspitaGUI pregledIspita;
 	private static DodajObavezu dodajObavezu;
-	public static List<Obaveza> obaveze = new LinkedList<>();
 	public static Color plavaT = new Color(0, 155, 179);
 	public static Color plavaS = new Color(112, 155, 179);
 	

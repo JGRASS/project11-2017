@@ -97,7 +97,6 @@ public class GlavniProzorGUI extends JFrame {
 	private JLabel label_17;
 	private JLabel label_18;
 	private JButton btnIzbrisiObavezu;
-	private JButton btnUcitaj;
 
 	public GlavniProzorGUI() {
 		setResizable(false);
@@ -117,7 +116,7 @@ public class GlavniProzorGUI extends JFrame {
 		FrameDragListener frameDragListener = new FrameDragListener(this);
 		addMouseListener(frameDragListener);
 		addMouseMotionListener(frameDragListener);
-
+		GUIKontroler.popuniTabeluObaveza();
 	}
 
 	private JTabbedPane getTabbedPane() {
@@ -270,7 +269,6 @@ public class GlavniProzorGUI extends JFrame {
 			panelRasporedObaveza.add(getBtnDodajObavezu());
 			panelRasporedObaveza.add(getTableraspored());
 			panelRasporedObaveza.add(getBtnIzbrisiObavezu());
-			panelRasporedObaveza.add(getBtnUcitaj());
 			
 		}
 		return panelRasporedObaveza;
@@ -1109,6 +1107,7 @@ public class GlavniProzorGUI extends JFrame {
 			btnIzbrisiObavezu.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
 					GUIKontroler.izvrsiObrisiObavezu();
+					
 				}
 			});
 			btnIzbrisiObavezu.setToolTipText("Obrisi predmet");
@@ -1116,30 +1115,10 @@ public class GlavniProzorGUI extends JFrame {
 			btnIzbrisiObavezu.setFont(new Font("Tahoma", Font.PLAIN, 15));
 			btnIzbrisiObavezu.setFocusPainted(false);
 			btnIzbrisiObavezu.setBackground(new Color(0, 155, 179));
-			btnIzbrisiObavezu.setBounds(752, 134, 60, 35);
+			btnIzbrisiObavezu.setBounds(752, 91, 60, 35);
 			Image img = new ImageIcon(this.getClass().getResource("/obrisi.png")).getImage();
 			btnIzbrisiObavezu.setIcon(new ImageIcon(img));
 		}
 		return btnIzbrisiObavezu;
-	}
-	private JButton getBtnUcitaj() {
-		if (btnUcitaj == null) {
-			btnUcitaj = new JButton();
-			btnUcitaj.setForeground(Color.WHITE);
-			btnUcitaj.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent arg0) {
-					
-						GUIKontroler.popuniTabeluObaveza();
-					
-				}
-			});
-			btnUcitaj.setText("Ucitaj\r\n");
-			btnUcitaj.setToolTipText("Dodaj predmet");
-			btnUcitaj.setFont(new Font("Tahoma", Font.PLAIN, 10));
-			btnUcitaj.setFocusPainted(false);
-			btnUcitaj.setBackground(new Color(0, 155, 179));
-			btnUcitaj.setBounds(752, 90, 60, 35);
-		}
-		return btnUcitaj;
 	}
 }
